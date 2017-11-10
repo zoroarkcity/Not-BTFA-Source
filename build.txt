@@ -1,0 +1,15 @@
+author = A team of high quality people
+
+version = 0.3.1
+
+displayName = Beyond The Forgotten Ages
+
+homepage = https://forums.terraria.org/index.php?threads/the-beyond-the-forgotten-ages-forum-post.58568/
+
+hideCode = false
+
+hideResources = false
+
+includeSource = false
+
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, .git\*
