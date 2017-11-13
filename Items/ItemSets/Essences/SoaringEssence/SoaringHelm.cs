@@ -41,7 +41,8 @@ namespace ForgottenMemories.Items.ItemSets.Essences.SoaringEssence
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Zoro is a weeb";
+			player.setBonus = "25% increased magic attack speed";
+			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).magicAttackSpeed += 0.25f;
 		}
 
         public override void AddRecipes()

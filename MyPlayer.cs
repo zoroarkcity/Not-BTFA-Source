@@ -23,6 +23,7 @@ namespace ForgottenMemories
 		public bool hauntedCandle;
 		public bool duneBonus;
 		public float rangedVelocity;
+		public float magicAttackSpeed;
 		public bool boneHearts;
 		
 		public override void ResetEffects()
@@ -34,6 +35,7 @@ namespace ForgottenMemories
 			hauntedCandle = false;
 			duneBonus = false;
 			boneHearts = false;
+			magicAttackSpeed = 1f;
 			rangedVelocity = 1f;
 		}
 		
