@@ -10,11 +10,11 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
         public override void SetDefaults()
         {
 
-            item.damage = 68;
+            item.damage = 36;
             item.melee = true;
             item.width = 20;
             item.height = 12;
-            item.useTime = 12;
+            item.useTime = 7;
             item.useAnimation = 37;
             item.useStyle = 1;
             item.knockBack = 5;
