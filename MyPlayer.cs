@@ -25,6 +25,7 @@ namespace ForgottenMemories
 		public float rangedVelocity;
 		public float magicAttackSpeed;
 		public bool boneHearts;
+		public bool chlorophyllPod;
 		
 		public override void ResetEffects()
 		{
@@ -35,8 +36,41 @@ namespace ForgottenMemories
 			hauntedCandle = false;
 			duneBonus = false;
 			boneHearts = false;
+			chlorophyllPod = false;
 			magicAttackSpeed = 1f;
 			rangedVelocity = 1f;
+		}
+		
+		public override void PostUpdate()
+	    {
+		    if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffTwo")) > -1)
+			{
+			    player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));	
+			}
+			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffThree")) > -1)
+			{
+			    player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));	
+			    player.ClearBuff(mod.BuffType("ChlorophyllBuffTwo"));	
+			}
+		}
+		
+		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+		{
+			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffTwo")) > 5 && chlorophyllPod)
+			{
+				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
+				player.ClearBuff(mod.BuffType("ChlorophyllBuffTwo"));
+				player.AddBuff(mod.BuffType("ChlorophyllBuffThree"), 4 * 60);
+			}
+			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > 5 && chlorophyllPod)
+			{
+				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
+				player.AddBuff(mod.BuffType("ChlorophyllBuffTwo"), 4 * 60);
+			}
+			if (chlorophyllPod)
+			{
+			    player.AddBuff(mod.BuffType("ChlorophyllBuffOne"), 4 * 60);
+			}
 		}
 		
 		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockBack, bool Crit)
@@ -48,6 +82,21 @@ namespace ForgottenMemories
 				Main.item[number].velocity.X = (float)((double) Main.rand.Next(10, 31) * 0.200000002980232 * (double) projectile.direction);
 				if (Main.netMode == 1)
 					NetMessage.SendData(21, -1, -1, (NetworkText) null, number, 0.0f, 0.0f, 0.0f, 0, 0, 0);
+			}
+			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffTwo")) > 5 && chlorophyllPod)
+			{
+				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
+				player.ClearBuff(mod.BuffType("ChlorophyllBuffTwo"));
+				player.AddBuff(mod.BuffType("ChlorophyllBuffThree"), 4 * 60);
+			}
+			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > 5 && chlorophyllPod)
+			{
+				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
+				player.AddBuff(mod.BuffType("ChlorophyllBuffTwo"), 4 * 60);
+			}
+			if (chlorophyllPod)
+			{
+			    player.AddBuff(mod.BuffType("ChlorophyllBuffOne"), 4 * 60);
 			}
 		}
 		

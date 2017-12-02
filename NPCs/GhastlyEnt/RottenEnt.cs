@@ -10,14 +10,16 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 	public class RottenEnt : ModNPC
 	{
 		int ai;
-		private int spawnerTimer = 0;//////////// WE NEEED A TIMER /////////////////////////
+		int spawnerTimer = 0;//////////// WE NEEED A TIMER /////////////////////////
+		const int maxAmountofWorms = 3;
+		int spawnedWorms = 0;
 		public override void SetDefaults()
 		{
 			npc.width = 92;
 			npc.height = 126;
 			npc.damage = 60;
 			npc.defense = 18;
-			npc.lifeMax = 2000;
+			npc.lifeMax = 1000;
 			npc.HitSound = SoundID.NPCHit7;
 			npc.DeathSound = SoundID.NPCDeath3;
 			npc.value = 60f;
@@ -63,16 +65,21 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			{
 				npc.spriteDirection = 1;
 			}
-			//////////////////////////////////////////////////////////////////////
-			spawnerTimer++;
-			float distanceBeetweenPlayerandNPC = 500f;
-			if (spawnerTimer >= 300 && (double) Vector2.Distance(player.Center, npc.Center) <= (double) distanceBeetweenPlayerandNPC)
+
+			spawnerTimer++; //////////////REDUCED THE SPAWN TIMER BUT DECREASED THE RANGE OF SPAWNING ///////////////////////////
+			float distanceBeetweenPlayerandNPC = 700f;
+			if (spawnerTimer >= 120 && spawnedWorms != 3 &&  player.active && (double) Vector2.Distance(npc.Center, player.Center) <= (double) distanceBeetweenPlayerandNPC)
 			{
-				spawnerTimer = 0; ///// CREATES A LOOP//////////////
-				NPC.NewNPC((int)(npc.position.X), (int)(npc.position.Y), (mod.NPCType("WormHead")));
-				
+				{
+					spawnerTimer = 0;
+					spawnedWorms += 1; 
+				    NPC.NewNPC((int)(npc.position.X), (int)(npc.position.Y), (mod.NPCType("WormHead")));
+				}
 			}
-			////////////EAST'S CODE ENDS HERE/////////////////////////////////////
+			if (Vector2.Distance(npc.Center, player.Center) >= (double) distanceBeetweenPlayerandNPC)
+			{
+				spawnerTimer = 0;
+			}
 		}
 		
 		public override void FindFrame(int frameHeight)
@@ -86,6 +93,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		public override void NPCLoot()
 		{
 			spawnerTimer = 0;///////////////////////RESETS THE TIMER INCASE IT BUGS OUT////////////////////
+			spawnedWorms = 0;///////////////////////RESETS THE WORM AMOUNT ////////////////////////////////
 			if(Main.rand.Next(10) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("WoodlouseStaff"));
