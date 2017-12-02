@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
 
         public override void SetDefaults()
         {
-            item.damage = 60;
+            item.damage = 30;
 			item.ranged = true;
 			item.width = 40;
 			item.height = 20;

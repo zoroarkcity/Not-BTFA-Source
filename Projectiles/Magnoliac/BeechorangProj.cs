@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ForgottenMemories.Projectiles
+namespace ForgottenMemories.Projectiles.Magnoliac
 {
 	public class BeechorangProj : ModProjectile
 	{
@@ -21,7 +21,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.friendly = true;
 			projectile.ranged = true;
 			projectile.extraUpdates = 1;
-			projectile.timeLeft = 600;
+			projectile.timeLeft = 120;
 			projectile.penetrate = -1;
 			
 			

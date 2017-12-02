@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ForgottenMemories.Projectiles
+namespace ForgottenMemories.Projectiles.Magnoliac
 {
     public class acornlauncherprojectile : ModProjectile
     {

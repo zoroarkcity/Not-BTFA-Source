@@ -11,7 +11,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
 		public override void SetDefaults()
 		{
 
-            item.damage = 59;            
+            item.damage = 23;            
             item.melee = true;
             item.width = 30;
             item.height = 30;
@@ -22,7 +22,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
 			item.knockBack = 2;
 			item.value = 60000;
 			item.rare = 8;
-			item.shootSpeed = 13f;
+			item.shootSpeed = 9f;
 			item.shoot = mod.ProjectileType("BeechorangProj");
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
