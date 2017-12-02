@@ -11,21 +11,21 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetDefaults()
 		{
 
-			item.damage = 48;
+			item.damage = 46;
 			item.magic = true;
 			item.width = 50;
 			item.height = 50;
-			item.useTime = 49;
-			item.useAnimation = 49;
+			item.useTime = 46;
+			item.useAnimation = 46;
 			item.useStyle = 5;
-			item.knockBack = 5;
+			item.knockBack = 4;
 			item.value = 27000;
 			item.rare = 2;
 			item.UseSound = SoundID.Item117;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("LeafnadoFriendly");
 			item.shootSpeed = 13f;
-			item.mana = 27;
+			item.mana = 25;
 
 			item.noMelee = true;
 		}
