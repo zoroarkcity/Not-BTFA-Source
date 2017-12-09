@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.Items.ItemSets.Magnoliac
 {
-    public class AcornLauncher : ModItem
+    public class acornlauncher : ModItem
     {
 
         public override void SetDefaults()
