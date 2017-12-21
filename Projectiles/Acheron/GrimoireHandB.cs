@@ -6,28 +6,30 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using System;
 
-namespace ForgottenMemories.Projectiles.Archeron
+namespace ForgottenMemories.Projectiles.Acheron
 {
-	public class LostSoul : ModProjectile
+	public class GrimoireHandB : ModProjectile
 	{
-		int ai = 0;
+		int timer = 0;
 		public override void SetDefaults()
 		{
-			projectile.width = 20;
-			projectile.height = 20;
+			projectile.width = 24;
+			projectile.height = 24;
 			projectile.aiStyle = -1;
 			projectile.friendly = true;
-			projectile.thrown = true;
+			projectile.magic = true;
 			projectile.penetrate = -1;
 			projectile.alpha = 255;
 			projectile.tileCollide = true;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
+			projectile.usesLocalNPCImmunity = true;
+			projectile.localNPCHitCooldown = 10;
 		}
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Lost Soul");
+			DisplayName.SetDefault("Hand of the Dead");
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -89,13 +91,20 @@ namespace ForgottenMemories.Projectiles.Archeron
 		public override void AI()
 		{
 			projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
+			if ((float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) > MathHelper.PiOver2 && (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) < (3 * MathHelper.PiOver2))
+			{
+				projectile.spriteDirection = -1;
+			}
+			else
+			{
+				projectile.spriteDirection = 1;
+			}
 			if (Main.rand.Next(5) == 0)
 			{
-				int dust2 = Dust.NewDust(projectile.position + projectile.velocity, 0, 0, 20, 0f, 0f);
-				Main.dust[dust2].velocity = Vector2.Zero;
+				int dust2 = Dust.NewDust(projectile.position + projectile.velocity, projectile.height, projectile.width, 20, 0f, 0f);
 			}
 			
-			if (ai > 0)
+			if (projectile.ai[0] > 0)
 			{
 				projectile.alpha += 10;
 			
@@ -106,32 +115,16 @@ namespace ForgottenMemories.Projectiles.Archeron
 			{
 				projectile.alpha -= 15;
 			}
-			else
-			{
-				projectile.ai[0]++;
-				if (projectile.ai[0] % 60 <= 29)
-				{
-					projectile.velocity *= 0.91f;
-				}
-				else
-				{
-					projectile.velocity *= 1.1f;
-				}
-				if (projectile.ai[0] > 120)
-				{
-					ai++;
-				}
-			}
 		}
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			ai += 1;
+			projectile.ai[0] += 1;
 		}
 		
 		public override bool OnTileCollide (Vector2 velocity1)
 		{
-			ai++;
+			projectile.ai[0]++;
 			projectile.velocity = velocity1;
 			projectile.tileCollide = false;
 			return false;

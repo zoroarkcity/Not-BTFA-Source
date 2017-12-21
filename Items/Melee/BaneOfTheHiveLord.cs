@@ -46,15 +46,18 @@ namespace ForgottenMemories.Items.Melee
 		
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-			for (int i = 0; i <= 1; i++)
-            {
-				float sX = 2f;
-				float sY = 2f;
-				sX += (float)Main.rand.Next(-60, 61) * 0.2f;
-				sY += (float)Main.rand.Next(-60, 61) * 0.2f;
-                Projectile.NewProjectile(target.Center.X, target.Center.Y, sX, sY, ProjectileID.Bee, damage, knockback, player.whoAmI, 0f, 0f);
-				Projectile.NewProjectile(target.Center.X, target.Center.Y, -sX, -sY, ProjectileID.Wasp, damage, knockback, player.whoAmI, 0f, 0f);
-            }
+			if (target.type != 488)
+			{
+				for (int i = 0; i <= 1; i++)
+				{
+					float sX = 2f;
+					float sY = 2f;
+					sX += (float)Main.rand.Next(-60, 61) * 0.2f;
+					sY += (float)Main.rand.Next(-60, 61) * 0.2f;
+					Projectile.NewProjectile(target.Center.X, target.Center.Y, sX, sY, ProjectileID.Bee, damage, knockback, player.whoAmI, 0f, 0f);
+					Projectile.NewProjectile(target.Center.X, target.Center.Y, -sX, -sY, ProjectileID.Wasp, damage, knockback, player.whoAmI, 0f, 0f);
+				}
+			}
         }
 	}
 }

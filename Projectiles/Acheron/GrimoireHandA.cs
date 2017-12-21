@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using System;
 
-namespace ForgottenMemories.Projectiles.Archeron
+namespace ForgottenMemories.Projectiles.Acheron
 {
-	public class GrimoireHandB : ModProjectile
+	public class GrimoireHandA : ModProjectile
 	{
 		int timer = 0;
 		public override void SetDefaults()
@@ -93,7 +93,8 @@ namespace ForgottenMemories.Projectiles.Archeron
 			projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
 			if ((float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) > MathHelper.PiOver2 && (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) < (3 * MathHelper.PiOver2))
 			{
-				projectile.spriteDirection = -1;
+				projectile.spriteDirection = -1; //weebhook test
+				
 			}
 			else
 			{

@@ -176,7 +176,7 @@ namespace ForgottenMemories
 				tasks.Insert(ShiniesIndex + 1, new PassLegacy("Adding BTFA Gems", delegate (GenerationProgress progress)
 				{
 					progress.Message = "Moulding forgotten gemstones";
-					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 70E-05); k++)
+					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 35E-05); k++)
 					{
 						int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
 						int j = WorldGen.genRand.Next((int) Main.worldSurface - 1, Main.maxTilesY - 10);

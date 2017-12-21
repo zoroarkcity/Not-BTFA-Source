@@ -24,7 +24,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.noMelee = true;
 			item.knockBack = 1;
 			item.value = 50000;
-			item.rare = 3;
+			item.rare = 5;
 			item.UseSound = SoundID.Item11;
 			item.autoReuse = false;
 			item.shoot = 10;

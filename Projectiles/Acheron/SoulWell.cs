@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ForgottenMemories.Projectiles.Archeron
+namespace ForgottenMemories.Projectiles.Acheron
 {
 	public class SoulWell : ModProjectile
 	{
