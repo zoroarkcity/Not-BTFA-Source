@@ -8,7 +8,7 @@ using Terraria.GameContent.UI.Chat;
  
 namespace ForgottenMemories.Items.ItemSets.Magnoliac        //We need this to basically indicate the folder where it is to be read from, so you the texture will load correctly
 {
-    public class DandelionStaff : ModItem
+    public class dandelionstaff : ModItem
     {
 		public override void SetDefaults()
 		{
