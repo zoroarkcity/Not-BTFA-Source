@@ -32,7 +32,12 @@ namespace ForgottenMemories.Items.ItemSets.Essences.DuneEssence
 		{
 			return body.type == mod.ItemType("DuneBreastplate") && legs.type == mod.ItemType("DuneGreaves");
 		}
-
+		
+                public override void ArmorSetShadows(Player player)
+        	{
+            		player.armorEffectDrawShadow = true;
+        	}
+	
 		public override void UpdateEquip(Player player)
 		{
 			player.meleeCrit += 5;
