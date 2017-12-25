@@ -49,6 +49,18 @@ namespace ForgottenMemories.Items.ItemSets.Oceanic
 		{
 			player.setBonus = "Passively creates bubbles";
 			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).AquaPowers = true;
+			if ((double) Math.Abs(player.velocity.X) + (double) Math.Abs(player.velocity.Y) > 1.0 && !player.rocketFrame)
+            		{
+                		for (int index1 = 0; index1 < 1; ++index1)
+                		{
+                   			 int index2 = Dust.NewDust(new Vector2(player.position.X - player.velocity.X * 2f, (float) ((double) player.position.Y - 2.0 - (double) player.velocity.Y * 2.0)), player.width, player.height, 33, 0.0f, 0.0f, 100, new Color(), 2f);
+                   			 Main.dust[index2].noGravity = true;
+                    			 Main.dust[index2].noLight = true;
+                   			 Main.dust[index2].velocity.X -= player.velocity.X * 0.5f;
+                   			 Main.dust[index2].velocity.Y = 0f;
+                   			 Main.dust[index2].scale = 1f;
+                		}
+            		}
 		}
 
 		public override void AddRecipes()
