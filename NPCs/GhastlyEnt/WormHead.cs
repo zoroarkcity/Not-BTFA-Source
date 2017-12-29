@@ -37,7 +37,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
             npc.netAlways = true;
 			aiType = 134;
         }
-
+        public override void NPCLoot()
+		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WoodWormHeadGore"), 1f);
+		}
         public override bool PreAI()
         {	
 			if (Main.player[npc.target].dead && npc.timeLeft < 10000)

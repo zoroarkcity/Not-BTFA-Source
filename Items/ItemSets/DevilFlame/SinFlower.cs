@@ -25,6 +25,7 @@ namespace ForgottenMemories.Items.ItemSets.DevilFlame
 			item.value = 50000;
             item.rare = 1;
 			item.noMelee = true;
+			Item.staff[item.type] = true;
 			item.noUseGraphic = true;
 			item.magic = true;
 			item.channel = true;

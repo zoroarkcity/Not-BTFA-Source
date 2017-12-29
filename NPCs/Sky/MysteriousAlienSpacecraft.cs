@@ -51,7 +51,10 @@ namespace ForgottenMemories.NPCs.Sky
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DivineBolt"));
 			}
-			
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MysteriousAlienSpacecraftGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MysteriousAlienSpacecraftGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MysteriousAlienSpacecraftGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MysteriousAlienSpacecraftGore4"), 1f);
 		}
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

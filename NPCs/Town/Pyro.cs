@@ -173,5 +173,12 @@ namespace ForgottenMemories.NPCs.Town
 			multiplier = 15f;
 			randomOffset = 2f;
 		}
+		
+		public override void NPCLoot()
+		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyroGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyroGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyroGore3"), 1f);
+		}
 	}
 }

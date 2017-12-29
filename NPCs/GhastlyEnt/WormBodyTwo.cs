@@ -28,7 +28,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
             npc.dontCountMe = true;
             npc.HitSound = SoundID.NPCHit2;
         }
-
+        public override void NPCLoot()
+		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WoodWormBodyTwoGore"), 1f);
+		}
         public override bool PreAI()
         {
 			Player P = Main.player[npc.target];

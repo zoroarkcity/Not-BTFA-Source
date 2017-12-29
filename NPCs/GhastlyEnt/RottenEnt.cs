@@ -92,6 +92,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public override void NPCLoot()
 		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/RottenEntGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/RottenEntGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/RottenEntGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/RottenEntGore4"), 1f);
 			spawnerTimer = 0;///////////////////////RESETS THE TIMER INCASE IT BUGS OUT////////////////////
 			spawnedWorms = 0;///////////////////////RESETS THE WORM AMOUNT ////////////////////////////////
 			if(Main.rand.Next(10) == 0)

@@ -38,7 +38,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Arterius");
-			Main.npcFrameCount[npc.type] = 4;
+			Main.npcFrameCount[npc.type] = 5;
 		}
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

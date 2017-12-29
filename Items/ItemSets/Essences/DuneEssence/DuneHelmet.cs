@@ -44,7 +44,10 @@ namespace ForgottenMemories.Items.ItemSets.Essences.DuneEssence
 			player.setBonus = "Your melee stats and movement speed are increased when you are damaged";
 			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).duneBonus = true;
 		}
-
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawShadow = true;
+        }
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

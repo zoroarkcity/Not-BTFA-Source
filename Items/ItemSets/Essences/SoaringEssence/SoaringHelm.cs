@@ -44,7 +44,10 @@ namespace ForgottenMemories.Items.ItemSets.Essences.SoaringEssence
 			player.setBonus = "17% increased magic attack speed";
 			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).magicAttackSpeed += 0.17f;
 		}
-
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawShadow = true;
+        }
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

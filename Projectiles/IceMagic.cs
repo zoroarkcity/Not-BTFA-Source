@@ -138,7 +138,7 @@ namespace ForgottenMemories.Projectiles
 				
 				if (hasAimed == true && projectile.timeLeft < 280)
 				{
-					projectile.tileCollide = true;
+					projectile.tileCollide = false;
 				}
 			}
         }

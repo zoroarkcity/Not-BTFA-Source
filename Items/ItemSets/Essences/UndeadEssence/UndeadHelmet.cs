@@ -41,9 +41,12 @@ namespace ForgottenMemories.Items.ItemSets.Essences.UndeadEssence
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Throwing damage done creates life regen-increasing bone hearts";
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).boneHearts = true;
+			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).boneHearts = true;		
 		}
-
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawShadow = true;
+        }
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

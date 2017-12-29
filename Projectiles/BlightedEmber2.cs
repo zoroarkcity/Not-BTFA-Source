@@ -8,9 +8,9 @@ using Terraria.Utilities;
 
 namespace ForgottenMemories.Projectiles
 {
+	
 	public class BlightedEmber2 : ModProjectile
 	{
-		//Vector2 Gay;
 		Vector2 Gayer;
 		bool canMeme = false;
 		//float memers = 0;
@@ -20,7 +20,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.height = 20;
 			projectile.friendly = true;
 			projectile.melee = true;
-			projectile.penetrate = -1;
+			projectile.penetrate = 4;
 			projectile.timeLeft = 80;
 			projectile.alpha = 255;
 		}
@@ -29,7 +29,27 @@ namespace ForgottenMemories.Projectiles
 		{
 			DisplayName.SetDefault("Blighted Ember");
 		}
-		
+		public override bool OnTileCollide(Vector2 oldVelocity)
+		{
+			projectile.penetrate--;
+			if (projectile.penetrate <= 0)
+			{
+				projectile.Kill();
+			}
+			else
+			{
+				if (projectile.velocity.X != oldVelocity.X)
+				{
+					projectile.velocity.X = -oldVelocity.X;
+				}
+				if (projectile.velocity.Y != oldVelocity.Y)
+				{
+					projectile.velocity.Y = -oldVelocity.Y;
+				}
+				Main.PlaySound(SoundID.Item10, projectile.position);
+			}
+			return false;
+		}
 		public override void AI()
 		{
 			float num7 = projectile.velocity.ToRotation();

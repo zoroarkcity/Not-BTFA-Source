@@ -240,5 +240,12 @@ namespace ForgottenMemories.NPCs.Town
 			multiplier = 20f + ((Main.hardMode) ? 2 : 0) + ((NPC.downedMoonlord) ? 2 : 0);
 			randomOffset = 5f;
 		}
+		
+		public override void NPCLoot()
+		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TrashManGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TrashManGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TrashManGore3"), 1f);
+		}
 	}
 }

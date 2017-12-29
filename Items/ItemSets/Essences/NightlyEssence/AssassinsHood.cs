@@ -43,7 +43,10 @@ namespace ForgottenMemories.Items.ItemSets.Essences.NightlyEssence
 			player.setBonus = "Ranged projectiles move 25% more swiftly";
 			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).rangedVelocity += 0.25f;
 		}
-
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawShadow = true;
+        }
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

@@ -51,6 +51,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public override void NPCLoot()
 		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PineFlyerGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PineFlyerGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PineFlyerGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PineFlyerGore4"), 1f);
 			int amountToDrop = Main.rand.Next(3,10);
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BorealWood, amountToDrop);
 			if(Main.rand.Next(20) == 0)

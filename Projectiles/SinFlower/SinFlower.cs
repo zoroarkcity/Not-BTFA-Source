@@ -36,16 +36,16 @@ namespace ForgottenMemories.Projectiles.SinFlower
 			projectile.ai[0] += 1f;
 			int num16 = 0;
 			float move = 0;
-			if (projectile.ai[0] >= 160f)
+			if (projectile.ai[0] >= 100f)
 			{
 				num16++;
 			}
 			bool flag4 = false;
-			if (projectile.ai[0] == 60f || projectile.ai[0] == 180f || (projectile.ai[0] > 180f && projectile.ai[0] % 10f == 0f))
+			if (projectile.ai[0] == 60f || projectile.ai[0] == 120f || (projectile.ai[0] > 120f && projectile.ai[0] % 10f == 0f))
 			{
 				flag4 = true;
 			}
-			bool flag5 = projectile.ai[0] >= 180f;
+			bool flag5 = projectile.ai[0] >= 120f;
 			int num17 = 10;
 			//if (!flag5)
 			//{
@@ -109,7 +109,7 @@ namespace ForgottenMemories.Projectiles.SinFlower
 				bool flag8 = (player.channel & flag7) && !player.noItems && !player.CCed;
 				if (flag8)
 				{
-					if (projectile.ai[0] == 180f || projectile.ai[0] == 200f || projectile.ai[0] == 220f)
+					if (projectile.ai[0] == 120f || projectile.ai[0] == 140f || projectile.ai[0] == 160f)
 					{
 						int num21 = mod.ProjectileType("BigBoomBolt");
 						float scaleFactor4 = 10f;
@@ -122,7 +122,7 @@ namespace ForgottenMemories.Projectiles.SinFlower
 						Projectile.NewProjectile(center2.X, center2.Y, vector16.X, vector16.Y, num21, projectile.damage * 3, projectile.knockBack, projectile.owner, 0, 0);
 					}
 					
-					if (projectile.ai[0] == 220f)
+					if (projectile.ai[0] == 160f)
 					{
 						projectile.Kill();
 					}
@@ -171,7 +171,7 @@ namespace ForgottenMemories.Projectiles.SinFlower
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			if (projectile.ai[0] > 180f && Main.projectile[kek].type == mod.ProjectileType("LaserbeamBig"))
+			if (projectile.ai[0] > 120f && Main.projectile[kek].type == mod.ProjectileType("LaserbeamBig"))
 			{
 				Main.instance.DrawProj(kek);
 			}

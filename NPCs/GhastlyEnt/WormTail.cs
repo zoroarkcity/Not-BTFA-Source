@@ -29,7 +29,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
             npc.HitSound = SoundID.NPCHit2;
 			aiType = NPCID.WyvernTail;
         }
-
+		public override void NPCLoot()
+		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WoodWormTailGore"), 1f);
+		}
         public override bool PreAI()
         {
             if (npc.ai[3] > 0)

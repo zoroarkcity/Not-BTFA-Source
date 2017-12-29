@@ -79,5 +79,9 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 
             return false;       //this make that the npc does not have a health bar
         }
+		public override void NPCLoot()
+		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WoodWormBodyGore"), 1f);
+		}
     }
 }
