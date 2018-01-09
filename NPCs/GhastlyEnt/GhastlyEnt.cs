@@ -359,9 +359,9 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		public void Phase3(Player player)
 		{ //basic phase3 ai, will be improved later
 			p3Timer++;
-			if(p3Timer % 20 == 0)
+			if(p3Timer % 60 == 0)
 			{
-				float num4 = 17f;
+				float num4 = 25f;
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
 				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
 				float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
@@ -383,6 +383,12 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			Projectile.NewProjectile(Pos.X, Pos.Y, 0, 0, mod.ProjectileType("DruidicCircle"), 0, 0, Main.myPlayer, player.whoAmI, npc.whoAmI);
 			Main.PlaySound(SoundID.Item117, npc.position);
 		}
+		
+		 public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+		{
+			scale = 1.5f; // larger health bar
+			return null;
+        }
 		
 		public void Branches(Player player, int num)
 		{
