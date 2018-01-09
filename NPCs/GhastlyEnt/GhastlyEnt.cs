@@ -11,6 +11,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
     public class GhastlyEnt : ModNPC
     {
 		int directionY;
+		int p3Timer;
 		
         public override void SetDefaults()
         {
@@ -356,8 +357,24 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		}
 		
 		public void Phase3(Player player)
-		{
-			
+		{ //basic phase3 ai, will be improved later
+			p3Timer++;
+			if(p3Timer % 20 == 0)
+			{
+				float num4 = 17f;
+				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
+				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
+				float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
+				float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
+				float num8 = num4 / num7;
+				npc.velocity.X = num5 * num8;
+				npc.velocity.Y = num6 * num8;
+				Main.PlaySound(SoundID.Item119, npc.position);
+			}
+			else
+			{
+				npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.03f);
+			}
 		}
 		
 		public void DruidCircle(Player player, int Dist)
