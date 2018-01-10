@@ -12,6 +12,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
     {
 		int directionY;
 		int p3Timer;
+		bool p3;
 		
         public override void SetDefaults()
         {
@@ -48,7 +49,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ghastly Ent");
-			Main.npcFrameCount[npc.type] = 5;
+			Main.npcFrameCount[npc.type] = 7;
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -96,8 +97,26 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
 				goto IL_6881;
 			}
+			
 					
 			Microsoft.Xna.Framework.Color color29 = npc.GetAlpha(color25);
+			if (p3)
+			{
+				Texture2D texture2D4 = mod.GetTexture("NPCs/GhastlyEnt/GhastlyEntP3");
+				int num1561 = texture2D4.Height / Main.npcFrameCount[npc.type];
+				int y31 = num1561 * (int)npc.frameCounter;
+				Microsoft.Xna.Framework.Rectangle rectangle2 = new Microsoft.Xna.Framework.Rectangle(0, y31, texture2D4.Width, num1561);
+				Vector2 origin3 = rectangle2.Size() / 2f;
+				SpriteEffects effects = spriteEffects;
+				if (npc.spriteDirection > 0)
+				{
+					effects = SpriteEffects.FlipHorizontally;
+				}
+				float num165 = npc.rotation;
+				Microsoft.Xna.Framework.Color color39 = npc.GetAlpha(color25);
+				Main.spriteBatch.Draw(texture2D4, npc.position + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle2), color39, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin3, npc.scale, effects, 0f);
+				return false;
+			}
 			return true;
 		}
 
@@ -123,6 +142,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			else
 			{
 				Phase3(player);
+				p3 = true;
 			}
 					
 			if (!player.active || player.dead)
@@ -358,13 +378,34 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public void Phase3(Player player)
 		{ //basic phase3 ai, will be improved later
+			//planned phase 3 ai- dash at player constantly, cause cursed fire to rain from sky, create druidic circles occasionally
+			//add in screenshader maybe
+		
+			if (npc.ai[3] == 0)
+			{
+				npc.ai[0] = 0;
+				npc.ai[1] = 0;
+				npc.alpha = 0;
+				npc.ai[2]++;
+				Main.PlaySound(SoundID.NPCDeath10, npc.position);
+				
+				npc.netUpdate = true;
+			}
+			
+			if (Main.rand.Next(4) == 0)
+			{
+				int d = Dust.NewDust(new Vector2((float) npc.position.X, (float) npc.position.Y), npc.width, npc.height, 163, 0.0f, 0.0f, 100, new Color(), 1.5f);
+				Main.dust[d].noGravity = true;
+			}
+			npc.damage = (Main.expertMode) ? 135 : 95;
+			
 			p3Timer++;
 			if(p3Timer % 60 == 0)
 			{
-				float num4 = 25f;
+				float num4 = Main.rand.Next(20, 31);
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
-				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
-				float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
+				float num5 = Main.player[npc.target].position.X + Main.player[npc.target].velocity.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
+				float num6 = Main.player[npc.target].position.Y + Main.player[npc.target].velocity.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
 				float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
 				float num8 = num4 / num7;
 				npc.velocity.X = num5 * num8;
@@ -375,6 +416,12 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			{
 				npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.03f);
 			}
+		}
+		
+		public override void OnHitPlayer(Player target, int damage, bool crit)
+		{
+			if (p3)
+				target.AddBuff(BuffID.CursedInferno, 60 * Main.rand.Next(3, 6));
 		}
 		
 		public void DruidCircle(Player player, int Dist)
