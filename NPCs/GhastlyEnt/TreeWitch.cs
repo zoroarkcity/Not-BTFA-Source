@@ -63,10 +63,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public override void NPCLoot()
 		{
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitchGore1"), 1f);
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitchGore2"), 1f);
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitchGore3"), 1f);
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitchGore4"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitch/TreeWitchGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitch/TreeWitchGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitch/TreeWitchGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TreeWitch/TreeWitchGore4"), 1f);
 			int amountToDrop = Main.rand.Next(2,8);
 			int type = (WorldGen.crimson) ? ItemID.Shadewood : ItemID.Ebonwood;
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, type, amountToDrop);

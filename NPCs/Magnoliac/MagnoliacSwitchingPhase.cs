@@ -115,9 +115,9 @@ namespace ForgottenMemories.NPCs.Magnoliac
 					npc.active = false;
 					NPC.NewNPC((int)(npc.position.X), (int)(npc.position.Y + 160), (mod.NPCType("MagnoliacSecondStage")));
 					Main.PlaySound(SoundID.NPCDeath31, npc.position);
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagnoliacLeavesGore1"), 1f);
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagnoliacLeavesGore2"), 1f);
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagnoliacLeavesGore3"), 1f);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/StageSwitch/MagnoliacLeavesGore1"), 1f);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/StageSwitch/MagnoliacLeavesGore2"), 1f);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/StageSwitch/MagnoliacLeavesGore3"), 1f);
 					if ((double) npc.ai[1] == 30.0)
                         Main.PlaySound(29, (int) npc.Center.X, (int) npc.Center.Y, 92, 1f, 0.0f);
 				}

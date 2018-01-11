@@ -30,7 +30,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
         }
         public override void NPCLoot()
 		{
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WoodWormBodyTwoGore"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WoodWorm/WoodWormBodyTwoGore"), 1f);
 		}
         public override bool PreAI()
         {

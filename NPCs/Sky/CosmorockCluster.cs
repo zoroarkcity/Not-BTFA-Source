@@ -47,8 +47,12 @@ namespace ForgottenMemories.NPCs.Sky
 				int dust = Dust.NewDust(npc.position, npc.width, npc.height, 15);
 			}
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SpaceRockFragment"), Main.rand.Next(1, 4));	
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CosmorockCluster/CosmorockClusterGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CosmorockCluster/CosmorockClusterGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CosmorockCluster/CosmorockClusterGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CosmorockCluster/CosmorockClusterGore4"), 1f);
 		}
-		
+				
 		public override void AI()
 		{
 			npc.TargetClosest(true);

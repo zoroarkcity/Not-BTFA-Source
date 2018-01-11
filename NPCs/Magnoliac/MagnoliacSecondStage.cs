@@ -62,10 +62,10 @@ namespace ForgottenMemories.NPCs.Magnoliac
                 npc.DropBossBags();
             }
             potionType = ItemID.HealingPotion;   //boss drops (can be changed)
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagnoliacGore1"), 1f);
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagnoliacGore2"), 1f);
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagnoliacGore3"), 1f);
-			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagnoliacGore4"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/MagnoliacGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/MagnoliacGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/MagnoliacGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/MagnoliacGore4"), 1f);
         }
 		public override void AI()
         {
