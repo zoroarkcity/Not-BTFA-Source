@@ -75,6 +75,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public override void NPCLoot()
 		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CharredEnt/CharredEntGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CharredEnt/CharredEntGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CharredEnt/CharredEntGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CharredEnt/CharredEntGore4"), 1f);
 			
 			for (int m = 0; m <= 5; m++)
 			{

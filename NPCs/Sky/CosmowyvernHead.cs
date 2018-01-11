@@ -54,6 +54,7 @@ namespace ForgottenMemories.NPCs.Sky
 		
 		public override void NPCLoot()
 		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Cosmowyvern/CosmowyvernHeadGore"), 1f);
 			for (int m = 0; m <= 10; m++)
 			{
 				int dust = Dust.NewDust(npc.position, npc.width, npc.height, 15);
