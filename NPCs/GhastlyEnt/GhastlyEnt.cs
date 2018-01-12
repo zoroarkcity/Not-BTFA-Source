@@ -397,12 +397,12 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				int d = Dust.NewDust(new Vector2((float) npc.position.X, (float) npc.position.Y), npc.width, npc.height, 163, 0.0f, 0.0f, 100, new Color(), 1.5f);
 				Main.dust[d].noGravity = true;
 			}
-			npc.damage = (Main.expertMode) ? 135 : 95;
+			npc.damage = 135;
 			
 			p3Timer++;
 			if(p3Timer % 60 == 0)
 			{
-				float num4 = Main.rand.Next(20, 31);
+				float num4 = Main.rand.Next(20, 26);
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
 				float num5 = Main.player[npc.target].position.X + Main.player[npc.target].velocity.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
 				float num6 = Main.player[npc.target].position.Y + Main.player[npc.target].velocity.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
@@ -411,17 +411,40 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				npc.velocity.X = num5 * num8;
 				npc.velocity.Y = num6 * num8;
 				Main.PlaySound(SoundID.Item119, npc.position);
+				npc.netUpdate = true;
 			}
 			else
 			{
-				npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.03f);
+				Vector2 Vel = Main.player[npc.target].Center - npc.Center;
+				Vel.Normalize();
+				Vel *= 6;
+				npc.velocity = Vector2.Lerp(npc.velocity, Vel, 0.06f);
+			}
+			
+			if(p3Timer % 50 == 0)
+			{
+				FireRain(Main.player[npc.target], Main.rand.Next(1,3));
+			}
+		}
+		
+		public void FireRain(Player player, int num)
+		{
+			for(int i = 0; i < num; i++)
+			{
+				int variation = Main.rand.Next(-150, 151);
+				Vector2 Pos = player.Center;
+				Pos.Y -= 400;
+				Pos.X += player.velocity.X + variation;
+				Vector2 Vel = new Vector2(0, 10f).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-30, 31)));
+				Projectile proj = Main.projectile[Projectile.NewProjectile(Pos, Vel, mod.ProjectileType("CursedFireGhent"), (int)(npc.damage/4), 1, Main.myPlayer, 0, 0)];
+				proj.netUpdate = true;
 			}
 		}
 		
 		public override void OnHitPlayer(Player target, int damage, bool crit)
 		{
 			if (p3)
-				target.AddBuff(BuffID.CursedInferno, 60 * Main.rand.Next(3, 6));
+				target.AddBuff(BuffID.CursedInferno, 60 * Main.rand.Next(3, 6), false);
 		}
 		
 		public void DruidCircle(Player player, int Dist)

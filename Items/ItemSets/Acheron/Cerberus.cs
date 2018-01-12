@@ -23,8 +23,8 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 			item.useStyle = 5;
 			item.noMelee = true; //so the item's animation doesn't do damage
 			item.knockBack = 4;
-			item.value = 10000;
-			item.rare = 2;
+			item.value = 50000;
+			item.rare = 4;
 			item.UseSound = SoundID.Item36;
 			item.autoReuse = true;
 			item.shoot = 10; //idk why but all the guns in the vanilla source have this
