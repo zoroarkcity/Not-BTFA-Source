@@ -22,6 +22,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 			item.summon = true;
 			item.damage = 100;
 			item.mana = 10;
+			item.rare = 4;
 			item.UseSound = SoundID.NPCDeath6;
             item.value = Item.buyPrice(0, 10, 0, 0);
             item.useAnimation = 10;

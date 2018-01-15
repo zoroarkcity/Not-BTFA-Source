@@ -12,7 +12,7 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 	{
 		public override void SetDefaults()
 		{
-			projectile.width = 48;
+			projectile.width = 120;
 			projectile.height = 48;
 			projectile.aiStyle = 0;
 			projectile.hostile = true;
