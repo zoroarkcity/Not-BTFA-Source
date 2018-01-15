@@ -9,7 +9,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Cerberus' tooltip");
+			Tooltip.SetDefault("Fires a soul-piercing shockwave");
 		}
 
 		public override void SetDefaults()
@@ -18,8 +18,8 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 			item.ranged = true;
 			item.width = 40;
 			item.height = 20;
-			item.useTime = 20;
-			item.useAnimation = 20;
+			item.useTime = 35;
+			item.useAnimation = 35;
 			item.useStyle = 5;
 			item.noMelee = true; //so the item's animation doesn't do damage
 			item.knockBack = 4;

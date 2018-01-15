@@ -61,19 +61,19 @@ namespace ForgottenMemories.Projectiles.Acheron
 			
 			if (Items.ItemSets.Acheron.Styx.switcher == 1)
 			{
-				projectile.damage = 200;
+				projectile.damage = (int)(100 * Main.player[projectile.owner].minionDamage);
 			}
 			else if (Items.ItemSets.Acheron.Styx.switcher == 2)
 			{
-				projectile.damage = 150;
+				projectile.damage = (int)(75 * Main.player[projectile.owner].minionDamage);
 			}
 			else if (Items.ItemSets.Acheron.Styx.switcher == 3)
 			{
-				projectile.damage = 100;
+				projectile.damage = (int)(50 * Main.player[projectile.owner].minionDamage);
 			}
 			else if (Items.ItemSets.Acheron.Styx.switcher == 4)
 			{
-				projectile.damage = 50;
+				projectile.damage = (int)(25 * Main.player[projectile.owner].minionDamage);
 			}
 			
 			if (projectile.localAI[0] == 0f)

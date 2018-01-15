@@ -10,7 +10,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron     //The directory for your 
         public override void SetDefaults()
         {
 
-            item.damage = 44;     //The damage stat for the Weapon.
+            item.damage = 50;     //The damage stat for the Weapon.
             item.melee = true;      //This defines if it does Melee damage and if its effected by Melee increasing Armor/Accessories.
             item.width = 35;   //The size of the width of the hitbox in pixels.
             item.height = 35;  //The size of the height of the hitbox in pixels.          
