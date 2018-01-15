@@ -14,10 +14,10 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 		{
 			projectile.width = 120;
 			projectile.height = 48;
-			projectile.aiStyle = 1;
+			projectile.aiStyle = 0;
 			projectile.hostile = true;
 			projectile.penetrate = -1;
-			
+			projectile.alpha = 255;
 			Main.projFrames[projectile.type] = 4;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
@@ -90,7 +90,7 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 			
 			
 			int num161 = num159;
-			while ((num158 > 0 && num161 < num157) || (num158 < 0 && num161 > num157))
+			while (projectile.alpha < 255 && ((num158 > 0 && num161 < num157) || (num158 < 0 && num161 > num157)))
 			{
 				Microsoft.Xna.Framework.Color color26 = color25;
 				color26 = projectile.GetAlpha(color26);		
@@ -127,6 +127,9 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 		
 		public override void AI()
 		{
+			if (projectile.alpha >= 0)
+				projectile.alpha -= 5;
+			
 			projectile.frameCounter++;
 			if (projectile.frameCounter >= 5)
 			{

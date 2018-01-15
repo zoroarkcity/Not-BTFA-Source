@@ -12,6 +12,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
     {
 		int directionY;
 		int p3Timer;
+		int p3Timer2;
 		bool p3;
 		
         public override void SetDefaults()
@@ -386,7 +387,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				npc.ai[0] = 0;
 				npc.ai[1] = 0;
 				npc.alpha = 0;
-				npc.ai[2]++;
+				npc.ai[3]++;
 				Main.PlaySound(SoundID.NPCDeath10, npc.position);
 				
 				npc.netUpdate = true;
@@ -400,8 +401,9 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.damage = 135;
 			
 			p3Timer++;
-			if(p3Timer % 60 == 0)
+			if(p3Timer % 60 == 0 && p3Timer % 460 < 360)
 			{
+				p3Timer2 = 0;
 				float num4 = Main.rand.Next(20, 26);
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
 				float num5 = Main.player[npc.target].position.X + Main.player[npc.target].velocity.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
@@ -410,10 +412,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				float num8 = num4 / num7;
 				npc.velocity.X = num5 * num8;
 				npc.velocity.Y = num6 * num8;
-				Main.PlaySound(SoundID.Item119, npc.position);
+				Main.PlaySound(SoundID.Item45, npc.position);
 				npc.netUpdate = true;
 			}
-			else
+			else if (p3Timer % 460 < 360)
 			{
 				Vector2 Vel = Main.player[npc.target].Center - npc.Center;
 				Vel.Normalize();
@@ -424,6 +426,31 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			if(p3Timer % 50 == 0)
 			{
 				FireRain(Main.player[npc.target], Main.rand.Next(1,3));
+			}
+			
+			if (p3Timer % 500 == 0)
+			{
+				DruidCircle(Main.player[npc.target], 0);
+			}
+			
+			
+			if(p3Timer % 460 >= 360)
+			{
+				npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.1f);
+				p3Timer2++;
+				if (p3Timer2 >= 33)
+				{
+					Vector2 Vel = (Main.player[npc.target].Center - npc.Center);
+					Vel.Normalize();
+					Vel *= 15;
+					Vel += Main.player[npc.target].velocity;
+					Vector2 Pos = npc.Center;
+					Projectile proj = Main.projectile[Projectile.NewProjectile(Pos, Vel, mod.ProjectileType("CursedFireGhent"), (int)(npc.damage/4), 1, Main.myPlayer, 0, 0)];
+					proj.netUpdate = true;
+					p3Timer2 = 0;
+					
+					Main.PlaySound(SoundID.Item101, npc.position);
+				}
 			}
 		}
 		
@@ -465,6 +492,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			for(int index = 0; index < num; index++)
 			{
 				Vector2 Pos = new Vector2(0, 300).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-30, 31))) + player.Center;
+				
 				Vector2 Vel = player.Center - Pos;
 				Vel.Normalize();
 				int p = Projectile.NewProjectile(Pos.X, Pos.Y, 0, 0, mod.ProjectileType("BranchBody"), (int)(npc.damage/2), 1, Main.myPlayer, 0, 0);
