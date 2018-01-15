@@ -19,6 +19,7 @@ namespace ForgottenMemories
 		public bool AquaPowers;
 		public bool isGlitch;
 		public bool breakShop;
+		public static int rubixCubeSwitcher;
 		public bool CosmicPowers;
 		public bool hauntedCandle;
 		public bool duneBonus;
@@ -39,6 +40,7 @@ namespace ForgottenMemories
 			chlorophyllPod = false;
 			magicAttackSpeed = 1f;
 			rangedVelocity = 1f;
+			rubixCubeSwitcher = 0;
 		}
 		
 		public override void PostUpdate()

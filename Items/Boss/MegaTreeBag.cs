@@ -38,6 +38,7 @@ namespace ForgottenMemories.Items.Boss
 			player.QuickSpawnItem(mod.ItemType("ForestEnergy"), amountToDrop);
 			player.QuickSpawnItem(ItemID.Wood,(amountToDrop * 3));
             player.QuickSpawnItem(mod.ItemType("AmberCrystal"), 1);
+            player.QuickSpawnItem(mod.ItemType("Fist_of_the_Hallow_Ent"), 1);
 		}
 	}
 }
