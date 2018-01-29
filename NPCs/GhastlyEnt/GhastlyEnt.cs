@@ -460,7 +460,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			{
 				int variation = Main.rand.Next(-150, 151);
 				Vector2 Pos = player.Center;
-				Pos.Y -= 400;
+				Pos.Y -= 450;
 				Pos.X += player.velocity.X + variation;
 				Vector2 Vel = new Vector2(0, 10f).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-30, 31)));
 				Projectile proj = Main.projectile[Projectile.NewProjectile(Pos, Vel, mod.ProjectileType("CursedFireGhent"), (int)(npc.damage/4), 1, Main.myPlayer, 0, 0)];
@@ -524,6 +524,12 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		}
 			public override void NPCLoot()
 			{
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore1"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore3"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore4"), 1f);
+			
 				TGEMWorld.TryForBossMask(npc.Center, npc.type);
 				TGEMWorld.downedGhastlyEnt = true;
 				if (Main.expertMode)
