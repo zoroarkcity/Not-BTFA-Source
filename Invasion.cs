@@ -96,6 +96,7 @@ namespace ForgottenMemories
                 if(Main.invasionSize <= 0)
                 {
                     TGEMWorld.forestInvasionUp = false;
+					TGEMWorld.downedForestInvasion = true;
                     CustomInvasionWarning();
                     Main.invasionType = 0;
                     Main.invasionDelay = 0;

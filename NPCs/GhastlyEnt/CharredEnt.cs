@@ -35,9 +35,9 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
         {
 			Player player = Main.player[npc.target];
 			ai++;
-			if (ai >= 20 + Main.rand.Next(-5, 5))
+			if (ai >= 30 + Main.rand.Next(-5, 5))
 			{
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, 326 + Main.rand.Next(3), (int)(npc.damage / 2), 1, Main.myPlayer, 0, 0);
+				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, 326 + Main.rand.Next(3), (int)(npc.damage / 4), 1, Main.myPlayer, 0, 0);
 				npc.netUpdate = true;
 				ai = 0;
 			}
