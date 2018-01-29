@@ -52,7 +52,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Acheron");
+			DisplayName.SetDefault("Lost Soul");
 			Main.npcFrameCount[npc.type] = 6;
 		}
 		
