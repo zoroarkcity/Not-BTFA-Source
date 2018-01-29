@@ -1,11 +1,5 @@
-using System.Collections.Generic;
 using Terraria;
-using System.Collections.Generic;
-using System;
-using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace ForgottenMemories.Buffs.ChlorophyllBuffs
 {
@@ -15,12 +9,13 @@ namespace ForgottenMemories.Buffs.ChlorophyllBuffs
         {
             Main.buffNoTimeDisplay[Type] = false;
 			DisplayName.SetDefault("Chlorophyll I");
-			Description.SetDefault("Increased life regeneration and movement speed by 5%");
+			Description.SetDefault("Increased life regeneration, movement speed and melee crit chance by 5%");
         }
         public override void Update(Player player, ref int buffIndex)
-        {                                           
-			player.lifeRegen += (player.lifeRegen/100)*5;
-            player.moveSpeed += 0.05f;				
+        {
+            player.lifeRegen += 1;
+            player.moveSpeed *= 1.05f;
+            player.meleeCrit += 5;
         }
     }
 }
