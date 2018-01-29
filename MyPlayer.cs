@@ -27,6 +27,9 @@ namespace ForgottenMemories
 		public float magicAttackSpeed;
 		public bool boneHearts;
 		public bool chlorophyllPod;
+		public bool chlorophyllPodStage1;
+		public bool chlorophyllPodStage2;
+		public bool chlorophyllPodStage3;
 		
 		public override void ResetEffects()
 		{
@@ -38,6 +41,9 @@ namespace ForgottenMemories
 			duneBonus = false;
 			boneHearts = false;
 			chlorophyllPod = false;
+			chlorophyllPodStage1 = false;
+			chlorophyllPodStage2 = false;
+			chlorophyllPodStage3 = false;
 			magicAttackSpeed = 1f;
 			rangedVelocity = 1f;
 			rubixCubeSwitcher = 0;
@@ -45,33 +51,36 @@ namespace ForgottenMemories
 		
 		public override void PostUpdate()
 	    {
-		    if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffTwo")) > -1)
-			{
-			    player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));	
-			}
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffThree")) > -1)
-			{
-			    player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));	
-			    player.ClearBuff(mod.BuffType("ChlorophyllBuffTwo"));	
-			}
 		}
 		
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffTwo")) > 5 && chlorophyllPod)
-			{
-				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
-				player.ClearBuff(mod.BuffType("ChlorophyllBuffTwo"));
-				player.AddBuff(mod.BuffType("ChlorophyllBuffThree"), 4 * 60);
-			}
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > 5 && chlorophyllPod)
-			{
-				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
-				player.AddBuff(mod.BuffType("ChlorophyllBuffTwo"), 4 * 60);
-			}
 			if (chlorophyllPod)
 			{
-			    player.AddBuff(mod.BuffType("ChlorophyllBuffOne"), 4 * 60);
+			    player.lifeRegen = ((player.lifeRegen/100)*5) + player.lifeRegen;
+				player.moveSpeed = (player.moveSpeed*0.05f) + player.moveSpeed;		
+				player.meleeCrit = player.meleeCrit + 5;
+				chlorophyllPodStage1 = true;
+				chlorophyllPodStage2 = false;
+				chlorophyllPodStage3 = false;
+			}
+			if (chlorophyllPod && chlorophyllPodStage1)
+			{
+				player.lifeRegen = ((player.lifeRegen/100)*10) + player.lifeRegen;
+				player.moveSpeed = (player.moveSpeed*0.1f) + player.moveSpeed;		
+				player.meleeCrit = player.meleeCrit + 10;
+				chlorophyllPodStage1 = false;
+				chlorophyllPodStage2 = true;
+				chlorophyllPodStage3 = false;
+			}
+			if (chlorophyllPodStage2 && chlorophyllPod)
+			{
+				player.lifeRegen = ((player.lifeRegen/100)*15) + player.lifeRegen;
+				player.moveSpeed = (player.moveSpeed*0.15f) + player.moveSpeed;		
+				player.meleeCrit = player.meleeCrit + 15;
+				chlorophyllPodStage1 = false;
+				chlorophyllPodStage2 = false;
+				chlorophyllPodStage3 = true;
 			}
 		}
 		
@@ -85,20 +94,26 @@ namespace ForgottenMemories
 				if (Main.netMode == 1)
 					NetMessage.SendData(21, -1, -1, (NetworkText) null, number, 0.0f, 0.0f, 0.0f, 0, 0, 0);
 			}
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffTwo")) > 5 && chlorophyllPod)
-			{
-				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
-				player.ClearBuff(mod.BuffType("ChlorophyllBuffTwo"));
-				player.AddBuff(mod.BuffType("ChlorophyllBuffThree"), 4 * 60);
-			}
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > 5 && chlorophyllPod)
-			{
-				player.ClearBuff(mod.BuffType("ChlorophyllBuffOne"));
-				player.AddBuff(mod.BuffType("ChlorophyllBuffTwo"), 4 * 60);
-			}
 			if (chlorophyllPod)
 			{
 			    player.AddBuff(mod.BuffType("ChlorophyllBuffOne"), 4 * 60);
+			}
+			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > -1 && chlorophyllPod)
+			{
+				player.AddBuff(mod.BuffType("ChlorophyllBuffOne"), 4 * 60);
+				chlorophyllPodStage2 = true;
+			}
+			else 
+			{
+				chlorophyllPodStage2 = false;
+			}
+			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > -1 && chlorophyllPodStage2 && chlorophyllPod)
+			{
+				chlorophyllPodStage3 = true;
+			}
+			else
+			{
+				chlorophyllPodStage3 = false;
 			}
 		}
 		
@@ -130,6 +145,11 @@ namespace ForgottenMemories
 				items.RemoveAt(2);
 				items.Insert(2, item3);
 			}
+			
+			Item btfadex = new Item();
+			btfadex.SetDefaults(mod.ItemType("BTFADex"));
+			btfadex.stack = 1;
+			items.Add(btfadex);
 		}
 		
 		public override void PreUpdate() 

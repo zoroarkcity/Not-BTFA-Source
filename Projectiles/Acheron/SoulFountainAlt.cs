@@ -32,19 +32,6 @@ namespace ForgottenMemories.Projectiles.Acheron
 		{
 			if (projectile.timeLeft <= 300)
 			{
-				for (int index1 = 0; index1 < 10; ++index1)
-				{
-					float num1 = projectile.velocity.X / 3f * (float) index1;
-					float num2 = projectile.velocity.Y / 3f * (float) index1;
-					int num3 = 4;
-					int index2 = Dust.NewDust(new Vector2(projectile.position.X + (float) num3, projectile.position.Y + (float) num3), projectile.width - num3 * 2, projectile.height - num3 * 2, 20, 0.0f, 0.0f, 100, new Color(), 1.4f);
-					Main.dust[index2].noGravity = true;
-					Main.dust[index2].velocity *= 0f;
-					Main.dust[index2].velocity += projectile.velocity * 0.1f;
-					Main.dust[index2].position.X -= num1;
-					Main.dust[index2].position.Y -= num2;
-					Main.dust[index2].scale = 1.1f;
-				}
 				for (int index2 = 0; index2 < 1; ++index2)
 				{
 					float x = projectile.position.X;

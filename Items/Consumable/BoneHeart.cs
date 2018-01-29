@@ -9,7 +9,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bone Heart");
-			Tooltip.SetDefault("u");
+
 		}
 
 		public override void SetDefaults()

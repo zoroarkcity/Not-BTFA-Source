@@ -36,8 +36,8 @@ namespace ForgottenMemories.NPCs
         {
             if(TGEMWorld.forestInvasionUp && (Main.invasionX == (double)Main.spawnTileX))
             {
-                spawnRate = 270; 
-                maxSpawns = 10000; 
+                spawnRate = 50; 
+                maxSpawns = 50; 
             }
         }
 
@@ -57,12 +57,29 @@ namespace ForgottenMemories.NPCs
                 {
                     if(npc.type == invader)
                     {
-                        Main.invasionSize -= 1;
+                        Main.invasionSize -= 2;
 						if (Main.rand.Next(3) == 0)
 						{
-							Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientFoliage"), 1); 
+							Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ForestEnergy"), 1); 
 						}
                     }
+					if(npc.type == mod.NPCType("MagnoliacSecondStage") && !Main.hardMode)
+					{
+						Player player = Main.player[npc.target];
+						Main.invasionSize -= 1000;
+						player.GetModPlayer<TgemPlayer>().MagnoliacBool = false;
+					}
+					if(npc.type == mod.NPCType("MagnoliacSecondStage") && Main.hardMode)
+					{
+						Player player = Main.player[npc.target];
+						player.GetModPlayer<TgemPlayer>().MagnoliacBool = false;
+					}
+					if(npc.type == mod.NPCType("GhastlyEnt") && Main.hardMode)
+					{
+						Player player = Main.player[npc.target];
+						player.GetModPlayer<TgemPlayer>().GentBool = false;
+						Main.invasionSize -= 1000;
+					}
                 }
             }
         }

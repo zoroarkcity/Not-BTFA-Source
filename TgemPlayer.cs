@@ -31,6 +31,8 @@ namespace ForgottenMemories
 		public bool ChaoticSet = false;
 		public bool stardustCrown = false;
 		public bool ghastlywood = false;
+		public bool MagnoliacBool = true;
+		public bool GentBool = true;
 
         public override void ResetEffects()
         {
@@ -50,6 +52,8 @@ namespace ForgottenMemories
 			ChaoticSet = false;
 			stardustCrown = false;
 			ghastlywood = false;
+			MagnoliacBool = true;
+			GentBool = true;
 		}
 		
 		public override void PreUpdate()
@@ -81,6 +85,43 @@ namespace ForgottenMemories
 					Main.projectile[p].position += new Vector2 (Main.projectile[p].width/2, Main.projectile[p].height/2);
 					BlightCounter = 0;
 				}
+			}
+		}
+		
+		public override void PostUpdate()
+		{
+			if(TGEMWorld.forestInvasionUp)
+            {
+				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && !Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Magnoliac")) && MagnoliacBool)
+				{
+					if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSwitchingPhase")))
+					{
+						if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSecondStage")))
+						{
+							NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Magnoliac")));
+							MagnoliacBool = false;
+							Main.NewText("A beast flaps it's wings to descend !", 175, 75, 255);
+						}	
+					}
+                }
+				if ((Main.invasionSize <= 50 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Magnoliac")) && MagnoliacBool)
+				{
+					if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSwitchingPhase")))
+					{
+						if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSecondStage")))
+						{
+							NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Magnoliac")));
+							MagnoliacBool = false;
+							Main.NewText("A beast flaps it's wings to descend !", 175, 75, 255);
+						}	
+					}
+                }
+				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("GhastlyEnt")) && GentBool)
+				{
+					GentBool = false;
+					NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("GhastlyEnt")));
+					Main.NewText("Father of nature awakens !", 175, 75, 255);
+                }
 			}
 		}
 		

@@ -21,7 +21,7 @@ namespace ForgottenMemories.Projectiles.Acheron
             projectile.friendly = true;  //Tells the game whether it is friendly to players/friendly npcs or not
             projectile.tileCollide = false; //Tells the game whether it is hostile to players or not
             projectile.melee = true;   //Tells the game whether it is a ranged projectile or not
-            projectile.timeLeft = 600; //The amount of time the projectile is alive for
+            projectile.timeLeft = 180; //The amount of time the projectile is alive for
 			projectile.extraUpdates = 1;
 			projectile.scale = 1f;
             aiType = ProjectileID.Bullet;		
@@ -58,7 +58,7 @@ namespace ForgottenMemories.Projectiles.Acheron
                 }
                 else
                 {
-                    float num1 = 1000f;
+                    float num1 = 400f;
                     for (int index2 = 0; index2 < 200; ++index2)
                     {
                         if (Main.npc[index2].CanBeChasedBy((object) projectile, false) && Main.npc[index2].friendly == false)

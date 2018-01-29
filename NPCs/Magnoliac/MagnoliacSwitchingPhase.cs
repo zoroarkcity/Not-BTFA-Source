@@ -14,7 +14,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
 	    public static int Switch = 0;
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Magnoliac, the switching phase");
+			DisplayName.SetDefault("Magnoliac");
 			Main.npcFrameCount[npc.type] = 6; // to be changed
 		}
 		
@@ -32,7 +32,6 @@ namespace ForgottenMemories.NPCs.Magnoliac
             npc.noTileCollide = true;
 			npc.dontTakeDamage = true;
 			npc.friendly = true;
-            music = MusicID.Boss1;// to be changed
             npc.netAlways = true;
 			npc.scale = 1f;
         }

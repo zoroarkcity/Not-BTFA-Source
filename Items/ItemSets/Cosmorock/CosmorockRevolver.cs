@@ -5,6 +5,13 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 using ForgottenMemories.Projectiles.InfoA;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using System.Collections.Generic;
+using System;
 
 namespace ForgottenMemories.Items.ItemSets.Cosmorock
 {
@@ -38,7 +45,29 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
     {
       DisplayName.SetDefault("Cosmorock Revolver");
       Tooltip.SetDefault("Fires bullets in bursts of 2 in addition to a meteor");
+      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/CosmorockRevolver");
     }
+	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		{
+			Texture2D texture;
+			texture = Main.itemTexture[item.type];
+			spriteBatch.Draw
+			(
+				mod.GetTexture("GlowMasks/CosmorockRevolver"),
+				new Vector2
+				(
+					item.position.X - Main.screenPosition.X + item.width * 0.5f,
+					item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+				),
+				new Rectangle(0, 0, texture.Width, texture.Height),
+				Color.White,
+				rotation,
+				texture.Size() * 0.5f,
+				scale, 
+				SpriteEffects.None, 
+				0f
+			);
+		}////////////
 
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

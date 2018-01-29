@@ -17,7 +17,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
 		public static int ExpertTimer = 0;
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Magnoliac, the second test stage");
+			DisplayName.SetDefault("Magnoliac");
 			Main.npcFrameCount[npc.type] = 10; // to be changed
 		}
 		
@@ -37,10 +37,9 @@ namespace ForgottenMemories.NPCs.Magnoliac
 			npc.boss = true;  
             npc.HitSound = SoundID.NPCHit32;// to be changed
             npc.DeathSound = SoundID.NPCDeath31;// to be changed
-            music = MusicID.Boss1;// to be changed
             npc.netAlways = true;
 			npc.scale = 1f;
-			bossBag = mod.ItemType("MagnoliacBossBag");
+			bossBag = mod.ItemType("MagnoliacTreasureBag");
         }
 		
 		public override void HitEffect(int hitDirection, double damage)

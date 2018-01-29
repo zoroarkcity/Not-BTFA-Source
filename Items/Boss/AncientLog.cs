@@ -35,6 +35,8 @@ namespace ForgottenMemories.Items.Boss
             {
                 Main.NewText("The forests rumble...", 175, 75, 255, false);
                 CustomInvasion.StartCustomInvasion();
+				player.GetModPlayer<TgemPlayer>().MagnoliacBool = true;
+				player.GetModPlayer<TgemPlayer>().GentBool = true;
                 return true;
             }
             else

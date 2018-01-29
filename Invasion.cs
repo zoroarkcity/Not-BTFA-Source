@@ -25,13 +25,13 @@ namespace ForgottenMemories
 			mod.NPCType("PineFlyer"),
 			mod.NPCType("CharredEnt"),
 			mod.NPCType("LivingMortar"),
-			mod.NPCType("TreeWitch"),
+			mod.NPCType("TreeWitch")
         };
 		
 		public static int[] hmInvaders = {
             mod.NPCType("RedwoodRam"),
 			mod.NPCType("RottenEnt"),
-			mod.NPCType("BlossomBomber"),
+			mod.NPCType("BlossomBomber")
         };
 		
 		public static void StartCustomInvasion()

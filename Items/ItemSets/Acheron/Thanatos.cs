@@ -31,7 +31,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron     //The directory for your 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Thanatos");
-            Tooltip.SetDefault("Thanatos' tooltip");
+            Tooltip.SetDefault("Releases homing thanatos skulls on swing");
         }
 
 		
@@ -44,10 +44,5 @@ namespace ForgottenMemories.Items.ItemSets.Acheron     //The directory for your 
 				Main.dust[dust].scale = 1f;
 			}
 		}
-		
-		public override Color? GetAlpha(Color lightColor)
-        {
-            return Color.White;
-        }
     }
 }

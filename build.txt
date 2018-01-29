@@ -1,12 +1,12 @@
 author = A team of high quality people
 
-version = 0.3.1
+version = 0.4
 
 displayName = Beyond The Forgotten Ages
 
 homepage = https://forums.terraria.org/index.php?threads/the-beyond-the-forgotten-ages-forum-post.58568/
 
-hideCode = false
+hideCode = true
 
 hideResources = false
 

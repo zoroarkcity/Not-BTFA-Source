@@ -5,6 +5,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using System.Collections.Generic;
+using System;
 
 namespace ForgottenMemories.Items.Melee
 {
@@ -35,9 +42,31 @@ namespace ForgottenMemories.Items.Melee
 		
 		    public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Doom Sayer's Slayer");
-      Tooltip.SetDefault("Fires a homing bolt of Reality Fury \nRight-Clicking fires bolts of Despair, Dread, and Anger \nOnly usable if Thorium is installed");
+		DisplayName.SetDefault("Doom Sayer's Slayer");
+		Tooltip.SetDefault("Fires a homing bolt of Reality Fury \nRight-Clicking fires bolts of Despair, Dread, and Anger \nOnly usable if Thorium is installed");
+		BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/DoomSayersSlayer");
     }
+	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		{
+			Texture2D texture;
+			texture = Main.itemTexture[item.type];
+			spriteBatch.Draw
+			(
+				mod.GetTexture("GlowMasks/DoomSayersSlayer"),
+				new Vector2
+				(
+					item.position.X - Main.screenPosition.X + item.width * 0.5f,
+					item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+				),
+				new Rectangle(0, 0, texture.Width, texture.Height),
+				Color.White,
+				rotation,
+				texture.Size() * 0.5f,
+				scale, 
+				SpriteEffects.None, 
+				0f
+			);
+		}////////////
 
 		
 		public override void MeleeEffects(Player player, Rectangle hitbox)

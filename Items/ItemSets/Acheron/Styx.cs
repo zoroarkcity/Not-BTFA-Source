@@ -21,6 +21,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 			Item.staff[item.type] = true;
 			item.summon = true;
 			item.damage = 100;
+			item.noMelee = true;
 			item.mana = 10;
 			item.rare = 4;
 			item.UseSound = SoundID.NPCDeath6;
@@ -46,6 +47,8 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 		
 		public override bool AltFunctionUse(Player player)
 		{
+			MyPlayer.rubixCubeSwitcher+=1;	
+			switcher+= 1;
 			return true;
 		}
 		
@@ -57,13 +60,12 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 				Item.staff[item.type] = true;
 				item.summon = true;
 				item.damage = 100;
+				item.noMelee = true;
 				item.mana = 10;
 				item.UseSound = SoundID.Item30;
 				item.value = Item.buyPrice(0, 10, 0, 0);
-				switcher+= 1;
 				item.autoReuse = true;
-				item.shoot = mod.ProjectileType("eastistheonlygodoutthere");
-                MyPlayer.rubixCubeSwitcher+=1;				
+				item.shoot = mod.ProjectileType("eastistheonlygodoutthere");          			
 			}
 			else
 			{
@@ -81,6 +83,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 				Item.staff[item.type] = true;
                 item.useTurn = true;
                 item.autoReuse = true;
+				item.noMelee = true;
                 item.consumable = false;
 			}
 			return base.CanUseItem(player);
@@ -118,7 +121,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 		
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
-			TooltipLine line = new TooltipLine(mod, "Styx", "Current Speed Value: " + MyPlayer.rubixCubeSwitcher);
+			TooltipLine line = new TooltipLine(mod, "Styx", "Current Speed Value: " + switcher);
 			line.overrideColor = new Color(255, 255, 255);
 			tooltips.Add(line);
 		}

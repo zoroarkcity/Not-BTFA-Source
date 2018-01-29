@@ -20,7 +20,7 @@ namespace ForgottenMemories.Items.Acessory
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Berserker Emblem");
-      Tooltip.SetDefault("Increases Crit Chance by 12%.");
+      Tooltip.SetDefault("Increases critical strike chance by 12%");
     }
 
 
