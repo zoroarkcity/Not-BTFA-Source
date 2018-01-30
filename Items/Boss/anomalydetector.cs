@@ -57,6 +57,14 @@ namespace ForgottenMemories.Items.Boss
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.CrystalShard, 1);
+			recipe.AddIngredient(null, "SpaceRockFragment", 5);
+			recipe.AddIngredient(ItemID.MeteoriteBar, 5);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 	}
 }
