@@ -53,8 +53,6 @@ namespace ForgottenMemories.NPCs.Sky
 		public override void AI()
 		{
 			npc.ai[0]++;
-			if (Main.rand.Next(400) == 0)
-				Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, Main.rand.Next(53, 55), 1f, 0.0f);
 			if (npc.ai[0] < 180)
 			{
 				npc.TargetClosest(true);
