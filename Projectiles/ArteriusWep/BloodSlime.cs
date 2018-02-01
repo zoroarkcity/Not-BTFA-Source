@@ -46,7 +46,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			if (player.dead)
 			{
 				modPlayer.BloodSlime = false;

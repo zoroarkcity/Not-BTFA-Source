@@ -41,7 +41,7 @@ namespace ForgottenMemories.Projectiles.Summon
 		public override void CheckActive()
 		{
 			Player player = Main.player[projectile.owner];
-			TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			if (player.dead)
 			{
 				modPlayer.BlightstoneDragon = false;

@@ -10,7 +10,7 @@ namespace ForgottenMemories.Items
 		{
 			if (item.magic)
 			{
-				return ((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).magicAttackSpeed;
+				return ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).magicAttackSpeed;
 			}
 			
 			return 1f;
@@ -20,7 +20,7 @@ namespace ForgottenMemories.Items
 		{
 			if (item.magic)
 			{
-				return ((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).magicAttackSpeed;
+				return ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).magicAttackSpeed;
 			}
 			
 			return 1f;

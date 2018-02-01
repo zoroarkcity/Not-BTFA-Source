@@ -41,7 +41,7 @@ namespace ForgottenMemories.Items.ItemSets.Essences.NightlyEssence
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Ranged projectiles move 25% more swiftly";
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).rangedVelocity += 0.25f;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).rangedVelocity += 0.25f;
 		}
         public override void ArmorSetShadows(Player player)
         {

@@ -47,7 +47,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Taking damage rains down meteors \nWhen below 50% health defensive stats are increased at the cost of damage and movement speed";
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).CosmicPowers = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).CosmicPowers = true;
 		}
 		
 		public override void AddRecipes()

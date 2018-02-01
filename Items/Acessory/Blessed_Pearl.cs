@@ -39,13 +39,13 @@ namespace ForgottenMemories.Items.Acessory
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).pearl2 = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).pearl2 = true;
 			player.longInvince = true;
 		}
 		
 		public override bool CanEquipAccessory(Player player, int slot)
 		{
-			if (((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).pearl == true)
+			if (((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).pearl == true)
 			{
 				return false;
 			}

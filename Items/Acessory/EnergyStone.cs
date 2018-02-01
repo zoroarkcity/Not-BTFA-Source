@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).GroundPound = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).GroundPound = true;
 			player.meleeDamage += 0.05f;
 			player.rangedDamage += 0.05f;
 			player.thrownDamage += 0.05f;

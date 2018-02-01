@@ -15,7 +15,7 @@ namespace ForgottenMemories.Buffs
 		
 		public override void Update(Player player, ref int buffIndex)
 		{
-			TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			if (player.ownedProjectileCounts[mod.ProjectileType("ShadowflameSpirit")] > 0)
 			{
 				modPlayer.ShadowflameSpirit = true;

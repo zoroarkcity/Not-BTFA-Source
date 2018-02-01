@@ -54,7 +54,7 @@ namespace ForgottenMemories.Projectiles
 			}
 			Player player = Main.player[projectile.owner];
 			if (Main.rand.Next(400) == 0){
-			player.GetModPlayer<MyPlayer>(mod).isGlitch = true;
+			player.GetModPlayer<BTFAPlayer>(mod).isGlitch = true;
 			}
 		}
 		

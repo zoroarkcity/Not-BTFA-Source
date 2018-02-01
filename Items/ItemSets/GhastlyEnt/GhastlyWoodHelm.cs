@@ -43,7 +43,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Magic critical strikes fire leaves at the enemy hit";
-			((TgemPlayer)player.GetModPlayer(mod, "TgemPlayer")).ghastlywood = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).ghastlywood = true;
 		}
 
         public override void AddRecipes()

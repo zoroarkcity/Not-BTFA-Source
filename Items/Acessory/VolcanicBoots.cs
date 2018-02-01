@@ -27,7 +27,7 @@ namespace ForgottenMemories.Items.Acessory
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            ((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).firestorm = true;
+            ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).firestorm = true;
             player.jumpSpeedBoost += 2.2f;
             player.noFallDmg = true;
             player.fireWalk = true;

@@ -28,7 +28,7 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).lifesteal = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).lifesteal = true;
 		}
 	}
 }

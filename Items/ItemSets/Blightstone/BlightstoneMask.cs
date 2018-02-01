@@ -43,13 +43,13 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 		{
 			player.rangedDamage += 0.11f;
 			player.thrownDamage += 0.11f;
-			((TgemPlayer)player.GetModPlayer(mod, "TgemPlayer")).BlightConserve = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).BlightConserve = true;
 		}
 
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Thrown and Ranged attacks have a chance to explode into blighted fire";
-			((TgemPlayer)player.GetModPlayer(mod, "TgemPlayer")).BlightFlameProj = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).BlightFlameProj = true;
 		}
 		
 		public override void AddRecipes()

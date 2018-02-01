@@ -16,7 +16,7 @@ namespace ForgottenMemories.Items
 	{
 		public override bool OnPickup(Item item, Player player)
 		{
-			if (item.type == 184 && ((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).ManaShard == true)
+			if (item.type == 184 && ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).ManaShard == true)
 			{
 				player.AddBuff(mod.BuffType("ManaBoost"), 360);
 				Main.PlaySound(7, (int) player.position.X, (int) player.position.Y, 1, 1f, 0.0f);

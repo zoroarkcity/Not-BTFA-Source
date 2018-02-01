@@ -38,7 +38,7 @@ namespace ForgottenMemories.Projectiles.Optic
         {
         	bool flag64 = projectile.type == mod.ProjectileType("Servant");
 			Player player = Main.player[projectile.owner];
-			TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			if (flag64)
 			{
 				if (player.dead)

@@ -30,7 +30,7 @@ namespace ForgottenMemories.Projectiles
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			if (Main.player[projectile.owner].dead)
 				projectile.Kill();
 			if (Main.myPlayer == projectile.owner && modPlayer.hauntedCandle)

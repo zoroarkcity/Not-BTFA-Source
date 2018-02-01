@@ -47,7 +47,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 		
 		public override bool AltFunctionUse(Player player)
 		{
-			MyPlayer.rubixCubeSwitcher+=1;	
+			BTFAPlayer.rubixCubeSwitcher+=1;	
 			switcher+= 1;
 			return true;
 		}
@@ -113,7 +113,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 			{
 				player.AddBuff(mod.BuffType("styxPlaceHolderBuff"), 10);
 				switcher = 1;
-				MyPlayer.rubixCubeSwitcher = 1;
+				BTFAPlayer.rubixCubeSwitcher = 1;
 				Projectiles.Acheron.SoulFountain.projectileSpawnerTimer = 0;
 			}			
 			return true;

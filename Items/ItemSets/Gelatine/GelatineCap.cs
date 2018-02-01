@@ -42,7 +42,7 @@ namespace ForgottenMemories.Items.ItemSets.Gelatine
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Summons a Slime Guard to fight for you";
-			((TgemPlayer)player.GetModPlayer(mod, "TgemPlayer")).slimeGuard = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).slimeGuard = true;
 		}
 
         public override void AddRecipes()

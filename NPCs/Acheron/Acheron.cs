@@ -128,9 +128,17 @@ namespace ForgottenMemories.NPCs.Acheron
 				Main.spriteBatch.Draw(texture2D4, npc.position + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle2), color29, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin3, npc.scale, effects, 0f);
 				return false;
 			}
-			return true;
+			var allahuakbar = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+			spriteBatch.Draw(Main.npcTexture[npc.type], npc.Center - Main.screenPosition + new Vector2(0, npc.gfxOffY), npc.frame,
+							 lightColor, npc.rotation, npc.frame.Size() / 2, npc.scale, allahuakbar, 0);
+			return false;
 		}
-
+		
+		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+		{
+			BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Acheron/Acheron_Glow"));
+		}
+		
         public override void AI()
         {
 			npc.TargetClosest(true);

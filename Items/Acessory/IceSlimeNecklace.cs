@@ -27,7 +27,7 @@ public class IceSlimeNecklace : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
 	{
-        ((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).frostguard = true;
+        ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).frostguard = true;
 	}
 }
 }

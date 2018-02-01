@@ -25,12 +25,12 @@ public class Pearl : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
 	{
-        ((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).pearl = true;
+        ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).pearl = true;
 	}
 	
 	public override bool CanEquipAccessory(Player player, int slot)
 		{
-			if (((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).pearl2 == true)
+			if (((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).pearl2 == true)
 			{
 				return false;
 			}

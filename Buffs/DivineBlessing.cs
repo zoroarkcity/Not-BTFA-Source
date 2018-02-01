@@ -21,7 +21,7 @@ namespace ForgottenMemories.Buffs
 		
 		public override void Update(Player player, ref int buffIndex)
 		{
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).DivineBlessing = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).DivineBlessing = true;
 		}
 	}
 }

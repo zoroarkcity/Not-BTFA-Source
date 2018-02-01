@@ -19,8 +19,8 @@ namespace ForgottenMemories
 {
 	public class ForgottenMemories : Mod 
 	{
+		public static ModHotKey InGameWikiHotkey;
 		public ForgottenMemories()
-
 		{
 			Properties = new ModProperties()
 			{
@@ -33,6 +33,7 @@ namespace ForgottenMemories
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 		{
+			InGameWikiHotkey = RegisterHotKey("In-Game Wikipedia Hotkey", "Z");
 			if (TGEMWorld.forestInvasionUp)
 			{
 				int index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));

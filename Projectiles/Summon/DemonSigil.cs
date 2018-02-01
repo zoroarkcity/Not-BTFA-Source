@@ -164,7 +164,7 @@ namespace ForgottenMemories.Projectiles.Summon
 					projectile.netUpdate = true;
 					Player player = Main.player[projectile.owner];
 					Mod mod = ModLoader.GetMod("ForgottenMemories");
-					TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+					BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 					
 					if (projectile.owner == Main.myPlayer)
 					{
