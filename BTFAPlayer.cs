@@ -356,6 +356,11 @@ namespace ForgottenMemories
 				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, mod.ProjectileType("SlimeGuard"), 15, 1f, player.whoAmI, 0f, 0f);
 			}	
 			
+			if (player.ownedProjectileCounts[mod.ProjectileType("TartarusCurse")] < 1 && Tartarus == true)
+			{
+				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, mod.ProjectileType("TartarusCurse"), 50, 1f, player.whoAmI, 0f, 0f);
+			}	
+			
 			if (player.ownedProjectileCounts[mod.ProjectileType("BlightOrb")] < 1 && BlightOrb == true)
 			{
 				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, mod.ProjectileType("BlightOrb"), 45, 1f, player.whoAmI, 0f, 0f);
