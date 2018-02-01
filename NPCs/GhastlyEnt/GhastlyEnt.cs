@@ -35,7 +35,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
             npc.noGravity = true;
             npc.HitSound = SoundID.NPCHit7;
 			npc.DeathSound = SoundID.NPCDeath10;
-            music = 12;
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ForestArmy");
 			npc.npcSlots = 5;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 1;

@@ -39,6 +39,8 @@ namespace ForgottenMemories.NPCs.Magnoliac
             npc.HitSound = SoundID.NPCHit32;// to be changed
             npc.DeathSound = SoundID.NPCDeath31;// to be changed
             npc.netAlways = true;
+			
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ForestArmy");
 			npc.scale = 1f;
 			bossBag = mod.ItemType("MagnoliacTreasureBag");
         }

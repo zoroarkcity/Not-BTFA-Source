@@ -30,6 +30,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ForestArmy");
 			npc.dontTakeDamage = true;
 			npc.friendly = true;
             npc.netAlways = true;

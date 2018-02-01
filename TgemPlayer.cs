@@ -33,6 +33,7 @@ namespace ForgottenMemories
 		public bool ghastlywood = false;
 		public bool MagnoliacBool = true;
 		public bool GentBool = true;
+		public bool Tartarus = false;
 
         public override void ResetEffects()
         {
@@ -54,6 +55,7 @@ namespace ForgottenMemories
 			ghastlywood = false;
 			MagnoliacBool = true;
 			GentBool = true;
+			Tartarus = false;
 		}
 		
 		public override void PreUpdate()
@@ -67,6 +69,12 @@ namespace ForgottenMemories
 			{
 				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, mod.ProjectileType("BlightOrb"), 45, 1f, player.whoAmI, 0f, 0f);
 				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, mod.ProjectileType("BlightOrb2"), 95, 1f, player.whoAmI, 0f, 0f);
+			}
+			
+			
+			if (player.ownedProjectileCounts[mod.ProjectileType("TartarusCurse")] < 1 && Tartarus == true)
+			{
+				Projectile.NewProjectile(player.position.X, player.position.Y - 30, 0f, 0f, mod.ProjectileType("TartarusCurse"), (int)(50 * player.minionDamage), 1f, player.whoAmI, 0f, 0f);
 			}
 			
 			if (player.ownedProjectileCounts[mod.ProjectileType("BlightFireOrbit")] < 12 && BlightFlameRing == true)
