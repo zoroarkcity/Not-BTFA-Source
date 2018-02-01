@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
+using Terraria.ModLoader.IO;
 using Terraria.DataStructures;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-+using ForgottenMemories.Items.ItemSets.OldGear;
+using Terraria;
+using ForgottenMemories.Items.ItemSets.OldGear;
 using ForgottenMemories.Projectiles;
 using ForgottenMemories.Buffs;
 using ForgottenMemories.Buffs.ChlorophyllBuffs;
@@ -176,6 +178,7 @@ namespace ForgottenMemories
 				Projectile.NewProjectile(Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y, 0f, 0f, mod.ProjectileType("InGameWikiMechanism"), 0, 0, player.whoAmI);
 			}	
 		}
+		
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
 			if (chlorophyllPod) 
@@ -248,17 +251,17 @@ namespace ForgottenMemories
 		
 		public void ApplyChlorophyllBuff(Player player)
         {
-            if (player.HasBuff(mod.BuffType<ChlorophyllBuffTwo>()))
+            if (player.FindBuffIndex(mod.BuffType<ChlorophyllBuffTwo>()) >= 0)
             {
                 player.DelBuff(player.FindBuffIndex(mod.BuffType<ChlorophyllBuffTwo>()));
                 player.AddBuff(mod.BuffType<ChlorophyllBuffThree>(), 4 * 60);
             }
-            else if (player.HasBuff(mod.BuffType<ChlorophyllBuffOne>()))
+            else if (player.FindBuffIndex(mod.BuffType<ChlorophyllBuffOne>()) >= 0)
             {
                 player.DelBuff(player.FindBuffIndex(mod.BuffType<ChlorophyllBuffOne>()));
                 player.AddBuff(mod.BuffType<ChlorophyllBuffTwo>(), 4 * 60);
             }
-            else if (!player.HasBuff(mod.BuffType<ChlorophyllBuffThree>()))
+            else if (player.FindBuffIndex(mod.BuffType<ChlorophyllBuffThree>()) < 0)
             {
                 player.AddBuff(mod.BuffType<ChlorophyllBuffOne>(), 4 * 60);
             }
@@ -280,7 +283,7 @@ namespace ForgottenMemories
 			if (Tools.OneIn(5))
 			{
 				Item item = new Item();
-                item.SetDefaults(mod.ItemType<OldBlade>()));
+                item.SetDefaults(mod.ItemType<OldBlade>());
 				items.RemoveAt(0);
 				items.Insert(0, item);
 			}
@@ -288,7 +291,7 @@ namespace ForgottenMemories
 			if (Tools.OneIn(5))
 			{
 				Item item = new Item();
-                item.SetDefaults(mod.ItemType<OldPick>()));
+                item.SetDefaults(mod.ItemType<OldPick>());
 				items.RemoveAt(1);
 				items.Insert(1, item);
 			}
@@ -297,7 +300,7 @@ namespace ForgottenMemories
 			if (Tools.OneIn(5))
 			{
 				Item item = new Item();
-                item.SetDefaults(mod.ItemType<OldAxe>()));
+                item.SetDefaults(mod.ItemType<OldAxe>());
 				items.RemoveAt(2);
 				items.Insert(2, item);
 			}
