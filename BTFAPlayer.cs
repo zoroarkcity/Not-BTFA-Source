@@ -8,6 +8,10 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
++using ForgottenMemories.Items.ItemSets.OldGear;
+using ForgottenMemories.Projectiles;
+using ForgottenMemories.Buffs;
+using ForgottenMemories.Buffs.ChlorophyllBuffs;
 
 namespace ForgottenMemories
 {
@@ -174,33 +178,8 @@ namespace ForgottenMemories
 		}
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
-			if (chlorophyllPod)
-			{
-			    player.lifeRegen = ((player.lifeRegen/100)*5) + player.lifeRegen;
-				player.moveSpeed = (player.moveSpeed*0.05f) + player.moveSpeed;		
-				player.meleeCrit = player.meleeCrit + 5;
-				chlorophyllPodStage1 = true;
-				chlorophyllPodStage2 = false;
-				chlorophyllPodStage3 = false;
-			}
-			if (chlorophyllPod && chlorophyllPodStage1)
-			{
-				player.lifeRegen = ((player.lifeRegen/100)*10) + player.lifeRegen;
-				player.moveSpeed = (player.moveSpeed*0.1f) + player.moveSpeed;		
-				player.meleeCrit = player.meleeCrit + 10;
-				chlorophyllPodStage1 = false;
-				chlorophyllPodStage2 = true;
-				chlorophyllPodStage3 = false;
-			}
-			if (chlorophyllPodStage2 && chlorophyllPod)
-			{
-				player.lifeRegen = ((player.lifeRegen/100)*15) + player.lifeRegen;
-				player.moveSpeed = (player.moveSpeed*0.15f) + player.moveSpeed;		
-				player.meleeCrit = player.meleeCrit + 15;
-				chlorophyllPodStage1 = false;
-				chlorophyllPodStage2 = false;
-				chlorophyllPodStage3 = true;
-			}
+			if (chlorophyllPod) 
+				ApplyChlorophyllBuff(player);
 			
 			if (Main.rand.Next(4) == 0 && lifesteal == true && !target.immortal && target.lifeMax >= 20 && lifestealCap <= 4 && damage >= 15)
                 {
@@ -220,60 +199,20 @@ namespace ForgottenMemories
 		
 		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockBack, bool Crit)
 		{
-			if (projectile.thrown == true && Main.rand.Next(5) == 0 && !target.immortal && boneHearts)
+			if (projectile.thrown && Tools.OneIn(5) && !target.immortal && boneHearts)
 			{
-				int number = Item.NewItem((int) target.position.X, (int) target.position.Y, target.width, target.height, mod.ItemType("BoneHeart"), 1, false, 0, false, false);
-				Main.item[number].velocity.Y = (float)((double) Main.rand.Next(-20, 1) * 0.200000002980232);
-				Main.item[number].velocity.X = (float)((double) Main.rand.Next(10, 31) * 0.200000002980232 * (double) projectile.direction);
-				if (Main.netMode == 1)
-					NetMessage.SendData(21, -1, -1, (NetworkText) null, number, 0.0f, 0.0f, 0.0f, 0, 0, 0);
+				int newItem = Item.NewItem((int)target.position.X, (int)target.position.Y, target.width, target.height, mod.ItemType("BoneHeart"));
+                Main.item[newItem].velocity.Y = Main.rand.NextFloat(-4.0f, 0.2f);
+				Main.item[newItem].velocity.X = Main.rand.NextFloat(2f, 6f) * projectile.direction;
+				if (Main.netMode == NetmodeID.MultiplayerClient) NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem);
 			}
-			if (chlorophyllPod)
-			{
-			    player.AddBuff(mod.BuffType("ChlorophyllBuffOne"), 4 * 60);
-			}
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > -1 && chlorophyllPod)
-			{
-				player.AddBuff(mod.BuffType("ChlorophyllBuffOne"), 4 * 60);
-				chlorophyllPodStage2 = true;
-			}
-			else 
-			{
-				chlorophyllPodStage2 = false;
-			}
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("ChlorophyllBuffOne")) > -1 && chlorophyllPodStage2 && chlorophyllPod)
-			{
-				chlorophyllPodStage3 = true;
-			}
-			else
-			{
-				chlorophyllPodStage3 = false;
-			}
-			
-			if (stardustCrown == true)
-			{
-				if (ProjectileID.Sets.SentryShot[projectile.type])
-				{
-					target.AddBuff(mod.BuffType("StardustInferno"), 1800, false);
-				}
-			}
+
+            if (chlorophyllPod) 
+				ApplyChlorophyllBuff(player);
 			
 			if (BlightFlameProj == true && (projectile.thrown == true || projectile.ranged == true) && Main.rand.Next(5) == 0)
 			{
 				int p = Projectile.NewProjectile (target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("BlightBoomRange"), damage, knockBack, player.whoAmI);
-			}
-			
-			if (ghastlywood == true && projectile.magic == true && Crit == true)
-			{
-				Player player = Main.player[projectile.owner];
-				Vector2 mouse = Main.MouseWorld;
-				Vector2 newMove = mouse - player.Center;
-				newMove.Normalize();
-				float memes = newMove.X * 3f;
-				float memes2 = newMove.Y * 3f;
-				memes += (float)Main.rand.Next(-40, 41) * 0.003f;
-				memes2 += (float)Main.rand.Next(-40, 41) * 0.003f;
-				int z = Projectile.NewProjectile(player.Center.X, player.Center.Y, memes, memes2, 206, projectile.damage, 0f, projectile.owner, 0f, 0f);
 			}
 			
 			if (Main.rand.Next(4) == 0 && lifesteal == true && !target.immortal && target.lifeMax >= 20 && lifestealCap <= 4 && damage >= 15)
@@ -298,24 +237,6 @@ namespace ForgottenMemories
 					}
 				}
 				
-				if (BoCBuff == true)
-				{	
-					if (target.FindBuffIndex(31) >= 0 && projectile.type != mod.ProjectileType("BoCBolt"))
-					{
-						Player player = Main.player[projectile.owner];
-						Vector2 newMove = projectile.Center - player.Center;
-						newMove.Normalize();
-						float ok = newMove.X * 3f;
-						float ok2 = newMove.Y * 3f;
-						Projectile.NewProjectile(player.Center.X, player.Center.Y, ok, ok2, mod.ProjectileType("BoCBolt"), (int)(projectile.damage/3), 0f, projectile.owner, 0f, 0f);
-					}
-					
-					if (Main.rand.Next(5) == 0)
-					{
-						target.AddBuff(31, 540, false);
-					}
-				}
-				
 				if (SlimyNeck == true && Main.rand.Next(7) == 0)
 				{
 					if (projectile.minion == true || ProjectileID.Sets.MinionShot[projectile.type] || ProjectileID.Sets.SentryShot[projectile.type])
@@ -324,6 +245,24 @@ namespace ForgottenMemories
 					}
 				}
 		}
+		
+		public void ApplyChlorophyllBuff(Player player)
+        {
+            if (player.HasBuff(mod.BuffType<ChlorophyllBuffTwo>()))
+            {
+                player.DelBuff(player.FindBuffIndex(mod.BuffType<ChlorophyllBuffTwo>()));
+                player.AddBuff(mod.BuffType<ChlorophyllBuffThree>(), 4 * 60);
+            }
+            else if (player.HasBuff(mod.BuffType<ChlorophyllBuffOne>()))
+            {
+                player.DelBuff(player.FindBuffIndex(mod.BuffType<ChlorophyllBuffOne>()));
+                player.AddBuff(mod.BuffType<ChlorophyllBuffTwo>(), 4 * 60);
+            }
+            else if (!player.HasBuff(mod.BuffType<ChlorophyllBuffThree>()))
+            {
+                player.AddBuff(mod.BuffType<ChlorophyllBuffOne>(), 4 * 60);
+            }
+        }
 		
 		public override bool ConsumeAmmo(Item weapon, Item ammo)
 		{
@@ -337,34 +276,34 @@ namespace ForgottenMemories
 		
 		public override void SetupStartInventory(IList<Item> items)
 		{
-			Item item = new Item();
-			if (Main.rand.Next(5) == 0)
+			
+			if (Tools.OneIn(5))
 			{
-				item.SetDefaults(mod.ItemType("OldBlade"));
+				Item item = new Item();
+                item.SetDefaults(mod.ItemType<OldBlade>()));
 				items.RemoveAt(0);
 				items.Insert(0, item);
 			}
 			
-			
-			Item item2 = new Item();
-			if (Main.rand.Next(5) == 0)
+			if (Tools.OneIn(5))
 			{
-				item2.SetDefaults(mod.ItemType("OldPick"));
+				Item item = new Item();
+                item.SetDefaults(mod.ItemType<OldPick>()));
 				items.RemoveAt(1);
-				items.Insert(1, item2);
+				items.Insert(1, item);
 			}
 			
 			
-			Item item3 = new Item();
-			if (Main.rand.Next(5) == 0)
+			if (Tools.OneIn(5))
 			{
-				item3.SetDefaults(mod.ItemType("OldAxe"));
+				Item item = new Item();
+                item.SetDefaults(mod.ItemType<OldAxe>()));
 				items.RemoveAt(2);
-				items.Insert(2, item3);
+				items.Insert(2, item);
 			}
 			
 			Item btfadex = new Item();
-			btfadex.SetDefaults(mod.ItemType("BTFADex"));
+			btfadex.SetDefaults(mod.ItemType<InGameWiki.Items.BTFADex>());
 			btfadex.stack = 1;
 			items.Add(btfadex);
 		}
@@ -378,42 +317,35 @@ namespace ForgottenMemories
                     Item.NewItem((int)player.position.X + Main.rand.Next(-2000, 2000), (int)player.position.Y - Main.rand.Next(233), 1, 1, mod.ItemType("Galeshard"));
                 }
             }
-			if (GroundPound == true && player.controlUp && player.velocity.Y > 0)
+			if (GroundPound && player.controlUp && player.velocity.Y > 0)
 			{
-				player.velocity.Y *= 0.75f;
-				Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType("RedFlames"), 70, 0f, player.whoAmI, 0f, 0f);
+				Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlames>(), 70, 0f, player.whoAmI);
 			}
-			if (GroundPound == true && player.controlDown && player.velocity.Y != 0f)
-			{
-				Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType("RedFlames"), 70, 0f, player.whoAmI, 0f, 0f);
-				player.velocity.Y = 30f;
-			}
-			if (GroundPound == true && player.controlDown && player.velocity.Y != 0f)
-			{
-				Pound = true;
-			}
+            if (GroundPound && player.controlDown)
+            {
+                if (!Pound && player.velocity.Y != 0f)
+                {
+                    Pound = true;
+                    player.velocity.Y = 30f;
+                    Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlames>(), 70, 0f, player.whoAmI);
+                }
+                else if (Pound && player.velocity.Y == 0f)
+                {
+                    Pound = false;
+                    Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlameBoom>(), 105, 0f, player.whoAmI);
+                }
+            }
 			
-			if (GroundPound && Pound && player.controlDown)
+			if (AquaPowers && Tools.OneIn(50))
 			{
-				if (player.velocity.Y == 0f)
-				{
-					Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType("RedFlameBoom"), 105, 0f, player.whoAmI, 0f, 0f);
-					Pound = false;
-				}
-				
-			}
-			
-			if (AquaPowers == true && Main.rand.Next(50) == 0)
-			{
-				float spX = (float)Main.rand.Next(-30, 30) * 0.05f;
-				float spY = (float)Main.rand.Next(-30, 30) * 0.05f;
-				int projectile2 = Projectile.NewProjectile(player.Center.X, player.Center.Y, spX, spY, mod.ProjectileType("buble"), 18, 0f, player.whoAmI, 0f, 0f);
-				Main.projectile[projectile2].melee = false;
+				Vector2 speed = new Vector2(Main.rand.NextFloat(-1.5f, +1.5f), Main.rand.NextFloat(-1.5f, +1.5f));
+				Projectile newProj = Projectile.NewProjectileDirect(player.Center, speed, mod.ProjectileType<buble>(), 18, 0f, player.whoAmI);
+				newProj.melee = false;
 			}
 			
 			if (CosmicPowers == true && player.statLife <= (int)(player.statLifeMax2 / 2))
 			{
-				player.AddBuff(mod.BuffType("CosmicBoon"), 2, false);
+				player.AddBuff(mod.BuffType<CosmicBoon>(), 2, false);
 			}
 			
 			if (player.ownedProjectileCounts[mod.ProjectileType("SlimeGuard")] < 1 && slimeGuard == true)
@@ -505,18 +437,9 @@ namespace ForgottenMemories
 				}	
 		}
 		
-		public void DoubleJumpVisuals()
-		{
-			if (dJumpEffectMeteor == true && doubleJumpMeteor == true && meteor == false && !player.jumpAgainCloud && (!player.jumpAgainSandstorm || !player.doubleJumpSandstorm) && ((player.gravDir == 1f && player.velocity.Y < 0f) || (player.gravDir == -1f && player.velocity.Y > 0f)))
-			{
-				int kys = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 3, 424, 15, 5f, player.whoAmI);
-				Main.projectile[kys].magic = false; //creates meteors
-			}
-		}
-		
 		public override bool Shoot (Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			if (item.ranged == true)
+			if (item.ranged)
 			{
 				speedX *= rangedVelocity;
 				speedY *= rangedVelocity;
@@ -524,29 +447,9 @@ namespace ForgottenMemories
 			return true;
 		}
 		
-		public override void UpdateBadLifeRegen()
-		{
-			if (ChaoticSet == true && player.statLife < (int)(player.statLifeMax2 * 0.75))
-			{
-				player.lifeRegen += 2;
-				player.AddBuff (105, 1, false);
-			}
-			
-			if (ChaoticSet == true && player.statLife < (int)(player.statLifeMax2/2))
-			{
-				player.lifeRegen += 6;
-			}
-			
-			if (ChaoticSet == true && player.statLife < (int)(player.statLifeMax2 * 0.25))
-			{
-				player.lifeRegen += 4;
-			}
-				
-		}
-		
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			if (CosmicPowers == true)
+			if (CosmicPowers)
 			{
 				int amountOfProjectiles = Main.rand.Next(1, 3);
 				for (int i = 0; i < amountOfProjectiles; ++i)
@@ -558,68 +461,30 @@ namespace ForgottenMemories
 					Main.projectile[projectile].timeLeft = 1000;
 				}
 			}
-			if (duneBonus == true)
+			if (duneBonus)
 			{
 				player.AddBuff(mod.BuffType("DuneWinds"), 10 * 60);
 				
-				int dust;
-				Vector2 newVect = new Vector2 (10, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(45)));
-				Vector2 newVect2 = newVect.RotatedBy(MathHelper.ToRadians(45));
-				Vector2 newVect3 = newVect.RotatedBy(MathHelper.ToRadians(90));
-				Vector2 newVect4 = newVect.RotatedBy(MathHelper.ToRadians(135));
-				Vector2 newVect5 = newVect.RotatedBy(MathHelper.ToRadians(180));
-				Vector2 newVect6 = newVect.RotatedBy(MathHelper.ToRadians(225));
-				Vector2 newVect7 = newVect.RotatedBy(MathHelper.ToRadians(270));
-				Vector2 newVect8 = newVect.RotatedBy(MathHelper.ToRadians(315));
-				dust = Dust.NewDust(player.Center, 0, 0, 32, newVect.X, newVect.Y);
-				int dust2 = Dust.NewDust(player.Center, 0, 0, 32, newVect2.X, newVect2.Y);
-				int dust3 = Dust.NewDust(player.Center, 0, 0, 32, newVect3.X, newVect3.Y);
-				int dust4 = Dust.NewDust(player.Center, 0, 0, 32, newVect4.X, newVect4.Y);
-				int dust5 = Dust.NewDust(player.Center, 0, 0, 32, newVect5.X, newVect5.Y);
-				int dust6 = Dust.NewDust(player.Center, 0, 0, 32, newVect6.X, newVect6.Y);
-				int dust7 = Dust.NewDust(player.Center, 0, 0, 32, newVect7.X, newVect7.Y);
-				int dust8 = Dust.NewDust(player.Center, 0, 0, 32, newVect8.X, newVect8.Y);
-				Main.dust[dust].noGravity = true;
-				Main.dust[dust2].noGravity = true;
-				Main.dust[dust3].noGravity = true;
-				Main.dust[dust4].noGravity = true;
-				Main.dust[dust5].noGravity = true;
-				Main.dust[dust6].noGravity = true;
-				Main.dust[dust7].noGravity = true;
-				Main.dust[dust8].noGravity = true;
-				Main.dust[dust].scale = 2;
-				Main.dust[dust2].scale = 2;
-				Main.dust[dust3].scale = 2;
-				Main.dust[dust4].scale = 2;
-				Main.dust[dust5].scale = 2;
-				Main.dust[dust6].scale = 2;
-				Main.dust[dust7].scale = 2;
-				Main.dust[dust8].scale = 2;
+				for (int i = 0; i < 8; i++)
+                {
+                    Vector2 velocity = new Vector2(10, 0).RotatedBy((Main.rand.Next(45) + i * 45).ToRadians());
+                    Dust newDust = Dust.NewDustDirect(player.Center, 0, 0, 32, velocity.X, velocity.Y);
+                    newDust.noGravity = true;
+                    newDust.scale = 2;
+                }
 			}
 			
-			if (ChaoticSet == true)
-			{
-				for (int i = 0; i < 7; ++i)
-				{
-					float sX = (float)Main.rand.Next(-40, 40) * 0.15f;
-					float sY = (float)Main.rand.Next(-120, 0) * 0.15f;
-					int projectile = Projectile.NewProjectile(player.Center.X, player.Center.Y, sX, sY, 280, 90, 5f, player.whoAmI);
-					Main.projectile[projectile].timeLeft = 120;
-					Main.projectile[projectile].magic = false;
-				}
-			}
-			
-			if (jungard == true && Main.rand.Next(3) == 0)
+			if (jungard && Main.rand.Next(3) == 0)
 				{
 					Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("JungleGuard"), (int)(15 * (player.minionDamage * player.minionDamage * player.minionDamage)), 5f, player.whoAmI);
 				}
 				
-				if (frostguard == true && Main.rand.Next(3) == 0)
+				if (frostguard && Main.rand.Next(3) == 0)
 				{
 					Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("IceSlimeMinion"), (int)(12 * (player.minionDamage * player.minionDamage * player.minionDamage)), 5f, player.whoAmI);
 				}
 				
-				if (BeeHive == true)
+				if (BeeHive)
 				{
 					player.AddBuff(48, 60 * Main.rand.Next(3, 11));
 					int num = 3;
@@ -633,7 +498,7 @@ namespace ForgottenMemories
 						Projectile.NewProjectile((float) player.position.X, (float) player.position.Y, (float) Main.rand.Next(-35, 36) * 0.02f, (float) Main.rand.Next(-35, 36) * 0.02f, this.beeType2(), player.beeDamage(80), player.beeKB(0.0f), Main.myPlayer, 0.0f, 0.0f);
 				}
 				
-				if (pearl == true && Main.rand.Next(2) == 0 && damageTaken >= 10)
+				if (pearl && Main.rand.Next(2) == 0 && damageTaken >= 10)
 				{
 					//Vector2 ok = player.Center;
 					//ok.X += Main.rand.Next(-60, 61);
@@ -643,19 +508,19 @@ namespace ForgottenMemories
 					player.HealEffect(10);
 				}
 				
-				if (pearl == true && player.statLife <= player.statLifeMax2/2)
+				if (pearl && player.statLife <= player.statLifeMax2/2)
 				{
 					player.statLife += damageTaken/10;
 					player.HealEffect(damageTaken/10);
 				}
 				
-				if (pearl2 == true && Main.rand.Next(2) == 0 && damageTaken >= 15)
+				if (pearl2 && Main.rand.Next(2) == 0 && damageTaken >= 15)
 				{
 					player.statLife += 15;
 					player.HealEffect(15);
 				}
 				
-				if (pearl2 == true && player.statLife <= player.statLifeMax2/2)
+				if (pearl2 && player.statLife <= player.statLifeMax2/2)
 				{
 					player.statLife += damageTaken/7;
 					player.HealEffect(damageTaken/7);
