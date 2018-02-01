@@ -32,18 +32,24 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void AI()
 		{
-			int num;
-			for (int num164 = 0; num164 < 10; num164 = num + 1)
+			for (int index1 = 0; index1 < 5; ++index1)
 			{
-				float x2 = projectile.position.X - projectile.velocity.X / 10f * (float)num164;
-				float y2 = projectile.position.Y - projectile.velocity.Y / 10f * (float)num164;
-				int num165 = Dust.NewDust(new Vector2(x2, y2), 1, 1, 65, 0f, 0f, 0, default(Color), 1f);
-				Main.dust[num165].position.X = x2;
-				Main.dust[num165].position.Y = y2;
-				Dust dust3 = Main.dust[num165];
-				dust3.velocity *= 0f;
-				Main.dust[num165].noGravity = true;
-				num = num164;
+				float num1 = projectile.velocity.X / 3f * (float) index1;
+				float num2 = projectile.velocity.Y / 3f * (float) index1;
+				int num3 = 4;
+				int index2 = Dust.NewDust(new Vector2(projectile.position.X + (float) num3, projectile.position.Y + (float) num3), projectile.width - num3 * 2, projectile.height - num3 * 2, 173, 0.0f, 0.0f, 200, default(Color), 1.2f);
+				Main.dust[index2].noGravity = true;
+				Main.dust[index2].velocity *= 0.1f; 
+				Main.dust[index2].velocity += projectile.velocity * 0.1f;
+				Main.dust[index2].position.X -= num1;
+				Main.dust[index2].position.Y -= num2;
+			}
+			if (Main.rand.Next(5) == 0)
+			{
+				int num = 4;
+				int index = Dust.NewDust(new Vector2(projectile.position.X + (float) num, projectile.position.Y + (float) num), projectile.width - num * 2, projectile.height - num * 2, 173, 0.0f, 0.0f, 200, default(Color), 0.6f);
+				Main.dust[index].velocity *= 0.25f;
+				Main.dust[index].velocity += projectile.velocity * 0.5f;
 			}
 			
 						

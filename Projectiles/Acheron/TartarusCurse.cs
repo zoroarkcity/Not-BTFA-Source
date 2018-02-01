@@ -98,7 +98,7 @@ namespace ForgottenMemories.Projectiles.Acheron
 				projectile.alpha -= 5;
 			
 			Player player = Main.player[projectile.owner];
-			TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			if (modPlayer.Tartarus)
 			{
 				projectile.timeLeft = 2;

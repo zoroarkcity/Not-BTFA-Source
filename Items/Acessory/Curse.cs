@@ -28,7 +28,7 @@ namespace ForgottenMemories.Items.Acessory
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.endurance -= 0.3f;
-			TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			modPlayer.Tartarus = true;
 			
 		}

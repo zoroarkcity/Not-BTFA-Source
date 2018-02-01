@@ -58,6 +58,8 @@ namespace ForgottenMemories
 		public int lifestealTimer = 0;
 		public bool firestorm = false;
 		public bool doubleJumpMeteor = false;
+		
+		public bool Tartarus = false;
 		public bool meteor = false;
 		public bool hadron = false;
 		public bool pearl = false;
@@ -78,6 +80,7 @@ namespace ForgottenMemories
 		{
 			GroundPound = false;
 			AquaPowers = false;
+			Tartarus = false;
 			isGlitch = false;
 			CosmicPowers = false;
 			hauntedCandle = false;
