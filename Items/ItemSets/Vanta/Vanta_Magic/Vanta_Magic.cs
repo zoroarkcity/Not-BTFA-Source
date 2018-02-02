@@ -18,22 +18,22 @@ namespace ForgottenMemories.Items.ItemSets.Vanta.Vanta_Magic
 		public override void SetDefaults()
 		{
 			//BALANCE THE WEAPON PLEASE, BE CAREFUL ABOUT RARITY AND VALUE
-			item.damage = 12;
+			item.damage = 152;
 			item.holdStyle = 1;
 			item.noMelee = true;
 			item.noUseGraphic = false;
 			item.magic = true;
 			item.width = 30;
 			item.height = 30;
-			item.useTime = 30;
-			item.useAnimation = 30;
+			item.useTime = 20;
+			item.useAnimation = 20;
 			item.useStyle = 5;
 			item.shoot = mod.ProjectileType("Vanta_Magic_Projectile");
 			item.knockBack = 0f;
 			Item.staff[item.type] = true;
 			item.autoReuse = true;
-			item.rare = 1;
-			item.value = 12000;
+			item.rare = 10;
+			item.value = 1000000;
 			item.UseSound = SoundID.Item43;
 			item.useTurn = false;
 			item.mana = 8;
@@ -41,8 +41,8 @@ namespace ForgottenMemories.Items.ItemSets.Vanta.Vanta_Magic
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Vanta Magic Weapon");
-			Tooltip.SetDefault("Someone deal with tooltips, names and balancement please -East");
+			DisplayName.SetDefault("Blackhole Mirror");
+			Tooltip.SetDefault("Uses absorbed light to disintegrate nearby enemies \n'Fueled by the light of the cosmos'");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Vanta/Vanta_Magic/Vanta_Magic_Glow");
 		}
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
@@ -108,11 +108,6 @@ namespace ForgottenMemories.Items.ItemSets.Vanta.Vanta_Magic
 			Player player = Main.player[item.owner];
 			return Vector2.Zero;
 		}
-		/*public override Vector2? HoldoutOffset()
-		{
-			Player player = Main.player[item.owner];
-			return new Vector2(0, -20);
-		}*/
 		/*public override void AddRecipes()
 		{
 		    ModRecipe recipe = new ModRecipe(mod);

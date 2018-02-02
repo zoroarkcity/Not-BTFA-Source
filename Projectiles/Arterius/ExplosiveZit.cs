@@ -20,7 +20,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 			projectile.tileCollide = true;
 			projectile.timeLeft = 300;
 			projectile.light = 0.5f;
-			projectile.alpha = 250;
+			projectile.alpha = 255;
 		}
 		
 		public override void SetStaticDefaults()
@@ -40,7 +40,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 				Main.dust[dust].noGravity = true;
 			}
 			if (projectile.alpha > 0)
-				projectile.alpha -= 25;
+				projectile.alpha -= 5;
 			
 			
 		}
