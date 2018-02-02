@@ -122,26 +122,25 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			if (!phase2 && npc.ai[0] == 0)
 			{
-				Player target = Main.player[npc.target];
 				
-				if(npc.Center.X > target.Center.X + 10 && moveX > -8f)
+				if(npc.Center.X > player.Center.X + 10 && moveX > -8f)
 					moveX -= 0.2f;
-				if(npc.Center.X > target.Center.X + 10 && moveX > 0f)
+				if(npc.Center.X > player.Center.X + 10 && moveX > 0f)
 					moveX -= 1f;
 				
-				if(npc.Center.X < target.Center.X - 10 && moveX < 8f)
+				if(npc.Center.X < player.Center.X - 10 && moveX < 8f)
 					moveX += 0.2f;
-				if(npc.Center.X < target.Center.X - 10 && moveX < 0f)
+				if(npc.Center.X < player.Center.X - 10 && moveX < 0f)
 					moveX += 1f;
 				
-				if(npc.Center.Y < target.Center.Y - 270 && moveY < 8f)
+				if(npc.Center.Y < player.Center.Y - 270 && moveY < 8f)
 					moveY += 0.2f;
-				if(npc.Center.Y < target.Center.Y - 270 && moveY < 0f)
+				if(npc.Center.Y < player.Center.Y - 270 && moveY < 0f)
 					moveY += 1f;
 				
-				if(npc.Center.Y > target.Center.Y - 250 && moveY > -8f)
+				if(npc.Center.Y > player.Center.Y - 250 && moveY > -8f)
 					moveY -= 0.2f;
-				if(npc.Center.Y > target.Center.Y - 250 && moveY > 0f)
+				if(npc.Center.Y > player.Center.Y - 250 && moveY > 0f)
 					moveY -= 1f;
 				
 				Vector2 Velocity = new Vector2(moveX, moveY);
@@ -168,7 +167,19 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				{
 					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
 				}
+				
 			}
+			
+			if (Main.dayTime || !player.active || player.dead) //despawn
+            {
+                npc.TargetClosest(false);
+                npc.velocity.Y = -20;
+				npc.ai[0] = 0;
+				if (npc.timeLeft > 10)
+				{
+					npc.timeLeft = 10;
+				}
+            }
 		}
 		
 		public override void FindFrame(int frameHeight)
