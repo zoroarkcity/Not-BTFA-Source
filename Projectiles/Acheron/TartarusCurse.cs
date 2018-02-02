@@ -26,6 +26,8 @@ namespace ForgottenMemories.Projectiles.Acheron
 			projectile.tileCollide = false;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
+			
+			Main.projFrames[projectile.type] = 4;
 		}
 		
 		public override void SetStaticDefaults()
@@ -94,6 +96,19 @@ namespace ForgottenMemories.Projectiles.Acheron
 		
 		public override void AI()
 		{
+			Lighting.AddLight(projectile.position, 0f, 0f, 1f);
+			projectile.frameCounter++;
+			if (projectile.frameCounter > 8)
+			{
+			   projectile.frame++;
+               projectile.frameCounter = 1;
+			}
+			if (projectile.frame > 3)
+            {
+               projectile.frame = 0;
+            }
+			
+			
 			if (projectile.alpha > 0)
 				projectile.alpha -= 5;
 			
@@ -103,16 +118,20 @@ namespace ForgottenMemories.Projectiles.Acheron
 			{
 				projectile.timeLeft = 2;
 			}
+			projectile.ai[1] += 0.1f;
+			int mememaster = (int)Math.Sin(projectile.ai[1]) * 10;
 			
-			projectile.position.Y = player.position.Y - 50;
+			projectile.position.Y = (player.position.Y - 50) + mememaster;
 			projectile.position.X = player.Center.X - 24;
 			
 			projectile.ai[0]++;
 			Lighting.AddLight(projectile.position, 0f, 0f, 1f);
 			
-			if ((int)projectile.ai[0] % 60 == 0 && Main.npc[(int)projectile.ai[1]].active)
+			if ((int)projectile.ai[0] % 60 == 0 && Main.npc[(int)projectile.ai[1]].active && projectile.Distance(Main.npc[(int)projectile.ai[1]].Center) < 300)
 			{
-				Projectile.NewProjectile(Main.npc[(int)projectile.ai[1]].Center, Vector2.Zero, mod.ProjectileType("Tartarus"), projectile.damage, 0, projectile.owner, 0, 0);
+				int p = Projectile.NewProjectile(Main.npc[(int)projectile.ai[1]].Center, Vector2.Zero, mod.ProjectileType("Tartarus"), projectile.damage + (int)(Main.npc[(int)projectile.ai[1]].defense / 2), 0, projectile.owner, 0, 0);
+				if (Main.expertMode)
+					Main.projectile[p].damage += Main.npc[(int)projectile.ai[1]].defense / 4;
 			}
 			
 			else for(int index2 = 0; index2 < 200; index2++)
@@ -120,7 +139,7 @@ namespace ForgottenMemories.Projectiles.Acheron
 				if (Main.npc[index2].CanBeChasedBy((object) projectile, false) && Main.npc[index2].friendly == false && !Main.npc[index2].immortal && !Main.npc[index2].dontTakeDamage && Main.npc[index2].active)
 				{
 					dist2 = projectile.Distance(Main.npc[index2].Center);
-					if (dist2 < ((int)dist | 100))
+					if (dist2 < ((int)dist | 300))
 					{
 						dist = dist2;
 						projectile.ai[1] = index2;

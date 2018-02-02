@@ -140,7 +140,7 @@ namespace ForgottenMemories
 				{
 					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("picklerick");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("Magnoliac"))
+				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("MagnoliacSecondStage"))
 				{
 					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("birdman");
 				}
@@ -165,7 +165,7 @@ namespace ForgottenMemories
 				{
 					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("AcheronTrophy");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("Magnoliac"))
+				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("MagnoliacSecondStage"))
 				{
 					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("MagnoliacTrophy");
 				}

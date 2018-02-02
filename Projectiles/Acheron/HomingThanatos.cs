@@ -24,10 +24,21 @@ namespace ForgottenMemories.Projectiles.Acheron
             projectile.timeLeft = 180; //The amount of time the projectile is alive for
 			projectile.extraUpdates = 1;
 			projectile.scale = 1f;
-            aiType = ProjectileID.Bullet;		
+            aiType = ProjectileID.Bullet;	
+			Main.projFrames[projectile.type] = 4;			
         }
         public override void AI()
         {
+			projectile.frameCounter++;
+			if (projectile.frameCounter > 8)
+			{
+			   projectile.frame++;
+               projectile.frameCounter = 1;
+			}
+			if (projectile.frame > 3)
+            {
+               projectile.frame = 0;
+            }
 			
 			Lighting.AddLight(projectile.position, 0f, 0.5f, 1f);
 			if ((double) projectile.velocity.X < 0.0)

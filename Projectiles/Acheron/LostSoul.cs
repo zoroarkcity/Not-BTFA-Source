@@ -23,6 +23,7 @@ namespace ForgottenMemories.Projectiles.Acheron
 			projectile.tileCollide = true;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
+			Main.projFrames[projectile.type] = 4;
 		}
 		
 		public override void SetStaticDefaults()
@@ -88,6 +89,17 @@ namespace ForgottenMemories.Projectiles.Acheron
 		
 		public override void AI()
 		{
+			projectile.frameCounter++;
+			if (projectile.frameCounter > 8)
+			{
+			   projectile.frame++;
+               projectile.frameCounter = 1;
+			}
+			if (projectile.frame > 3)
+            {
+               projectile.frame = 0;
+            }
+			
 			projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
 			if (Main.rand.Next(5) == 0)
 			{

@@ -3,17 +3,21 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ForgottenMemories.NPCs.FaceOfInsanity
 {
 	[AutoloadBossHead]
     public class FaceOfInsanity : ModNPC
     {
-		int AiTimer = 0;
+		int aiTimer = 0;
 		int BloodTimer = 0;
 		int BloodRainTimer = 0;
 		int DashTimer = 0;
-		bool Phase2 = false;
+		bool phase2 = false;
+		
+		float moveX = 0f;
+		float moveY = 0f;
 		
         public override void SetDefaults()
         {
@@ -48,136 +52,123 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.defense = 22;
 		}
 		
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+			SpriteEffects spriteEffects = SpriteEffects.None;
+			Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
+			Texture2D texture2D3 = mod.GetTexture("NPCs/Acheron/AcheronGhost");
+			int num156 = Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type];
+			int y3 = num156 * (int)npc.frameCounter;
+			Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(0, y3, texture2D3.Width, num156);
+			Vector2 origin2 = rectangle.Size() / 2f;
+			int arg_5ADA_0 = npc.type;
+			int arg_5AE7_0 = npc.type;
+			int arg_5AF4_0 = npc.type;
+			int num157 = 10;
+			int num158 = 2;
+			int num159 = 1;
+			float value3 = 1f;
+			float num160 = 0f;
+			
+			
+			int num161 = num159;
+			if (phase2)
+			{
+				Texture2D texture2D4 = mod.GetTexture("NPCs/FaceOfInsanity/ArteriusP2");
+				int num1561 = texture2D4.Height / Main.npcFrameCount[npc.type];
+				int y31 = num1561 * (int)npc.frameCounter;
+				Microsoft.Xna.Framework.Rectangle rectangle2 = new Microsoft.Xna.Framework.Rectangle(0, y31, texture2D4.Width, num1561);
+				Vector2 origin3 = rectangle2.Size() / 2f;
+				SpriteEffects effects = spriteEffects;
+				if (npc.spriteDirection > 0)
+				{
+					effects = SpriteEffects.FlipHorizontally;
+				}
+				float num165 = npc.rotation;
+				Microsoft.Xna.Framework.Color color29 = npc.GetAlpha(color25);
+				Main.spriteBatch.Draw(texture2D4, npc.position + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle2), color29, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin3, npc.scale, effects, 0f);
+				return false;
+			}
+			else
+			{
+				var allahuakbar = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+				spriteBatch.Draw(Main.npcTexture[npc.type], npc.Center - Main.screenPosition + new Vector2(0, npc.gfxOffY), npc.frame,
+								 lightColor, npc.rotation, npc.frame.Size() / 2, npc.scale, allahuakbar, 0);
+			}
+			return false;
+		}
+		
+		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+		{
+			if(phase2)
+				BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/FaceOfInsanity/ArteriusP2_Glow"));
+			
+			else
+				BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/FaceOfInsanity/Arterius_Glow"));
+		}
+		
 
         public override void AI()
         {
+			npc.spriteDirection = 1;
 			npc.TargetClosest(true);
             Player player = Main.player[npc.target];
-			AiTimer++;
+			aiTimer++;
 			
 			if (npc.life < (int)(npc.lifeMax / 2))
 			{
-				Phase2 = true;
+				npc.ai[0] = 1;
 			}
 			
-			if (AiTimer <= 240) //Flying
+			if (!phase2 && npc.ai[0] == 0)
 			{
-				npc.dontTakeDamage = false;
-				if (npc.alpha > 0)
+				Player target = Main.player[npc.target];
+				
+				if(npc.Center.X > target.Center.X + 10 && moveX > -8f)
+					moveX -= 0.2f;
+				if(npc.Center.X > target.Center.X + 10 && moveX > 0f)
+					moveX -= 1f;
+				
+				if(npc.Center.X < target.Center.X - 10 && moveX < 8f)
+					moveX += 0.2f;
+				if(npc.Center.X < target.Center.X - 10 && moveX < 0f)
+					moveX += 1f;
+				
+				if(npc.Center.Y < target.Center.Y - 270 && moveY < 8f)
+					moveY += 0.2f;
+				if(npc.Center.Y < target.Center.Y - 270 && moveY < 0f)
+					moveY += 1f;
+				
+				if(npc.Center.Y > target.Center.Y - 250 && moveY > -8f)
+					moveY -= 0.2f;
+				if(npc.Center.Y > target.Center.Y - 250 && moveY > 0f)
+					moveY -= 1f;
+				
+				Vector2 Velocity = new Vector2(moveX, moveY);
+				
+				
+				bool abovePlayer = ((npc.Center.Y < Main.player[npc.target].Center.Y - 150) && (npc.Center.X > Main.player[npc.target].Center.X - 50) && (npc.Center.X < Main.player[npc.target].Center.X + 50));
+				if (abovePlayer)
+					Velocity /= 3;
+				
+				npc.velocity = Velocity;
+				
+				
+				if (abovePlayer && aiTimer % 90 == 0)
 				{
-					npc.alpha -= 5;
+					ShootBlood(mod.ProjectileType("ExplosiveZit"));
 				}
 				
-				BloodTimer += 1;
-				
-				if (Phase2)
+				else if (abovePlayer && aiTimer % 45 == 0)
 				{
-					if (Main.expertMode)
-						BloodTimer += 1;
-					DashTimer++;
+					ShootBlood(mod.ProjectileType("zBloodStream"));
 				}
 				
-				float SpeedBoost = 0.4f;
-				int maxSpeed = 6;
-				if (Main.expertMode && Phase2)
+				if (aiTimer % 180 <= 0)
 				{
-					SpeedBoost = 0.8f;
-					maxSpeed = 8;
-				}
-				if (npc.direction == -1 && (double) npc.velocity.X > -maxSpeed)
-				{
-					npc.velocity.X -= SpeedBoost;
-					if ((double) npc.velocity.X > 6.0)
-					  npc.velocity.X -= SpeedBoost;
-					else if ((double) npc.velocity.X > 0.0)
-					  npc.velocity.X += 0.05f;
-					if ((double) npc.velocity.X < -6.0)
-					  npc.velocity.X = -4f;
-				}
-				else if (npc.direction == 1 && (double) npc.velocity.X < maxSpeed)
-				{
-					npc.velocity.X += SpeedBoost;
-					if ((double) npc.velocity.X < -6.0)
-						npc.velocity.X += SpeedBoost;
-					else if ((double) npc.velocity.X < 0.0)
-						npc.velocity.X -= 0.05f;
-					if ((double) npc.velocity.X > 6.0)
-						npc.velocity.X = 4f;
-				}
-				if (npc.directionY == -1 && (double) npc.velocity.Y > -maxSpeed/4)
-				{
-					npc.velocity.Y -= 0.04f;
-					if ((double) npc.velocity.Y > 3)
-					  npc.velocity.Y -= 0.05f;
-					else if ((double) npc.velocity.Y > 0.0)
-					  npc.velocity.Y += 0.03f;
-					if ((double) npc.velocity.Y < -3)
-					  npc.velocity.Y = -1.5f;
-				}
-				else if (npc.directionY == 1 && (double) npc.velocity.Y < maxSpeed/4)
-				{
-					npc.velocity.Y += 0.04f;
-					if ((double) npc.velocity.Y < -3)
-					  npc.velocity.Y += 0.05f;
-					else if ((double) npc.velocity.Y < 0.0)
-					  npc.velocity.Y -= 0.03f;
-					if ((double) npc.velocity.Y > 3)
-					  npc.velocity.Y = 1.5f;
+					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
 				}
 			}
-			
-			if (AiTimer > 240) // become invisible
-			{
-				DashTimer = 0;
-				BloodTimer = 0;
-				npc.dontTakeDamage = true;
-				npc.velocity.X = 0;
-				npc.velocity.Y = 0;
-				if (npc.alpha < 255)
-				{
-					npc.alpha += 5;
-				}
-				if (npc.alpha == 255)
-				{
-					npc.position.Y = player.position.Y - 300 - (npc.height/2);
-					npc.position.X = player.Center.X - (npc.width / 2);
-				}
-				BloodRainTimer++;
-			}
-			
-			if (npc.alpha == 255 && BloodRainTimer >= 20) //rain down blood while invisible
-			{
-				this.BloodRain();
-				BloodRainTimer = 0;
-			}
-		
-			if (BloodTimer >= 40) //shooting a spread of blood projectiles
-			{
-				this.ShootBlood();
-				BloodTimer = 0;
-			}
-			
-			if (DashTimer >= 160)
-			{
-				this.Dash();
-				DashTimer = 0;
-			}
-			
-			if (AiTimer > 420)
-			{
-				AiTimer = 0;
-			}
-			
-			if (!player.active || player.dead || Main.dayTime) //despawn
-            {
-                npc.TargetClosest(false);
-                npc.velocity.Y = -20;
-				AiTimer = 0;
-				if (npc.timeLeft > 10)
-				{
-					npc.timeLeft = 10;
-				}
-            }
 		}
 		
 		public override void FindFrame(int frameHeight)
@@ -188,103 +179,21 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.frame.Y = frame * frameHeight; 
 		}
 		
-		public void ShootBlood()
+		public void ShootBlood(int type)
 		{
-			int Type = mod.ProjectileType("BouncyBlood");
-			
-			if (Phase2)
-			{
-				switch (Main.rand.Next(3))
-				{
-					case 0: 
-						Type = mod.ProjectileType("BouncyBlood");
-						break;
-					case 1: 
-						Type = mod.ProjectileType("ExplosiveBlood");
-						break;
-					case 2: 
-						Type = mod.ProjectileType("BloodBoltA");
-						break;
-					default:
-						break;
-				}
-			}
-			
-			else
-			{
-				switch (Main.rand.Next(2))
-				{
-					case 0: 
-						Type = mod.ProjectileType("BouncyBlood");
-						break;
-					case 1: 
-						Type = mod.ProjectileType("BloodBoltA");
-						break;
-					default:
-						break;
-				}
-			}
-			
-			int k = Main.rand.Next(3, 4);
-			if (Type == mod.ProjectileType("BouncyBlood"))
-			{
-				for (int i = 0; i < k; ++i)
-				{
-					Vector2 direction = Main.player[npc.target].Center - npc.Center;
-					direction.Normalize();
-					float sX = direction.X * 8f;
-					float sY = direction.Y * 8f;
-					sX += (float)Main.rand.Next(-60, 60) * 0.05f;
-					sY += (float)Main.rand.Next(-60, 60) * 0.05f;
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX + npc.velocity.X, sY + npc.velocity.Y , Type, (int)(npc.damage / 3), 1, Main.myPlayer, 0, 0);
-				}
-			}
-			
-			else
+			for (int index = 0; index < Main.rand.Next(3, 6); index++)
 			{
 				Vector2 direction = Main.player[npc.target].Center - npc.Center;
 				direction.Normalize();
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X*5 + npc.velocity.X, direction.Y*5 + npc.velocity.Y , Type, (int)(npc.damage / 2), 1, Main.myPlayer, 0, 0);
+				direction *= 8;
+				direction.X += Main.rand.Next(-2, 2);
+				direction.Y += Main.rand.Next(-2, 2);
+				int p = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-50, 50), npc.Center.Y, direction.X, direction.Y, type, (int)(npc.damage / 2), 1, Main.myPlayer, 0, 0);
+				Main.projectile[p].netUpdate = true;
 			}
 			Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
 			npc.netUpdate = true;
 		}
-		
-		public void BloodRain()
-		{
-			int k = Main.rand.Next(1, 3);
-			if (Phase2 && Main.expertMode)
-			{
-				k += Main.rand.Next (1, 2);
-			}
-			for (int i = 0; i < k; ++i)
-			{
-				Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-(Main.screenWidth/2), (Main.screenWidth/2)), npc.Center.Y - 600, 0, 11, mod.ProjectileType("zBloodStream"), (int)(npc.damage / 3), 1, Main.myPlayer, 0, 0);
-			}
-			npc.netUpdate = true;
-		}
-		
-		public void Dash()
-		{
-			Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 2);
-			float num4 = 10f;
-			Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
-            float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
-            float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
-            float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
-            float num8 = num4 / num7;
-            npc.velocity.X = num5 * num8;
-            npc.velocity.Y = num6 * num8;
-		}
-		
-		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
-		{
-			if (npc.alpha == 255)
-			{
-				return false;
-			}
-			return true;
-		}		
 		
 		public override void NPCLoot()
 		{
