@@ -54,7 +54,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.05f);
 			
-			if (npc.ai[0] <= 180 && npc.ai[0] % 60 == 0)
+			if (npc.ai[0] <= 240 && npc.ai[0] % 60 == 0)
 			{
 				float num4 = 10f;
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
@@ -68,7 +68,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			if (npc.ai[0] > 180)
 			{
-				int p = Projectile.NewProjectile(npc.Center, vector * 10, mod.ProjectileType("BrimstoneSmall"), npc.damage / 2, 0, npc.target, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center, vector * 7, mod.ProjectileType("BrimstoneSmall"), npc.damage / 2, 0, npc.target, 0, 0);
 				Main.projectile[p].netUpdate = true;
 				npc.netUpdate = true;
 				npc.ai[0] = 0;

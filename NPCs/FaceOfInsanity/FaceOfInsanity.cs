@@ -147,7 +147,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				Vector2 Velocity = new Vector2(moveX, moveY);
 				
 				
-				bool abovePlayer = ((npc.Center.Y < Main.player[npc.target].Center.Y - 150) && (npc.Center.X > Main.player[npc.target].Center.X - 50) && (npc.Center.X < Main.player[npc.target].Center.X + 50));
+				bool abovePlayer = ((npc.Center.Y < Main.player[npc.target].Center.Y - 150) && (npc.Center.X > Main.player[npc.target].Center.X - 100) && (npc.Center.X < Main.player[npc.target].Center.X + 100));
 				if (abovePlayer)
 					Velocity /= 3;
 				
