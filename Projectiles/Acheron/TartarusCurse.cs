@@ -118,6 +118,10 @@ namespace ForgottenMemories.Projectiles.Acheron
 			{
 				projectile.timeLeft = 2;
 			}
+			if (player.dead)
+			{
+				modPlayer.Tartarus = false;
+			}
 			projectile.ai[1] += 0.1f;
 			int mememaster = (int)Math.Sin(projectile.ai[1]) * 10;
 			

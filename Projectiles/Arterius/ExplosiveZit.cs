@@ -82,7 +82,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 		
 		public override void OnHitPlayer(Player target, int damage, bool crit)
 		{
-			target.AddBuff(BuffID.Ichor, 60 * Main.rand.Next(3, 6), false);
+			target.AddBuff(BuffID.Ichor, 30 * Main.rand.Next(3, 6), false);
 		}
 	}
 }

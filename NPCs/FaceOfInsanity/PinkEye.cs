@@ -68,10 +68,12 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			if (npc.ai[0] > 180)
 			{
-				int p = Projectile.NewProjectile(npc.Center, vector * 7, mod.ProjectileType("BrimstoneSmall"), npc.damage / 2, 0, npc.target, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center, vector * 7, mod.ProjectileType("BrimstoneSmall"), 25, 0, npc.target, 0, 0);
 				Main.projectile[p].netUpdate = true;
 				npc.netUpdate = true;
 				npc.ai[0] = 0;
+				if (Main.expertMode)
+					Main.projectile[p].damage = (int)(45 * 0.5);
 			}
 			
 			

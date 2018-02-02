@@ -153,17 +153,17 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				npc.velocity = Velocity;
 				
 				
-				if (abovePlayer && aiTimer % 90 == 0)
+				if (abovePlayer && aiTimer % 120 == 0)
 				{
 					ShootBlood(mod.ProjectileType("ExplosiveZit"));
 				}
 				
-				else if (abovePlayer && aiTimer % 45 == 0)
+				else if (abovePlayer && aiTimer % 60 == 0)
 				{
 					ShootBlood(mod.ProjectileType("zBloodStream"));
 				}
 				
-				if (aiTimer % 180 <= 0)
+				if (aiTimer % 360 <= 0)
 				{
 					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
 				}
@@ -192,15 +192,17 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public void ShootBlood(int type)
 		{
-			for (int index = 0; index < Main.rand.Next(3, 6); index++)
+			for (int index = 0; index < Main.rand.Next(2, 5); index++)
 			{
 				Vector2 direction = Main.player[npc.target].Center - npc.Center;
 				direction.Normalize();
-				direction *= 8;
+				direction *= 6;
 				direction.X += Main.rand.Next(-2, 2);
 				direction.Y += Main.rand.Next(-2, 2);
-				int p = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-50, 50), npc.Center.Y, direction.X, direction.Y, type, (int)(npc.damage / 2), 1, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-50, 50), npc.Center.Y, direction.X, direction.Y, type, 35, 1, Main.myPlayer, 0, 0);
 				Main.projectile[p].netUpdate = true;
+				if (Main.expertMode)
+					Main.projectile[p].damage = (int)(55 * 0.5);
 			}
 			Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
 			npc.netUpdate = true;

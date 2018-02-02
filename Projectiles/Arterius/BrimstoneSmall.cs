@@ -27,7 +27,6 @@ namespace ForgottenMemories.Projectiles.Arterius
 			projectile.aiStyle = -1;
 			projectile.hostile = true;
 			projectile.alpha = 255;
-			projectile.extraUpdates = 3;
 			projectile.scale = 1f;
 			projectile.timeLeft = 600;
 			projectile.penetrate = 3;
