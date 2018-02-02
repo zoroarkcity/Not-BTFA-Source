@@ -14,7 +14,7 @@ using Terraria.ID;
 
 namespace ForgottenMemories.Projectiles.Arterius
 {
-    public class BrimstoneSmall : ModProjectile
+    public class BrimstoneBig : ModProjectile
     {
 		public override void SetStaticDefaults()
 		{
@@ -29,9 +29,9 @@ namespace ForgottenMemories.Projectiles.Arterius
 			projectile.alpha = 255;
 			projectile.scale = 1f;
 			projectile.extraUpdates = 1;
-			projectile.timeLeft = 600;
 			projectile.penetrate = 3;
 			projectile.ignoreWater = true;
+			projectile.scale = 1.5f;
         }
 
         public override void AI()
@@ -48,7 +48,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 			
 			projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
 			Lighting.AddLight((int) projectile.Center.X / 16, (int) projectile.Center.Y / 16, 0.8f, 0f, 0f);
-			float num1 = 100f;
+			float num1 = 150f;
 			float num2 = 3f;
 			if ((double) projectile.ai[1] == 0.0)
 			{
@@ -65,17 +65,45 @@ namespace ForgottenMemories.Projectiles.Arterius
 					return;
 				}
 			}
+			
+			if (projectile.timeLeft % 25 == 0)
+			{
+				Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("BrimstoneRing"), projectile.damage, 0, Main.myPlayer, 0, 0);
+			}
         }
 		
 		public override void Kill(int timeLeft)
 		{
-			int num = Main.rand.Next(3, 7);
-			for (int index1 = 0; index1 < num; ++index1)
+			Main.PlaySound(SoundID.Item89, projectile.position);
+			projectile.position.X += (float) (projectile.width / 2);
+			projectile.position.Y += (float) (projectile.height / 2);
+			projectile.width = (int) (48.0 * (double) projectile.scale);
+			projectile.height = (int) (48.0 * (double) projectile.scale);
+			projectile.position.X -= (float) (projectile.width / 2);
+			projectile.position.Y -= (float) (projectile.height / 2);
+			for (int index = 0; index < 8; ++index)
+			  Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0.0f, 0.0f, 100, new Color(), 1.5f);
+			for (int index1 = 0; index1 < 32; ++index1)
 			{
-				int index2 = Dust.NewDust(projectile.Center - (projectile.velocity/2f), 0, 0, 60, 0.0f, 0.0f, 100, new Color(), 2.1f);
-				Dust dust = Main.dust[index2];
-				dust.velocity *= 2;
-				Main.dust[index2].noGravity = true;
+			  int index2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 130, 0.0f, 0.0f, 100, new Color(), 2.5f);
+			  Main.dust[index2].noGravity = true;
+			  Main.dust[index2].velocity *= 3f;
+			  int index3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 130, 0.0f, 0.0f, 100, new Color(), 1.5f);
+			  Main.dust[index3].velocity *= 2f;
+			  Main.dust[index3].noGravity = true;
+			}
+			for (int index1 = 0; index1 < 2; ++index1)
+			{
+			  int index2 = Gore.NewGore(projectile.position + new Vector2((float) (projectile.width * Main.rand.Next(100)) / 100f, (float) (projectile.height * Main.rand.Next(100)) / 100f) - Vector2.One * 10f, new Vector2(), Main.rand.Next(61, 64), 1f);
+			  Main.gore[index2].velocity *= 0.3f;
+			  Main.gore[index2].velocity.X += (float) Main.rand.Next(-10, 11) * 0.05f;
+			  Main.gore[index2].velocity.Y += (float) Main.rand.Next(-10, 11) * 0.05f;
+			}
+			if (projectile.owner == Main.myPlayer)
+			{
+			  projectile.localAI[1] = -1f;
+			  projectile.maxPenetrate = 0;
+			  projectile.Damage();
 			}
 		}
 		
@@ -87,7 +115,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 			if (projectile.getRect().Intersects(value7))
 			{
 				Vector2 value8 = new Vector2(projectile.position.X - Main.screenPosition.X + num150, projectile.position.Y - Main.screenPosition.Y + (float)(projectile.height / 2) + projectile.gfxOffY);
-				float num176 = 100f * ((projectile.ai[0] == 1) ? 1.5f : 1f);
+				float num176 = 150f * ((projectile.ai[0] == 1) ? 1.5f : 1f);
 				float scaleFactor = 3f;
 				if (projectile.ai[1] == 1f)
 				{

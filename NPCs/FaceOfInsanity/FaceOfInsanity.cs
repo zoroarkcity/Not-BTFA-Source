@@ -170,6 +170,92 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				
 			}
 			
+			if (npc.ai[0] == 1 && !phase2)
+			{
+				if (npc.alpha < 255)
+				{
+					npc.alpha += 5;
+				}
+				else
+				{
+					phase2 = true;
+				}
+				
+				npc.velocity = Vector2.Zero;
+			}
+			
+			if (phase2)
+			{
+				if (npc.alpha > 0)
+				{
+					npc.alpha -= 5;
+				}
+				
+				else
+				{
+					npc.ai[1]++;
+					
+					if(npc.Center.X > player.Center.X && moveX > -3f)
+						moveX -= 0.2f;
+					if(npc.Center.X > player.Center.X && moveX > 0f)
+						moveX -= 1f;
+					
+					if(npc.Center.X < player.Center.X && moveX < 3f)
+						moveX += 0.2f;
+					if(npc.Center.X < player.Center.X && moveX < 0f)
+						moveX += 1f;
+					
+					if(npc.Center.Y < player.Center.Y && moveY < 2f)
+						moveY += 0.2f;
+					if(npc.Center.Y < player.Center.Y && moveY < 0f)
+						moveY += 1f;
+					
+					if(npc.Center.Y > player.Center.Y && moveY > -2f)
+						moveY -= 0.2f;
+					if(npc.Center.Y > player.Center.Y && moveY > 0f)
+						moveY -= 1f;
+					
+					Vector2 Velocity = new Vector2(moveX, moveY);
+					npc.velocity = Velocity;
+					
+					if (npc.ai[1] % 180 == 0)
+					{
+						Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 20);
+						Vector2 Vel = player.Center - cross;
+						Vel.Normalize();
+						Vel *= 10;
+						Vel += player.velocity;
+						int p = Projectile.NewProjectile(cross, Vel, mod.ProjectileType("BrimstoneBig"), 45, 0, npc.target, 0, 0);
+						Main.projectile[p].netUpdate = true;
+						if (Main.expertMode)
+							Main.projectile[p].damage = (int)(50 * 0.5);
+					}
+					
+					else if (npc.ai[1] % 45 == 0)
+					{
+						Vector2 eye1 = new Vector2(npc.Center.X - 36, npc.Center.Y - 4);
+						Vector2 eye2 = new Vector2(npc.Center.X + 36, npc.Center.Y - 4);
+						Vector2 Vel1 = player.Center - eye1;
+						Vector2 Vel2 = player.Center - eye2;
+						Vel1.Normalize();
+						Vel2.Normalize();
+						Vel1 *= 8;
+						Vel2 *= 8;
+						int p1 = Projectile.NewProjectile(eye1, Vel1, mod.ProjectileType("BrimstoneSmall"), 25, 0, npc.target, 0, 0);
+						Main.projectile[p1].netUpdate = true;
+						
+						int p2 = Projectile.NewProjectile(eye2, Vel2, mod.ProjectileType("BrimstoneSmall"), 25, 0, npc.target, 0, 0);
+						Main.projectile[p2].netUpdate = true;
+						
+						
+						if (Main.expertMode)
+							Main.projectile[p1].damage = (int)(35 * 0.5);
+							Main.projectile[p2].damage = (int)(35 * 0.5);
+					
+					}
+				}
+			}
+			
 			if (Main.dayTime || !player.active || player.dead) //despawn
             {
                 npc.TargetClosest(false);
