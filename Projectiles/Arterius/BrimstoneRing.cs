@@ -33,6 +33,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 				newDust.noGravity = true;
 				newDust.fadeIn = 0.2f;
 				newDust.scale = 2;
+				newDust.color = new Color(255, 0, 0, 0);
 			}
 			return false;
 		}

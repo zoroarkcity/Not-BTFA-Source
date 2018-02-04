@@ -220,13 +220,14 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					
 					if (npc.ai[1] % 180 == 0)
 					{
-						Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 20);
+						Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
 						Vector2 Vel = player.Center - cross;
 						Vel.Normalize();
 						Vel *= 10;
 						Vel += player.velocity;
 						int p = Projectile.NewProjectile(cross, Vel, mod.ProjectileType("BrimstoneBig"), 45, 0, npc.target, 0, 0);
 						Main.projectile[p].netUpdate = true;
+						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 73);
 						if (Main.expertMode)
 							Main.projectile[p].damage = (int)(50 * 0.5);
 					}
@@ -241,6 +242,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						Vel2.Normalize();
 						Vel1 *= 8;
 						Vel2 *= 8;
+						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
 						int p1 = Projectile.NewProjectile(eye1, Vel1, mod.ProjectileType("BrimstoneSmall"), 25, 0, npc.target, 0, 0);
 						Main.projectile[p1].netUpdate = true;
 						
