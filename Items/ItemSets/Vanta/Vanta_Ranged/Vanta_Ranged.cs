@@ -17,7 +17,7 @@ namespace ForgottenMemories.Items.ItemSets.Vanta.Vanta_Ranged
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Galactic Machine-Shotgun");
+			DisplayName.SetDefault("Dark Matter Blaster");
 			Tooltip.SetDefault("'Purges your foes with absorbed rainbow light'");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Vanta/Vanta_Ranged/Vanta_Ranged_Glow");
 		}
