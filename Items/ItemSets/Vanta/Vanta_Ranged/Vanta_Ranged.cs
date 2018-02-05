@@ -17,15 +17,14 @@ namespace ForgottenMemories.Items.ItemSets.Vanta.Vanta_Ranged
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Vanta Ranged Weapon");
-			Tooltip.SetDefault("ANY UHHH TOOLTIP PLEASE -EAST");
+			DisplayName.SetDefault("Galactic Machine-Shotgun");
+			Tooltip.SetDefault("'Purges your foes with absorbed rainbow light'");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Vanta/Vanta_Ranged/Vanta_Ranged_Glow");
 		}
 
 		public override void SetDefaults()
 		{
-			//fuck anus balance
-			item.damage = 20;
+			item.damage = 120;
 			item.ranged = true;
 			item.width = 40;
 			item.height = 20;
@@ -34,8 +33,8 @@ namespace ForgottenMemories.Items.ItemSets.Vanta.Vanta_Ranged
 			item.useStyle = 5;
 			item.noMelee = true; 
 			item.knockBack = 4;
-			item.value = 50000;
-			item.rare = 0;
+			item.value = 1000000;
+			item.rare = 10;
 			item.UseSound = SoundID.Item36;
 			item.autoReuse = true;
 			item.shoot = 10; 
