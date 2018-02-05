@@ -223,9 +223,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						npc.velocity = Velocity;
 					}
 					
-					if (npc.life < (int)(npc.lifeMax * 0.4) && npc.ai[1] % 360 == 0)
+					if (npc.life < (int)(npc.lifeMax * 0.4) && npc.ai[1] % 360 == 0 && npc.ai[2] == 0)
 					{
-						npc.ai[2]++;
+						npc.ai[2] = 1;
 					}
 					
 					if (npc.ai[2] > 0)
