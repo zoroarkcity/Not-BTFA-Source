@@ -179,6 +179,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				else
 				{
 					phase2 = true;
+					Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 2);
 				}
 				
 				npc.velocity = Vector2.Zero;
@@ -188,37 +189,70 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			{
 				if (npc.alpha > 0)
 				{
+					npc.ai[1] = 0;
 					npc.alpha -= 5;
 				}
 				
 				else
 				{
-					npc.ai[1]++;
+					if(npc.ai[2] == 0)
+					{
+						npc.ai[1]++;
 					
-					if(npc.Center.X > player.Center.X && moveX > -3f)
-						moveX -= 0.2f;
-					if(npc.Center.X > player.Center.X && moveX > 0f)
-						moveX -= 1f;
+						if(npc.Center.X > player.Center.X && moveX > -3f)
+							moveX -= 0.2f;
+						if(npc.Center.X > player.Center.X && moveX > 0f)
+							moveX -= 1f;
+						
+						if(npc.Center.X < player.Center.X && moveX < 3f)
+							moveX += 0.2f;
+						if(npc.Center.X < player.Center.X && moveX < 0f)
+							moveX += 1f;
+						
+						if(npc.Center.Y < player.Center.Y && moveY < 2f)
+							moveY += 0.2f;
+						if(npc.Center.Y < player.Center.Y && moveY < 0f)
+							moveY += 1f;
+						
+						if(npc.Center.Y > player.Center.Y && moveY > -2f)
+							moveY -= 0.2f;
+						if(npc.Center.Y > player.Center.Y && moveY > 0f)
+							moveY -= 1f;
+						
+						Vector2 Velocity = new Vector2(moveX, moveY);
+						npc.velocity = Velocity;
+					}
 					
-					if(npc.Center.X < player.Center.X && moveX < 3f)
-						moveX += 0.2f;
-					if(npc.Center.X < player.Center.X && moveX < 0f)
-						moveX += 1f;
+					if (npc.life < (int)(npc.lifeMax * 0.4) && npc.ai[1] % 360 == 0)
+					{
+						npc.ai[2]++;
+					}
 					
-					if(npc.Center.Y < player.Center.Y && moveY < 2f)
-						moveY += 0.2f;
-					if(npc.Center.Y < player.Center.Y && moveY < 0f)
-						moveY += 1f;
+					if (npc.ai[2] > 0)
+					{
+						npc.ai[3]++;
+						npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.05f);;
+						if (npc.ai[3] > 30 && npc.ai[2] < 2)
+						{
+							float num4 = 20f;
+							Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
+							float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
+							float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
+							float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
+							float num8 = num4 / num7;
+							npc.velocity.X = num5 * num8;
+							npc.velocity.Y = num6 * num8;
+							npc.ai[2] = 2;
+							Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 2);
+						}
+						if(npc.ai[2] == 2 && npc.ai[3] > 60)
+						{
+							npc.ai[2] = 0;
+							npc.ai[3] = 0;
+						}
+					}
 					
-					if(npc.Center.Y > player.Center.Y && moveY > -2f)
-						moveY -= 0.2f;
-					if(npc.Center.Y > player.Center.Y && moveY > 0f)
-						moveY -= 1f;
-					
-					Vector2 Velocity = new Vector2(moveX, moveY);
-					npc.velocity = Velocity;
-					
-					if (npc.ai[1] % 180 == 0)
+					else if (npc.ai[1] % 180 == 0)
 					{
 						Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
 						Vector2 Vel = player.Center - cross;
