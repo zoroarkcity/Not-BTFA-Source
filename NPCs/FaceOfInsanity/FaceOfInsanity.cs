@@ -226,12 +226,13 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					if (npc.life < (int)(npc.lifeMax * 0.4) && npc.ai[1] % 360 == 0 && npc.ai[2] == 0)
 					{
 						npc.ai[2] = 1;
+						Vector2.Zero;
 					}
 					
 					if (npc.ai[2] > 0)
 					{
 						npc.ai[3]++;
-						npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.05f);;
+						npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.05f);
 						if (npc.ai[3] > 30 && npc.ai[2] < 2)
 						{
 							float num4 = 20f;
