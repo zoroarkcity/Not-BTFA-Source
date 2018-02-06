@@ -226,7 +226,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					if (npc.life < (int)(npc.lifeMax * 0.4) && npc.ai[1] % 360 == 0 && npc.ai[2] == 0)
 					{
 						npc.ai[2] = 1;
-						Vector2.Zero;
+						npc.velocity = Vector2.Zero;
 					}
 					
 					if (npc.ai[2] > 0)
