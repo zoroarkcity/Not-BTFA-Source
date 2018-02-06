@@ -1,9 +1,12 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria.ID;
+using Terraria.ModLoader;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
-using System.Collections.Generic;
 
 namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 {
@@ -12,14 +15,14 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fist of the Hallow Ent");
-			Tooltip.SetDefault("Left-click to lob an explosive ball that will explode into cursed flames on impact\nRight-click to cast a cursed flameball that will leave cursed flame trails and explode into bursts of cursed flame");
+			Tooltip.SetDefault("Left-click to lob an explosive ball that will explode into cursed flames on impact\nRight-click to cast a cursed flameball that will leave cursed flame trails");
         }
 		public override void SetDefaults()
 		{
 			item.damage = 60;
 			item.noMelee = true;
 			item.noUseGraphic = true;
-			item.thrown = true;
+			item.ranged = true;
 			item.value = 50000;
 			item.width = 20;
 			item.height = 20;
@@ -44,7 +47,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			{
 			item.noMelee = true;
 			item.noUseGraphic = true;
-			item.thrown = true;
+			item.ranged = true;
 			item.width = 1;
 			item.height = 1;
 			item.useTime = 32;
@@ -61,7 +64,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			{
 			item.noMelee = true;
 			item.noUseGraphic = true;
-			item.thrown = true;
+			item.ranged = true;
 			item.width = 1;
 			item.height = 1;
 			item.useTime = 24;
@@ -100,6 +103,29 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 						dust.customData = (object) player;
 			}
 		}
+		
+		public override void GetWeaponDamage(Player player, ref int damage)
+		{
+			damage = (int)((damage / player.rangedDamage)* player.thrownDamage);
+		}
+
+		public override void GetWeaponCrit(Player player, ref int crit)
+		{
+			crit = (crit - player.rangedCrit)+ player.thrownCrit;
+		}
+		
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
+			if (tt != null)
+			{
+				string[] splitText = tt.text.Split(' ');
+				string damageValue = splitText.First();
+				string damageWord = splitText.Last();
+				tt.text = damageValue + " throwing " + damageWord;
+			}
+		}
+		
 		public override void UseStyle(Player player)
         {
             float cosRot = (float)Math.Cos(player.itemRotation - 0.78f * player.direction * player.gravDir);

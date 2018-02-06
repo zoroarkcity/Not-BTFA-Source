@@ -447,7 +447,7 @@ namespace ForgottenMemories
 		
 		public override bool Shoot (Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			if (item.ranged)
+			if (item.ranged && (item.type != (mod.ItemType("ArkDagger") | mod.ItemType("Fist_of_the_Hallow_Ent") | mod.ItemType("HadesHand"))))
 			{
 				speedX *= rangedVelocity;
 				speedY *= rangedVelocity;
