@@ -51,6 +51,7 @@ namespace ForgottenMemories.NPCs.Sky
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DivineBolt"));
 			}
+			
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MysteriousAlienSpacecraft/MysteriousAlienSpacecraftGore1"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MysteriousAlienSpacecraft/MysteriousAlienSpacecraftGore2"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MysteriousAlienSpacecraft/MysteriousAlienSpacecraftGore3"), 1f);

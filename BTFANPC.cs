@@ -12,6 +12,8 @@ namespace ForgottenMemories
 	{
 		int DagNum = 0;
 		public bool BlightCelled = false;
+		
+		public bool FilicidCelled = false;
 		public bool BloodLeech = false;
 		public bool MarbleArrow = false;
 		public bool Necro = false;
@@ -20,6 +22,7 @@ namespace ForgottenMemories
         {
             DagNum = 0;
 			BlightCelled = false;
+			FilicidCelled = true;
 			BloodLeech = false;
 			MarbleArrow = false;
 			Necro = false;
@@ -97,6 +100,17 @@ namespace ForgottenMemories
 				npc.lifeRegen -= num * 4 * 5;
 				if (damage < num * 5)
 					damage = num * 5;
+			}
+			
+			if (FilicidCelled == true)
+			{
+				int num = 0;
+				for (int index = 0; index < 1000; ++index)
+				{
+				  if (Main.projectile[index].active && Main.projectile[index].type == mod.ProjectileType("BlightOrbShoot") && ((double) Main.projectile[index].ai[0] == 1.0 && (double) Main.projectile[index].ai[1] == (double) npc.whoAmI))
+					++num;
+				}
+				npc.defense -= num * 2;
 			}
 			
 			if (BloodLeech == true)

@@ -57,28 +57,32 @@ namespace ForgottenMemories.NPCs.Magnoliac
 		}
         public override void BossLoot(ref string name, ref int potionType)
         {
+			
+			TGEMWorld.downedMag = true;
             if (Main.expertMode) //if it's expert mode the treasure bag will drop
             {
                 npc.DropBossBags();
             }
-			TGEMWorld.downedMag = true;
-			switch (Main.rand.Next(4))
+			else
 			{
-				case 0: 
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Beechorang"));
-					break;
-				case 1: 
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Dandelion_Staff"));
-					break;
-				case 2:
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SequoiaWaraxe"));
-					break;
-				case 3:
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Acorn_Launcher"));
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Acorn"), Main.rand.Next(30, 60));
-					break;
-				default:
-					break;
+				switch (Main.rand.Next(4))
+				{
+					case 0: 
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Beechorang"));
+						break;
+					case 1: 
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Dandelion_Staff"));
+						break;
+					case 2:
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SequoiaWaraxe"));
+						break;
+					case 3:
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Acorn_Launcher"));
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Acorn"), Main.rand.Next(30, 60));
+						break;
+					default:
+						break;
+				}
 			}
 			TGEMWorld.TryForBossMask(npc.Center, npc.type);
             potionType = ItemID.HealingPotion;   //boss drops (can be changed)

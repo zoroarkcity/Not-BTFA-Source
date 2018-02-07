@@ -115,7 +115,7 @@ namespace ForgottenMemories.NPCs.Dungeon
 				Main.npc[n2].width -= (int)(npc.width/4);
 				Main.npc[n2].height -= (int)(npc.height/4);
 				
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("UndeadEnergy"), Main.rand.Next(2, 4));
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("UndeadEnergy"), Main.rand.Next(4, 7));
 			}
 		}
 	}
