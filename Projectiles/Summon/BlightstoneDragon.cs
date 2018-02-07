@@ -9,8 +9,8 @@ namespace ForgottenMemories.Projectiles.Summon
 		public override void SetDefaults()
 		{
 			projectile.netImportant = true;
-			projectile.width = 60;
-			projectile.height = 70;
+			projectile.width = 72;
+			projectile.height = 80;
 			Main.projFrames[projectile.type] = 4;
 			projectile.friendly = true;
 			Main.projPet[projectile.type] = true;
@@ -24,6 +24,7 @@ namespace ForgottenMemories.Projectiles.Summon
 			shootCool = 45f;
 			shoot = mod.ProjectileType("BlightBolt");
 			shootSpeed = 5f;
+			ShootOffset = new Vector2(-36, -4);
 		}
 		
 		public override void SetStaticDefaults()
