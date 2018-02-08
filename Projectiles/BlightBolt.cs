@@ -8,7 +8,6 @@ namespace ForgottenMemories.Projectiles
 {
 	public class BlightBolt : ModProjectile
 	{
-			int offset;
 		public override void SetDefaults()
 		{
 			projectile.width = 2;
@@ -35,13 +34,21 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void AI()
 		{
-			if(Tools.OneIn(10) && offset < 10)
+			if(Tools.OneIn(10) && projectile.ai[0] < 10)
 			{
-				offset += 2;
+				projectile.ai[0] += 2;
 			}
-			if(Tools.OneIn(10) && offset > -10)
+			if(Tools.OneIn(10) && projectile.ai[0] > -10)
 			{
-				offset -= 2;
+				projectile.ai[0] -= 2;
+			}
+			if(Tools.OneIn(10) && projectile.ai[1] < 10)
+			{
+				projectile.ai[1] += 2;
+			}
+			if(Tools.OneIn(10) && projectile.ai[1] > -10)
+			{
+				projectile.ai[1] -= 2;
 			}
 				
 			for (int index1 = 0; index1 < 2; ++index1)
@@ -55,7 +62,7 @@ namespace ForgottenMemories.Projectiles
 				Main.dust[index2].velocity += projectile.velocity * 0.1f;
 				Main.dust[index2].position.X -= num1;
 				Main.dust[index2].position.Y -= num2;
-				Main.dust[index2].position += new Vector2(0, -offset).RotatedBy(projectile.velocity.ToRotation());
+				Main.dust[index2].position += new Vector2(0, projectile.ai[0]).RotatedBy(projectile.velocity.ToRotation());
 			}
 			for (int index1 = 0; index1 < 2; ++index1)
 			{
@@ -68,7 +75,7 @@ namespace ForgottenMemories.Projectiles
 				Main.dust[index2].velocity += projectile.velocity * 0.1f;
 				Main.dust[index2].position.X -= num1;
 				Main.dust[index2].position.Y -= num2;
-				Main.dust[index2].position += new Vector2(0, offset).RotatedBy(projectile.velocity.ToRotation());
+				Main.dust[index2].position += new Vector2(0, projectile.ai[1]).RotatedBy(projectile.velocity.ToRotation());
 			}
 		}
 		

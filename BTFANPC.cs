@@ -107,7 +107,7 @@ namespace ForgottenMemories
 				int num = 0;
 				for (int index = 0; index < 1000; ++index)
 				{
-				  if (Main.projectile[index].active && Main.projectile[index].type == mod.ProjectileType("BlightOrbShoot") && ((double) Main.projectile[index].ai[0] == 1.0 && (double) Main.projectile[index].ai[1] == (double) npc.whoAmI))
+				  if (Main.projectile[index].active && Main.projectile[index].type == mod.ProjectileType("FilicidCellRanged") && ((double) Main.projectile[index].ai[0] == 1.0 && (double) Main.projectile[index].ai[1] == (double) npc.whoAmI))
 					++num;
 				}
 				npc.defense -= num * 2;

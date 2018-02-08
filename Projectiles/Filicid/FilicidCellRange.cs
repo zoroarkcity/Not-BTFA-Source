@@ -11,8 +11,8 @@ namespace ForgottenMemories.Projectiles.Filicid
 		int index1 = 999;
 		public override void SetDefaults()
 		{
-			projectile.width = 5;
-			projectile.height = 5;
+			projectile.width = 12;
+			projectile.height = 12;
 			projectile.aiStyle = -1;
 			projectile.friendly = true;
 			projectile.penetrate = -1;
@@ -27,24 +27,19 @@ namespace ForgottenMemories.Projectiles.Filicid
 		
 		public override void AI()
 		{
+			 if (Main.rand.Next(3) == 0)
+            {
+                int index = Dust.NewDust(projectile.Center, 8, 8, mod.DustType("BloodDust"), 0.0f, 0.0f, 0, new Color(), 1f);
+                Main.dust[index].position = projectile.Center;
+                Main.dust[index].velocity *= 0.2f;
+                Main.dust[index].noGravity = true;
+                Main.dust[index].scale = 1f;
+            }
+			
 			int num1 = 63;
 			if ((double) projectile.ai[0] == 0.0)
 			{
-				int index = (int) projectile.ai[1];
-				if (!Main.npc[index].CanBeChasedBy((object) projectile, true))
-				{
-					projectile.Kill();
-					return;
-				}
-				double rotation = (double) projectile.velocity.ToRotation();
-				Vector2 vector2 = Main.npc[index].Center - projectile.Center;
-				if (vector2 != Vector2.Zero)
-				{
-					vector2.Normalize();
-					vector2 *= 14f;
-				}
-				float num2 = 5f;
-				projectile.velocity = (projectile.velocity * (num2 - 1f) + vector2) / num2;
+				projectile.rotation += MathHelper.Pi/30;
 			}
 			
 			if ((double) projectile.ai[0] == 1.0)
