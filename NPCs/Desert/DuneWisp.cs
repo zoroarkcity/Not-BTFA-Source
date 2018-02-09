@@ -77,7 +77,6 @@ namespace ForgottenMemories.NPCs.Desert
 			
 			else
 			{
-				Main.PlaySound(SoundID.NPCHit36, (int)npc.position.X, (int)npc.position.Y);
 				float num4 = 8f;
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
 				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
@@ -100,7 +99,7 @@ namespace ForgottenMemories.NPCs.Desert
 		public override void NPCLoot()
 		{
 			Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, 658, (int)(npc.damage/6), 1f, npc.target, 0f, 0f);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BossEnergy"), Main.rand.Next(2, 4));
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BossEnergy"), Main.rand.Next(4, 7));
 		}
 	}
 }

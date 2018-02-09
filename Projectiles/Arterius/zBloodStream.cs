@@ -12,15 +12,13 @@ namespace ForgottenMemories.Projectiles.Arterius
 	{
 		public override void SetDefaults()
 		{
-			projectile.width = 30;
-			projectile.height = 30;
+			projectile.width = 10;
+			projectile.height = 10;
 			projectile.aiStyle = -1;
 			projectile.hostile = true;
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
 			projectile.timeLeft = 180;
-			projectile.extraUpdates = 1;
-			projectile.light = 0.75f;
 			projectile.alpha = 255;
 		}
 		
@@ -32,6 +30,8 @@ namespace ForgottenMemories.Projectiles.Arterius
 		
 		public override void AI()
 		{
+			
+			Lighting.AddLight(projectile.position, 0.75f, 0f, 0.1f);
 			for (int i = 0; i < 5; i++)
 			{
 				int dust;

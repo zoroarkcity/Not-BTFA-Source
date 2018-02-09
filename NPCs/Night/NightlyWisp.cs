@@ -53,8 +53,6 @@ namespace ForgottenMemories.NPCs.Night
 		public override void AI()
 		{
 			npc.ai[0]++;
-			if (Main.rand.Next(700) == 0)
-				Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, Main.rand.Next(53, 55), 1f, 0.0f);
 			if (npc.ai[0] < 180)
 			{
 				npc.TargetClosest(true);
@@ -78,7 +76,6 @@ namespace ForgottenMemories.NPCs.Night
 			else
 			{
 				
-				Main.PlaySound(SoundID.NPCHit36, (int)npc.position.X, (int)npc.position.Y);
 				float num4 = 7f;
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
 				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
@@ -114,7 +111,7 @@ namespace ForgottenMemories.NPCs.Night
 		
 		public override void NPCLoot()
 		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkEnergy"), Main.rand.Next(2, 4));
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkEnergy"), Main.rand.Next(4, 7));
 		}
 	}
 }

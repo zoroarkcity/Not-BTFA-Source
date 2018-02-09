@@ -21,13 +21,13 @@ namespace ForgottenMemories.Items.Acessory
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Vulcanspark Boots");
-		  Tooltip.SetDefault("Allows flight, super fast running, and extra mobility on ice \n10% increased movement speed \nProvides the ability to walk on water and lava \nGrants immunity to fire blocks, fall damage, and 14 seconds of immunity to lava \nEnhances your jump with fire, and grants auto jump \nYou leave behind a trail of sparks");
+		  Tooltip.SetDefault("Allows flight, super fast running, and extra mobility on ice \n10% increased movement speed \nProvides the ability to walk on water and lava \nGrants immunity to fire blocks, fall damage, and 14 seconds of immunity to lava \nEnhances your jump with fire, and grants auto jump");
 		}
 
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            ((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).firestorm = true;
+            ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).firestorm = true;
             player.jumpSpeedBoost += 2.2f;
             player.noFallDmg = true;
             player.fireWalk = true;

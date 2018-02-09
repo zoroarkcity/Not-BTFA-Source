@@ -1,3 +1,16 @@
+Recent Update
+- added 2 new bosses named acheron and magnoliac 
+- ghastly ent resprited, reworked and fought in mid hardmode instead of late prehardmode 
+- arterius has been resprited
+- added special essence wisp enemies that each drop a material @ofor a new set 
+- new tree invasion, fought in late prehardmode and can be refought around mech tier for additional items 
+- removed vanilla changes
+- resprited most of the mod
+- recoded a lot of old weapons for better effects 
+- new ores that spawn with a manual spawner instead of on boss kills 
+- lots of new weapons, accessories and armors
+
+
 This mod adds in a total of:
 310 Items
 14 Enemies
@@ -5,9 +18,9 @@ This mod adds in a total of:
 3 Bosses
 Some balance changes to vanilla, can be turned off in the config file
 credits:
-Hamboy- Owner, Ideas
+East, Hamboy- Owner, Ideas
 Skyre- Music
 AwesomeSauce- Ideas
-Zoroarkcity, Kachow, ColinAV516, Homo Weirdus, Fargowilta, Eldrazi, GameBro, goldenapple - Coding/Help with coding
+Zoroarkcity, Kachow, ColinAV516, Homo Weirdus, Fargowilta, Eldrazi, GameBro, Sin Costan, goldenapple, East - Coding/Help with coding
 Zoroarkcity, Puff, Gratgaisdead, Sal, ScouterScout, Bla2e, Peas, ColinAV516, WoodenPhones, Earth, Hitoshima, Queso, Some Schmo, Crimsoneye495, Frous, Eli10293, ArmyFrog, VoxelFox, Oliver1992killer10, quickseed40, Graydee, DivermanSam, VoidTex, PhoenixBlade - Spriting/Help with spriting
 Zoroarkcity, ColinAV516, Crimsoneye495, CarpentersCutlace - Merging their mods with this one

@@ -27,7 +27,7 @@ public class SlimyNecklace : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
 	{
-        ((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).SlimyNeck = true;
+        ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).SlimyNeck = true;
 	}
 	
 	public override void AddRecipes()

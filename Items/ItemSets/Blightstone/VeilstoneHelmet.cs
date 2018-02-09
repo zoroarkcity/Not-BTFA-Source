@@ -47,7 +47,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Creates a ring of malevolent fire around you";
-			((TgemPlayer)player.GetModPlayer(mod, "TgemPlayer")).BlightFlameRing = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).BlightFlameRing = true;
 		}
 		
 		public override void AddRecipes()

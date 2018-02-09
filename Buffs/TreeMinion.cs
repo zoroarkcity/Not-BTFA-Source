@@ -16,7 +16,7 @@ namespace ForgottenMemories.Buffs
 		
 				public override void Update(Player player, ref int buffIndex)
 		{
-			EnergyPlayer modPlayer = (EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer");
+			BTFAPlayer modPlayer = (BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer");
 			if (player.ownedProjectileCounts[mod.ProjectileType("TreeMinion")] > 0)
 			{
 				modPlayer.treeMinion = true;

@@ -1,6 +1,11 @@
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ForgottenMemories.Items.Throwing
@@ -11,7 +16,7 @@ namespace ForgottenMemories.Items.Throwing
 		{
 
 			item.damage = 23;
-			item.thrown = true;
+			item.ranged = true;
 			item.width = 88;
 			item.height = 88;
 			item.useTime = 12;
@@ -46,6 +51,28 @@ namespace ForgottenMemories.Items.Throwing
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
+		}
+		
+		public override void GetWeaponDamage(Player player, ref int damage)
+		{
+			damage = (int)((damage / player.rangedDamage)* player.thrownDamage);
+		}
+
+		public override void GetWeaponCrit(Player player, ref int crit)
+		{
+			crit = (crit - player.rangedCrit)+ player.thrownCrit;
+		}
+		
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
+			if (tt != null)
+			{
+				string[] splitText = tt.text.Split(' ');
+				string damageValue = splitText.First();
+				string damageWord = splitText.Last();
+				tt.text = damageValue + " throwing " + damageWord;
+			}
 		}
 	}
 }

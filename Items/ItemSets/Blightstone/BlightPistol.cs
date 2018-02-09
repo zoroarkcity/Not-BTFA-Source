@@ -84,7 +84,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "OceanPistol", 12);
+			recipe.AddIngredient(null, "OceanPistol", 1);
 			recipe.AddIngredient(null, "blight_bar", 12);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);

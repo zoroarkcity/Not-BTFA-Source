@@ -52,7 +52,7 @@ namespace ForgottenMemories.Projectiles
 				projectile.Kill();
 			}
 			
-			if (((TgemPlayer)Main.player[projectile.owner].GetModPlayer(mod, "TgemPlayer")).BlightFlameRing == true)
+			if (((BTFAPlayer)Main.player[projectile.owner].GetModPlayer(mod, "BTFAPlayer")).BlightFlameRing == true)
 			{
 				projectile.timeLeft = 2;
 			}

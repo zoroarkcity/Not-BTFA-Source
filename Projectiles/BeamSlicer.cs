@@ -11,8 +11,8 @@ namespace ForgottenMemories.Projectiles
 		int CounterA = 0;
 		public override void SetDefaults()
 		{
-			projectile.width = 20;
-			projectile.height = 20;
+			projectile.width = 32;
+			projectile.height = 32;
 			projectile.aiStyle = 0;
 			projectile.penetrate = -1;
 			projectile.timeLeft = 120;

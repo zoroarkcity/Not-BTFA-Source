@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).sapBall = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).sapBall = true;
 			player.maxMinions += 1;
 		}
 		

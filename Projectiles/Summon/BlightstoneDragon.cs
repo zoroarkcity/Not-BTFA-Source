@@ -9,13 +9,13 @@ namespace ForgottenMemories.Projectiles.Summon
 		public override void SetDefaults()
 		{
 			projectile.netImportant = true;
-			projectile.width = 60;
-			projectile.height = 70;
+			projectile.width = 72;
+			projectile.height = 80;
 			Main.projFrames[projectile.type] = 4;
 			projectile.friendly = true;
 			Main.projPet[projectile.type] = true;
 			projectile.minion = true;
-			projectile.minionSlots = 1;
+			projectile.minionSlots = 2;
 			projectile.penetrate = -1;
 			projectile.timeLeft = 18000;
 			projectile.tileCollide = false;
@@ -24,6 +24,7 @@ namespace ForgottenMemories.Projectiles.Summon
 			shootCool = 45f;
 			shoot = mod.ProjectileType("BlightBolt");
 			shootSpeed = 5f;
+			ShootOffset = new Vector2(-36, -4);
 		}
 		
 		public override void SetStaticDefaults()
@@ -41,7 +42,7 @@ namespace ForgottenMemories.Projectiles.Summon
 		public override void CheckActive()
 		{
 			Player player = Main.player[projectile.owner];
-			TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 			if (player.dead)
 			{
 				modPlayer.BlightstoneDragon = false;

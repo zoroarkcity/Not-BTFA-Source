@@ -42,7 +42,7 @@ namespace ForgottenMemories.Items.ItemSets.Essences.DuneEssence
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Your melee stats and movement speed are increased when you are damaged";
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).duneBonus = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).duneBonus = true;
 		}
         public override void ArmorSetShadows(Player player)
         {

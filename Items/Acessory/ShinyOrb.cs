@@ -27,7 +27,7 @@ public class ShinyOrb : ModItem
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).ShinyOrbSpawn();
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).ShinyOrbSpawn();
 			player.shinyStone = true;
 		}
 		

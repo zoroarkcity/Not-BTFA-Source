@@ -35,7 +35,7 @@ namespace ForgottenMemories.Items.Acessory
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            ((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).ManaShard = true;
+            ((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).ManaShard = true;
         }
 		
 		public override void AddRecipes()

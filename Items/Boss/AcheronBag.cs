@@ -34,7 +34,7 @@ namespace ForgottenMemories.Items.Boss
 
 		public override void OpenBossBag(Player player)
 		{
-            player.QuickSpawnItem(mod.ItemType("TartarusCurse"), 1);
+            player.QuickSpawnItem(mod.ItemType("Curse"), 1); 
 			
 			switch (Main.rand.Next(6))
 			{

@@ -1,8 +1,11 @@
-using Terraria;
-using System;
-using Terraria.ID;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
+using Terraria.ModLoader;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ForgottenMemories.Items.ItemSets.Acheron
@@ -12,7 +15,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 		public override void SetDefaults()
 		{
 			item.damage = 26;
-			item.thrown = true;
+			item.ranged = true;
 			item.width = 32;
 			item.height = 32;
 			item.useTime= 24;
@@ -46,6 +49,28 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 				return false;
 			}
 			return true;
+		}
+		
+		public override void GetWeaponDamage(Player player, ref int damage)
+		{
+			damage = (int)((damage / player.rangedDamage)* player.thrownDamage);
+		}
+
+		public override void GetWeaponCrit(Player player, ref int crit)
+		{
+			crit = (crit - player.rangedCrit)+ player.thrownCrit;
+		}
+		
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
+			if (tt != null)
+			{
+				string[] splitText = tt.text.Split(' ');
+				string damageValue = splitText.First();
+				string damageWord = splitText.Last();
+				tt.text = damageValue + " throwing " + damageWord;
+			}
 		}
 		
 		 public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

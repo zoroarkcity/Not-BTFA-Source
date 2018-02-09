@@ -24,13 +24,13 @@ namespace ForgottenMemories.Items.ItemSets.Essences.NightlyEssence
     public override void SetStaticDefaults()
     {
 		DisplayName.SetDefault("Assassin's Trousers");
-		Tooltip.SetDefault("5% increased ranged critical strike chance");
+		Tooltip.SetDefault("2% increased ranged critical strike chance");
     }
 
 
 		public override void UpdateEquip(Player player)
 		{
-           player.rangedCrit += 5;
+           player.rangedCrit += 2;
 		}
 
 		public override void AddRecipes()

@@ -30,6 +30,14 @@ namespace ForgottenMemories
 				AutoloadGores = true
 			};
 		}
+		
+		public static ModHotKey InGameWikiHotkey;
+		
+        public override void Load()
+        {
+
+            InGameWikiHotkey = RegisterHotKey("In-Game Wiki Hotkey", "f");
+        }
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 		{
@@ -85,6 +93,9 @@ namespace ForgottenMemories
             if(bossChecklist != null)
             {
                 // To include a description JK MEME TAG:
+				bossChecklist.Call("AddBossWithInfo", "Acheron", 5.5f, (Func<bool>)(() => TGEMWorld.downedAcheron), "Use a [i:" + ItemType("Unstable Wisp") + "] in the Underworld");
+				bossChecklist.Call("AddBossWithInfo", "Magnoliac", 4.1f, (Func<bool>)(() => TGEMWorld.downedMag), "Summon the forest's army using [i:" + ItemType("AncientLog") + "]");
+				bossChecklist.Call("AddEventWithInfo", "Forest's Army", 4.1f, (Func<bool>)(() => TGEMWorld.downedForestInvasion), "Summon the forest's army using [i:" + ItemType("AncientLog") + "]");
                 bossChecklist.Call("AddBossWithInfo", "Ghastly Ent", 9.4f, (Func<bool>)(() => TGEMWorld.downedGhastlyEnt), "Summon the forest's army using [i:" + ItemType("AncientLog") + "] and defeat it during hardmode");
 				bossChecklist.Call("AddBossWithInfo", "Arterius", 6.3f, (Func<bool>)(() => TGEMWorld.downedArterius), "Use a [i:" + ItemType("BloodClot") + "] at night");
 				bossChecklist.Call("AddBossWithInfo", "Titan Rock", 6.9f, (Func<bool>)(() => TGEMWorld.downedTitanRock), "Use a [i:" + ItemType("anomalydetector") + "]");

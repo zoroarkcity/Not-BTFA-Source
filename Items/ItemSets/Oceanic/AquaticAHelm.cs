@@ -49,7 +49,7 @@ namespace ForgottenMemories.Items.ItemSets.Oceanic
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Passively creates bubbles";
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).AquaPowers = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).AquaPowers = true;
 			if ((double) Math.Abs(player.velocity.X) + (double) Math.Abs(player.velocity.Y) > 1.0 && !player.rocketFrame)
             		{
                 		for (int index1 = 0; index1 < 1; ++index1)

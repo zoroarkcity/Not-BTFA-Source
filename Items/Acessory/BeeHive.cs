@@ -34,7 +34,7 @@ namespace ForgottenMemories.Items.Acessory
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.strongBees = true;
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).BeeHive = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).BeeHive = true;
         }
 		
 		public override void AddRecipes()

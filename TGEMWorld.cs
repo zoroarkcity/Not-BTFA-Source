@@ -23,6 +23,7 @@ namespace ForgottenMemories
 		public static bool downedTitanRock = false;
 		public static bool forestInvasionUp = false;
 		public static bool downedAcheron = false;
+		public static bool downedMag = false;
 		public static bool downedForestInvasion = false;
 		public static int TremorTime;
 		
@@ -39,6 +40,7 @@ namespace ForgottenMemories
 			downedAcheron = false;
 			forestInvasionUp = false;
 			downedForestInvasion = false;
+			downedMag = false;
 		}
 		
 		public override TagCompound Save()
@@ -53,6 +55,8 @@ namespace ForgottenMemories
 			if (downedArterius) downed.Add("acheron");
 			if (downedArterius) downed.Add("Arterius");
 			if (downedForestInvasion) downed.Add("forestInvasion");
+			
+			if (downedMag) downed.Add("Mag");
 			
 			return new TagCompound {
 				{"downed", downed},
@@ -70,6 +74,7 @@ namespace ForgottenMemories
 			Gelatine = ore.Contains("Gelatine");
 			Cryotine = ore.Contains("Cryotine");
 			Blight = ore.Contains("Blight");
+			downedMag = downed.Contains("Mag");
 			downedForestInvasion = downed.Contains("forestInvasion");
 			
 			downedAcheron = downed.Contains("acheron");
@@ -135,7 +140,7 @@ namespace ForgottenMemories
 				{
 					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("picklerick");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("Magnoliac"))
+				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("MagnoliacSecondStage"))
 				{
 					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("birdman");
 				}
@@ -160,7 +165,7 @@ namespace ForgottenMemories
 				{
 					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("AcheronTrophy");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("Magnoliac"))
+				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("MagnoliacSecondStage"))
 				{
 					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("MagnoliacTrophy");
 				}

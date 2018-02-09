@@ -8,7 +8,7 @@ namespace ForgottenMemories.Items
 	{
 		public override bool ConsumeItem(Item item, Player player)
 		{
-			if (((TgemPlayer)player.GetModPlayer(mod, "TgemPlayer")).BlightConserve == true && Main.rand.Next(4) == 0 && item.thrown == true)
+			if (((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).BlightConserve == true && Main.rand.Next(4) == 0 && item.thrown == true)
 			{
 				return false;
 			}

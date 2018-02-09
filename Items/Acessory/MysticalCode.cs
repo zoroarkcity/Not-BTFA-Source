@@ -27,8 +27,8 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).EmeraldSpawn();
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).EmeraldHeal();
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).EmeraldSpawn();
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).EmeraldHeal();
 			player.meleeDamage += 0.1f;
 			player.minionDamage += 0.1f;
 			player.magicDamage += 0.1f;

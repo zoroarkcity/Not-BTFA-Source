@@ -27,7 +27,7 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).chlorophyllPod = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).chlorophyllPod = true;
 		}
 	}
 }

@@ -42,7 +42,7 @@ namespace ForgottenMemories.Items.ItemSets.Essences.SoaringEssence
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "17% increased magic attack speed";
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).magicAttackSpeed += 0.17f;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).magicAttackSpeed += 0.17f;
 		}
         public override void ArmorSetShadows(Player player)
         {

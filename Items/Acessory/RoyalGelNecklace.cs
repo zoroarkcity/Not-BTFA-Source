@@ -27,9 +27,9 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).jungard = true;
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).frostguard = true;
-			((EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer")).SlimyNeck = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).jungard = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).frostguard = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).SlimyNeck = true;
 			player.npcTypeNoAggro[1] = true;
 			player.npcTypeNoAggro[16] = true;
 			player.npcTypeNoAggro[59] = true;

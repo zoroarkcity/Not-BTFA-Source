@@ -18,7 +18,7 @@ namespace ForgottenMemories.Buffs
 		}
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<GlobalNPC1>(mod).Necro = true;
+			npc.GetGlobalNPC<BTFANPC>(mod).Necro = true;
 		}
 	}
 }

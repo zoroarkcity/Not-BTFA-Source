@@ -50,7 +50,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Summons an orb of blighted energy that damages nearby enemies";
-			((TgemPlayer)player.GetModPlayer(mod, "TgemPlayer")).BlightOrb = true;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).BlightOrb = true;
 		}
 		
 		public override void AddRecipes()

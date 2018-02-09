@@ -30,7 +30,7 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			EnergyPlayer modPlayer = (EnergyPlayer)player.GetModPlayer(mod, "EnergyPlayer");
+			BTFAPlayer modPlayer = (BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer");
 			if (player.dead)
 			{
 				modPlayer.treeMinion = false;

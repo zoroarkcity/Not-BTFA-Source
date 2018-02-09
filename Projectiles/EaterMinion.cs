@@ -37,7 +37,7 @@ namespace ForgottenMemories.Projectiles
         public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			TgemPlayer modPlayer = (TgemPlayer)player.GetModPlayer(mod, "TgemPlayer");
+			BTFAPlayer modPlayer = (BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer");
 			if (player.dead)
 			{
 				modPlayer.EaterMinion = false;

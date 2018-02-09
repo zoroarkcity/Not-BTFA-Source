@@ -192,7 +192,7 @@ namespace ForgottenMemories.Projectiles.InfoA
 			if (BlightedBow == true)
 			{
 				int dust;
-				dust = Dust.NewDust(projectile.Center, 0, 0, 65, 0f, 0f);
+				dust = Dust.NewDust(projectile.Center, 0, 0, 173, 0f, 0f); 
 				Main.dust[dust].scale = 1.2f;
 				Main.dust[dust].noGravity = true;
 			}

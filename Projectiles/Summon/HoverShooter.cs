@@ -15,6 +15,7 @@ namespace ForgottenMemories.Projectiles.Summon
 		protected float inertia = 40f;
 		protected float shootCool;
 		protected float shootSpeed;
+		protected Vector2 ShootOffset;
 		protected int shoot;
 
 		public virtual void CreateDust()
@@ -185,7 +186,7 @@ namespace ForgottenMemories.Projectiles.Summon
 						projectile.ai[1] = 1f;
 						if (Main.myPlayer == projectile.owner)
 						{
-							Vector2 shootVel = targetPos - projectile.Center;
+							Vector2 shootVel = targetPos - (projectile.Center+ShootOffset);
 							if (shootVel == Vector2.Zero)
 							{
 								shootVel = new Vector2(0f, 1f);
@@ -195,6 +196,7 @@ namespace ForgottenMemories.Projectiles.Summon
 							int proj = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, shootVel.X, shootVel.Y, shoot, projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
 							Main.projectile[proj].netUpdate = true;
 							projectile.netUpdate = true;
+							Main.projectile[proj].position += ShootOffset * projectile.direction;
 						}
 					}
 				}

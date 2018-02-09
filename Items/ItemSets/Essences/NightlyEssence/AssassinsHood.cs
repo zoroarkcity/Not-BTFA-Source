@@ -24,7 +24,7 @@ namespace ForgottenMemories.Items.ItemSets.Essences.NightlyEssence
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Assassin's Cowl");
-      Tooltip.SetDefault("5% increased ranged critical strike chance");
+      Tooltip.SetDefault("3% increased ranged critical strike chance");
     }
 
 
@@ -35,13 +35,13 @@ namespace ForgottenMemories.Items.ItemSets.Essences.NightlyEssence
 
         public override void UpdateEquip(Player player)
         {
-            player.rangedCrit += 5;
+            player.rangedCrit += 3;
         }
 
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Ranged projectiles move 25% more swiftly";
-			((MyPlayer)player.GetModPlayer(mod, "MyPlayer")).rangedVelocity += 0.25f;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).rangedVelocity += 0.25f;
 		}
         public override void ArmorSetShadows(Player player)
         {

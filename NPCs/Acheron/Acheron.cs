@@ -36,7 +36,7 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.knockBackResist = 0f;
             npc.width = 98;
             npc.height = 112;
-            npc.value = 100000;
+            npc.value = 0;
 			npc.buffImmune[31] = true;
 			npc.buffImmune[20] = true;
 			npc.buffImmune[70] = true;
@@ -46,7 +46,6 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.noTileCollide = true;
             npc.noGravity = true;
             npc.HitSound = SoundID.NPCHit49;
-			npc.DeathSound = SoundID.NPCDeath6;
             music = MusicID.Boss3;
 			npc.npcSlots = 15;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
@@ -129,9 +128,17 @@ namespace ForgottenMemories.NPCs.Acheron
 				Main.spriteBatch.Draw(texture2D4, npc.position + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle2), color29, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin3, npc.scale, effects, 0f);
 				return false;
 			}
-			return true;
+			var allahuakbar = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+			spriteBatch.Draw(Main.npcTexture[npc.type], npc.Center - Main.screenPosition + new Vector2(0, npc.gfxOffY), npc.frame,
+							 lightColor, npc.rotation, npc.frame.Size() / 2, npc.scale, allahuakbar, 0);
+			return false;
 		}
-
+		
+		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+		{
+			BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Acheron/Acheron_Glow"));
+		}
+		
         public override void AI()
         {
 			npc.TargetClosest(true);
@@ -305,42 +312,8 @@ namespace ForgottenMemories.NPCs.Acheron
 		}
 		public override void NPCLoot()
 		{
-			TGEMWorld.TryForBossMask(npc.Center, npc.type);
-			TGEMWorld.downedAcheron = true;
-			if (Main.expertMode)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("AcheronBag")));
-			}
-			else
-			{
-				switch (Main.rand.Next(6))
-				{
-					case 0: 
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Thanatos")));
-						break;
-					case 1: 
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Styx")));
-						break;
-					case 2:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("AcheronStaff")));
-						break;
-					case 3:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("MacabreGrimoire")));
-						break;
-					case 4:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Cerberus")));
-						break;
-					case 5:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("HadesHand")));
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LostSoul")), Main.rand.Next(100, 151));
-						break;
-					default:
-						break;
-				}
-				
-				if (Main.rand.Next(6) == 0)
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BansheeLure")));
-			}
+			int u = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronDeath"));
+			Main.npc[u].frameCounter = npc.frameCounter;
 		}
 	}
 }

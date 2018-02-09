@@ -17,7 +17,7 @@ namespace ForgottenMemories.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.ZoneWaterCandle = true;
-			player.GetModPlayer<MyPlayer>(mod).hauntedCandle = true;
+			player.GetModPlayer<BTFAPlayer>(mod).hauntedCandle = true;
 			player.buffTime[buffIndex] = 18000;
 			bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("HauntedCandle")] <= 0;
 			if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)

@@ -152,7 +152,7 @@ namespace ForgottenMemories.Projectiles.Summon
 					projectile.netUpdate = true;
 					Player player = Main.player[projectile.owner];
 					Mod mod = ModLoader.GetMod("ForgottenMemories");
-					TgemPlayer modPlayer = player.GetModPlayer<TgemPlayer>(mod);
+					BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
 					if (projectile.owner == Main.myPlayer && modPlayer.cryotine1 == true)
 					{
 						int p = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, vector152.X * 4, vector152.Y * 4, mod.ProjectileType("PermafrostThing"), (int)(projectile.damage * 1.2), projectile.knockBack, projectile.owner, 0f, (float)projectile.whoAmI);
