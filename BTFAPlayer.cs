@@ -33,9 +33,6 @@ namespace ForgottenMemories
 		public float magicAttackSpeed;
 		public bool boneHearts;
 		public bool chlorophyllPod;
-		public bool chlorophyllPodStage1;
-		public bool chlorophyllPodStage2;
-		public bool chlorophyllPodStage3;
 		private const int saveVersion = 0;
         public bool Servant = false;
 		public bool cryotine1 = false;
@@ -93,9 +90,6 @@ namespace ForgottenMemories
 			duneBonus = false;
 			boneHearts = false;
 			chlorophyllPod = false;
-			chlorophyllPodStage1 = false;
-			chlorophyllPodStage2 = false;
-			chlorophyllPodStage3 = false;
 			magicAttackSpeed = 1f;
 			rangedVelocity = 1f;
 			rubixCubeSwitcher = 0;
@@ -136,7 +130,7 @@ namespace ForgottenMemories
 		
 		public override void PostUpdate()
 	    {
-			if(TGEMWorld.forestInvasionUp)
+			if (TGEMWorld.forestInvasionUp)
             {
 				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && !Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Magnoliac")) && MagnoliacBool)
 				{
@@ -251,17 +245,17 @@ namespace ForgottenMemories
 		
 		public void ApplyChlorophyllBuff(Player player)
         {
-            if (player.FindBuffIndex(mod.BuffType<ChlorophyllBuffTwo>()) >= 0)
+            if (player.HasBuff(mod.BuffType<ChlorophyllBuffTwo>()))
             {
                 player.DelBuff(player.FindBuffIndex(mod.BuffType<ChlorophyllBuffTwo>()));
                 player.AddBuff(mod.BuffType<ChlorophyllBuffThree>(), 4 * 60);
             }
-            else if (player.FindBuffIndex(mod.BuffType<ChlorophyllBuffOne>()) >= 0)
+            else if (player.HasBuff(mod.BuffType<ChlorophyllBuffOne>()))
             {
                 player.DelBuff(player.FindBuffIndex(mod.BuffType<ChlorophyllBuffOne>()));
                 player.AddBuff(mod.BuffType<ChlorophyllBuffTwo>(), 4 * 60);
             }
-            else if (player.FindBuffIndex(mod.BuffType<ChlorophyllBuffThree>()) < 0)
+            else if (!player.HasBuff(mod.BuffType<ChlorophyllBuffThree>()))
             {
                 player.AddBuff(mod.BuffType<ChlorophyllBuffOne>(), 4 * 60);
             }

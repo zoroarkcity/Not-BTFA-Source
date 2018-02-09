@@ -4,16 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ReLogic.Graphics;
 using System;
-using System.IO;
 using Terraria.GameContent;
 using Terraria.Graphics;
 using Terraria.UI;
 using Terraria.ID;
-using Terraria.IO;
 using Terraria.Localization;
 using Terraria;
 using Terraria.ModLoader;
-using ForgottenMemories;
+
 
 namespace ForgottenMemories
 {
@@ -80,51 +78,51 @@ namespace ForgottenMemories
 			{
 				texture2D = Main.extraTexture[8];
 				text = Lang.inter[83].Value;
-				c = new Microsoft.Xna.Framework.Color(64, 109, 164) * 0.5f;
+				c = new Color(64, 109, 164) * 0.5f;
 			}
 			else if (Main.invasionProgressIcon == 2)
 			{
 				texture2D = Main.extraTexture[12];
 				text = Lang.inter[84].Value;
-				c = new Microsoft.Xna.Framework.Color(112, 86, 114) * 0.5f;
+				c = new Color(112, 86, 114) * 0.5f;
 			}
 			else if (Main.invasionProgressIcon == 3)
 			{
 				texture2D = Main.extraTexture[79];
 				text = Language.GetTextValue("DungeonDefenders2.InvasionProgressTitle");
-				c = new Microsoft.Xna.Framework.Color(88, 0, 160) * 0.5f;
+				c = new Color(88, 0, 160) * 0.5f;
 			}
 			else if (Main.invasionProgressIcon == 7)
 			{
 				texture2D = Main.extraTexture[10];
 				text = Lang.inter[85].Value;
-				c = new Microsoft.Xna.Framework.Color(165, 160, 155) * 0.5f;
+				c = new Color(165, 160, 155) * 0.5f;
 			}
 			else if (Main.invasionProgressIcon == 6)
 			{
 				texture2D = Main.extraTexture[11];
 				text = Lang.inter[86].Value;
-				c = new Microsoft.Xna.Framework.Color(148, 122, 72) * 0.5f;
+				c = new Color(148, 122, 72) * 0.5f;
 			}
 			else if (Main.invasionProgressIcon == 5)
 			{
 				texture2D = Main.extraTexture[7];
 				text = Lang.inter[87].Value;
-				c = new Microsoft.Xna.Framework.Color(173, 135, 140) * 0.5f;
+				c = new Color(173, 135, 140) * 0.5f;
 			}
 			else if (Main.invasionProgressIcon == 4)
 			{
 				texture2D = Main.extraTexture[9];
 				text = Lang.inter[88].Value;
-				c = new Microsoft.Xna.Framework.Color(94, 72, 131) * 0.5f;
+				c = new Color(94, 72, 131) * 0.5f;
 			}*/
 			if (invasionProgressWave > 0)
 			{
 				int num2 = (int)(200f * num);
 				int num3 = (int)(45f * num);
-				Vector2 vector = new Vector2((float)(Main.screenWidth - 120), (float)(Main.screenHeight - 40));
-				Microsoft.Xna.Framework.Rectangle r = new Microsoft.Xna.Framework.Rectangle((int)vector.X - num2 / 2, (int)vector.Y - num3 / 2, num2, num3);
-				Utils.DrawInvBG(Main.spriteBatch, r, new Microsoft.Xna.Framework.Color(63, 65, 151, 255) * 0.785f);
+				Vector2 vector = new Vector2(Main.screenWidth - 120f, Main.screenHeight - 40f);
+				Rectangle r = new Rectangle((int)vector.X - num2 / 2, (int)vector.Y - num3 / 2, num2, num3);
+				Utils.DrawInvBG(Main.spriteBatch, r, new Color(63, 65, 151, 255) * 0.785f);
 				string text2;
 				if (invasionProgressMax == 0)
 				{
@@ -132,12 +130,12 @@ namespace ForgottenMemories
 				}
 				else
 				{
-					text2 = (int)((float)Main.invasionProgress * 100f / (float)Main.invasionProgressMax) + "%";
+					text2 = (int)(Main.invasionProgress * 100f / Main.invasionProgressMax) + "%";
 				}
 				text2 = Language.GetTextValue("Game.WaveMessage", invasionProgressWave, text2);
 				Texture2D texture2D2 = Main.colorBarTexture;
 				Texture2D texture2D3 = Main.colorBlipTexture;
-				float num4 = MathHelper.Clamp((float)invasionProgress / (float)invasionProgressMax, 0f, 1f);
+				float num4 = MathHelper.Clamp((float)invasionProgress / invasionProgressMax, 0f, 1f);
 				if (Main.invasionProgressMax == 0)
 				{
 					num4 = 1f;
@@ -145,20 +143,20 @@ namespace ForgottenMemories
 				float num5 = 169f * num;
 				float num6 = 8f * num;
 				Vector2 vector2 = vector + Vector2.UnitY * num6 + Vector2.UnitX * 1f;
-				Utils.DrawBorderString(Main.spriteBatch, text2, vector2, Microsoft.Xna.Framework.Color.White * invasionProgressAlpha, num, 0.5f, 1f, -1);
-				Main.spriteBatch.Draw(texture2D2, vector, null, Microsoft.Xna.Framework.Color.White * invasionProgressAlpha, 0f, new Vector2((float)(texture2D2.Width / 2), 0f), num, SpriteEffects.None, 0f);
+				Utils.DrawBorderString(Main.spriteBatch, text2, vector2, Color.White * invasionProgressAlpha, num, 0.5f, 1f, -1);
+				Main.spriteBatch.Draw(texture2D2, vector, null, Color.White * invasionProgressAlpha, 0f, new Vector2((float)(texture2D2.Width / 2), 0f), num, SpriteEffects.None, 0f);
 				vector2 += Vector2.UnitX * (num4 - 0.5f) * num5;
-				Main.spriteBatch.Draw(Main.magicPixel, vector2, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 1, 1)), new Microsoft.Xna.Framework.Color(255, 241, 51) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(num5 * num4, num6), SpriteEffects.None, 0f);
-				Main.spriteBatch.Draw(Main.magicPixel, vector2, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 1, 1)), new Microsoft.Xna.Framework.Color(255, 165, 0, 127) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(2f, num6), SpriteEffects.None, 0f);
-				Main.spriteBatch.Draw(Main.magicPixel, vector2, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 1, 1)), Microsoft.Xna.Framework.Color.Black * invasionProgressAlpha, 0f, new Vector2(0f, 0.5f), new Vector2(num5 * (1f - num4), num6), SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector2, new Rectangle?(new Rectangle(0, 0, 1, 1)), new Color(255, 241, 51) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(num5 * num4, num6), SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector2, new Rectangle?(new Rectangle(0, 0, 1, 1)), new Color(255, 165, 0, 127) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(2f, num6), SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector2, new Rectangle?(new Rectangle(0, 0, 1, 1)), Color.Black * invasionProgressAlpha, 0f, new Vector2(0f, 0.5f), new Vector2(num5 * (1f - num4), num6), SpriteEffects.None, 0f);
 			}
 			else
 			{
 				int num7 = (int)(200f * num);
 				int num8 = (int)(45f * num);
 				Vector2 vector3 = new Vector2((float)(Main.screenWidth - 120), (float)(Main.screenHeight - 40));
-				Microsoft.Xna.Framework.Rectangle r2 = new Microsoft.Xna.Framework.Rectangle((int)vector3.X - num7 / 2, (int)vector3.Y - num8 / 2, num7, num8);
-				Utils.DrawInvBG(Main.spriteBatch, r2, new Microsoft.Xna.Framework.Color(63, 65, 151, 255) * 0.785f);
+				Rectangle r2 = new Rectangle((int)vector3.X - num7 / 2, (int)vector3.Y - num8 / 2, num7, num8);
+				Utils.DrawInvBG(Main.spriteBatch, r2, new Color(63, 65, 151, 255) * 0.785f);
 				string text3;
 				if (invasionProgressMax == 0)
 				{
@@ -173,7 +171,7 @@ namespace ForgottenMemories
 				Texture2D texture2D5 = Main.colorBlipTexture;
 				if (invasionProgressMax != 0)
 				{
-					Main.spriteBatch.Draw(texture2D4, vector3, null, Microsoft.Xna.Framework.Color.White * invasionProgressAlpha, 0f, new Vector2((float)(texture2D4.Width / 2), 0f), num, SpriteEffects.None, 0f);
+					Main.spriteBatch.Draw(texture2D4, vector3, null, Color.White * invasionProgressAlpha, 0f, new Vector2((float)(texture2D4.Width / 2), 0f), num, SpriteEffects.None, 0f);
 					float num9 = MathHelper.Clamp((float)invasionProgress / (float)invasionProgressMax, 0f, 1f);
 					Vector2 vector4 = Main.fontMouseText.MeasureString(text3);
 					float num10 = num;
@@ -184,11 +182,11 @@ namespace ForgottenMemories
 					float num11 = 169f * num;
 					float num12 = 8f * num;
 					Vector2 vector5 = vector3 + Vector2.UnitY * num12 + Vector2.UnitX * 1f;
-					Utils.DrawBorderString(Main.spriteBatch, text3, vector5 + new Vector2(0f, -4f), Microsoft.Xna.Framework.Color.White * invasionProgressAlpha, num10, 0.5f, 1f, -1);
+					Utils.DrawBorderString(Main.spriteBatch, text3, vector5 + new Vector2(0f, -4f), Color.White * invasionProgressAlpha, num10, 0.5f, 1f, -1);
 					vector5 += Vector2.UnitX * (num9 - 0.5f) * num11;
-					Main.spriteBatch.Draw(Main.magicPixel, vector5, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 1, 1)), new Microsoft.Xna.Framework.Color(255, 241, 51) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(num11 * num9, num12), SpriteEffects.None, 0f);
-					Main.spriteBatch.Draw(Main.magicPixel, vector5, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 1, 1)), new Microsoft.Xna.Framework.Color(255, 165, 0, 127) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(2f, num12), SpriteEffects.None, 0f);
-					Main.spriteBatch.Draw(Main.magicPixel, vector5, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 1, 1)), Microsoft.Xna.Framework.Color.Black * invasionProgressAlpha, 0f, new Vector2(0f, 0.5f), new Vector2(num11 * (1f - num9), num12), SpriteEffects.None, 0f);
+					Main.spriteBatch.Draw(Main.magicPixel, vector5, new Rectangle?(new Rectangle(0, 0, 1, 1)), new Color(255, 241, 51) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(num11 * num9, num12), SpriteEffects.None, 0f);
+					Main.spriteBatch.Draw(Main.magicPixel, vector5, new Rectangle?(new Rectangle(0, 0, 1, 1)), new Color(255, 165, 0, 127) * invasionProgressAlpha, 0f, new Vector2(1f, 0.5f), new Vector2(2f, num12), SpriteEffects.None, 0f);
+					Main.spriteBatch.Draw(Main.magicPixel, vector5, new Rectangle?(new Rectangle(0, 0, 1, 1)), Color.Black * invasionProgressAlpha, 0f, new Vector2(0f, 0.5f), new Vector2(num11 * (1f - num9), num12), SpriteEffects.None, 0f);
 				}
 			}
 			Vector2 vector6 = Main.fontMouseText.MeasureString(text);
@@ -197,11 +195,11 @@ namespace ForgottenMemories
 			{
 				num13 += vector6.X - 200f;
 			}
-			Vector2 center = new Vector2((float)Main.screenWidth - num13, (float)(Main.screenHeight - 80));
-			Microsoft.Xna.Framework.Rectangle r3 = Utils.CenteredRectangle(center, (vector6 + new Vector2((float)(texture2D.Width + 12), 6f)) * num);
+			Vector2 center = new Vector2(Main.screenWidth - num13, Main.screenHeight - 80f);
+			Rectangle r3 = Utils.CenteredRectangle(center, (vector6 + new Vector2(texture2D.Width + 12f, 6f)) * num);
 			Utils.DrawInvBG(Main.spriteBatch, r3, c);
-			Main.spriteBatch.Draw(texture2D, r3.Left() + Vector2.UnitX * num * 8f, null, Microsoft.Xna.Framework.Color.White * invasionProgressAlpha, 0f, new Vector2(0f, (float)(texture2D.Height / 2)), num * 0.8f, SpriteEffects.None, 0f);
-			Utils.DrawBorderString(Main.spriteBatch, text, r3.Right() + Vector2.UnitX * num * -22f, Microsoft.Xna.Framework.Color.White * invasionProgressAlpha, num * 0.9f, 1f, 0.4f, -1);
+			Main.spriteBatch.Draw(texture2D, r3.Left() + Vector2.UnitX * num * 8f, null, Color.White * invasionProgressAlpha, 0f, new Vector2(0f, texture2D.Height / 2f), num * 0.8f, SpriteEffects.None, 0f);
+			Utils.DrawBorderString(Main.spriteBatch, text, r3.Right() + Vector2.UnitX * num * -22f, Color.White * invasionProgressAlpha, num * 0.9f, 1f, 0.4f, -1);
 		}
     }
 }
