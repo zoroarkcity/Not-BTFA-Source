@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using System.Text;
@@ -36,7 +35,7 @@ namespace ForgottenMemories
         }
         public override void AI()
         {
-			if (Main.LocalPlayer.FindBuffIndex(mod.BuffType("Educating")) > -1)
+			if (Main.player[projectile.owner].HasBuff(mod.BuffType<InGameWiki.Buffs.Educating>()))
 			{
 				projectile.active = true;
 			}

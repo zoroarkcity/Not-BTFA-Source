@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.IO;
 using Terraria.Localization;
-using Terraria.ObjectData;
-using Terraria.Utilities;
-using ForgottenMemories;
+using ForgottenMemories.NPCs.GhastlyEnt;
 
 namespace ForgottenMemories
 {
@@ -18,20 +14,20 @@ namespace ForgottenMemories
 		public static Mod mod = ModLoader.GetMod("ForgottenMemories");
 		
 		public static int[] invaders = {
-            mod.NPCType("TreeMan"),
-			mod.NPCType("BorealTreeMan"),
-			mod.NPCType("PalmTreeMan"),
-			mod.NPCType("RichMahoganyTreeMan"),
-			mod.NPCType("PineFlyer"),
-			mod.NPCType("CharredEnt"),
-			mod.NPCType("LivingMortar"),
-			mod.NPCType("TreeWitch")
+            mod.NPCType<TreeMan>(),
+			mod.NPCType<BorealTreeMan>(),
+			mod.NPCType<PalmTreeMan>(),
+			mod.NPCType<RichMahoganyTreeMan>(),
+			mod.NPCType<PineFlyer>(),
+			mod.NPCType<CharredEnt>(),
+			mod.NPCType<LivingMortar>(),
+			mod.NPCType<TreeWitch>()
         };
 		
 		public static int[] hmInvaders = {
-            mod.NPCType("RedwoodRam"),
-			mod.NPCType("RottenEnt"),
-			mod.NPCType("BlossomBomber")
+            mod.NPCType<RedwoodRam>(),
+			mod.NPCType<RottenEnt>(),
+			mod.NPCType<BlossomBomber>()
         };
 		
 		public static void StartCustomInvasion()
@@ -70,11 +66,11 @@ namespace ForgottenMemories
 		public static void CustomInvasionWarning()
         {
             String text = "";
-            if (Main.invasionX == (double)Main.spawnTileX)
+            if (Main.invasionX == Main.spawnTileX)
             {
                // text = "Hostile trees spring up from the ground!";
             }
-            if(Main.invasionSize <= 0)
+            if (Main.invasionSize <= 0)
             {
                 text = "The woodland terrors retreat to their roots!.";
             }
@@ -102,20 +98,20 @@ namespace ForgottenMemories
                     Main.invasionDelay = 0;
                 }
        
-                if (Main.invasionX == (double)Main.spawnTileX)
+                if (Main.invasionX == Main.spawnTileX)
                 {
                     return;
                 }
        
-                float moveRate = (float)Main.dayRate;
+                float moveRate = Main.dayRate;
        
-                if (Main.invasionX > (double)Main.spawnTileX)
+                if (Main.invasionX > Main.spawnTileX)
                 {
-                    Main.invasionX -= (double)moveRate;
+                    Main.invasionX -= moveRate;
            
-                    if (Main.invasionX <= (double)Main.spawnTileX)
+                    if (Main.invasionX <= Main.spawnTileX)
                     {
-                        Main.invasionX = (double)Main.spawnTileX;
+                        Main.invasionX = Main.spawnTileX;
                         CustomInvasionWarning();
                     }
                     else
@@ -125,12 +121,12 @@ namespace ForgottenMemories
                 }
                 else
                 {
-                    if (Main.invasionX < (double)Main.spawnTileX)
+                    if (Main.invasionX < Main.spawnTileX)
                     {
-                        Main.invasionX += (double)moveRate;
-                        if (Main.invasionX >= (double)Main.spawnTileX)
+                        Main.invasionX += moveRate;
+                        if (Main.invasionX >= Main.spawnTileX)
                         {
-                            Main.invasionX = (double)Main.spawnTileX;
+                            Main.invasionX = Main.spawnTileX;
                             CustomInvasionWarning();
                         }
                         else
@@ -165,7 +161,7 @@ namespace ForgottenMemories
                     {
                         if(type == invaders[n])
                         {
-                            Rectangle value = new Rectangle((int)(Main.npc[i].position.X + (float)(Main.npc[i].width / 2)) - num, (int)(Main.npc[i].position.Y + (float)(Main.npc[i].height / 2)) - num, num * 2, num * 2);
+                            Rectangle value = new Rectangle((int)(Main.npc[i].position.X + Main.npc[i].width / 2f) - num, (int)(Main.npc[i].position.Y + Main.npc[i].height / 2f) - num, num * 2, num * 2);
                             if (rectangle.Intersects(value))
                             {
                                 flag = true;
@@ -183,17 +179,15 @@ namespace ForgottenMemories
                 progressMax3 = Main.invasionSizeStart;
             }
    
-            if(TGEMWorld.forestInvasionUp && (Main.invasionX == (double)Main.spawnTileX))
+            if(TGEMWorld.forestInvasionUp && (Main.invasionX == Main.spawnTileX))
             {
                 ProgressBar.ReportCustomInvasionProgress(Main.invasionSizeStart - Main.invasionSize, progressMax3, icon, 0);
             }
    
             foreach(Player p in Main.player)
             {
-                NetMessage.SendData(78, p.whoAmI, -1, null, Main.invasionSizeStart - Main.invasionSize, (float)Main.invasionSizeStart, (float)(Main.invasionType + 3), 0f, 0, 0, 0);
+                NetMessage.SendData(78, p.whoAmI, -1, null, Main.invasionSizeStart - Main.invasionSize, Main.invasionSizeStart, Main.invasionType + 3, 0f, 0, 0, 0);
             }
         }
-		
-		
     }
 }

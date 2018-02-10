@@ -6,16 +6,15 @@ using Terraria.ModLoader;
 using Terraria.World.Generation;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Generation;
-using System;
-using System.Linq;
 using Terraria.ModLoader.IO;
-using ForgottenMemories;
+using ForgottenMemories.Tiles;
 
 namespace ForgottenMemories
 {
 	public class TGEMWorld : ModWorld
 	{
-		public static bool Cryotine = false;
+        public static readonly Mod mod = ModLoader.GetMod("ForgottenMemories");
+        public static bool Cryotine = false;
 		public static bool Gelatine = false;
 		public static bool Blight = false;
 		public static bool downedGhastlyEnt = false;
@@ -124,50 +123,50 @@ namespace ForgottenMemories
 			if (Main.rand.Next(7) == 0 && !Main.expertMode)
 			{
 				int maskType = 0;
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("TitanRock"))
+				if (type == mod.NPCType("TitanRock"))
 				{
-					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("TitanMask");
+					maskType = mod.ItemType("TitanMask");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("FaceOfInsanity"))
+				if (type == mod.NPCType("FaceOfInsanity"))
 				{
-					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("ArteryMask");
+					maskType = mod.ItemType("ArteryMask");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("GhastlyEnt"))
+				if (type == mod.NPCType("GhastlyEnt"))
 				{
-					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("GhastlyMask");
+					maskType = mod.ItemType("GhastlyMask");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("Acheron"))
+				if (type == mod.NPCType("Acheron"))
 				{
-					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("picklerick");
+					maskType = mod.ItemType("picklerick");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("MagnoliacSecondStage"))
+				if (type == mod.NPCType("MagnoliacSecondStage"))
 				{
-					maskType = ModLoader.GetMod("ForgottenMemories").ItemType("birdman");
+					maskType = mod.ItemType("birdman");
 				}
 				Item mask = Main.item[Item.NewItem((int)center.X, (int)center.Y, 0, 0, maskType, 1)];
 			}
 			if (Main.rand.Next(10) == 0)
 			{
 				int trophyType = 0;
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("TitanRock"))
+				if (type == mod.NPCType("TitanRock"))
 				{
-					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("TitanRockTrophy");
+					trophyType = mod.ItemType("TitanRockTrophy");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("FaceOfInsanity"))
+				if (type == mod.NPCType("FaceOfInsanity"))
 				{
-					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("ArteriusTrophy");
+					trophyType = mod.ItemType("ArteriusTrophy");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("GhastlyEnt"))
+				if (type == mod.NPCType("GhastlyEnt"))
 				{
-					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("GhastlyEntTrophy");
+					trophyType = mod.ItemType("GhastlyEntTrophy");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("Acheron"))
+				if (type == mod.NPCType("Acheron"))
 				{
-					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("AcheronTrophy");
+					trophyType = mod.ItemType("AcheronTrophy");
 				}
-				if (type == ModLoader.GetMod("ForgottenMemories").NPCType("MagnoliacSecondStage"))
+				if (type == mod.NPCType("MagnoliacSecondStage"))
 				{
-					trophyType = ModLoader.GetMod("ForgottenMemories").ItemType("MagnoliacTrophy");
+					trophyType = mod.ItemType("MagnoliacTrophy");
 				}
 				Item trophy = Main.item[Item.NewItem((int)center.X, (int)center.Y, 0, 0, trophyType, 1)];
 			}
@@ -188,11 +187,11 @@ namespace ForgottenMemories
 						Tile tile = Main.tile[i, j];
 						if ((tile.type == 368) && j > Main.worldSurface)
 						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType("TourmalineOre"), false, 0f, 0f, false, true);
+							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<TourmalineOre>(), false, 0f, 0f, false, true);
 						}
 						if ((tile.type == 367) && j > Main.worldSurface)
 						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType("CitrineOre"), false, 0f, 0f, false, true);
+							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<CitrineOre>(), false, 0f, 0f, false, true);
 						}
 					}
 					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 31-05); k++)
@@ -202,7 +201,7 @@ namespace ForgottenMemories
 						Tile tile = Main.tile[i, j];
 						if ((tile.type == 57) && j > Main.worldSurface)
 						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType("SpinelOre"), false, 0f, 0f, false, true);
+							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<SpinelOre>(), false, 0f, 0f, false, true);
 						}
 					}
 				}));

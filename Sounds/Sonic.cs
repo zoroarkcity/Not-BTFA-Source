@@ -11,7 +11,7 @@ namespace ForgottenMemories.Sounds
 			soundInstance = sound.CreateInstance();
 			soundInstance.Volume = volume * .5f;
 			soundInstance.Pan = pan;
-			soundInstance.Pitch = -1.0f;
+			soundInstance.Pitch = -1.0f; //Make sure you want to change the pitch dudes, I thought this was necessary but it just messes up the speed and sound
 			return soundInstance;
 		}
 	}

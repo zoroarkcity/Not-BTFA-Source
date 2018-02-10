@@ -8,22 +8,20 @@ using Terraria.ModLoader;
 using Terraria.World.Generation;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Generation;
-using Terraria.ModLoader.IO;
 
 namespace ForgottenMemories
 {
 	public class AscensionWorld : ModWorld
 	{
-        public static Mod mod = ModLoader.GetMod("ForgottenMemories");
-		
         public static void DropComet()
         {
-        bool flag = true;
-            if (Main.netMode == 1)
+            bool flag = true;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
-            for (int i = 0; i < 255; i++)
+
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active)
                 {
@@ -31,69 +29,51 @@ namespace ForgottenMemories
                     break;
                 }
             }
-            int num = 0;
-            float num2 = (float)(Main.maxTilesX / 4200);
-            int num3 = (int)(400f * num2);
-            for (int j = 5; j < Main.maxTilesX - 5; j++)
-            {
-                int num4 = 5;
-                while ((double)num4 < Main.worldSurface)
-                {
-                   /* if (Main.tile[j, num4].active() && Main.tile[j, num4].type == (ushort)mod.TileType("Cosmodium"))
-                    {
-                        num++;
-                        if (num > num3)
-                        {
-                            return;
-                        }
-                    }*/
-                    num4++;
-                }
-            }
-            float num5 = 600f;
+
+            float num1 = 600f;
+
             while (!flag)
             {
-                float num6 = (float)Main.maxTilesX * 0.08f;
-                int num7 = Main.rand.Next(150, Main.maxTilesX - 150);
-                while ((float)num7 > (float)Main.spawnTileX - num6 && (float)num7 < (float)Main.spawnTileX + num6)
+                float maxWidth = Main.maxTilesX * 0.08f;
+                int width = Main.rand.Next(150, Main.maxTilesX - 150);
+                while (width > Main.spawnTileX - maxWidth && width < Main.spawnTileX + maxWidth)
                 {
-                    num7 = Main.rand.Next(150, Main.maxTilesX - 150);
+                    width = Main.rand.Next(150, Main.maxTilesX - 150);
                 }
+
                 int k = (int)(Main.worldSurface * 0.3);
                 while (k < Main.maxTilesY)
                 {
-                    if (Main.tile[num7, k].active() && Main.tileSolid[(int)Main.tile[num7, k].type])
+                    if (Main.tile[width, k].active() && Main.tileSolid[Main.tile[width, k].type])
                     {
-                        int num8 = 0;
-                        int num9 = 15;
-                        for (int l = num7 - num9; l < num7 + num9; l++)
+                        int num2 = 0;
+                        int num3 = 15;
+                        for (int l = width - num3; l < width + num3; l++)
                         {
-                            for (int m = k - num9; m < k + num9; m++)
+                            for (int m = k - num3; m < k + num3; m++)
                             {
                                 if (WorldGen.SolidTile(l, m))
                                 {
-                                    num8++;
-                                    if (Main.tile[l, m].type == 189 || Main.tile[l, m].type == 202)
+                                    num2++;
+                                    if (Main.tile[l, m].type == TileID.Cloud || Main.tile[l, m].type == TileID.Sunplate)
                                     {
-                                        num8 -= 100;
+                                        num2 -= 100;
                                     }
                                 }
                                 else if (Main.tile[l, m].liquid > 0)
                                 {
-                                    num8--;
+                                    num2--;
                                 }
                             }
                         }
-                        if ((float)num8 < num5)
+
+                        if (num2 < num1)
                         {
-                            num5 -= 0.5f;
+                            num1 -= 0.5f;
                             break;
                         }
-                        flag = AscensionWorld.Comet(num7, k);
-                        if (flag)
-                        {
-                            break;
-                        }
+
+                        flag = Comet(width, k);
                         break;
                     }
                     else
@@ -101,7 +81,8 @@ namespace ForgottenMemories
                         k++;
                     }
                 }
-                if (num5 < 100f)
+
+                if (num1 < 100f)
                 {
                     return;
                 }
@@ -152,7 +133,7 @@ namespace ForgottenMemories
                     }
                 }
             }
-           // WorldGen.stopDrops = true;
+            //WorldGen.stopDrops = true;
             num = WorldGen.genRand.Next(17, 23);
             for (int num2 = i - num; num2 < i + num; num2++)
             {
