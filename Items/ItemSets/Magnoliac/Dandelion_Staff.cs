@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac        //We need this to ba
 			item.knockBack = 3.15f;
 
 			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
-			item.rare = 2;
+			item.rare = 3;
 			item.value = Item.sellPrice(0, 0, 40, 0);
 			item.UseSound = SoundID.Item43;
 			item.autoReuse = true;

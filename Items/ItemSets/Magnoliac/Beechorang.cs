@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
             item.useStyle = 1;
 			item.knockBack = 2;
 			item.value = 60000;
-			item.rare = 8;
+			item.rare = 3;
 			item.shootSpeed = 9f;
 			item.shoot = mod.ProjectileType("BeechorangProj");
 			item.UseSound = SoundID.Item1;

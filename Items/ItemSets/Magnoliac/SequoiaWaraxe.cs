@@ -19,7 +19,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
             item.useStyle = 1;
             item.knockBack = 5;
             item.value = 50000;
-            item.rare = 8;
+            item.rare = 3;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.useTurn = true;
