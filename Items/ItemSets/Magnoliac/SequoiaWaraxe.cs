@@ -28,7 +28,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sequoia Waraxe");
+            DisplayName.SetDefault("Walnut Waraxe");
             Tooltip.SetDefault("Creates an upwards facing vine upon critical striking an enemy");
         }
 		
