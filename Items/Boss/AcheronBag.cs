@@ -34,6 +34,7 @@ namespace ForgottenMemories.Items.Boss
 
 		public override void OpenBossBag(Player player)
 		{
+			player.TryGettingDevArmor();
             player.QuickSpawnItem(mod.ItemType("Curse"), 1); 
 			
 			switch (Main.rand.Next(6))
@@ -62,7 +63,15 @@ namespace ForgottenMemories.Items.Boss
 			}
 			
 			if (Main.rand.Next(5) == 0)
+			{
 				player.QuickSpawnItem(mod.ItemType("BansheeLure"), 1);
+			}
+			
+			if (Main.rand.Next(7) == 0)
+			{
+				player.QuickSpawnItem(mod.ItemType("AcheronMask"), 1);
+			}
+			
 				
 		}
 	}

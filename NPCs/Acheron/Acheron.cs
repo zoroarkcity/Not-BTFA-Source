@@ -36,7 +36,7 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.knockBackResist = 0f;
             npc.width = 98;
             npc.height = 112;
-            npc.value = 0;
+            npc.value = Item.buyPrice(0, 8, 0, 0);
 			npc.buffImmune[31] = true;
 			npc.buffImmune[20] = true;
 			npc.buffImmune[70] = true;
