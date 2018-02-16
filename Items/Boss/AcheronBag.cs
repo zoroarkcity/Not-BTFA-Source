@@ -69,7 +69,7 @@ namespace ForgottenMemories.Items.Boss
 			
 			if (Main.rand.Next(7) == 0)
 			{
-				player.QuickSpawnItem(mod.ItemType("AcheronMask"), 1);
+				player.QuickSpawnItem(mod.ItemType("PickleRick"), 1);
 			}
 			
 				

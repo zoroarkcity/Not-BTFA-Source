@@ -32,6 +32,8 @@ namespace ForgottenMemories.NPCs.Magnoliac
 
 		public override void OpenBossBag(Player player)
 		{
+			player.TryGettingDevArmor();
+			
 			switch (Main.rand.Next(4))
 			{
 				case 0: 
@@ -49,6 +51,10 @@ namespace ForgottenMemories.NPCs.Magnoliac
 					break;
 				default:
 					break;
+			}
+			if (Main.rand.Next(7) == 0)
+			{
+				player.QuickSpawnItem(mod.ItemType("birdman"), 1);
 			}
 				
 		}

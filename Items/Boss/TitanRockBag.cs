@@ -71,6 +71,10 @@ namespace ForgottenMemories.Items.Boss
 					player.QuickSpawnItem(771, Main.rand.Next(120, 160));
 					break;
 			}
+			if (Main.rand.Next(7) == 0)
+			{
+				player.QuickSpawnItem(mod.ItemType("TitanMask"), 1);
+			}
 			
 			player.QuickSpawnItem(mod.ItemType("EnergyStone"), 1);
 		}

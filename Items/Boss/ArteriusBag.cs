@@ -34,6 +34,7 @@ namespace ForgottenMemories.Items.Boss
 
 		public override void OpenBossBag(Player player)
 		{
+			player.TryGettingDevArmor();
             player.QuickSpawnItem(mod.ItemType("BloodHeart"), 1);
 			
 			switch (Main.rand.Next(4))
@@ -52,6 +53,10 @@ namespace ForgottenMemories.Items.Boss
 					break;
 				default:
 					break;
+			}
+			if (Main.rand.Next(7) == 0)
+			{
+				player.QuickSpawnItem(mod.ItemType("ArteryMask"), 1);
 			}
 		}
 	}
