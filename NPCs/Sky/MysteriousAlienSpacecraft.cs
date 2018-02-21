@@ -42,12 +42,12 @@ namespace ForgottenMemories.NPCs.Sky
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.player.ZoneSkyHeight ? 0.08f : 0f;
+			return spawnInfo.player.ZoneSkyHeight ? 0.18f : 0f;
 		}
 		
 		public override void NPCLoot()
 		{
-			if(Main.rand.Next(10) == 0)
+			if(Main.rand.Next(4) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DivineBolt"));
 			}
