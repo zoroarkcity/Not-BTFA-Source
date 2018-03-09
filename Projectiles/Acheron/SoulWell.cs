@@ -23,6 +23,10 @@ namespace ForgottenMemories.Projectiles.Acheron
 			DisplayName.SetDefault("Lost Soul");
 		}
 		
+		private void MakeProjectile(Vector2 velocity, int type)
+		{
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, velocity.X, velocity.Y, type, projectile.damage, 5f, projectile.owner);
+		}
 
 		public override void AI()
 		{
@@ -30,21 +34,35 @@ namespace ForgottenMemories.Projectiles.Acheron
 			projectile.rotation += 0.1f;
 			if (projectile.ai[0] < 51)
 				projectile.alpha -= 5;
-			
 			else if (projectile.ai[0]  < 549)
 			{
 				projectile.ai[1]++;
-				if (projectile.ai[1] > 80)
-				{
-					Vector2 Vel = (Main.player[Player.FindClosest(projectile.Center, 0, 0)].Center - projectile.Center);
+				if (projectile.ai[1] % 80 == 0)
+                {
+					Player player = Main.player[Player.FindClosest(projectile.Center, 0, 0)];
+					Vector2 Vel = (player.Center - projectile.Center);
 					Vel.Normalize();
-					Vel *= 10;
-					Vector2 Vel2 = Vel.RotatedBy(MathHelper.Pi / 6);
-					Vector2 Vel3 = Vel.RotatedBy(-MathHelper.Pi / 6);
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Vel3.X, Vel3.Y, mod.ProjectileType("HomingSoul2"), projectile.damage, 5f, projectile.owner);
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Vel2.X, Vel2.Y, mod.ProjectileType("HomingSoul2"), projectile.damage, 5f, projectile.owner);
-					projectile.ai[1] = 0;
-				}
+					Vector2 Vel2;
+					Vector2 Vel3;
+					int type;
+					if (Main.expertMode && projectile.ai[1] % 240 == 0) //replaces every third shot in expert
+					{
+						Vel *= 12;
+						Vel2 = Vel.RotatedBy(MathHelper.Pi / 10);
+						Vel3 = Vel.RotatedBy(-MathHelper.Pi / 10);
+						type = mod.ProjectileType("HomingSoul");
+						MakeProjectile(Vel, type);
+					}
+					else
+					{
+						Vel *= 10;
+						Vel2 = Vel.RotatedBy(MathHelper.Pi / 6);
+						Vel3 = Vel.RotatedBy(-MathHelper.Pi / 6);
+						type = mod.ProjectileType("HomingSoul2");
+					}
+					MakeProjectile(Vel2, type);
+					MakeProjectile(Vel3, type);
+                }
 			}
 			else
 			{

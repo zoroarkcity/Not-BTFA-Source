@@ -26,7 +26,10 @@ namespace ForgottenMemories.Projectiles.Acheron
 
 		public override void AI()
 		{
-			if (projectile.timeLeft <= 195)
+			if (projectile.ai[0] == 1f)
+                projectile.tileCollide = false;
+            
+            if (projectile.timeLeft <= 195)
 			{
 				for (int index1 = 0; index1 < 5; ++index1)
 				{
