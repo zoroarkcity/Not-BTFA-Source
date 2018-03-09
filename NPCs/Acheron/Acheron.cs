@@ -27,6 +27,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		Vector2 TPLocation;
 		bool phase2;
 		bool transitioned = false;
+        bool willFireCurly = false;
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
@@ -279,7 +280,26 @@ namespace ForgottenMemories.NPCs.Acheron
 				npc.ai[2]++;
 			}
 		}
-		
+
+		public void Phase2Attack(Player player)
+		{
+			if (willFireCurly)
+			{
+				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), (int)(npc.damage/2), 1, Main.myPlayer, player.whoAmI, 1f);
+				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), (int)(npc.damage/2), 1, Main.myPlayer, player.whoAmI, -1f);
+			}
+			else
+			{
+				Vector2 distance = Vector2.Subtract(player.Center, npc.Center); //always aims "head" of starburst at player
+				double rotation = Math.Atan2((double) distance.Y, (double) distance.X);
+				for (int index = 0; index < 5; index++)
+				{
+					Vector2 Vel = new Vector2(10, 0).RotatedBy(rotation + index * (2*MathHelper.Pi/5));
+					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul2"), (int)(npc.damage/2), 1, Main.myPlayer, 0, 0);
+				}
+			}
+		}
+
 		public void Souls(Player player)
 		{
 			npc.velocity = Vector2.Zero;
@@ -288,18 +308,22 @@ namespace ForgottenMemories.NPCs.Acheron
 				Vector2 Position = new Vector2(npc.Center.X + (320 - 2*npc.ai[0]), npc.Center.Y);
 				Vector2 Vel = player.Center - Position;
 				Vel.Normalize();
-				Vel *= 10;
+				Vel *= 9.5f;
 				Vel += player.velocity;
 				Projectile.NewProjectile(Position.X, Position.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul"), (int)(npc.damage/2), 1, Main.myPlayer, 0, 0);
 			}
 			
 			else if (npc.ai[0] == 160)
 			{
-				for (int index = 0; index < 5; index++)
+				Phase2Attack(player);
+
+				if (Main.expertMode && npc.life <= npc.lifeMax / 10) //uses both attacks simultaneously at low health in expert
 				{
-					Vector2 Vel = new Vector2(0, -10).RotatedBy(index * (2*MathHelper.Pi/5));
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul2"), (int)(npc.damage/2), 1, Main.myPlayer, 0, 0);
+					willFireCurly = !willFireCurly;
+					Phase2Attack(player);
 				}
+
+				willFireCurly = !willFireCurly;
 			}
 		}
 		
