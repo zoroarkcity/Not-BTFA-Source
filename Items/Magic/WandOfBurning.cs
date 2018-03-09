@@ -11,21 +11,21 @@ namespace ForgottenMemories.Items.Magic
 		public override void SetDefaults()
 		{
 
-			item.damage = 23;
+			item.damage = 20;
 			item.magic = true;
-			item.mana = 8;
+			item.mana = 9;
 			item.width = 25;
 			item.height = 26;
-			item.useTime = 22;
+			item.useTime = 26;
 			item.UseSound = SoundID.Item20;
 
-			item.useAnimation = 22;
+			item.useAnimation = 26;
 			item.useStyle = 1;
 			item.noMelee = true;
-			item.knockBack = 7;
+			item.knockBack = 5;
 			item.value = 50000;
 			item.rare = 3;
-			item.autoReuse = false;
+			item.autoReuse = true;
 			item.shoot = 504;
 			item.shootSpeed = 11f;
 		}
