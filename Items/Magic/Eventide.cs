@@ -18,24 +18,24 @@ namespace ForgottenMemories.Items.Magic
 		public override void SetDefaults()
 		{
 
-			item.damage = 44;
+			item.damage = 36;
 			item.magic = true;
 			item.mana = 18;
 			item.width = 25;
 			item.height = 26;
-			item.useTime = 24;
+			item.useTime = 26;
 			item.UseSound = SoundID.Item117;
 
-			item.useAnimation = 24;
+			item.useAnimation = 26;
 			item.useStyle = 5;
 			Item.staff[item.type] = true;
 			item.noMelee = true;
 			item.knockBack = 2;
-			item.value = 650000;
+			item.value = 250000;
 			item.rare = 4;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("VoidBolt");
-			item.shootSpeed = 9f;
+			item.shootSpeed = 12f;
 		}
 
 		public override void SetStaticDefaults()
