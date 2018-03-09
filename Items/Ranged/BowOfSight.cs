@@ -19,19 +19,19 @@ namespace ForgottenMemories.Items.Ranged
 		public override void SetDefaults()
 		{
 
-			item.damage = 37;
+			item.damage = 35;
 			item.noMelee = true;
 			item.ranged = true;
 			item.width = 27;
 			item.height = 11;
 
-			item.useTime = 18;
-			item.useAnimation = 18;
+			item.useTime = 19;
+			item.useAnimation = 19;
 			item.useStyle = 5;
 			item.shoot = 3;
 			item.useAmmo = 40;
 			item.knockBack = 1;
-			item.value = 500000;
+			item.value = 400000;
 			item.rare = 5;
 			item.UseSound = SoundID.Item5;
 			item.autoReuse = true;
