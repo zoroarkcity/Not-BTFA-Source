@@ -20,24 +20,24 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 		int counter = 0;
 		public override void SetDefaults()
 		{
-			item.damage = 40;
+			item.damage = 33;
 			item.ranged = true;
 			item.width = 32;
 			item.height = 20;
 
-			item.useTime = 10;
-			item.useAnimation = 10;
+			item.useTime = 11;
+			item.useAnimation = 11;
 			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 1;
 			item.value = 50000;
 			item.rare = 5;
 			item.UseSound = SoundID.Item11;
-			item.autoReuse = false;
+			item.autoReuse = true;
 			item.shoot = 10;
 			item.shootSpeed = 5.25f;
 			item.useAmmo = AmmoID.Bullet;
-			item.crit = 16;
+			item.crit = 4;
 		}
 
     public override void SetStaticDefaults()
