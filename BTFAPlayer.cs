@@ -314,24 +314,53 @@ namespace ForgottenMemories
                     Item.NewItem((int)player.position.X + Main.rand.Next(-2000, 2000), (int)player.position.Y - Main.rand.Next(233), 1, 1, mod.ItemType("Galeshard"));
                 }
             }
-			if (GroundPound && player.controlUp && player.velocity.Y > 0)
+			if (GroundPound)
 			{
+				if (player.controlDown)
+				{
+					//if (!Pound && player.velocity.Y != 0f)
+					if (player.velocity.Y != 0f)
+					{
+						Pound = true;
+						player.velocity.Y = 30f;
+						Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlames>(), 70, 0f, player.whoAmI);
+					}
+					else if (Pound && player.velocity.Y == 0f)
+					{
+	                    Pound = false;
+						Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlameBoom>(), 105, 0f, player.whoAmI);
+					}
+				}
+				else if (player.velocity.Y > 0)
+				{
+					Pound = false;
+					if (player.controlUp)
+					{
+						//player.slowFall = true;
+						Projectile.NewProjectile(player.position.X, player.position.Y + player.height, 0f, 0f, mod.ProjectileType<RedFlames>(), 70, 0f, player.whoAmI);
+					}
+				}
+			}
+			/*if (GroundPound && player.controlUp && player.velocity.Y > 0)
+			{
+				Pound = false;
 				Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlames>(), 70, 0f, player.whoAmI);
 			}
             if (GroundPound && player.controlDown)
             {
-                if (!Pound && player.velocity.Y != 0f)
-                {
-                    Pound = true;
-                    player.velocity.Y = 30f;
+                //if (!Pound && player.velocity.Y != 0f)
+				if (player.velocity.Y != 0f)
+				{
+					Pound = true;
+					player.velocity.Y = 30f;
                     Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlames>(), 70, 0f, player.whoAmI);
-                }
-                else if (Pound && player.velocity.Y == 0f)
+				}
+				else if (Pound && player.velocity.Y == 0f)
                 {
                     Pound = false;
                     Projectile.NewProjectile(player.position.X, player.position.Y + 40, 0f, 0f, mod.ProjectileType<RedFlameBoom>(), 105, 0f, player.whoAmI);
                 }
-            }
+            }*/
 			
 			if (AquaPowers && Tools.OneIn(50))
 			{
