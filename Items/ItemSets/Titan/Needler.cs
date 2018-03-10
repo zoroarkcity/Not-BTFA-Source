@@ -11,6 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using System;
+using ForgottenMemories.Projectiles.InfoA;
 
 namespace ForgottenMemories.Items.ItemSets.Titan
 {
@@ -42,7 +43,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Needle Bow");
-      Tooltip.SetDefault("Has a 1/3 chance to fire 2 homing lasers");
+      Tooltip.SetDefault("Has a chance to fire homing lasers on hit");
       BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/Needler");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
@@ -71,7 +72,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			if (Main.rand.Next(3) == 0)
+			/*if (Main.rand.Next(3) == 0)
 			{
 				for (int i = 0; i < 2; i++)
 				{
@@ -81,8 +82,11 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 					sY += (float)Main.rand.Next(-60, 61) * 0.03f;
 					Projectile.NewProjectile(position.X, position.Y, sX, sY, mod.ProjectileType("laserbeamNeedle"), damage / 2, knockBack, player.whoAmI);
 				}
-			}
-			return true;
+			}*/
+			int id = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);
+			Main.projectile[id].GetGlobalProjectile<Info>(mod).firedFromNeedler = true;
+
+			return false;
 		}
 	}
 }
