@@ -23,20 +23,20 @@ namespace ForgottenMemories.Items.Ranged
 		public override void SetDefaults()
 		{
 
-			item.damage = 70;
+			item.damage = 82;
 			item.ranged = true;
 			item.width = 23;
 			item.height = 13;
 
-			item.useTime = 4;
-			item.useAnimation = 4;
+			item.useTime = 10;
+			item.useAnimation = 10;
 			item.useStyle = 5;
 			item.noMelee = true; 
 			item.knockBack = 4;
 			item.value = 10000;
 			item.rare = 10;
 			item.UseSound = SoundID.Item11;
-			item.autoReuse = false;
+			item.autoReuse = true;
 			item.shoot = 10; 
 			item.shootSpeed = 16f;
 			item.useAmmo = AmmoID.Bullet;
@@ -73,17 +73,15 @@ namespace ForgottenMemories.Items.Ranged
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			for (int i = 0; i < 1; ++i)
-			{
-				float sX = speedX;
-				float sY = speedY;
-				sX += (float)Main.rand.Next(-30, 30) * 0.02f;
-				sY += (float)Main.rand.Next(-30, 30) * 0.02f;
-				int p = Projectile.NewProjectile(position.X, position.Y, sX, sY, type, damage, knockBack, player.whoAmI);
-				Main.projectile[p].GetGlobalProjectile<Info>(mod).Paradox = true;
-				Main.projectile[p].tileCollide = false;
-				Main.projectile[p].penetrate = 1;
-			}
+			float sX = speedX;
+			float sY = speedY;
+			sX += (float)Main.rand.Next(-30, 30) * 0.02f;
+			sY += (float)Main.rand.Next(-30, 30) * 0.02f;
+			int p = Projectile.NewProjectile(position.X, position.Y, sX, sY, type, damage, knockBack, player.whoAmI);
+			Main.projectile[p].GetGlobalProjectile<Info>(mod).Paradox = true;
+			//Main.projectile[p].tileCollide = false;
+			Main.projectile[p].penetrate = 1;
+
 			return false;
 		}
 
