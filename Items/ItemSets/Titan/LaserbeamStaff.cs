@@ -26,7 +26,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.knockBack = 2f;
 			item.width = 16;
 			item.height = 16;
-			item.damage = 30;
+			item.damage = 55;
 			item.UseSound = SoundID.Item13;
 			item.shoot = mod.ProjectileType("LaserbeamStaff");
 			item.mana = 14;

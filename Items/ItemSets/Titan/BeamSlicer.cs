@@ -14,15 +14,15 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		public override void SetDefaults()
 		{
 
-			item.damage = 43;
+			item.damage = 44;
 			item.thrown = true;
 			item.noMelee = true;
 			item.noUseGraphic = true;
 
 			item.width = 22;
 			item.height = 22;
-			item.useTime = 20;
-			item.useAnimation = 20;
+			item.useTime = 16;
+			item.useAnimation = 16;
 			item.useStyle = 1;
 			item.shootSpeed = 12f;
 			item.shoot = mod.ProjectileType("BeamSlicer");

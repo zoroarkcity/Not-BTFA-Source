@@ -14,10 +14,10 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 {
 	public class LaserbladeKatana : ModItem
 	{
-		Vector2 gayvector = new Vector2(0f, -5f);
-		Vector2 homovector = new Vector2(0f, 5f);
-		Vector2 bivector = new Vector2(-5f, 0f);
-		Vector2 lesvector = new Vector2(5f, 0f);
+		Vector2 gayvector = new Vector2(0f, -7f);
+		Vector2 homovector = new Vector2(0f, 7f);
+		Vector2 bivector = new Vector2(-7f, 0f);
+		Vector2 lesvector = new Vector2(7f, 0f);
 		public override void SetDefaults()
 		{
 
@@ -78,15 +78,18 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			Vector2 newVect = gayvector.RotatedBy(System.Math.PI / 35);
-			gayvector = newVect;
+			gayvector = gayvector.RotatedBy(System.Math.PI / 35);
 			homovector = gayvector.RotatedBy(System.Math.PI);
 			bivector = gayvector.RotatedBy(System.Math.PI / 2);
 			lesvector = gayvector.RotatedBy(System.Math.PI / -2);
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, gayvector.X, gayvector.Y, mod.ProjectileType("BallFriendly"), damage, 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, homovector.X, homovector.Y, mod.ProjectileType("BallFriendly"), damage, 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, bivector.X, bivector.Y, mod.ProjectileType("BallFriendly"), damage, 1, Main.myPlayer, 0, 0);
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, lesvector.X, lesvector.Y, mod.ProjectileType("BallFriendly"), damage, 1, Main.myPlayer, 0, 0);
+			int p1 = Projectile.NewProjectile(player.Center.X, player.Center.Y, gayvector.X, gayvector.Y, mod.ProjectileType("BallFriendly"), damage / 2, 1, Main.myPlayer);
+			int p2 = Projectile.NewProjectile(player.Center.X, player.Center.Y, homovector.X, homovector.Y, mod.ProjectileType("BallFriendly"), damage / 2, 1, Main.myPlayer);
+			int p3 = Projectile.NewProjectile(player.Center.X, player.Center.Y, bivector.X, bivector.Y, mod.ProjectileType("BallFriendly"), damage / 2, 1, Main.myPlayer);
+			int p4 = Projectile.NewProjectile(player.Center.X, player.Center.Y, lesvector.X, lesvector.Y, mod.ProjectileType("BallFriendly"), damage / 2, 1, Main.myPlayer);
+			Main.projectile[p1].penetrate = 1;
+			Main.projectile[p2].penetrate = 1;
+			Main.projectile[p3].penetrate = 1;
+			Main.projectile[p4].penetrate = 1;
 			Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 75);
 			return false;
 		}

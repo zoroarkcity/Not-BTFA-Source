@@ -28,9 +28,9 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.noMelee = true;
 			item.useAnimation = 44;
 			item.useTime = 44;
-			item.shootSpeed = 16f;
+			item.shootSpeed = 18f;
 			item.knockBack = 3.75f;
-			item.damage = 58;
+			item.damage = 60;
 			item.value = 140000;
 			item.rare = 5;
 			item.shoot = mod.ProjectileType("TitanicCrusher");

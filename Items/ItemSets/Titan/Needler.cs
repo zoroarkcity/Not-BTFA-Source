@@ -21,14 +21,14 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		public override void SetDefaults()
 		{
 
-			item.damage = 42;
+			item.damage = 43;
 			item.noMelee = true;
 			item.ranged = true;
 			item.width = 27;
 			item.height = 11;
-			item.useTime = 16;
+			item.useTime = 17;
 
-			item.useAnimation = 16;
+			item.useAnimation = 17;
 			item.useStyle = 5;
 			item.shoot = 3;
 			item.useAmmo = 40;
