@@ -34,6 +34,10 @@ namespace ForgottenMemories.Projectiles
 			{
 				projectile.velocity *= 1.015f;
 			}
+            else if (projectile.ai[0] == 2f && projectile.timeLeft <= 60)
+            {
+                projectile.velocity *= 1.025f;
+            }
 			
 			if (Main.rand.Next(15) == 0)
 			{
