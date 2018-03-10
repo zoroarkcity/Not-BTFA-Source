@@ -35,6 +35,9 @@ namespace ForgottenMemories.Items.Acessory
 			player.thrownDamage += 0.05f;
 			player.magicDamage += 0.05f;
 			player.minionDamage += 0.05f;
+
+			if (player.controlUp && player.velocity.Y > 0)
+				player.slowFall = true;
 		}
 	}
 }
