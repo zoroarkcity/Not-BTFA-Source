@@ -62,7 +62,7 @@ namespace ForgottenMemories.Projectiles
 			
 			projectile.velocity *= 0.96f;
 			CounterA++;
-			if (CounterA >= 80)
+			if (CounterA >= 40)
 			{
 				int[] numArray = new int[10];
 				int maxValue = 0;
