@@ -26,6 +26,7 @@ namespace ForgottenMemories.Projectiles.InfoA
 		public bool Curse = false;
 		public bool Water = false;
 		public bool WaterKatana = false;
+		public bool firedFromNeedler = false;
 		
 		public override bool InstancePerEntity {get{return true;}}
 		
@@ -79,9 +80,9 @@ namespace ForgottenMemories.Projectiles.InfoA
 				target.AddBuff(BuffID.Frostburn, 180);
 			}
 			
-			if (Main.rand.Next(2) == 0 && Paradox == true)
+			if (Main.rand.Next(4) != 0 && Paradox == true)
 			{
-				int z = Projectile.NewProjectile(projectile.Center.X + projectile.velocity.X * 100f, projectile.Center.Y + projectile.velocity.Y * 100f, projectile.velocity.X * -1, projectile.velocity.Y * -1, projectile.type, projectile.damage, 0f, projectile.owner, 0f, 0f);
+				int z = Projectile.NewProjectile(projectile.Center.X + projectile.velocity.X * 100f, projectile.Center.Y + projectile.velocity.Y * 100f, projectile.velocity.X * -1, projectile.velocity.Y * -1, projectile.type, projectile.damage * 3 / 4, 0f, projectile.owner, 0f, 0f);
 				Main.projectile[z].GetGlobalProjectile<Info>(mod).Paradox = true;
 				Main.projectile[z].tileCollide = false;
 				Main.projectile[z].penetrate = 1;
@@ -103,6 +104,20 @@ namespace ForgottenMemories.Projectiles.InfoA
 				if(Main.rand.Next(15) == 0)
 				{
 					Main.projectile[z].GetGlobalProjectile<Info>(mod).Planetary = true;
+				}
+			}
+
+			if (firedFromNeedler && Main.rand.Next(3) == 0)
+			{
+				for (int i = 0; i < 2; i++)
+				{
+					Player player = Main.player[projectile.owner];
+					Vector2 distance = Vector2.Subtract(target.Center, player.Center);
+					double angle = Math.Atan2(distance.Y, distance.X);
+					Vector2 velocity = new Vector2(10, 0).RotatedBy(angle);
+					velocity.X += (float) Main.rand.Next(-60, 61) * 0.03f;
+					velocity.Y += (float) Main.rand.Next(-60, 61) * 0.03f;
+					Projectile.NewProjectile(player.Center.X, player.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("laserbeamNeedle"), projectile.damage / 3, projectile.knockBack / 2, projectile.owner);
 				}
 			}
 		}
