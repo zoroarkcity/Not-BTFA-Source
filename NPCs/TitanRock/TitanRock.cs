@@ -79,6 +79,15 @@ namespace ForgottenMemories.NPCs.TitanRock
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("BallMeteorFloaty"), (int) npc.damage / 3, 1, Main.myPlayer);
             }
 		}
+
+        public void Phase2Ring()
+        {
+            for (int i = 0; i < 10; ++i)
+            {
+                frickvector = frickvector.RotatedBy(System.Math.PI / 5);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), (int)npc.damage / 3, 1f, Main.myPlayer, 1, 0);
+            }
+        }
 		
 		public override void AI()
 		{
@@ -104,12 +113,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 						direction.Normalize();
 						npc.velocity.Y = direction.Y * 1f;
 						npc.velocity.X = direction.X * 1f;
-						
-						for (int i = 0; i < 10; ++i)
-						{
-							frickvector = frickvector.RotatedBy(System.Math.PI / 5);
-							Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), (int) npc.damage / 3, 1f, Main.myPlayer, 1, 0);
-						}
+
+                        Phase2Ring();
 						
 						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 					}
@@ -189,7 +194,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 4, 1, Main.myPlayer, player.whoAmI);
 					}
 					
-					if (phase2timer == 955)
+					//if (phase2timer == 895 || phase2timer == 835) Phase2Ring(); else 
+                    if (phase2timer == 955)
 					{
 						phase2timer = 0;
 					}
@@ -287,7 +293,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 					}
 					if (timer == 50 || timer == 150 || timer == 250)
 					{	
-						if (npc.life <= 30000 && Main.expertMode)
+						if (npc.life <= npc.lifeMax * 6 / 7 && Main.expertMode)
 						{
 							for (int i = 0; i < 3; ++i)
 							{
@@ -321,15 +327,15 @@ namespace ForgottenMemories.NPCs.TitanRock
 						Vector2 newVect = gayvector.RotatedBy(System.Math.PI / 35);
 						Vector2 newVect2 = homovector.RotatedBy(System.Math.PI / 35);
 						
-						if (npc.life <= 30000 && Main.expertMode)
+						if (npc.life <= npc.lifeMax * 6 / 7 && Main.expertMode)
 						{
-							newVect = gayvector.RotatedBy(System.Math.PI / 27);
-							newVect2 = homovector.RotatedBy(System.Math.PI / 27);
+							newVect = gayvector.RotatedBy(System.Math.PI / 30);
+							newVect2 = homovector.RotatedBy(System.Math.PI / 30);
 						}
 						gayvector = newVect;
 						homovector = newVect2;
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 0, 0);
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 0, 0);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 2f, 0);
 						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 						timer2 = 0;
 					}
