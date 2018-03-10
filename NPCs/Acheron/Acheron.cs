@@ -31,9 +31,9 @@ namespace ForgottenMemories.NPCs.Acheron
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 6800;
+            npc.lifeMax = 7000;
             npc.damage = 28;
-            npc.defense = 18;
+            npc.defense = 0;
             npc.knockBackResist = 0f;
             npc.width = 98;
             npc.height = 112;
@@ -55,7 +55,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 			{
-				npc.lifeMax = 7000 + ((numPlayers) * 3000);
+				npc.lifeMax = 7500 + ((numPlayers) * 3000);
 				npc.damage = 38;
 			}
 		
@@ -145,10 +145,10 @@ namespace ForgottenMemories.NPCs.Acheron
 			npc.TargetClosest(true);
 			npc.spriteDirection = npc.direction;
             Player player = Main.player[npc.target];
-			if (npc.life < (int)(npc.lifeMax * 0.4))
+			if (npc.life < npc.lifeMax / 2)
 			{
 				phase2 = true;
-				npc.defense = 0;
+				npc.defense = 18;
 				npc.ai[3]++;
 			}
 			
