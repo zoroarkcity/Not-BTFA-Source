@@ -28,6 +28,8 @@ namespace ForgottenMemories.NPCs.Acheron
 		bool phase2;
 		bool transitioned = false;
         bool willFireCurly = false;
+		bool willGhostAtBarrier = true;
+		int u, uu, uuu;
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
@@ -55,7 +57,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 			{
-				npc.lifeMax = 7500 + ((numPlayers) * 3000);
+				npc.lifeMax = 8000 + ((numPlayers) * 2500);
 				npc.damage = 38;
 			}
 		
@@ -139,6 +141,19 @@ namespace ForgottenMemories.NPCs.Acheron
 		{
 			BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Acheron/Acheron_Glow"));
 		}
+
+		public void SpawnBarriers()
+		{
+			u = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronBarrier"));
+			uu = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronBarrier"));
+			uuu = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronBarrier"));
+			Main.npc[u].Center += new Vector2(0, 150);
+			Main.npc[uu].Center += new Vector2(0, 150).RotatedBy(MathHelper.ToRadians(120));
+			Main.npc[uuu].Center += new Vector2(0, 150).RotatedBy(MathHelper.ToRadians(240));
+			Main.npc[u].ai[1] = npc.whoAmI;
+			Main.npc[uu].ai[1] = npc.whoAmI;
+			Main.npc[uuu].ai[1] = npc.whoAmI;
+		}
 		
         public override void AI()
         {
@@ -190,6 +205,12 @@ namespace ForgottenMemories.NPCs.Acheron
 					Main.dust[dust7].scale = 2;
 					Main.dust[dust8].scale = 2;
 				}
+
+				if (Main.expertMode)
+				{
+					SpawnBarriers();
+				}
+
 				Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
 				transitioned = true;
 			}
@@ -199,22 +220,14 @@ namespace ForgottenMemories.NPCs.Acheron
 			if (npc.alpha > 255)
 				npc.alpha = 255;
 			
-			if (npc.ai[1] == 0)
+			/*if (npc.ai[1] == 0)
 			{
 				if(Main.expertMode)
 				{
-					int u = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronBarrier"));
-					int uu = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronBarrier"));
-					int uuu = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronBarrier"));
-					Main.npc[u].Center += new Vector2(0, 150);
-					Main.npc[uu].Center += new Vector2(0, 150).RotatedBy(MathHelper.ToRadians(120));
-					Main.npc[uuu].Center += new Vector2(0, 150).RotatedBy(MathHelper.ToRadians(240));
-					Main.npc[u].ai[1] = npc.whoAmI;
-					Main.npc[uu].ai[1] = npc.whoAmI;
-					Main.npc[uuu].ai[1] = npc.whoAmI;
+					SpawnBarriers();
 				}
 				npc.ai[1]++;
-			}
+			}*/
 			
 			if (npc.ai[0] < 120)
 			{
@@ -267,7 +280,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			npc.velocity.X = ((npc.velocity.X * 100f + (float) num4) / 101f);
 			npc.velocity.Y = ((npc.velocity.Y * 100f + (float) num5) / 101f);
 		}
-		
+
 		public void Teleport(Player player)
 		{
 			Vector2 vel = new Vector2(player.Center.X, player.Center.Y - 350) - npc.Center;
@@ -276,7 +289,19 @@ namespace ForgottenMemories.NPCs.Acheron
 			npc.velocity = vel;
 			if (npc.ai[2] == 0)
 			{
-				NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("AcheronGhost"));
+				int type = mod.NPCType("AcheronGhost");
+
+				if (Main.expertMode && phase2 && willGhostAtBarrier)
+				{
+					NPC.NewNPC((int)Main.npc[u].Center.X, (int)Main.npc[u].Center.Y, type);
+					NPC.NewNPC((int)Main.npc[uu].Center.X, (int)Main.npc[uu].Center.Y, type);
+					NPC.NewNPC((int)Main.npc[uuu].Center.X, (int)Main.npc[uuu].Center.Y, type);
+				}
+				else
+				{
+					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, type);
+				}
+
 				npc.ai[2]++;
 			}
 		}
@@ -324,6 +349,7 @@ namespace ForgottenMemories.NPCs.Acheron
 				}
 
 				willFireCurly = !willFireCurly;
+				willGhostAtBarrier = !willGhostAtBarrier;
 			}
 		}
 		

@@ -25,11 +25,13 @@ namespace ForgottenMemories.NPCs.Acheron
     public class AcheronGhost : ModNPC
     {
 		Vector2 TPLocation;
+		public float speedCounter = 13f;
+
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
             npc.lifeMax = 1;
-            npc.damage = 43;
+            npc.damage = 40;
             npc.defense = 0;
             npc.knockBackResist = 0f;
             npc.width = 98;
@@ -47,7 +49,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 			{
-				npc.damage = 47;
+				npc.damage = 60;
 			}
 		
 		public override void SetStaticDefaults()
@@ -107,7 +109,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			return true;
 		}
 
-        public override void AI()
+		public override void AI()
         {
 			npc.TargetClosest(true);
 			npc.spriteDirection = npc.direction;
@@ -118,16 +120,22 @@ namespace ForgottenMemories.NPCs.Acheron
 				npc.alpha = 255;
 			
 			npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.03f);
-			if (npc.ai[0] > 30)
+			if (npc.ai[0] > 30 && Main.rand.Next(10) == 0)
 			{
-				float num4 = 13f;
-				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
-				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
-				float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
-				float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
-				float num8 = num4 / num7;
-				npc.velocity.X = num5 * num8;
-				npc.velocity.Y = num6 * num8;
+				//Vector2 vector2 = npc.Center;
+				//float num5 = player.Center.X - vector2.X;
+				//float num6 = player.Center.Y - vector2.Y;
+				//float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
+				//float num8 = num4 / num7;
+				//npc.velocity.X = direction.X * num8;
+				//npc.velocity.Y = direction.Y * num8;
+
+				if (Main.expertMode) //gets faster per dash in expert
+					speedCounter += 2;
+
+				Vector2 direction = Vector2.Subtract(player.Center, npc.Center);
+				float velocity = speedCounter / direction.Length();
+				npc.velocity = direction * velocity;
 				Main.PlaySound(SoundID.NPCDeath6, npc.position);
 				npc.ai[0] = 0;
 			}
