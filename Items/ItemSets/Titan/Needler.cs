@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		public override void SetDefaults()
 		{
 
-			item.damage = 46;
+			item.damage = 42;
 			item.noMelee = true;
 			item.ranged = true;
 			item.width = 27;
