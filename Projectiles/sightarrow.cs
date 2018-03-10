@@ -44,6 +44,7 @@ namespace ForgottenMemories.Projectiles
 				Main.dust[dust].scale = 1.95f;
 				Main.dust[dust].noGravity = true;
 			}
+			target.AddBuff(BuffID.CursedInferno, 420);
 		}
 		
 		public override void AI()
