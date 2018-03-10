@@ -23,7 +23,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		bool despawn = false;
 		Vector2 gayvector = new Vector2(0f, -5f);
 		Vector2 homovector = new Vector2(0f, 5f);
-		Vector2 frickvector = new Vector2(0f, 2.5f);
+		Vector2 frickvector = new Vector2(0f, 2f);
 		
 		public override void SetDefaults()
 		{
@@ -60,7 +60,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
 			npc.lifeMax = 37500 + ((numPlayers) * 4000);
-			npc.damage = 115;
+			npc.damage = 120;
 			npc.defense = 20;
 		}
 
@@ -76,7 +76,7 @@ namespace ForgottenMemories.NPCs.TitanRock
                 float variance = (1f + (float)Main.rand.Next(-25, 126) / 100f);
                 double angle = Main.rand.Next(-45, 46) * Math.PI / 180;
                 Vector2 velocity = new Vector2(0, -5f * variance).RotatedBy(angle);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("BallMeteorFloaty"), (int) npc.damage / 3, 1, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("BallMeteorFloaty"), (int) npc.damage / 4, 1, Main.myPlayer);
             }
 		}
 
@@ -85,7 +85,7 @@ namespace ForgottenMemories.NPCs.TitanRock
             for (int i = 0; i < 10; ++i)
             {
                 frickvector = frickvector.RotatedBy(System.Math.PI / 5);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), (int)npc.damage / 3, 1f, Main.myPlayer, 1, 0);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), (int)npc.damage / 4, 1f, Main.myPlayer, 1, 0);
             }
         }
 		
@@ -191,7 +191,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 					
 					if ((timer3 % 200 == 0 && Main.expertMode) || (shootTimer % 400 == 0 && !Main.expertMode))
 					{
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 4, 1, Main.myPlayer, player.whoAmI);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
 					}
 					
 					//if (phase2timer == 895 || phase2timer == 835) Phase2Ring(); else 
@@ -286,7 +286,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 							float sY = direction.Y * 8f;
 							sX += (float)Main.rand.Next(-15, 15) * 0.1f;
 							sY += (float)Main.rand.Next(-15, 15) * 0.1f;
-							int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), (int) npc.damage / 4, 1, Main.myPlayer, 0, 0);
+							int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), (int) npc.damage / 5, 1, Main.myPlayer, 0, 0);
 							Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 							Main.projectile[p].netUpdate = true;
 						}
@@ -303,7 +303,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 								float sY = direction.Y * 8f;
 								sX += (float)Main.rand.Next(-15, 15) * 0.1f;
 								sY += (float)Main.rand.Next(-15, 15) * 0.1f;
-								int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), (int) npc.damage / 3, 1, Main.myPlayer, 0, 0);
+								int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), (int) npc.damage / 4, 1, Main.myPlayer, 0, 0);
 								Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 								Main.projectile[p].netUpdate = true;
 							}
@@ -334,8 +334,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 						}
 						gayvector = newVect;
 						homovector = newVect2;
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 2f, 0);
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 6, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 6, 1, Main.myPlayer, 2f, 0);
 						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 						timer2 = 0;
 					}
@@ -348,7 +348,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 				
 				if (timer3 % 400 == 0)
 				{
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 4, 1, Main.myPlayer, player.whoAmI);
+					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 5, 1, Main.myPlayer, player.whoAmI, 1, 0);
 				}
 				
 				if (timer >= 650)
