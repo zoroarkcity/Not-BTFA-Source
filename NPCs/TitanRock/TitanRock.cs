@@ -324,16 +324,16 @@ namespace ForgottenMemories.NPCs.TitanRock
 					
 					if (timer2 >= 5)
 					{
-						Vector2 newVect = gayvector.RotatedBy(System.Math.PI / 35);
-						Vector2 newVect2 = homovector.RotatedBy(System.Math.PI / 35);
-						
+						double swirlyIncrement = System.Math.PI / 36;
+
 						if (npc.life <= npc.lifeMax * 6 / 7 && Main.expertMode)
 						{
-							newVect = gayvector.RotatedBy(System.Math.PI / 30);
-							newVect2 = homovector.RotatedBy(System.Math.PI / 30);
+							swirlyIncrement = System.Math.PI / 31;
 						}
-						gayvector = newVect;
-						homovector = newVect2;
+
+						gayvector = gayvector.RotatedBy(swirlyIncrement);
+						homovector = homovector.RotatedBy(swirlyIncrement);
+					
 						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 6, 1, Main.myPlayer, 2f, 0);
 						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 6, 1, Main.myPlayer, 2f, 0);
 						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
@@ -346,9 +346,9 @@ namespace ForgottenMemories.NPCs.TitanRock
 					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TitanBat"));
 				}
 				
-				if (timer3 % 400 == 0)
+				if (timer3 % 600 == 0)
 				{
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 5, 1, Main.myPlayer, player.whoAmI, 1, 0);
+					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
 				}
 				
 				if (timer >= 650)
