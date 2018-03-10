@@ -30,6 +30,11 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void AI()
 		{
+			if (projectile.ai[0] == 1f)
+			{
+				projectile.velocity *= 1.015f;
+			}
+			
 			if (Main.rand.Next(15) == 0)
 			{
 				int dust;
