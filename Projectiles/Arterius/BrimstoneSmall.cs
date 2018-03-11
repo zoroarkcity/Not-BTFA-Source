@@ -32,6 +32,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 			projectile.timeLeft = 600;
 			projectile.penetrate = 3;
 			projectile.ignoreWater = true;
+			projectile.tileCollide = false;
         }
 
         public override void AI()

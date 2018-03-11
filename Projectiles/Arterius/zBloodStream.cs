@@ -18,7 +18,7 @@ namespace ForgottenMemories.Projectiles.Arterius
 			projectile.hostile = true;
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
-			projectile.timeLeft = 180;
+			projectile.timeLeft = 240;
 			projectile.alpha = 255;
 		}
 		
@@ -27,10 +27,8 @@ namespace ForgottenMemories.Projectiles.Arterius
 			DisplayName.SetDefault("Blood");
 		}
 		
-		
 		public override void AI()
 		{
-			
 			Lighting.AddLight(projectile.position, 0.75f, 0f, 0.1f);
 			for (int i = 0; i < 5; i++)
 			{
