@@ -44,7 +44,6 @@ namespace ForgottenMemories.Projectiles
 			}
 		}
 		
-		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(mod.BuffType("DevilsFlame"), 360, false);

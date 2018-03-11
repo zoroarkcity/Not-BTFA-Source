@@ -33,11 +33,18 @@ namespace ForgottenMemories.Projectiles
 			projectile.ai[0]++;
 			if (projectile.ai[0] > 4)
 			{
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, mod.ProjectileType("SpinalFountain2"), projectile.damage, 1f, projectile.owner);
+				int p = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, mod.ProjectileType("SpinalFountain2"), projectile.damage, 1f, projectile.owner, 0, 0);
+				
+				if (projectile.ai[1] == 1f)
+				{
+					Main.projectile[p].magic = false;
+					Main.projectile[p].friendly = false;
+					Main.projectile[p].hostile = true;
+				}
+
 				projectile.ai[0] = 0;
 			}
 		}
-		
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{

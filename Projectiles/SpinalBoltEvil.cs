@@ -8,15 +8,14 @@ using System;
 
 namespace ForgottenMemories.Projectiles
 {
-	public class SpinalBolt : ModProjectile
+	public class SpinalBoltEvil : ModProjectile
 	{
 		public override void SetDefaults()
 		{
 			projectile.width = 20;
 			projectile.height = 20;
 			projectile.aiStyle = 1;
-			projectile.friendly = true;
-			projectile.magic = true;
+			projectile.hostile = true;
 			projectile.penetrate = 3;
 			projectile.timeLeft = 450;
 			projectile.alpha = 255;
@@ -25,18 +24,6 @@ namespace ForgottenMemories.Projectiles
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Spinal Bolt");
-		}
-		
-		public override bool OnTileCollide (Vector2 velocity1)
-		{
-			if ((double) projectile.velocity.Y != (double) velocity1.Y || (double) projectile.velocity.X != (double) velocity1.X)
-                {
-                  if ((double) projectile.velocity.X != (double) velocity1.X)
-                    projectile.velocity.X = -velocity1.X;
-                  if ((double) projectile.velocity.Y != (double) velocity1.Y)
-                    projectile.velocity.Y = -velocity1.Y;
-                }
-			return false;
 		}
 		
 		public override void AI()
@@ -64,10 +51,14 @@ namespace ForgottenMemories.Projectiles
 			}
 		}
 		
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override bool PreKill(int timeLeft)
 		{
-			target.AddBuff(mod.BuffType("DevilsFlame"), 360, false);
-			int kek = Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, -4f, mod.ProjectileType("SpinalFountain"), projectile.damage, 1f, projectile.owner);
+			int p = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -4f, mod.ProjectileType("SpinalFountain"), projectile.damage, 1f, projectile.owner, 0, 1f);
+			Main.projectile[p].magic = false;
+			Main.projectile[p].friendly = false;
+			Main.projectile[p].hostile = true;
+			Main.projectile[p].timeLeft += 15 * Main.rand.Next(5);
+			return true;
 		}
 	}
 }
