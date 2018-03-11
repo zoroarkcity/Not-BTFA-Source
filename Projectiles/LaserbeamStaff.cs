@@ -158,7 +158,7 @@ namespace ForgottenMemories.Projectiles
 							vector16 = -Vector2.UnitY;
 						}
 						float num24 = 0.7f + (float)num16 * 0.3f;
-						int num25 = (num24 < 1f) ? projectile.damage : ((int)((float)projectile.damage * 3.5f));
+						int num25 = (num24 < 1f) ? projectile.damage : ((int)((float)projectile.damage * 3f));
 						Projectile.NewProjectile(center2.X, center2.Y, vector16.X, vector16.Y, num23, num25, projectile.knockBack, projectile.owner, num16, 0);
 					}
 					projectile.Kill();
