@@ -30,7 +30,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.aiStyle = -1;
 			npc.lifeMax = 32500;
 			npc.damage = 100;
-			npc.defense = 15;
+			npc.defense = 26;
 			npc.knockBackResist = 0f;
 			npc.width = 170;
 			npc.height = 170;
@@ -61,7 +61,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		{
 			npc.lifeMax = 37500 + ((numPlayers) * 4000);
 			npc.damage = 120;
-			npc.defense = 20;
+			npc.defense = 38;
 		}
 
 		public void MakeFloatyMeteors()
