@@ -160,6 +160,49 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			}
         }
 
+        public void ShootBigBeam()
+        {
+            Player player = Main.player[npc.target];
+            Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
+            Vector2 Vel = player.Center - cross;
+ 			Vel.Normalize();
+ 			Vel *= 20;
+ 			Vel += player.velocity / 3;
+			int p = Projectile.NewProjectile(cross, Vel, mod.ProjectileType("BrimstoneBig"), npc.damage / 2, 0, npc.target, 0, 0); //40
+			Main.projectile[p].netUpdate = true;
+			Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 73);
+
+            if (Main.expertMode)
+            {
+                Main.projectile[p].damage = npc.damage / 3; //50
+            }
+        }
+
+        public void ShootSpinalBolts()
+        {
+            Player player = Main.player[npc.target];
+            Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
+
+            float gravity = 0.35f;
+            float time = 45f;
+            Vector2 distance = player.Center - cross + player.velocity * 15;
+            Vector2 Vel = new Vector2(distance.X / time, distance.Y / time - 0.5f * gravity * time);
+
+            int boltsPerVolley = 4;
+            if (Main.expertMode)
+                boltsPerVolley = 6;
+
+            for (int i = 0; i < boltsPerVolley; i++)
+            {
+                Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-2, 2), (float)Main.rand.Next(-2, 2));
+                int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 1f, 0); //20
+                if (Main.expertMode)
+                    Main.projectile[p].damage = npc.damage / 6; //25
+            }
+
+            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 73);
+        }
+
         public override void AI()
         {
 			npc.spriteDirection = 1;
@@ -222,10 +265,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         velocity.Normalize();
                         velocity *= 8;
                         velocity += player.velocity / 2;
-                        int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 1f, 0); //20
+                        int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 0, 0); //20
                         if (Main.expertMode)
                             Main.projectile[p].damage = npc.damage / 6; //25
-                        Main.projectile[p].aiStyle = 0;
                     }
                     if (aiTimer % 120 == 0)
                         ShootBlood(mod.NPCType("ExplosiveZitEnemy"), false);
@@ -324,7 +366,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							npc.Center = Main.player[npc.target].Center + new Vector2(0, -500); //teleport above player
 
                             rememberDefense = npc.defense;
-                            npc.defense = 99;
+                            npc.defense = 113;
 
                             //ShootEyeBeams(player, true);
 							SpookyDash();
@@ -355,26 +397,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					
 					else if (npc.ai[1] % 180 == 0)
 					{
-						Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
-						Vector2 target = new Vector2(player.Center.X, player.Center.Y - 30);
-
-						Vector2 direction = Vector2.Subtract(target, cross);
-						double angle = Math.Atan2(direction.Y, direction.X);
-						Vector2 Vel = new Vector2(11, 0).RotatedBy(angle);
-
-						int boltsPerVolley = 3;
-						if (Main.expertMode)
-							boltsPerVolley = 4;
-
-						for (int i = 0; i < boltsPerVolley; i++)
-						{
-							Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-2, 2), (float) Main.rand.Next(-2, 2));
-							int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 1f, 0); //20
-                            if (Main.expertMode)
-                                Main.projectile[p].damage = npc.damage / 6; //25
-						}
-
-						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 73);
+                        ShootSpinalBolts();
+                        ShootBigBeam();
 					}
 					
 					else if (npc.ai[1] % 45 == 0)
