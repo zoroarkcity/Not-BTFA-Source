@@ -14,11 +14,12 @@ namespace ForgottenMemories.Projectiles
 		{
 			projectile.width = 20;
 			projectile.height = 20;
-			projectile.aiStyle = 1;
+			projectile.aiStyle = 0;
 			projectile.hostile = true;
-			projectile.penetrate = 3;
+			projectile.penetrate = 1;
 			projectile.timeLeft = 450;
 			projectile.alpha = 255;
+            //projectile.noGravity = true;
 		}
 		
 		public override void SetStaticDefaults()
@@ -49,6 +50,9 @@ namespace ForgottenMemories.Projectiles
 				Main.dust[index].velocity += projectile.velocity * 0.5f;
 				Main.dust[index].noGravity = true;
 			}
+
+            if (projectile.ai[0] == 1f)
+                projectile.velocity.Y += 0.35f;
 		}
 		
 		public override bool PreKill(int timeLeft)
@@ -57,7 +61,7 @@ namespace ForgottenMemories.Projectiles
 			Main.projectile[p].magic = false;
 			Main.projectile[p].friendly = false;
 			Main.projectile[p].hostile = true;
-			Main.projectile[p].timeLeft += 15 * Main.rand.Next(5);
+			Main.projectile[p].timeLeft += 30 + 15 * Main.rand.Next(15); //90 to 300 ticks total
 			return true;
 		}
 	}
