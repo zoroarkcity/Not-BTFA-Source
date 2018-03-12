@@ -11,12 +11,15 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 
-
 namespace ForgottenMemories.Projectiles.Arterius
 {
     public class BrimstoneBig : ModProjectile
     {
-		public override void SetStaticDefaults()
+        public int trackTimer = -1;
+        public bool almostHitPlayer = false;
+        public bool almostHitPlayerTwice = false;
+        
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Blood Laser");
 		}
@@ -32,12 +35,39 @@ namespace ForgottenMemories.Projectiles.Arterius
 			projectile.penetrate = 3;
 			projectile.ignoreWater = true;
 			projectile.scale = 1.5f;
+            projectile.tileCollide = false;
+            projectile.timeLeft = 1200;
         }
 
         public override void AI()
         {
-			
-			if (projectile.alpha > 0)
+            Vector2 distance = Main.player[projectile.owner].Center - projectile.Center;
+
+            if (almostHitPlayer)
+                trackTimer++;
+            else if (distance.Length() <= 150)
+            {
+                projectile.velocity.Normalize();
+                almostHitPlayer = true;
+            }
+
+            if (trackTimer == 91)
+            {
+                distance.Normalize();
+                distance *= 15;
+                
+                if (!almostHitPlayerTwice)
+                {
+                    almostHitPlayer = false;
+                    almostHitPlayerTwice = true;
+                    trackTimer = 0;
+                    distance += Main.player[projectile.owner].velocity / 2; //will not track on last bolt
+                }
+
+                projectile.velocity = distance;
+            }
+            
+            if (projectile.alpha > 0)
 			{
 				projectile.alpha -= 25;
 			}
