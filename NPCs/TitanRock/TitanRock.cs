@@ -28,7 +28,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override void SetDefaults()
 		{
 			npc.aiStyle = -1;
-			npc.lifeMax = 32500;
+			npc.lifeMax = 35000;
 			npc.damage = 100;
 			npc.defense = 26;
 			npc.knockBackResist = 0f;
@@ -59,9 +59,9 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 37500 + ((numPlayers) * 4000);
+			npc.lifeMax = 40000 + ((numPlayers) * 4000);
 			npc.damage = 120;
-			npc.defense = 38;
+			npc.defense = 42;
 		}
 
 		public void MakeFloatyMeteors()
