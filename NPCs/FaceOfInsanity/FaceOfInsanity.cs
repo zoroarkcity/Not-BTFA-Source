@@ -405,7 +405,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                                 
 								if (npc.ai[2] != maxSpook && Main.expertMode)
 								{
-                                    if (npc.ai[2] == 5f)
+                                    if (npc.ai[2] == 3f)
 										ShootBigBeam();
 									ShootEyeBeams(player, true);
                                     SpookyDash();
