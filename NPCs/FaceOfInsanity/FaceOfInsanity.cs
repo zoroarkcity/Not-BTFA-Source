@@ -10,7 +10,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 	[AutoloadBossHead]
     public class FaceOfInsanity : ModNPC
     {
-		int aiTimer = 0;
+		int aiTimer = 0; //only used in first phase atm
 		int BloodTimer = 0;
 		int BloodRainTimer = 0;
         int rememberDefense = 0;
@@ -193,9 +193,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             float time = 60f;
             if (Main.expertMode)
             {
-                time = 45f;
                 boltsPerVolley = 6;
-                distance += player.velocity * 20;
+                distance += player.velocity * 30;
             }
             
             Vector2 Vel = new Vector2(distance.X / time, distance.Y / time - 0.5f * gravity * time);
@@ -216,7 +215,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.spriteDirection = 1;
 			npc.TargetClosest(true);
             Player player = Main.player[npc.target];
-			aiTimer++;
 			
 			if ((npc.life < npc.lifeMax * 2 / 3 && Main.expertMode) || npc.life < npc.lifeMax / 2)
 			{
@@ -225,6 +223,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			if (!phase2 && npc.ai[0] == 0)
 			{
+				aiTimer++;
+
                 if (npc.Center.X > player.Center.X + 10 && moveX > -8f)
                     moveX -= 0.2f;
                 if (npc.Center.X > player.Center.X + 10 && moveX > 0f)
@@ -269,6 +269,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                     CheckOutOfRange();
                 }
 				
+				//left these % in because the desync is a feature
                 if (abovePlayer)
                 {
                     if (aiTimer % 130 == 0 && Main.expertMode)
@@ -352,32 +353,43 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					}
 					
 					//stop, begin fade for spooky dash
-                    if (npc.life < npc.lifeMax / 3 && npc.ai[1] % 360 == 0 && npc.ai[2] == 0)
+                    if (npc.ai[1] == 360)
 					{
-						npc.ai[2] = 1;
-						npc.velocity = Vector2.Zero;
-
-						if (Main.expertMode)
-                        {
-							npc.dontTakeDamage = true;
-                            ShootSpinalBolts();
-                            if (npc.life < npc.lifeMax / 6)
-								ShootBigBeam();
-
-                            if (maxSpook != 1f) //shorten time spent fading after first cycle
-                                fadeLimit = 90f;
-
-							if (maxSpook < 7f) //gain 2 extra dashes per cycle, up to 6
-								maxSpook += 2f;
-						}
-						else
+						if (npc.life < npc.lifeMax / 3 && npc.ai[2] == 0)
 						{
-							if (npc.life < npc.lifeMax / 6)
-								ShootSpinalBolts();
+							npc.ai[2] = 1;
+							npc.velocity = Vector2.Zero;
 
-							if (npc.life < npc.lifeMax / 9)
+							if (Main.expertMode)
+							{
+								npc.dontTakeDamage = true;
+								ShootSpinalBolts();
+								if (npc.life < npc.lifeMax / 6)
+									ShootBigBeam();
+
+								if (maxSpook != 1f) //shorten time spent fading after first cycle
+									fadeLimit = 90f;
+
+								if (maxSpook < 7f) //gain 2 extra dashes per cycle, up to 6
+									maxSpook += 2f;
+							}
+							else
+							{
+								if (npc.life < npc.lifeMax / 6)
+									ShootSpinalBolts();
+
+								if (npc.life < npc.lifeMax / 9)
+									ShootBigBeam();
+							}
+						}
+						else //messy. this section feels very messy
+						{
+							ShootSpinalBolts();
+							if (Main.expertMode)
 								ShootBigBeam();
 						}
+
+						npc.ai[1] = 0;
 					}
 					
 					if (npc.ai[2] > 0)
@@ -407,7 +419,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							float speed = npc.velocity.Length();
 
 							npc.alpha = (int) (255f * (spookyDashSpeed - speed) / spookyDashSpeed) + 15; //visibility is proportional to speed
-							//if (npc.alpha > 255) npc.alpha = 255;
 
 							if (speed < 3.5f)
 							{
@@ -430,14 +441,13 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							}
 						}
 					}
-					
-					else if (npc.ai[1] % 180 == 0)
+					else if (npc.ai[1] == 180)
 					{
                         ShootSpinalBolts();
-                        ShootBigBeam();
+						if (Main.expertMode)
+							ShootBigBeam();
 					}
-					
-					else if (npc.ai[1] % 45 == 0)
+					else if (npc.ai[1] == 45 || npc.ai[1] == 90 || npc.ai[1] == 135 || npc.ai[1] == 225 || npc.ai[1] == 270 || npc.ai[1] == 315)
 					{
                         ShootEyeBeams(player, false);
 					}
