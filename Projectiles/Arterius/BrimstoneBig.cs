@@ -16,6 +16,7 @@ namespace ForgottenMemories.Projectiles.Arterius
     public class BrimstoneBig : ModProjectile
     {
         public int trackTimer = -1;
+		public int ringTimer = 0;
         public bool almostHitPlayer = false;
         public bool almostHitPlayerTwice = false;
         
@@ -95,11 +96,6 @@ namespace ForgottenMemories.Projectiles.Arterius
 					return;
 				}
 			}
-			
-			if (projectile.timeLeft % 25 == 0)
-			{
-				Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("BrimstoneRing"), projectile.damage, 0, Main.myPlayer, 0, 0);
-			}
         }
 		
 		public override void Kill(int timeLeft)
@@ -139,6 +135,19 @@ namespace ForgottenMemories.Projectiles.Arterius
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
+			if (projectile.velocity.Length() <= 1f)
+			{
+				if (ringTimer == 0 || ringTimer == 15 || ringTimer == 30 || ringTimer == 45)
+				{
+					Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("BrimstoneRing"), projectile.damage, 0, Main.myPlayer, 0, 0);
+				}
+				
+				ringTimer++;
+				return false;
+			}
+			else
+				ringTimer = 0;
+			
 			Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)projectile.position.X + (double)projectile.width * 0.5) / 16, (int)(((double)projectile.position.Y + (double)projectile.height * 0.5) / 16.0));
 			float num150 = (float)(Main.projectileTexture[projectile.type].Width - projectile.width) * 0.5f + (float)projectile.width * 0.5f;
 			Microsoft.Xna.Framework.Rectangle value7 = new Microsoft.Xna.Framework.Rectangle((int)Main.screenPosition.X - 500, (int)Main.screenPosition.Y - 500, Main.screenWidth + 1000, Main.screenHeight + 1000);
