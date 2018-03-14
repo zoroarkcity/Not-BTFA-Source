@@ -18,10 +18,10 @@ namespace ForgottenMemories.NPCs.TitanRock
 		int phase2timer = 0;
 		int shootTimer = 0;
 		int curlDirection = 1;
-		bool bisexual = false;
-		bool bisexual2 = false;
+		bool bisexual = false; //is phase 2
+		//bool bisexual2 = false;
 		bool takeLessDamage = false;
-		float teleportF;
+		//float teleportF;
 		bool despawn = false;
 		Vector2 gayvector = new Vector2(0f, -5f);
 		Vector2 homovector = new Vector2(0f, 5f);
@@ -30,7 +30,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override void SetDefaults()
 		{
 			npc.aiStyle = -1;
-			npc.lifeMax = 35000;
+			npc.lifeMax = 30000;
 			npc.damage = 100;
 			npc.defense = 26;
 			npc.knockBackResist = 0f;
@@ -71,12 +71,12 @@ namespace ForgottenMemories.NPCs.TitanRock
 			Vector2 velocity = Main.player[npc.target].Center - npc.Center;
 			velocity /= 60f;
 
-			int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("Ball"), (int) npc.damage / 4, 1, Main.myPlayer, 3f, 0);
+			int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 3f, 0);
 			Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 
 			if (Main.expertMode && npc.life < npc.lifeMax / 4)
 			{
-				Main.projectile[p].ai[1] = curlDirection;
+				Main.projectile[p].ai[1] = 1.01f * curlDirection;
 				curlDirection *= -1;
 			}
 		}
@@ -103,12 +103,13 @@ namespace ForgottenMemories.NPCs.TitanRock
             {
                 frickvector = frickvector.RotatedBy(System.Math.PI / 5);
 
-				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), (int)npc.damage / 5, 1f, Main.myPlayer, 1f, 0);
+				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), (int)npc.damage / 5, 1, Main.myPlayer, 1f, 0);
 				
 				if (npc.life < npc.lifeMax / 4 && Main.expertMode)
 				{
 					Main.projectile[p].ai[0] = 4f;
-					Main.projectile[p].ai[1] = curlDirection;
+					Main.projectile[p].ai[1] = 1.0125f * curlDirection;
+					Main.projectile[p].timeLeft += 120;
 				}
             }
 
@@ -126,15 +127,22 @@ namespace ForgottenMemories.NPCs.TitanRock
 				shootTimer++;
 				if (phase2timer <= 355)
 				{
-					if (phase2timer == 1 || phase2timer == 75 || phase2timer == 145 || phase2timer == 215 || phase2timer == 285 || phase2timer == 355)
+					if (phase2timer == 1 || phase2timer == 75 || phase2timer == 145 || phase2timer == 215 || phase2timer == 285)
 					{
 						Vector2 direction = Main.player[npc.target].Center - npc.Center;
 						direction.Normalize();
 						npc.velocity.Y = direction.Y * 15f;
 						npc.velocity.X = direction.X * 15f;
+						bisexual = true;
 					}
-					
-					if (phase2timer == 60 || phase2timer == 130 || phase2timer == 200 || phase2timer == 270 || phase2timer == 340)
+					else if (phase2timer == 355)
+					{
+						Vector2 direction = Main.player[npc.target].Center - npc.Center;
+						direction.Normalize();
+						npc.velocity.Y = direction.Y * 7.5f;
+						npc.velocity.X = direction.X * 7.5f;
+					}
+					else if (phase2timer == 60 || phase2timer == 130 || phase2timer == 200 || phase2timer == 270 || phase2timer == 340)
 					{
 						Vector2 direction = Main.player[npc.target].Center - npc.Center;
 						direction.Normalize();
@@ -146,7 +154,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 					}
 					npc.rotation += npc.velocity.X / 15f;
-					//timer3 = -1;
 					shootTimer = -1;
 					takeLessDamage = true;
 				}
@@ -214,7 +221,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 						}
 					}
 					
-					if (shootTimer % 120 == 15)
+					if (shootTimer % 180 == 10)
 					{
 						MakeFloatyMeteors();
 					}
@@ -224,7 +231,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 4, 1, Main.myPlayer, player.whoAmI);
 					}
 
-					if (shootTimer % 226 == 225 && (npc.life < npc.lifeMax / 4 || Main.expertMode))
+					if (shootTimer % 220 == 219 && (npc.life < npc.lifeMax / 4 || Main.expertMode))
 					{
 						MakeBurstBall();
 					}
@@ -362,7 +369,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 				{
 					timer2++;
 					
-					npc.rotation += 0.20f * -curlDirection;
+					npc.rotation += 0.20f * curlDirection;
 					npc.velocity.X = 0f;
 					npc.velocity.Y = 0f;
 					
@@ -374,8 +381,10 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 						if (npc.life <= npc.lifeMax * 6 / 7 && Main.expertMode)
 						{
-							swirlyIncrement = System.Math.PI / 31 * curlDirection;
+							swirlyIncrement = System.Math.PI / 31;
 						}
+
+						swirlyIncrement *= curlDirection;
 
 						gayvector = gayvector.RotatedBy(swirlyIncrement);
 						homovector = homovector.RotatedBy(swirlyIncrement);
@@ -406,7 +415,9 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 			if (timer3 == 1200)
 			{
-				NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpikeTitan"));
+				if (!bisexual)
+					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpikeTitan"));
+				
 				timer3 = 0;
 			}
 				
