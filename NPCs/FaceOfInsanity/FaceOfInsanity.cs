@@ -384,9 +384,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						}
 						else //messy. this section feels very messy
 						{
-							ShootSpinalBolts();
-							if (Main.expertMode)
-								ShootBigBeam();
+                            ShootBigBeam();
+							if (Main.expertMode && maxSpook > 1f)
+                                ShootSpinalBolts();
 						}
 
 						npc.ai[1] = 0;
@@ -444,7 +444,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					else if (npc.ai[1] == 180)
 					{
                         ShootSpinalBolts();
-						if (Main.expertMode)
+						if (Main.expertMode && maxSpook > 1f)
 							ShootBigBeam();
 					}
 					else if (npc.ai[1] == 45 || npc.ai[1] == 90 || npc.ai[1] == 135 || npc.ai[1] == 225 || npc.ai[1] == 270 || npc.ai[1] == 315)
