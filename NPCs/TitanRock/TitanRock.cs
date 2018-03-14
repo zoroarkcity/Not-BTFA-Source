@@ -76,7 +76,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 			if (Main.expertMode && npc.life < npc.lifeMax / 4)
 			{
-				Main.projectile[p].ai[1] = 1.01f * curlDirection;
+				Main.projectile[p].ai[1] = 0.01f * curlDirection;
 				curlDirection *= -1;
 			}
 		}
@@ -108,7 +108,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 				if (npc.life < npc.lifeMax / 4 && Main.expertMode)
 				{
 					Main.projectile[p].ai[0] = 4f;
-					Main.projectile[p].ai[1] = 1.0125f * curlDirection;
+					Main.projectile[p].ai[1] = 0.0125f * curlDirection;
 					Main.projectile[p].timeLeft += 120;
 				}
             }
