@@ -49,10 +49,11 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.noTileCollide = true;
             npc.noGravity = true;
             npc.HitSound = SoundID.NPCHit49;
-            music = MusicID.Boss3;
-			npc.npcSlots = 15;
+            npc.npcSlots = 15;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 1;
+			//music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/out");
+			music = MusicID.Boss3;
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -84,7 +85,6 @@ namespace ForgottenMemories.NPCs.Acheron
 			int num159 = 1;
 			float value3 = 1f;
 			float num160 = 0f;
-			
 			
 			int num161 = num159;
 			while (((num158 > 0 && num161 < num157) || (num158 < 0 && num161 > num157)))
