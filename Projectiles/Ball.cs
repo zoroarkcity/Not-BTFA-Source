@@ -45,6 +45,7 @@ namespace ForgottenMemories.Projectiles
 				{
 					Main.projectile[p].ai[0] = 4f;
 					Main.projectile[p].ai[1] = projectile.ai[1];
+					Main.projectile[p].timeLeft += 120;
 				}
 			}
 				
@@ -71,10 +72,12 @@ namespace ForgottenMemories.Projectiles
 			}
 			else if (projectile.ai[0] == 4f)
 			{
-				projectile.velocity *= 1.015f;
+				float modifier = (float) System.Math.Abs(projectile.ai[1]);
+				
+				projectile.velocity *= modifier;
 
 				Vector2 acceleration = projectile.velocity.RotatedBy(System.Math.PI / 2);
-				acceleration *= projectile.ai[1] * 0.015f;
+				acceleration *= (modifier - 1f);
 				
 				projectile.velocity += acceleration;
 			}

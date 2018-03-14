@@ -90,7 +90,7 @@ namespace ForgottenMemories.Projectiles
 
                 Vector2 direction = Vector2.Subtract(targetLocation, projectile.Center);
                 direction.Normalize();
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, direction.X * 6f, direction.Y * 6f, mod.ProjectileType("BallMeteor"), projectile.damage, 1, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, direction.X * 5.5f, direction.Y * 5.5f, mod.ProjectileType("BallMeteor"), projectile.damage, 1, Main.myPlayer);
 
                 return;
             }
