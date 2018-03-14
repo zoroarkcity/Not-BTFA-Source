@@ -27,7 +27,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 17000;
+            npc.lifeMax = 25000;
             npc.damage = 80;
             npc.defense = 22;
             npc.knockBackResist = 0f;
@@ -53,7 +53,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 22000 + ((numPlayers) * 2000);
+			npc.lifeMax = 30000 + ((numPlayers) * 3000);
 			npc.damage = 150;
 			npc.defense = 28;
 		}
