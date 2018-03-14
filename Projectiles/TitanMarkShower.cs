@@ -63,7 +63,7 @@ namespace ForgottenMemories.Projectiles
             {
 				projectile.frame = 0;
 
-                if (projectile.timeLeft % 15 == 0)
+                if (projectile.timeLeft == 60 || projectile.timeLeft == 40 || projectile.timeLeft == 20)
 				{
 					RainMeteors();
 				}
