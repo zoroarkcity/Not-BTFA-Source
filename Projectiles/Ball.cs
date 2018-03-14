@@ -27,6 +27,30 @@ namespace ForgottenMemories.Projectiles
 		{
 			DisplayName.SetDefault("Laser");
 		}
+
+		public void Phase2Ring()
+		{
+			int target = Player.FindClosest(projectile.Center, 1, 1);
+			Vector2 frickvector = Main.player[target].Center - projectile.Center;
+			frickvector.Normalize();
+			frickvector *= 2f;
+				
+			for (int i = 0; i < 10; ++i)
+			{
+				frickvector = frickvector.RotatedBy(System.Math.PI / 5);
+				int p = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), projectile.damage, 1f, Main.myPlayer, 1f, 0);
+				Main.projectile[p].netUpdate = true;
+
+				if (projectile.ai[1] != 0)
+				{
+					Main.projectile[p].ai[0] = 4f;
+					Main.projectile[p].ai[1] = projectile.ai[1];
+				}
+			}
+				
+			Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 75);
+			projectile.Kill();
+		}
 		
 		public override void AI()
 		{
@@ -38,6 +62,22 @@ namespace ForgottenMemories.Projectiles
             {
                 projectile.velocity *= 1.03f;
             }
+			else if (projectile.ai[0] == 3f)
+			{
+				projectile.scale = 1.3f;
+				
+				if (projectile.timeLeft < 120)
+					Phase2Ring();
+			}
+			else if (projectile.ai[0] == 4f)
+			{
+				projectile.velocity *= 1.015f;
+
+				Vector2 acceleration = projectile.velocity.RotatedBy(System.Math.PI / 2);
+				acceleration *= projectile.ai[1] * 0.015f;
+				
+				projectile.velocity += acceleration;
+			}
 			
 			if (Main.rand.Next(15) == 0)
 			{
