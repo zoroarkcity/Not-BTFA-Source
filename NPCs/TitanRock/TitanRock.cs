@@ -221,17 +221,21 @@ namespace ForgottenMemories.NPCs.TitanRock
 						}
 					}
 					
-					if (shootTimer % 180 == 10)
+					//timer % 180 == 10
+					if (shootTimer == 10 || shootTimer == 190 || shootTimer == 370 || shootTimer == 550 || shootTimer == 730)
 					{
 						MakeFloatyMeteors();
 					}
 					
-					if ((shootTimer % 200 == 0 && Main.expertMode) || shootTimer % 400 == 0)
+					//timer % 200 == 0 and expert, or timer % 400 == 0
+					bool showerTime = (shootTimer == 200 || shootTimer == 600);
+					if ((showerTime && Main.expertMode) || shootTimer == 0 || shootTimer == 400 || shootTimer == 800)
 					{
 						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 4, 1, Main.myPlayer, player.whoAmI);
 					}
 
-					if (shootTimer % 220 == 219 && (npc.life < npc.lifeMax / 4 || Main.expertMode))
+					bool burstBallTime = (shootTimer == 220 || shootTimer == 440 || shootTimer == 660 || shootTimer == 880);
+					if (burstBallTime && (npc.life < npc.lifeMax / 4 || Main.expertMode))
 					{
 						MakeBurstBall();
 					}
@@ -401,7 +405,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TitanBat"));
 				}
 				
-				if (timer3 % 600 == 0)
+				if (timer3 == 600 || timer3 == 1200)
 				{
 					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
 				}
