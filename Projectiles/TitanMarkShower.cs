@@ -15,14 +15,14 @@ namespace ForgottenMemories.Projectiles
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Titan Mark Shower");
-			Main.projFrames[projectile.type] = 2;
+			//Main.projFrames[projectile.type] = 2;
 		}
 
 		public override void SetDefaults()
 		{
-			projectile.width = 102;
-            projectile.height = 102;
-			projectile.timeLeft = 200;
+			projectile.width = 153;
+            projectile.height = 153;
+			projectile.timeLeft = 221;
 			projectile.penetrate = -1;
 			projectile.hostile = true;
 		}
@@ -73,13 +73,10 @@ namespace ForgottenMemories.Projectiles
 				Player target = Main.player[(int) projectile.ai[0]];
 				if (target.active && !target.dead)
 					projectile.Center = target.Center;
-				
-				if (projectile.timeLeft % 15 == 0)
+
+                if (projectile.timeLeft == 61  || projectile.timeLeft == 81 || projectile.timeLeft == 101 || projectile.timeLeft == 121 || projectile.timeLeft == 141 || projectile.timeLeft == 161 || projectile.timeLeft == 181 || projectile.timeLeft == 201)
 				{
-					if (projectile.frame == 0)
-						projectile.frame++;
-					else
-						projectile.frame--;
+					projectile.hide = !projectile.hide;
 				}
 			}
 		}
