@@ -21,6 +21,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		float maxSpook = 1f;
 		const float spookyDashSpeed = 38f;
         float fadeLimit = 128f;
+		bool spookyDashing = false;
+		bool spawnedInBloodMoon = false;
 		
 		float moveX = 0f;
 		float moveY = 0f;
@@ -44,6 +46,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.npcSlots = 5;
 			//music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/darknessthatchillsmenshearts");
 			music = MusicID.Boss4;
+
+			if (Main.bloodMoon)
+				spawnedInBloodMoon = true;
         }
 		
 		public override void SetStaticDefaults()
@@ -117,6 +122,14 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		public void SpookyDash()
 		{
 			Vector2 direction = Vector2.Subtract(Main.player[npc.target].Center, npc.Center);
+			//Main.player[npc.target].GetModPlayer<BTFAPlayer>(mod).spookTimer = 120;
+
+			if (phase2)
+			{
+				spookyDashing = true;
+				Main.bloodMoon = true;
+			}
+
 			double angle = Math.Atan2(direction.Y, direction.X);
 			npc.velocity = new Vector2(spookyDashSpeed, 0).RotatedBy(angle);
 			Main.PlaySound(15, (int)Main.player[npc.target].Center.X, (int)Main.player[npc.target].Center.Y, 2);
@@ -421,7 +434,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						
 						if (npc.ai[3] < fadeLimit) //stop and fade
 						{
-                            if (fadeLimit == 120f)
+                            //Main.player[npc.target].GetModPlayer<BTFAPlayer>(mod).spookTimer = 120;
+							
+							if (fadeLimit == 120f)
                                 npc.alpha += 2;
                             else
                                 npc.alpha += 3;
@@ -460,6 +475,11 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 									npc.ai[2] = 0;
 									npc.ai[3] = 0;
 									npc.alpha = 225;
+
+									spookyDashing = false;
+
+									if (!spawnedInBloodMoon)
+										Main.bloodMoon = false;
 								}
 							}
 						}
@@ -489,6 +509,14 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					npc.timeLeft = 10;
 				}
             }
+		}
+
+		public override bool CheckDead()
+		{
+			if (spookyDashing && !spawnedInBloodMoon)
+				Main.bloodMoon = false;
+			
+			return true;
 		}
 		
 		public override void FindFrame(int frameHeight)
