@@ -43,25 +43,27 @@ namespace ForgottenMemories.Items.Boss
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.AdamantiteBar, 2);
+			recipe.AddIngredient(ItemID.HallowedBar, 2);
+			recipe.AddIngredient(ItemID.FallenStar, 2);
 			recipe.AddIngredient(ItemID.MeteoriteBar, 5);
 			recipe.AddIngredient(ItemID.CrystalShard, 10);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
                          
-                        recipe = new ModRecipe(mod);
+                        /*recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.TitaniumBar, 2);
 			recipe.AddIngredient(ItemID.MeteoriteBar, 5);
 			recipe.AddIngredient(ItemID.CrystalShard, 10);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.AddRecipe();*/
 
                         recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "SpaceRockFragment", 4);
-                        recipe.AddIngredient(ItemID.MeteoriteBar, 3);
-                        recipe.AddIngredient(ItemID.CrystalShard, 7);
+			recipe.AddIngredient(ItemID.FallenStar, 2);
+                        recipe.AddIngredient(ItemID.MeteoriteBar, 5);
+                        recipe.AddIngredient(ItemID.CrystalShard, 10);
                         recipe.AddTile(TileID.MythrilAnvil);
                         recipe.SetResult(this);
                         recipe.AddRecipe();
