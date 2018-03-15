@@ -26,7 +26,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			//aiType = NPCID.GiantBat;
 		}
 		
-		
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Pink Eye");
@@ -56,14 +55,23 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			if (npc.ai[0] <= 240 && npc.ai[0] % 60 == 0)
 			{
-				float num4 = 10f;
+				/*float num4 = 10f;
 				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
 				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
 				float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
 				float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
 				float num8 = num4 / num7;
 				npc.velocity.X = num5 * num8;
-				npc.velocity.Y = num6 * num8;
+				npc.velocity.Y = num6 * num8;*/
+				Vector2 distance = Main.player[npc.target].Center - npc.Center;
+				bool longDistance = (distance.Length() >= 500);
+				distance.Normalize();
+
+				distance *= 17f;
+				if (longDistance)
+					distance *= 2f;
+
+				npc.velocity = distance;
 			}
 			
 			if (npc.ai[0] > 180)

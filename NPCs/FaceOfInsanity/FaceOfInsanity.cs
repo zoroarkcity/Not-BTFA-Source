@@ -16,6 +16,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
         int rememberDefense = 0;
 		int DashTimer = 0;
         int outOfRangeTimer = 0;
+		int blindTimer = 0;
 		bool phase2 = false;
 		float maxSpook = 1f;
 		const float spookyDashSpeed = 38f;
@@ -121,20 +122,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			Main.PlaySound(15, (int)Main.player[npc.target].Center.X, (int)Main.player[npc.target].Center.Y, 2);
 		}
 
-        public void CheckOutOfRange()
-        {
-            //Vector2 targetLocation = new Vector2(player.Center.X, player.Center.Y - 250);
-            Vector2 distance = Vector2.Subtract(Main.player[npc.target].Center, npc.Center);
-            bool outOfRange = distance.Length() > 1500;
-
-            if (outOfRange)
-            {
-                npc.Center = Main.player[npc.target].Center + new Vector2(0, 550); //teleport below player
-                SpookyDash();
-                outOfRangeTimer = 60;
-            }
-        }
-
         public void ShootEyeBeams(Player player, bool leadShots)
         {
             Vector2 eye1 = new Vector2(npc.Center.X - 36, npc.Center.Y - 4);
@@ -210,11 +197,47 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
         }
 
+		public void CheckOutOfRange()
+        {
+            //Vector2 targetLocation = new Vector2(player.Center.X, player.Center.Y - 250);
+            Vector2 distance = Vector2.Subtract(Main.player[npc.target].Center, npc.Center);
+            bool outOfRange = distance.Length() > 1500;
+
+            if (outOfRange)
+            {
+                npc.Center = Main.player[npc.target].Center + new Vector2(0, 550); //teleport below player
+                SpookyDash();
+                outOfRangeTimer = 60;
+            }
+        }
+
+		public void ProcessBlinding()
+		{
+			blindTimer++;
+
+			if (blindTimer == 28)
+			{
+				for (int i = 0; i < 255; i++)
+				{
+					Vector2 distance = Main.player[i].Center - npc.Center;
+					if (distance.Length() <= 1500)
+					{
+						if (Main.player[i].buffImmune[BuffID.Darkness])
+							Main.player[i].buffImmune[BuffID.Darkness] = false; //ignore immunity
+						Main.player[i].AddBuff(BuffID.Darkness, 29);
+					}
+				}
+				blindTimer = 0;
+			}
+		}
+
         public override void AI()
         {
 			npc.spriteDirection = 1;
 			npc.TargetClosest(true);
             Player player = Main.player[npc.target];
+
+			ProcessBlinding();
 			
 			if ((npc.life < npc.lifeMax * 2 / 3 && Main.expertMode) || npc.life < npc.lifeMax / 2)
 			{
@@ -420,7 +443,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 							npc.alpha = (int) (255f * (spookyDashSpeed - speed) / spookyDashSpeed) + 15; //visibility is proportional to speed
 
-							if (speed < 3.5f)
+							if (speed < 2.5f)
 							{
 								npc.ai[2]++;
                                 
