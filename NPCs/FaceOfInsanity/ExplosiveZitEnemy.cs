@@ -19,7 +19,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.width = 28;
 			npc.height = 32;
 			npc.friendly = false;
-			npc.damage = 32;
+			npc.damage = 50;
 			npc.defense = 0;
 			npc.lifeMax = 1;
 			npc.aiStyle = -1;
@@ -31,7 +31,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.damage = 40;
+			npc.damage = 100;
 		}
 		
 		public override void SetStaticDefaults()
@@ -75,7 +75,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			{
 				npc.hide = true;
 				npc.life = 0;
-				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("ExplosiveZit"), npc.damage, 1, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("ExplosiveZit"), npc.damage / 3, 1, Main.myPlayer, 0, 0);
 				Main.projectile[p].netUpdate = true;
 				Main.projectile[p].Kill();
 			}
