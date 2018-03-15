@@ -46,6 +46,10 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.scale = 1.25f;
 			npc.npcSlots = 5;
 			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TitanRock");
+
+			npc.buffImmune[BuffID.Poisoned] = true;
+			npc.buffImmune[BuffID.Venom] = true;
+			npc.buffImmune[BuffID.Confused] = true;
 		}
 		
 		public override void SetStaticDefaults()
@@ -115,6 +119,28 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 			curlDirection *= -1;
         }
+
+		public void CleanseBuff(int buffID)
+		{
+			if (!npc.buffImmune[buffID])
+			{
+				for (int b = 0; b < 5; ++b)
+				{
+					if (npc.buffType[b] == buffID)
+					  npc.DelBuff(b);
+				}
+				npc.buffImmune[buffID] = true;
+			}
+		}
+
+		public void InitializePhase2()
+		{
+			bisexual = true;
+			CleanseBuff(BuffID.OnFire);
+			CleanseBuff(BuffID.CursedInferno);
+			CleanseBuff(BuffID.ShadowFlame);
+			CleanseBuff(BuffID.Ichor);
+		}
 		
 		public override void AI()
 		{
@@ -133,7 +159,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 						direction.Normalize();
 						npc.velocity.Y = direction.Y * 15f;
 						npc.velocity.X = direction.X * 15f;
-						bisexual = true;
+						InitializePhase2();
 					}
 					else if (phase2timer == 355)
 					{
