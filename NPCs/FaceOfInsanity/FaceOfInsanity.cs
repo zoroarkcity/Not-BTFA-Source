@@ -201,7 +201,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
             for (int i = 0; i < boltsPerVolley; i++)
             {
-                Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-5, 5) / 2f, (float)Main.rand.Next(-5, 5) / 2f);
+                Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-5, 6) / 2f, (float)Main.rand.Next(-5, 6) / 2f);
                 int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 5, 0, Main.myPlayer, 1f, 0); //16
                 if (Main.expertMode)
                     Main.projectile[p].damage = npc.damage / 6; //25
@@ -544,20 +544,20 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			if (!rain)
 			{
-                for (int index = 0; index < Main.rand.Next(4, 5); index++)
-                    NPC.NewNPC((int)(npc.Center.X + Main.rand.Next(-50, 50)), (int)npc.Center.Y + 70, type, 0, 0f, 0f, 0f, 0f, npc.target);
+                for (int index = 0; index < Main.rand.Next(4, 6); index++)
+                    NPC.NewNPC((int)(npc.Center.X + Main.rand.Next(-50, 51)), (int)npc.Center.Y + 70, type, 0, 0f, 0f, 0f, 0f, npc.target);
 
                 if (Main.expertMode)
 				{
 					for (int index = 0; index < Main.rand.Next(1, 3); index++)
-						NPC.NewNPC((int)(npc.Center.X + Main.rand.Next(-50, 50)), (int)npc.Center.Y + 70, type, 0, 0f, 0f, 0f, 0f, npc.target);
+						NPC.NewNPC((int)(npc.Center.X + Main.rand.Next(-50, 51)), (int)npc.Center.Y + 70, type, 0, 0f, 0f, 0f, 0f, npc.target);
 				}
 
 				Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
 			}
 			else
 			{
-				for (int index = 0; index < Main.rand.Next(3, 5); index++)
+				for (int index = 0; index < Main.rand.Next(3, 6); index++)
 				{
 					Vector2 offset = new Vector2(Main.rand.Next(-200, 201), -200);
 					Vector2 direction = Main.player[npc.target].Center - (npc.Center + offset);
@@ -591,7 +591,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("SeveredTongue")));
 						break;
 					case 2:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BloodLeech")), Main.rand.Next(250, 270));
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BloodLeech")), Main.rand.Next(250, 271));
 						break;
 					case 3:
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("GoredLung")));
