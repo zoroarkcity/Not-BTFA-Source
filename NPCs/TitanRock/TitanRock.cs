@@ -360,8 +360,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 							direction.Normalize();
 							float sX = direction.X * 8f;
 							float sY = direction.Y * 8f;
-							sX += (float)Main.rand.Next(-15, 15) * 0.1f;
-							sY += (float)Main.rand.Next(-15, 15) * 0.1f;
+							sX += (float)Main.rand.Next(-15, 16) * 0.1f;
+							sY += (float)Main.rand.Next(-15, 16) * 0.1f;
 							int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), (int) npc.damage / 5, 1, Main.myPlayer, 0, 0);
 							Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 							Main.projectile[p].netUpdate = true;
@@ -377,8 +377,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 								direction.Normalize();
 								float sX = direction.X * 8f;
 								float sY = direction.Y * 8f;
-								sX += (float)Main.rand.Next(-15, 15) * 0.1f;
-								sY += (float)Main.rand.Next(-15, 15) * 0.1f;
+								sX += (float)Main.rand.Next(-15, 16) * 0.1f;
+								sY += (float)Main.rand.Next(-15, 16) * 0.1f;
 								int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), (int) npc.damage / 5, 1, Main.myPlayer, 0, 0);
 								Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 								Main.projectile[p].netUpdate = true;
@@ -522,7 +522,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LaserbeamStaff"), 1);
 					break;
 				case 3:
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BeamSlicer"), Main.rand.Next(210, 240));
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BeamSlicer"), Main.rand.Next(210, 241));
 					break;
 				case 4:
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EnergizedBlaster"), 1);
@@ -535,7 +535,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 					break;
 				case 7:
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientLauncher"), 1);
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 771, Main.rand.Next(110, 140));
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 771, Main.rand.Next(110, 141));
 					break;
 				}
 			}
