@@ -24,6 +24,8 @@ namespace ForgottenMemories
 		public static bool downedAcheron = false;
 		public static bool downedMag = false;
 		public static bool downedForestInvasion = false;
+		
+		public static bool spawnedGems = false;
 		public static int TremorTime;
 		
 		public override void Initialize()
@@ -40,6 +42,7 @@ namespace ForgottenMemories
 			forestInvasionUp = false;
 			downedForestInvasion = false;
 			downedMag = false;
+			spawnedGems = false;
 		}
 		
 		public override TagCompound Save()
@@ -55,6 +58,7 @@ namespace ForgottenMemories
 			if (downedArterius) downed.Add("Arterius");
 			if (downedForestInvasion) downed.Add("forestInvasion");
 			
+			if (spawnedGems) ore.Add("Gems");
 			if (downedMag) downed.Add("Mag");
 			
 			return new TagCompound {
@@ -73,6 +77,7 @@ namespace ForgottenMemories
 			Gelatine = ore.Contains("Gelatine");
 			Cryotine = ore.Contains("Cryotine");
 			Blight = ore.Contains("Blight");
+			spawnedGems = ore.Contains("Gems");
 			downedMag = downed.Contains("Mag");
 			downedForestInvasion = downed.Contains("forestInvasion");
 			
@@ -90,6 +95,8 @@ namespace ForgottenMemories
 			flags[5] = downedArterius;
 			flags[6] = downedForestInvasion;
 			flags[7] = downedAcheron;
+			flags[9] = spawnedGems;
+			flags[8] = downedMag;
 			writer.Write(flags);
 		}
 		
@@ -103,7 +110,9 @@ namespace ForgottenMemories
 			Blight = flags[4];
 			downedArterius = flags[5];
 			downedForestInvasion = flags[6];
+			downedForestInvasion = flags[8];
 			downedAcheron = flags[7];
+			spawnedGems = flags[9];
 		}
 		
 		public override void PostUpdate()
@@ -115,6 +124,34 @@ namespace ForgottenMemories
 					CustomInvasion.CheckCustomInvasionProgress();
 				}
 				CustomInvasion.UpdateCustomInvasion();
+			}
+			if(!spawnedGems)
+			{
+				for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 15E-04); k++)
+					{
+						int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
+						int j = WorldGen.genRand.Next((int) Main.worldSurface - 1, Main.maxTilesY - 10);
+						Tile tile = Main.tile[i, j];
+						if ((tile.type == 368) && tile.active())
+						{
+							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<TourmalineOre>());
+						}
+						if ((tile.type == 367) && tile.active())
+						{
+							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<CitrineOre>());
+						}
+					}
+					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 15E-04); k++)
+					{
+						int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
+						int j = WorldGen.genRand.Next((int) Main.worldSurface - 1, Main.maxTilesY - 10);
+						Tile tile = Main.tile[i, j];
+						if ((tile.type == 57) && tile.active())
+						{
+							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<SpinelOre>());
+						}
+					}
+				spawnedGems = true;
 			}
 		}
 		
@@ -169,42 +206,6 @@ namespace ForgottenMemories
 					trophyType = mod.ItemType("MagnoliacTrophy");
 				}
 				Item trophy = Main.item[Item.NewItem((int)center.X, (int)center.Y, 0, 0, trophyType, 1)];
-			}
-		}
-		
-		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
-		{
-			int ShiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
-			if (ShiniesIndex != -1)
-			{
-				tasks.Insert(ShiniesIndex + 1, new PassLegacy("Adding BTFA Gems", delegate (GenerationProgress progress)
-				{
-					progress.Message = "Moulding forgotten gemstones";
-					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 35E-05); k++)
-					{
-						int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
-						int j = WorldGen.genRand.Next((int) Main.worldSurface - 1, Main.maxTilesY - 10);
-						Tile tile = Main.tile[i, j];
-						if ((tile.type == 368) && j > Main.worldSurface)
-						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<TourmalineOre>(), false, 0f, 0f, false, true);
-						}
-						if ((tile.type == 367) && j > Main.worldSurface)
-						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<CitrineOre>(), false, 0f, 0f, false, true);
-						}
-					}
-					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 31-05); k++)
-					{
-						int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
-						int j = WorldGen.genRand.Next((int) Main.worldSurface - 1, Main.maxTilesY - 10);
-						Tile tile = Main.tile[i, j];
-						if ((tile.type == 57) && j > Main.worldSurface)
-						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<SpinelOre>(), false, 0f, 0f, false, true);
-						}
-					}
-				}));
 			}
 		}
 	}
