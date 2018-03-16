@@ -30,7 +30,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 25000;
+            npc.lifeMax = 20000;
             npc.damage = 80;
             npc.defense = 22;
             npc.knockBackResist = 0f;
@@ -44,8 +44,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.HitSound = SoundID.NPCHit8;
 			npc.DeathSound = SoundID.NPCDeath13;
             npc.npcSlots = 5;
-			//music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/darknessthatchillsmenshearts");
-			music = MusicID.Boss4;
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/darknessthatchillsmenshearts");
+			//music = MusicID.Boss4;
 
 			if (Main.bloodMoon)
 				spawnedInBloodMoon = true;
@@ -59,8 +59,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 30000 + ((numPlayers) * 3000);
-			npc.damage = 150;
+			npc.lifeMax = 24000 + ((numPlayers) * 2400);
+			npc.damage = 130;
 			npc.defense = 28;
 		}
 		
@@ -447,7 +447,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
                             npc.dontTakeDamage = false;
 							rememberDefense = npc.defense;
-                            npc.defense = 113;
+                            npc.defense = 1;
 
                             SpookyDash();
 						}
@@ -456,7 +456,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							npc.velocity *= 0.97f; //slowdown
 							float speed = npc.velocity.Length();
 
-							npc.alpha = (int) (255f * (spookyDashSpeed - speed) / spookyDashSpeed) + 15; //visibility is proportional to speed
+							npc.alpha = (int) (255f * (spookyDashSpeed - speed) / spookyDashSpeed); //visibility is proportional to speed
 
 							if (speed < 2.5f)
 							{
@@ -508,7 +508,20 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				{
 					npc.timeLeft = 10;
 				}
+				if (!spawnedInBloodMoon && spookyDashing)
+					Main.bloodMoon = false;
             }
+		}
+
+		public override bool StrikeNPC (ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+		{
+			if (npc.defense == 1)
+			{
+				damage *= 0.5;
+				return false;
+			}
+
+			return true;
 		}
 
 		public override bool CheckDead()
