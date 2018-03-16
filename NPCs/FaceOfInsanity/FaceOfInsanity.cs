@@ -13,7 +13,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		int aiTimer = 0; //only used in first phase atm
 		int BloodTimer = 0;
 		int BloodRainTimer = 0;
-        int rememberDefense = 0;
 		int DashTimer = 0;
         int outOfRangeTimer = 0;
 		int blindTimer = 0;
@@ -61,7 +60,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			npc.lifeMax = 24000 + ((numPlayers) * 2400);
 			npc.damage = 130;
-			npc.defense = 28;
+			npc.defense = 34;
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -125,10 +124,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			//Main.player[npc.target].GetModPlayer<BTFAPlayer>(mod).spookTimer = 120;
 
 			if (phase2)
-			{
 				spookyDashing = true;
-				Main.bloodMoon = true;
-			}
 
 			double angle = Math.Atan2(direction.Y, direction.X);
 			npc.velocity = new Vector2(spookyDashSpeed, 0).RotatedBy(angle);
@@ -340,8 +336,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				{
 					phase2 = true;
 					Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 2);
-					if (Main.expertMode)
-						npc.defense *= 2;
 				}
 				
 				npc.velocity = Vector2.Zero;
@@ -418,7 +412,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 									ShootBigBeam();
 							}
 						}
-						else //messy. this section feels very messy
+						else //messy. this section above and below feels very messy
 						{
                             ShootBigBeam();
 							if (Main.expertMode && maxSpook > 1f)
@@ -444,10 +438,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						else if (npc.ai[3] == fadeLimit)
 						{
 							npc.Center = Main.player[npc.target].Center + new Vector2(0, -500); //teleport above player
+							npc.dontTakeDamage = false;
 
-                            npc.dontTakeDamage = false;
-							rememberDefense = npc.defense;
-                            npc.defense = 1;
+							Main.bloodMoon = true;
 
                             SpookyDash();
 						}
@@ -471,8 +464,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 								}
 								else //reset
 								{
-                                    npc.defense = rememberDefense;
-									npc.ai[2] = 0;
+                                    npc.ai[2] = 0;
 									npc.ai[3] = 0;
 									npc.alpha = 225;
 
@@ -515,7 +507,10 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public override bool StrikeNPC (ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
 		{
-			if (npc.defense == 1)
+			if (maxSpook > 1f)
+				damage *= 0.9;
+			
+			if (spookyDashing)
 			{
 				damage *= 0.5;
 				return false;
