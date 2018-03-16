@@ -30,9 +30,9 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override void SetDefaults()
 		{
 			npc.aiStyle = -1;
-			npc.lifeMax = 30000;
+			npc.lifeMax = 50000;
 			npc.damage = 100;
-			npc.defense = 26;
+			npc.defense = 32;
 			npc.knockBackResist = 0f;
 			npc.width = 170;
 			npc.height = 170;
@@ -65,8 +65,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 40000 + ((numPlayers) * 4000);
-			npc.damage = 130;
+			npc.lifeMax = 75000 + ((numPlayers) * 7500);
+			npc.damage = 135;
 			npc.defense = 42;
 		}
 
@@ -468,10 +468,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 		public override bool StrikeNPC (ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
 		{
+			if (bisexual)
+				damage *= 0.9;
+			
 			if (takeLessDamage)
-			{
-				damage /= 2;
-			}
+				damage *= 0.5;
 
 			return true;
 		}
