@@ -20,11 +20,13 @@ namespace ForgottenMemories.Projectiles
 
 		public override void SetDefaults()
 		{
-			projectile.width = 153;
-            projectile.height = 153;
-			projectile.timeLeft = 221;
+			projectile.width = 102;
+            projectile.height = 102;
+			projectile.timeLeft = 201;
 			projectile.penetrate = -1;
 			projectile.hostile = true;
+			projectile.hide = true;
+			projectile.scale = 1.2f;
 		}
 
         public override bool CanHitPlayer(Player target)
@@ -74,7 +76,7 @@ namespace ForgottenMemories.Projectiles
 				if (target.active && !target.dead)
 					projectile.Center = target.Center;
 
-                if (projectile.timeLeft == 61  || projectile.timeLeft == 81 || projectile.timeLeft == 101 || projectile.timeLeft == 121 || projectile.timeLeft == 141 || projectile.timeLeft == 161 || projectile.timeLeft == 181 || projectile.timeLeft == 201)
+                if (projectile.timeLeft == 61  || projectile.timeLeft == 81 || projectile.timeLeft == 101 || projectile.timeLeft == 121 || projectile.timeLeft == 141 || projectile.timeLeft == 161 || projectile.timeLeft == 181)
 				{
 					projectile.hide = !projectile.hide;
 				}
