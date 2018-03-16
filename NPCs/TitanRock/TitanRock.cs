@@ -45,7 +45,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.DeathSound = SoundID.NPCDeath44;
 			npc.scale = 1.25f;
 			npc.npcSlots = 5;
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TitanRock");
+			//music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TitanRock");
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/godofwar");
 
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Venom] = true;
@@ -65,8 +66,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 75000 + ((numPlayers) * 7500);
-			npc.damage = 135;
+			npc.lifeMax = 60000 + ((numPlayers) * 6000);
+			npc.damage = 130;
 			npc.defense = 42;
 		}
 
@@ -247,10 +248,15 @@ namespace ForgottenMemories.NPCs.TitanRock
 						}
 					}
 					
-					//timer % 180 == 10
-					if (shootTimer == 10 || shootTimer == 190 || shootTimer == 370 || shootTimer == 550 || shootTimer == 730)
+					//timer % 180 == 0
+					if (shootTimer == 0 || shootTimer == 180 || shootTimer == 360 || shootTimer == 540 || shootTimer == 720)
 					{
 						MakeFloatyMeteors();
+
+						npc.buffImmune[BuffID.OnFire] = false;
+						npc.buffImmune[BuffID.CursedInferno] = false;
+						npc.buffImmune[BuffID.ShadowFlame] = false;
+						npc.buffImmune[BuffID.Ichor] = false;
 					}
 					
 					//timer % 200 == 0 and expert, or timer % 400 == 0
@@ -468,9 +474,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 		public override bool StrikeNPC (ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
 		{
-			if (bisexual)
-				damage *= 0.9;
-			
 			if (takeLessDamage)
 				damage *= 0.5;
 
