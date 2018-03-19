@@ -19,8 +19,8 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 
 			item.damage = 56;
 			item.melee = true;
-			item.width = 88;
-			item.height = 88;
+			item.width = 60;
+			item.height = 60;
 
 			item.useTime = 44;
 			item.useAnimation = 22;

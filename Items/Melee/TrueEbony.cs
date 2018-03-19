@@ -15,8 +15,8 @@ namespace ForgottenMemories.Items.Melee
 
 			item.damage = 116;
 			item.melee = true;
-			item.width = 88;
-			item.height = 88;
+			item.width = 74;
+			item.height = 74;
 
 			item.useTime = 28;
 			item.crit = 12;
