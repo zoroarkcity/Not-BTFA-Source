@@ -45,8 +45,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.DeathSound = SoundID.NPCDeath44;
 			npc.scale = 1.25f;
 			npc.npcSlots = 5;
-			//music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TitanRock");
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/godofwar");
+
+            if (ForgottenMemories.instance.songsLoaded)
+                music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/godofwar");
+            else
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TitanRock");
 
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Venom] = true;
