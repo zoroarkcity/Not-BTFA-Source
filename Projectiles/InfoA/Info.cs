@@ -107,7 +107,7 @@ namespace ForgottenMemories.Projectiles.InfoA
 				}
 			}
 
-			if (firedFromNeedler && Main.rand.Next(3) == 0)
+			if (firedFromNeedler && Main.rand.Next(2) == 0)
 			{
 				for (int i = 0; i < 2; i++)
 				{
@@ -117,7 +117,7 @@ namespace ForgottenMemories.Projectiles.InfoA
 					Vector2 velocity = new Vector2(10, 0).RotatedBy(angle);
 					velocity.X += (float) Main.rand.Next(-60, 61) * 0.03f;
 					velocity.Y += (float) Main.rand.Next(-60, 61) * 0.03f;
-					Projectile.NewProjectile(player.Center.X, player.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("laserbeamNeedle"), projectile.damage / 3, projectile.knockBack / 2, projectile.owner);
+					Projectile.NewProjectile(player.Center.X, player.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("laserbeamNeedle"), projectile.damage / 4, projectile.knockBack / 2, projectile.owner);
 				}
 			}
 		}
