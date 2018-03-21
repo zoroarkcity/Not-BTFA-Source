@@ -53,8 +53,11 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.npcSlots = 15;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 1;
-			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/out");
-			//music = MusicID.Boss3;
+			
+            if (ForgottenMemories.instance.songsLoaded)
+                music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/out");
+            else
+                music = MusicID.Boss3;
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
