@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using ReLogic.Graphics;
 using Terraria.UI;
 using System;
-using ForgottenMemories.Shaders;
 
 namespace ForgottenMemories
 {
