@@ -16,10 +16,10 @@ namespace ForgottenMemories.Items.Magic
 			item.mana = 12;
 			item.width = 25;
 			item.height = 26;
-			item.useTime = 39;
+			item.useTime = 37;
 			item.UseSound = SoundID.Item20;
 
-			item.useAnimation = 39;
+			item.useAnimation = 37;
 			item.useStyle = 5;
 			Item.staff[item.type] = true;
 			item.noMelee = true;
@@ -28,7 +28,7 @@ namespace ForgottenMemories.Items.Magic
 			item.rare = 1;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("SpinalBolt");
-			item.shootSpeed = 5f;
+			item.shootSpeed = 6f;
 		}
 
     public override void SetStaticDefaults()

@@ -11,15 +11,15 @@ namespace ForgottenMemories.Items.Magic
 		public override void SetDefaults()
 		{
 
-			item.damage = 20;
+			item.damage = 21;
 			item.magic = true;
 			item.mana = 9;
 			item.width = 25;
 			item.height = 26;
-			item.useTime = 26;
+			item.useTime = 28;
 			item.UseSound = SoundID.Item20;
 
-			item.useAnimation = 26;
+			item.useAnimation = 28;
 			item.useStyle = 1;
 			item.noMelee = true;
 			item.knockBack = 5;
@@ -61,7 +61,7 @@ namespace ForgottenMemories.Items.Magic
 			
 			if (Main.rand.Next(2) == 0)
 			{
-				Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("BigSpark"), (damage + 5), knockBack, player.whoAmI);
+				Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("BigSpark"), damage, knockBack, player.whoAmI);
 			}
 			return false;
 		}
