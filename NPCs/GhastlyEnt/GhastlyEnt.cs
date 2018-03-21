@@ -14,6 +14,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		int p3Timer;
 		int p3Timer2;
 		bool p3;
+		int ai;
 		
         public override void SetDefaults()
         {
@@ -136,15 +137,6 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			{
 				Phase1(player);
 			}
-			else if (!Main.expertMode || npc.life > (int)(npc.lifeMax/3) && Main.expertMode)
-			{
-				Phase2(player);
-			}
-			else
-			{
-				Phase3(player);
-				p3 = true;
-			}
 					
 			if (!player.active || player.dead)
             {
@@ -161,296 +153,138 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public void Phase1(Player player)
 		{
-			if (npc.ai[0] <= 180) //move towards player
+			bool flag1 = false;
+			int num1 = 16;
+			bool flag3 = false;
+			bool flag4 = false;
+			if (npc.position.X > (double) npc.ai[0] - (double) num1 && npc.position.X < (double) npc.ai[0] + (double) num1)
+				flag3 = true;
+			else if (npc.velocity.X < 0.0 && npc.direction > 0 || npc.velocity.X > 0.0 && npc.direction < 0)
+				flag3 = true;
+			int num2 = num1 + 24;
+			if (npc.position.Y > (double) npc.ai[1] - (double) num2 && npc.position.Y < (double) npc.ai[1] + (double) num2)
+				flag4 = true;
+			if (flag3 & flag4)
 			{
-				npc.alpha = 0;
-				if (npc.direction == -1 && (double) npc.velocity.X > -7)
-				{
-					npc.velocity.X -= 0.5f;
-					if ((double) npc.velocity.X > 6.0)
-					  npc.velocity.X -= 0.5f;
-					else if ((double) npc.velocity.X > 0.0)
-					  npc.velocity.X += 0.05f;
-					if ((double) npc.velocity.X < -6.0)
-					  npc.velocity.X = -4f;
-				}
-				else if (npc.direction == 1 && (double) npc.velocity.X < 7)
-				{
-					npc.velocity.X += 0.5f;
-					if ((double) npc.velocity.X < -6.0)
-						npc.velocity.X += 0.5f;
-					else if ((double) npc.velocity.X < 0.0)
-						npc.velocity.X -= 0.05f;
-					if ((double) npc.velocity.X > 6.0)
-						npc.velocity.X = 4f;
-				}
-				if (directionY == -1 && (double) npc.velocity.Y > -5)
-				{
-					npc.velocity.Y -= 0.25f;
-					if ((double) npc.velocity.Y > 3)
-					  npc.velocity.Y -= 0.25f;
-					else if ((double) npc.velocity.Y > 0.0)
-					  npc.velocity.Y += 0.025f;
-					if ((double) npc.velocity.Y < -3)
-					  npc.velocity.Y = -2f;
-				}
-				else if (directionY == 1 && (double) npc.velocity.Y < 5)
-				{
-					npc.velocity.Y += 0.25f;
-					if ((double) npc.velocity.Y < -3)
-					  npc.velocity.Y += 0.25f;
-					else if ((double) npc.velocity.Y < 0.0)
-					  npc.velocity.Y -= 0.025f;
-					if ((double) npc.velocity.Y > 3)
-					  npc.velocity.Y = 2f;
-				}
-			}
-			else
-			{
-				npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.03f); //slowly reduce velocity
-				
-				if (npc.ai[0] <= 360)
-					npc.alpha += 5; //make it look more invisible over time so that teleports look better
-			}
-			if (npc.ai[0] > 180 && npc.ai[0] <= 384 && npc.ai[1] == 0)
-			{ //DASH
-				float num4 = 17f;
-				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
-				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
-				float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
-				float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
-				float num8 = num4 / num7;
-				npc.velocity.X = num5 * num8;
-				npc.velocity.Y = num6 * num8;
-				Main.PlaySound(SoundID.Item119, npc.position);
-				
-				npc.ai[1] = 1;
-			}
-			if (npc.alpha == 255 && npc.ai[1] == 1)
-			{ //TELEPORT
-				Vector2 vector = new Vector2(0, 550).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360)));
-				npc.Center = player.Center + vector;
-				npc.ai[1] = 0;
-				npc.alpha = 0;
-				npc.netUpdate = true;
-				
-				Main.PlaySound(SoundID.Item8, npc.position);
-			}
-			
-			if (npc.ai[0] > 384 && npc.ai[0] <= 420)
-			{ //MAGIK
-				npc.alpha = 0;
-				npc.velocity = Vector2.Zero;
-				
-				if (npc.ai[0] == 420)
-				{
-					switch(Main.rand.Next(3))
-					{
-						case 0: DruidCircle(player, 0); //Druidic Circle
-							break;
-						case 1: Branches(player, 2); //Branches
-							break;
-						case 2: Portals();
-							break;
-					}
-					npc.netUpdate = true;
-				}
-			}
-			
-			if (npc.ai[0] > 420)
-			{
-				npc.ai[0] = 0;
-				npc.ai[1] = 0;
-			}
-		}
-		
-		public void Phase2(Player player)
-		{
-			if (npc.ai[2] == 0)
-			{
-				NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SapSlime"));
-				npc.ai[0] = 0;
-				npc.ai[1] = 0;
 				npc.ai[2]++;
-				Main.PlaySound(SoundID.NPCDeath10, npc.position);
-			}
-			
-			if (npc.ai[0] <= 180) //move towards player
-			{
-				npc.alpha = 0;
-				if (npc.direction == -1 && (double) npc.velocity.X > -7)
+				if ((double) npc.ai[2] >= 30.0 && num2 == 16)
+					flag1 = true;
+				if ((double) npc.ai[2] >= 60.0)
 				{
-					npc.velocity.X -= 0.5f;
-					if ((double) npc.velocity.X > 6.0)
-					  npc.velocity.X -= 0.5f;
-					else if ((double) npc.velocity.X > 0.0)
-					  npc.velocity.X += 0.05f;
-					if ((double) npc.velocity.X < -6.0)
-					  npc.velocity.X = -4f;
-				}
-				else if (npc.direction == 1 && (double) npc.velocity.X < 7)
-				{
-					npc.velocity.X += 0.5f;
-					if ((double) npc.velocity.X < -6.0)
-						npc.velocity.X += 0.5f;
-					else if ((double) npc.velocity.X < 0.0)
-						npc.velocity.X -= 0.05f;
-					if ((double) npc.velocity.X > 6.0)
-						npc.velocity.X = 4f;
-				}
-				if (directionY == -1 && (double) npc.velocity.Y > -6)
-				{
-					npc.velocity.Y -= 0.25f;
-					if ((double) npc.velocity.Y > 3)
-					  npc.velocity.Y -= 0.25f;
-					else if ((double) npc.velocity.Y > 0.0)
-					  npc.velocity.Y += 0.025f;
-					if ((double) npc.velocity.Y < -3)
-					  npc.velocity.Y = -2f;
-				}
-				else if (directionY == 1 && (double) npc.velocity.Y < 6)
-				{
-					npc.velocity.Y += 0.25f;
-					if ((double) npc.velocity.Y < -3)
-					  npc.velocity.Y += 0.25f;
-					else if ((double) npc.velocity.Y < 0.0)
-					  npc.velocity.Y -= 0.025f;
-					if ((double) npc.velocity.Y > 3)
-					  npc.velocity.Y = 2f;
+					npc.ai[2] = -200f;
+					npc.direction = npc.direction * -1;
+					npc.velocity.X *= -1;
 				}
 			}
 			else
 			{
-				npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.03f); //slowly reduce velocity
-				
-				if (npc.ai[0] <= 360)
-					npc.alpha += 5; //make it look more invisible over time so that teleports look better
+				npc.ai[0] = (float) npc.position.X;
+				npc.ai[1] = (float) npc.position.Y;
+				npc.ai[2] = 0.0f;
 			}
-			if (npc.ai[0] > 180 && npc.ai[0] <= 384 && npc.ai[1] == 0)
-			{ //DASH
-				float num4 = 19f;
-				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
-				float num5 = Main.player[npc.target].position.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
-				float num6 = Main.player[npc.target].position.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
-				float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
-				float num8 = num4 / num7;
-				npc.velocity.X = num5 * num8;
-				npc.velocity.Y = num6 * num8;
-				
-				npc.ai[1] = 1;
-				Main.PlaySound(SoundID.Item119, npc.position);
-			}
-			if (npc.alpha == 255 && npc.ai[1] == 1)
-			{ //TELEPORT
-				Vector2 vector = new Vector2(0, 550).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360)));
-				npc.Center = player.Center + vector;
-				npc.ai[1] = 0;
-				npc.alpha = 0;
-				npc.netUpdate = true;
-				Main.PlaySound(SoundID.Item8, npc.position);
-			}
+			npc.TargetClosest(true);
 			
-			if (npc.ai[0] > 384 && npc.ai[0] <= 420)
-			{ //MAGIK
-				npc.alpha = 0;
-				npc.velocity = Vector2.Zero;
-				
-				if (npc.ai[0] == 420)
+			if (Main.player[npc.target].position.X + (double) (Main.player[npc.target].width / 2) > npc.position.X + (double) (npc.width / 2))
+				npc.direction = -1;
+			else
+				npc.direction = 1;
+		  
+			int index1 = (int) ((npc.position.X + (double) (npc.width / 2)) / 16.0) + npc.direction * 2;
+			int num3 = (int) ((npc.position.Y + (double) npc.height) / 16.0);
+			bool flag5 = true;
+			bool flag6 = false;
+			int num4 = 3;
+
+			for (int index2 = num3; index2 < num3 + num4; ++index2)
+			{
+				if (Main.tile[index1, index2] == null)
+					Main.tile[index1, index2] = new Tile();
+				if (Main.tile[index1, index2].nactive() && Main.tileSolid[(int) Main.tile[index1, index2].type] || (int) Main.tile[index1, index2].liquid > 0)
 				{
-					switch(Main.rand.Next(3))
-					{
-						case 0: DruidCircle(player, 0); //Druidic Circle
-							break;
-						case 1: Branches(player, 3); //Branches
-							break;
-						case 2: Portals();
-							break;
-					}
-					npc.netUpdate = true;
+					if (index2 <= num3 + 1)
+					  flag6 = true;
+					flag5 = false;
+					break;
 				}
 			}
-			
-			if (npc.ai[0] > 420)
+			if (flag1)
 			{
-				npc.ai[0] = 0;
-				npc.ai[1] = 0;
-			}
-		}
-		
-		public void Phase3(Player player)
-		{ //basic phase3 ai, will be improved later
-			//planned phase 3 ai- dash at player constantly, cause cursed fire to rain from sky, create druidic circles occasionally
-			//add in screenshader maybe
-		
-			if (npc.ai[3] == 0)
-			{
-				npc.ai[0] = 0;
-				npc.ai[1] = 0;
-				npc.alpha = 0;
-				npc.ai[3]++;
-				Main.PlaySound(SoundID.NPCDeath10, npc.position);
-				
-				npc.netUpdate = true;
+			  flag6 = false;
+			  flag5 = true;
 			}
 			
-			if (Main.rand.Next(4) == 0)
+			if(player.position.Y < npc.position.Y - 50)
 			{
-				int d = Dust.NewDust(new Vector2((float) npc.position.X, (float) npc.position.Y), npc.width, npc.height, 163, 0.0f, 0.0f, 100, new Color(), 1.5f);
-				Main.dust[d].noGravity = true;
+				flag5 = false;
 			}
-			npc.damage = 135;
-			
-			p3Timer++;
-			if(p3Timer % 60 == 0 && p3Timer % 460 < 360)
+			if (flag5)
 			{
-				p3Timer2 = 0;
-				float num4 = Main.rand.Next(20, 26);
-				Vector2 vector2 = new Vector2(npc.position.X + (float) npc.width * 0.5f, npc.position.Y + (float) npc.height * 0.5f);
-				float num5 = Main.player[npc.target].position.X + Main.player[npc.target].velocity.X + (float) (Main.player[npc.target].width / 2) - vector2.X;
-				float num6 = Main.player[npc.target].position.Y + Main.player[npc.target].velocity.Y + (float) (Main.player[npc.target].height / 2) - vector2.Y;
-				float num7 = (float) Math.Sqrt((double) num5 * (double) num5 + (double) num6 * (double) num6);
-				float num8 = num4 / num7;
-				npc.velocity.X = num5 * num8;
-				npc.velocity.Y = num6 * num8;
-				Main.PlaySound(SoundID.Item45, npc.position);
-				npc.netUpdate = true;
+				npc.velocity.Y += 0.1f;
+				if (npc.velocity.Y > 3)
+					npc.velocity.Y = 3;
 			}
-			else if (p3Timer % 460 < 360)
+			else if (npc.velocity.Y < -4)
 			{
-				Vector2 Vel = Main.player[npc.target].Center - npc.Center;
-				Vel.Normalize();
-				Vel *= 6;
-				npc.velocity = Vector2.Lerp(npc.velocity, Vel, 0.06f);
+				npc.velocity.Y = -4;
 			}
+			float num11 = 4f;
 			
-			if(p3Timer % 50 == 0)
+			if (npc.direction == 1 && npc.velocity.X > -num11)
 			{
-				FireRain(Main.player[npc.target], Main.rand.Next(1,3));
-			}
-			
-			if (p3Timer % 500 == 0)
-			{
-				DruidCircle(Main.player[npc.target], 0);
-			}
-			
-			
-			if(p3Timer % 460 >= 360)
-			{
-				npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Zero, 0.1f);
-				p3Timer2++;
-				if (p3Timer2 >= 33)
+				npc.velocity.X -= 0.1f;
+				if (npc.velocity.X > num11)
 				{
-					Vector2 Vel = (Main.player[npc.target].Center - npc.Center);
-					Vel.Normalize();
-					Vel *= 15;
-					Vel += Main.player[npc.target].velocity;
-					Vector2 Pos = npc.Center;
-					Projectile proj = Main.projectile[Projectile.NewProjectile(Pos, Vel, mod.ProjectileType("CursedFireGhent"), (int)(npc.damage/4), 1, Main.myPlayer, 0, 0)];
-					proj.netUpdate = true;
-					p3Timer2 = 0;
-					
-					Main.PlaySound(SoundID.Item101, npc.position);
+					npc.velocity.X -= 0.1f;
 				}
+				else if (npc.velocity.X > 0)
+				{
+					npc.velocity.X += 0.05f;
+				}
+				if (npc.velocity.X < -num11)
+					npc.velocity.X = -num11;
+			}
+			else if (npc.direction == -1 && npc.velocity.X < num11)
+			{
+				npc.velocity.X += 0.1f;
+				if (npc.velocity.X < num11)
+				{
+					npc.velocity.X += 0.1f;
+				}
+				else if (npc.velocity.X < 0)
+				{
+					npc.velocity.X -= 0.05f;
+				}
+				if (npc.velocity.X > num11)
+					npc.velocity.X = num11;
+			}
+			float num12 = 2f;
+			if (npc.directionY == -1 && npc.velocity.Y > -num12)
+			{
+				npc.velocity.Y -= 0.04f;
+				if (npc.velocity.Y > (double) num12)
+				{
+					npc.velocity.Y -= 0.05f;
+				}
+				else if (npc.velocity.Y > 0)
+				{
+					npc.velocity.Y += 0.03f;
+				}
+				if (npc.velocity.Y < -num12)
+					npc.velocity.Y = -num12;
+			}
+			if (npc.directionY == 1 && npc.velocity.Y < num12)
+			{
+				npc.velocity.Y += 0.04f;
+				if (npc.velocity.Y < num12)
+				{
+					npc.velocity.Y += 0.05f;
+				}
+				else if (npc.velocity.Y < 0)
+				{
+					npc.velocity.Y -= 0.03f;
+				}
+				if (npc.velocity.Y > num12)
+					npc.velocity.Y = num12;
 			}
 		}
 		
