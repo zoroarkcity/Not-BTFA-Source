@@ -78,7 +78,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			gayvector = gayvector.RotatedBy(System.Math.PI / 35);
+			gayvector = gayvector.RotatedBy(System.Math.PI / 32);
 			homovector = gayvector.RotatedBy(System.Math.PI);
 			bivector = gayvector.RotatedBy(System.Math.PI / 2);
 			lesvector = gayvector.RotatedBy(System.Math.PI / -2);

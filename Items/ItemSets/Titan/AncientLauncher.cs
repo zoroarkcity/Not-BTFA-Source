@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		{
 			item.CloneDefaults(ItemID.RocketLauncher);
 
-			item.damage = 38;
+			item.damage = 50;
 			item.ranged = true;
 			item.width = 29;
 			item.height = 24;
