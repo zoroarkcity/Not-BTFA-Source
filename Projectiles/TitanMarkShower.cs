@@ -12,6 +12,8 @@ namespace ForgottenMemories.Projectiles
 {
 	public class TitanMarkShower : ModProjectile
 	{
+        float offset = 15.3f;
+        
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Titan Mark Shower");
@@ -26,7 +28,10 @@ namespace ForgottenMemories.Projectiles
 			projectile.penetrate = -1;
 			projectile.hostile = true;
 			projectile.hide = true;
-			projectile.scale = 1.2f;
+			projectile.scale = 1.3f;
+            projectile.light = 0.7f;
+
+            offset = projectile.width * (projectile.scale - 1) / 2f;
 		}
 
         public override bool CanHitPlayer(Player target)
@@ -72,9 +77,9 @@ namespace ForgottenMemories.Projectiles
             }
 			else
 			{
-				Player target = Main.player[(int) projectile.ai[0]];
-				if (target.active && !target.dead)
-					projectile.Center = target.Center;
+                Player target = Main.player[(int) projectile.ai[0]];
+				//if (target.active && !target.dead)
+				projectile.Center = target.Center + new Vector2(offset, offset);
 
                 if (projectile.timeLeft == 61  || projectile.timeLeft == 81 || projectile.timeLeft == 101 || projectile.timeLeft == 121 || projectile.timeLeft == 141 || projectile.timeLeft == 161 || projectile.timeLeft == 181)
 				{
