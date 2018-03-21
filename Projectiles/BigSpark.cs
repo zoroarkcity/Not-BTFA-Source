@@ -40,7 +40,7 @@ namespace ForgottenMemories.Projectiles
 			{
 				float sX = Main.rand.Next(-60, 60) * 0.1f;
 				float sY = Main.rand.Next(-60, 60) * 0.1f;
-				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sX, sY, 504, projectile.damage, 5f, projectile.owner);
+				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sX, sY, 504, projectile.damage / 3, 5f, projectile.owner);
 			}
 		}
 		

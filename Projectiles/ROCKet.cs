@@ -52,11 +52,10 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void Kill(int timeLeft)
 		{
-			
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 6; i++)
 			{
 				Vector2 vector2 = new Vector2(8, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360)));
-				int kek = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, vector2.X, vector2.Y, mod.ProjectileType("RockShard"), (int)(projectile.damage * 0.75), 5f, projectile.owner);
+				int kek = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, vector2.X, vector2.Y, mod.ProjectileType("RockShard"), projectile.damage / 3, 5f, projectile.owner);
 			}
 			
 			Main.PlaySound(SoundID.Item14, projectile.position);
