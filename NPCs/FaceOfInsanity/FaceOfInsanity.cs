@@ -43,8 +43,12 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.HitSound = SoundID.NPCHit8;
 			npc.DeathSound = SoundID.NPCDeath13;
             npc.npcSlots = 5;
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/darknessthatchillsmenshearts");
-			//music = MusicID.Boss4;
+			//NPCID.Sets.TrailCacheLength[npc.type] = 10;
+			//NPCID.Sets.TrailingMode[npc.type] = 1;
+            if (ForgottenMemories.instance.songsLoaded)
+                music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/darknessthatchillsmenshearts");
+            else
+                music = MusicID.Boss4;
 
 			if (Main.bloodMoon)
 				spawnedInBloodMoon = true;
