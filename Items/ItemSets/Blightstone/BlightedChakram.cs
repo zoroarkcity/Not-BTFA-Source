@@ -10,9 +10,9 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
     {
         public override void SetDefaults()
         {
-
-            item.damage = 51;            
-            item.melee = true;
+			item.damage = 130;            
+            item.melee = false;
+			item.thrown = true;
             item.width = 30;
             item.height = 30;
 
@@ -32,19 +32,23 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Blighted Chakram");
-      Tooltip.SetDefault("Throws 2 chakrams that pierce through enemies at an insane velocity");
+      Tooltip.SetDefault("Throws 4 chakrams that pierce through enemies at an insane velocity");
     }
 
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			int projectileAmount = 2;
+			//float damageMultiplier = (player.meleeDamage + player.thrownDamage) / 2;
+			//damage = item.damage * damageMultiplier;
+			
+			int projectileAmount = 4;
+			Vector2 velVect = new Vector2(speedX, speedY);
+			//Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect.X, velVect.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
 			for (int k = 0; k < projectileAmount; k++)
 			{
-				Vector2 velVect = new Vector2(speedX, speedY);
 				Vector2 velVect2 = velVect.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-15, 15)));
 				
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, 0, knockBack, Main.myPlayer, 0, 0);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
 			}
             return false;
         }
