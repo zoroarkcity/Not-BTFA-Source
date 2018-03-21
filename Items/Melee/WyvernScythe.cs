@@ -15,8 +15,8 @@ namespace ForgottenMemories.Items.Melee
 			item.width = 58;
 			item.height = 52;
 
-			item.useTime = 10;
-			item.useAnimation = 20;
+			item.useTime = 30;
+			item.useAnimation = 30;
 			item.useStyle = 1;
 			item.knockBack = 6.5f;
 			item.value = 138000;
@@ -38,10 +38,8 @@ namespace ForgottenMemories.Items.Melee
         {
 			for (int i = 0; i < 8; i++)
 			{
-				Vector2 Offset = Vector2.UnitX * 10;
-				Offset.RotatedBy(MathHelper.ToRadians(360/8 * i));
-				int ai = (speedX < 0) ? -1 : 1;
-				int p = Projectile.NewProjectile(position + Offset, Offset, Mod.ProjectileType("Windblade"), damage, knockBack, player.whoAmI, 0, ai);
+				Vector2 Velocity = (Vector2.UnitX * 4).RotatedBy((MathHelper.Pi / 4) * i);
+				int p = Projectile.NewProjectile(position, Velocity, mod.ProjectileType("Windblade"), damage, knockBack, player.whoAmI, 0, 0.05f);
 			}
 			return false;
         }
