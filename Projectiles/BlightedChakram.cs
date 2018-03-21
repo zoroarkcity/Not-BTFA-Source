@@ -28,7 +28,8 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void AI()
 		{
-			Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0f, 0f, mod.ProjectileType("BChakramContact"), (int)(51 * Main.player[projectile.owner].thrownDamage), 5f, projectile.owner);
+			Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0f, 0f, mod.ProjectileType("BChakramContact"), projectile.damage, 5f, projectile.owner);
+			//Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0f, 0f, mod.ProjectileType("BChakramContact"), (int)(51 * Main.player[projectile.owner].thrownDamage), 5f, projectile.owner);
 		}
     }
 }
