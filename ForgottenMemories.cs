@@ -1,5 +1,9 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
+using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using ReLogic.Graphics;
@@ -10,9 +14,11 @@ namespace ForgottenMemories
 {
 	public class ForgottenMemories : Mod 
 	{
-		public ForgottenMemories()
-
-		{
+        internal static ForgottenMemories instance;
+        internal bool songsLoaded = false;
+        
+        public ForgottenMemories()
+        {
 			Properties = new ModProperties()
 			{
 				Autoload = true,
@@ -26,8 +32,15 @@ namespace ForgottenMemories
 		
         public override void Load()
         {
+			InGameWikiHotkey = RegisterHotKey("In-Game Wiki Hotkey", "f");
 
-            InGameWikiHotkey = RegisterHotKey("In-Game Wiki Hotkey", "f");
+			/*if (!Main.dedServ)
+			{
+				Filters.Scene["ForgottenMemories:SpookedByArte"] = new Filter(new ScreenShaderData("FilterBloodMoon"), EffectPriority.Medium);
+				SkyManager.Instance["ForgottenMemories:SpookedByArte"] = new BloodSky();
+			}*/
+
+            instance = this;
         }
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -91,6 +104,12 @@ namespace ForgottenMemories
 				bossChecklist.Call("AddBossWithInfo", "Arterius", 6.3f, (Func<bool>)(() => TGEMWorld.downedArterius), "Use a [i:" + ItemType("BloodClot") + "] at night");
 				bossChecklist.Call("AddBossWithInfo", "Titan Rock", 6.9f, (Func<bool>)(() => TGEMWorld.downedTitanRock), "Use a [i:" + ItemType("anomalydetector") + "]");
 			}
+
+            Mod btfaSongs = ModLoader.GetMod("BTFASongs");
+            if (btfaSongs != null)
+            {
+                songsLoaded = true;
+            }
         }
 	}
 }
