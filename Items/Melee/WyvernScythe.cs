@@ -30,24 +30,18 @@ namespace ForgottenMemories.Items.Melee
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Wyvern Scythe");
-      Tooltip.SetDefault("Creates short-ranged fire breath that ignores tiles");
+      Tooltip.SetDefault("Creates a burst of short ranged wind blades that move around you in a spiral pattern");
     }
 
 		
 		public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int amountOfProjectiles = Main.rand.Next(2, 4);
-			for (int i = 0; i < amountOfProjectiles; i++)
+			for (int i = 0; i < 8; i++)
 			{
-				float spX = speedX;
-				float spY = speedY;
-				spX += (float)Main.rand.Next(-40, 41) * 0.1f;
-				spY += (float)Main.rand.Next(-40, 41) * 0.1f;
-				int p = Projectile.NewProjectile(position.X, position.Y, spX, spY, 85, damage, knockBack, player.whoAmI);
-				Main.projectile[p].tileCollide = false;
-				Main.projectile[p].timeLeft = 25;
-				Main.projectile[p].ranged = false;
-				Main.projectile[p].melee = true;
+				Vector2 Offset = Vector2.UnitX * 10;
+				Offset.RotatedBy(MathHelper.ToRadians(360/8 * i));
+				int ai = (speedX < 0) ? -1 : 1;
+				int p = Projectile.NewProjectile(position + Offset, Offset, Mod.ProjectileType("Windblade"), damage, knockBack, player.whoAmI, 0, ai);
 			}
 			return false;
         }
