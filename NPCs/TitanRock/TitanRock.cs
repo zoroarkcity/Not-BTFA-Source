@@ -475,7 +475,13 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override bool StrikeNPC (ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
 		{
 			if (takeLessDamage)
+			{
 				damage *= 0.5;
+			}
+			else if (/*npc.FindBuffIndex(BuffID.Ichor) == -1 && */npc.FindBuffIndex(BuffID.CursedInferno) != -1)
+			{
+				damage += 5; //cursed inferno also helps hurt titan rock a bit
+			}
 
 			return true;
 		}

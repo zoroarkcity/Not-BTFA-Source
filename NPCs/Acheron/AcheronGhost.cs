@@ -27,11 +27,17 @@ namespace ForgottenMemories.NPCs.Acheron
 		Vector2 TPLocation;
 		public float speedCounter = 13f;
 
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Lost Soul");
+			Main.npcFrameCount[npc.type] = 6;
+		}
+
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
             npc.lifeMax = 1;
-            npc.damage = 40;
+            npc.damage = 44;
             npc.defense = 0;
             npc.knockBackResist = 0f;
             npc.width = 98;
@@ -45,17 +51,14 @@ namespace ForgottenMemories.NPCs.Acheron
 			npc.DeathSound = SoundID.NPCDeath6;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 1;
+
+			if (Main.expertMode)
+				npc.damage = 113;
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-			{
-				npc.damage = 60;
-			}
-		
-		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Lost Soul");
-			Main.npcFrameCount[npc.type] = 6;
+			npc.damage = 113; //this one doesnt work. i have no idea why
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
