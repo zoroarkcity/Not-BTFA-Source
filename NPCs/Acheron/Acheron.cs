@@ -30,11 +30,12 @@ namespace ForgottenMemories.NPCs.Acheron
         bool willFireCurly = false;
 		bool willGhostAtBarrier = true;
 		int u, uu, uuu;
+
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
             npc.lifeMax = 7000;
-            npc.damage = 28;
+            npc.damage = 44;
             npc.defense = 0;
             npc.knockBackResist = 0f;
             npc.width = 98;
@@ -59,7 +60,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 			{
 				npc.lifeMax = 8000 + ((numPlayers) * 2500);
-				npc.damage = 38;
+				npc.damage = 96;
 			}
 		
 		public override void SetStaticDefaults()
@@ -163,7 +164,6 @@ namespace ForgottenMemories.NPCs.Acheron
 			if (npc.life < npc.lifeMax / 2)
 			{
 				phase2 = true;
-				npc.defense = 18;
 				npc.ai[3]++;
 			}
 			
@@ -208,8 +208,11 @@ namespace ForgottenMemories.NPCs.Acheron
 
 				if (Main.expertMode)
 				{
+					npc.defense = 28;
 					SpawnBarriers();
 				}
+				else
+					npc.defense = 12;
 
 				Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
 				transitioned = true;
@@ -219,15 +222,6 @@ namespace ForgottenMemories.NPCs.Acheron
 			
 			if (npc.alpha > 255)
 				npc.alpha = 255;
-			
-			/*if (npc.ai[1] == 0)
-			{
-				if(Main.expertMode)
-				{
-					SpawnBarriers();
-				}
-				npc.ai[1]++;
-			}*/
 			
 			if (npc.ai[0] < 120)
 			{
@@ -249,7 +243,10 @@ namespace ForgottenMemories.NPCs.Acheron
 			
 			if (npc.ai[3] > 600 && phase2)
 			{
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("SoulWell"), (int)(npc.damage/2), 0, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("SoulWell"), npc.damage / 3, 0, Main.myPlayer, 0, 0); //14.67
+				if (Main.expertMode)
+					Main.projectile[p].damage = npc.damage / 5; //19.2
+
 				npc.ai[3] = 0;
 				npc.netUpdate = true;
 			}
@@ -293,9 +290,12 @@ namespace ForgottenMemories.NPCs.Acheron
 
 				if (Main.expertMode && phase2 && willGhostAtBarrier)
 				{
-					NPC.NewNPC((int)Main.npc[u].Center.X, (int)Main.npc[u].Center.Y, type);
-					NPC.NewNPC((int)Main.npc[uu].Center.X, (int)Main.npc[uu].Center.Y, type);
-					NPC.NewNPC((int)Main.npc[uuu].Center.X, (int)Main.npc[uuu].Center.Y, type);
+					int g1 = NPC.NewNPC((int)Main.npc[u].Center.X, (int)Main.npc[u].Center.Y, type);
+					int g2 = NPC.NewNPC((int)Main.npc[uu].Center.X, (int)Main.npc[uu].Center.Y, type);
+					int g3 = NPC.NewNPC((int)Main.npc[uuu].Center.X, (int)Main.npc[uuu].Center.Y, type);
+					/*Main.npc[g1].damage = 113;
+					Main.npc[g2].damage = 113;
+					Main.npc[g3].damage = 113;*/
 				}
 				else
 				{
@@ -310,8 +310,13 @@ namespace ForgottenMemories.NPCs.Acheron
 		{
 			if (willFireCurly)
 			{
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), (int)(npc.damage/2), 1, Main.myPlayer, player.whoAmI, 1f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), (int)(npc.damage/2), 1, Main.myPlayer, player.whoAmI, -1f);
+				int p1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 4, 1, Main.myPlayer, player.whoAmI, 1f); //11
+				int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 4, 1, Main.myPlayer, player.whoAmI, -1f); //11
+				if (Main.expertMode)
+				{
+					Main.projectile[p1].damage = npc.damage / 5; //19.2
+					Main.projectile[p2].damage = npc.damage / 5; //19.2
+				}
 			}
 			else
 			{
@@ -320,7 +325,9 @@ namespace ForgottenMemories.NPCs.Acheron
 				for (int index = 0; index < 5; index++)
 				{
 					Vector2 Vel = new Vector2(10, 0).RotatedBy(rotation + index * (2*MathHelper.Pi/5));
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul2"), (int)(npc.damage/2), 1, Main.myPlayer, 0, 0);
+					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul2"), npc.damage / 3, 1, Main.myPlayer, 0, 0); //14.67
+					if (Main.expertMode)
+						Main.projectile[p].damage = npc.damage / 5; //19.2
 				}
 			}
 		}
@@ -335,9 +342,10 @@ namespace ForgottenMemories.NPCs.Acheron
 				Vel.Normalize();
 				Vel *= 9.5f;
 				Vel += player.velocity;
-				Projectile.NewProjectile(Position.X, Position.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul"), (int)(npc.damage/2), 1, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(Position.X, Position.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul"), npc.damage / 4, 1, Main.myPlayer, 0, 0); //11
+				if (Main.expertMode)
+					Main.projectile[p].damage = npc.damage / 6; //16
 			}
-			
 			else if (npc.ai[0] == 160)
 			{
 				Phase2Attack(player);
@@ -346,6 +354,7 @@ namespace ForgottenMemories.NPCs.Acheron
 				{
 					willFireCurly = !willFireCurly;
 					Phase2Attack(player);
+					willGhostAtBarrier = false; //immediately set to true after, always spawns three ghosts at once when near dead
 				}
 
 				willFireCurly = !willFireCurly;
@@ -360,6 +369,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			int frame = (int)npc.frameCounter; 
 			npc.frame.Y = frame * frameHeight; 
 		}
+
 		public override void NPCLoot()
 		{
 			int u = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y + (int)(npc.height/2), mod.NPCType("AcheronDeath"));
