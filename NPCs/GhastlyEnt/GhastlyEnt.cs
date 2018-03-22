@@ -10,11 +10,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 	[AutoloadBossHead]
     public class GhastlyEnt : ModNPC
     {
-		int directionY;
-		int p3Timer;
-		int p3Timer2;
 		bool p3;
-		int ai;
+		bool biphronSeeds = false;
+		Vector2 SeedPos;
+		int seedcounter;
 		
         public override void SetDefaults()
         {
@@ -127,7 +126,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.TargetClosest(true);
 			npc.spriteDirection = npc.direction;
             Player player = Main.player[npc.target];
-			directionY = (npc.Center.Y <= player.Center.Y) ? 1 : -1;
+			
 			npc.ai[0]++;
 			
 			if (npc.alpha > 255)
@@ -151,7 +150,63 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			
 		}
 		
+		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+		{
+			BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/GhastlyEnt/GhastlyEnt_Glow1"));
+		}
+		
 		public void Phase1(Player player)
+		{
+			npc.ai[3]++;
+			Phase1Movement(player);
+			if (npc.ai[3] % 180 == 0)
+			{
+				switch(Main.rand.Next(2))
+				{
+					case 0: biphronSeeds = true;
+						SeedPos = player.Center;
+						break;
+					case 1: Leafnados(player);
+						break;
+					//case 2: LeafRain(player);
+					//	break;
+				}
+			}
+			
+			if(biphronSeeds)
+			{
+				BiphronSeeds(player, SeedPos);
+			}
+		}
+		
+		public void BiphronSeeds(Player player, Vector2 Position)
+		{
+			Position.Y -= 100;
+			Position.X += ((npc.ai[3] % 180) - 60) * 2;
+			
+			if(npc.ai[3] % 30 == 0)
+			{
+				Projectile.NewProjectile(Position, new Vector2(0, 10), mod.ProjectileType("GhentSeed"), 60, 1f, player.whoAmI, 0, 0);
+				seedcounter++;
+			}
+			if(seedcounter > 4)
+			{
+				biphronSeeds = false;
+				seedcounter = 0;
+			}
+		}
+		
+		public void Leafnados(Player player)
+		{
+			Vector2 vel = player.Center - npc.Center;
+			vel.Normalize();
+			vel *= 10;
+			Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LeafnadoHoming"), 50, 1f, player.whoAmI, 1, 0);
+			Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LeafnadoHoming"), 50, 1f, player.whoAmI, 2, 0);
+			Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("LeafnadoHoming"), 50, 1f, player.whoAmI, 3, 0);
+		}
+		
+		public void Phase1Movement(Player player)
 		{
 			bool flag1 = false;
 			int num1 = 16;
@@ -288,31 +343,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			}
 		}
 		
-		public void FireRain(Player player, int num)
-		{
-			for(int i = 0; i < num; i++)
-			{
-				int variation = Main.rand.Next(-150, 151);
-				Vector2 Pos = player.Center;
-				Pos.Y -= 450;
-				Pos.X += player.velocity.X + variation;
-				Vector2 Vel = new Vector2(0, 10f).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-30, 31)));
-				Projectile proj = Main.projectile[Projectile.NewProjectile(Pos, Vel, mod.ProjectileType("CursedFireGhent"), (int)(npc.damage/4), 1, Main.myPlayer, 0, 0)];
-				proj.netUpdate = true;
-			}
-		}
-		
 		public override void OnHitPlayer(Player target, int damage, bool crit)
 		{
 			if (p3)
 				target.AddBuff(BuffID.CursedInferno, 60 * Main.rand.Next(3, 6), false);
-		}
-		
-		public void DruidCircle(Player player, int Dist)
-		{
-			Vector2 Pos = (new Vector2(0, Dist).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360))) + npc.Center);
-			Projectile.NewProjectile(Pos.X, Pos.Y, 0, 0, mod.ProjectileType("DruidicCircle"), 0, 0, Main.myPlayer, player.whoAmI, npc.whoAmI);
-			Main.PlaySound(SoundID.Item117, npc.position);
 		}
 		
 		 public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
@@ -320,34 +354,6 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			scale = 1.5f; // larger health bar
 			return null;
         }
-		
-		public void Branches(Player player, int num)
-		{
-			for(int index = 0; index < num; index++)
-			{
-				Vector2 Pos = new Vector2(0, 300).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-30, 31))) + player.Center;
-				
-				Vector2 Vel = player.Center - Pos;
-				Vel.Normalize();
-				int p = Projectile.NewProjectile(Pos.X, Pos.Y, 0, 0, mod.ProjectileType("BranchBody"), (int)(npc.damage/2), 1, Main.myPlayer, 0, 0);
-				
-				Main.projectile[p].rotation = (float) Math.Atan2((double) Vel.Y, (double) Vel.X) + 1.57f;
-				Main.projectile[p].netUpdate = true;
-			}
-			Main.PlaySound(SoundID.Item117, npc.position);
-		}
-		
-		public void Portals()
-		{
-			for (int index = 0; index < 3; index++)
-			{
-				Vector2 Pos = new Vector2(0, -150).RotatedBy(MathHelper.ToRadians(-30 + (30 * index))) + npc.Center;
-				int p = Projectile.NewProjectile(Pos.X, Pos.Y, 0, 0, mod.ProjectileType("ForestPortal"), (int)(npc.damage/2), 1, Main.myPlayer, Pos.X, Pos.Y);
-				
-				Main.projectile[p].netUpdate = true;
-			}
-			Main.PlaySound(SoundID.Item117, npc.position);
-		}
 		
 		public override void FindFrame(int frameHeight)
 		{

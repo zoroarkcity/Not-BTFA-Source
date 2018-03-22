@@ -30,7 +30,7 @@ namespace ForgottenMemories.Items.Melee
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Wyvern Scythe");
-      Tooltip.SetDefault("Creates a burst of short ranged wind blades that move around you in a spiral pattern");
+      Tooltip.SetDefault("Creates a burst of short ranged fire that moves around you in a spiral pattern");
     }
 
 		
