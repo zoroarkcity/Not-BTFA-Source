@@ -182,14 +182,14 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		public void BiphronSeeds(Player player, Vector2 Position)
 		{
 			Position.Y -= 100;
-			Position.X += ((npc.ai[3] % 180) - 60) * 2;
+			Position.X += ((npc.ai[3] % 180) - 60) * 4;
 			
-			if(npc.ai[3] % 30 == 0)
+			if(npc.ai[3] % 15 == 0)
 			{
 				Projectile.NewProjectile(Position, new Vector2(0, 10), mod.ProjectileType("GhentSeed"), 60, 1f, player.whoAmI, 0, 0);
 				seedcounter++;
 			}
-			if(seedcounter > 4)
+			if(seedcounter > 8)
 			{
 				biphronSeeds = false;
 				seedcounter = 0;
