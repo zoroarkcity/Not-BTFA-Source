@@ -41,6 +41,11 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.noTileCollide = true;
             npc.noGravity = true;
             npc.HitSound = SoundID.NPCHit49;
+
+			for (int k = 0; k < npc.buffImmune.Length; k++)
+			{
+				npc.buffImmune[k] = true;
+			}
         }
 		
 		public override void SetStaticDefaults()
