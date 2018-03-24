@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 20000;
+            npc.lifeMax = 18000;
             npc.damage = 80;
             npc.defense = 22;
             npc.knockBackResist = 0f;
@@ -516,9 +516,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public override bool StrikeNPC (ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
 		{
-			if (maxSpook > 1f)
-				damage *= 0.9;
-			
 			if (spookyDashing)
 			{
 				damage *= 0.5;
