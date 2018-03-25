@@ -30,7 +30,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override void SetDefaults()
 		{
 			npc.aiStyle = -1;
-			npc.lifeMax = 50000;
+			npc.lifeMax = 40000;
 			npc.damage = 100;
 			npc.defense = 32;
 			npc.knockBackResist = 0f;
@@ -428,8 +428,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 						gayvector = gayvector.RotatedBy(swirlyIncrement);
 						homovector = homovector.RotatedBy(swirlyIncrement);
 					
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 6, 1, Main.myPlayer, 2f, 0);
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 6, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 2f, 0);
 						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 						timer2 = 0;
 					}
