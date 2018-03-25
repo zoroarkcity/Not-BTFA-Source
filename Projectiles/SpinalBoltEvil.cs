@@ -54,6 +54,11 @@ namespace ForgottenMemories.Projectiles
             if (projectile.ai[0] == 1f)
                 projectile.velocity.Y += 0.35f;
 		}
+
+		public override void OnHitPlayer(Player target, int damage, bool crit)
+		{
+			target.AddBuff(BuffID.Bleeding, 30 * Main.rand.Next(12, 21)); //6-10 sec
+		}
 		
 		public override bool PreKill(int timeLeft)
 		{
@@ -61,7 +66,7 @@ namespace ForgottenMemories.Projectiles
 			Main.projectile[p].magic = false;
 			Main.projectile[p].friendly = false;
 			Main.projectile[p].hostile = true;
-			Main.projectile[p].timeLeft += 30 + 15 * Main.rand.Next(15); //90 to 300 ticks total
+			Main.projectile[p].timeLeft += 120 + 15 * Main.rand.Next(9); //180 to 300 ticks total
 			return true;
 		}
 	}

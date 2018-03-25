@@ -48,5 +48,11 @@ namespace ForgottenMemories.Projectiles
 		{
 			target.AddBuff(mod.BuffType("DevilsFlame"), 360, false);
 		}
+
+		public override void OnHitPlayer(Player target, int damage, bool crit)
+		{
+			if (projectile.ai[1] == 1f)
+				target.AddBuff(BuffID.Bleeding, 30 * Main.rand.Next(12, 21)); //6-10 sec
+		}
 	}
 }
