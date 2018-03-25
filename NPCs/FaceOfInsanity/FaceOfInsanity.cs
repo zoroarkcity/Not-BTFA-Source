@@ -31,7 +31,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.aiStyle = -1;
             npc.lifeMax = 18000;
             npc.damage = 80;
-            npc.defense = 22;
+            npc.defense = 14;
             npc.knockBackResist = 0f;
             npc.width = 128;
             npc.height = 154;
@@ -64,7 +64,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			npc.lifeMax = 24000 + ((numPlayers) * 2400);
 			npc.damage = 130;
-			npc.defense = 34;
+			npc.defense = 28;
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -151,10 +151,10 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                 Vel2 += player.velocity / 2;
             }
             Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
-            int p1 = Projectile.NewProjectile(eye1, Vel1, mod.ProjectileType("BrimstoneSmall"), npc.damage * 4, 0, npc.target, 0, 0); //20
+            int p1 = Projectile.NewProjectile(eye1, Vel1, mod.ProjectileType("BrimstoneSmall"), npc.damage / 4, 0, npc.target, 0, 0); //20
             Main.projectile[p1].netUpdate = true;
 
-            int p2 = Projectile.NewProjectile(eye2, Vel2, mod.ProjectileType("BrimstoneSmall"), npc.damage * 4, 0, npc.target, 0, 0); //20
+            int p2 = Projectile.NewProjectile(eye2, Vel2, mod.ProjectileType("BrimstoneSmall"), npc.damage / 4, 0, npc.target, 0, 0); //20
             Main.projectile[p2].netUpdate = true;
 
             if (Main.expertMode)
@@ -202,7 +202,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             for (int i = 0; i < boltsPerVolley; i++)
             {
                 Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-5, 6) / 2f, (float)Main.rand.Next(-5, 6) / 2f);
-                int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 5, 0, Main.myPlayer, 1f, 0); //16
+                int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 1f, 0); //20
                 if (Main.expertMode)
                     Main.projectile[p].damage = npc.damage / 6; //25
             }
@@ -226,7 +226,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public void ProcessBlinding()
 		{
-			if (blindTimer == 29)
+			if (blindTimer == 30)
 			{
 				for (int i = 0; i < 255; i++)
 				{
@@ -235,9 +235,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         Vector2 distance = Main.player[i].Center - npc.Center;
                         if (distance.Length() <= 1500)
                         {
-                            if (Main.player[i].buffImmune[BuffID.Darkness])
-                                Main.player[i].buffImmune[BuffID.Darkness] = false; //ignore immunity
-                            Main.player[i].AddBuff(BuffID.Darkness, 30);
+                            Main.player[i].GetModPlayer<BTFAPlayer>(mod).spookedByArte = 31;
                         }
                     }
 				}
@@ -310,14 +308,16 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				//left these % in because the desync is a feature
                 if (abovePlayer)
                 {
-                    if (aiTimer % 130 == 0 && Main.expertMode)
+                    if (aiTimer % 130 == 0)
                     {
                         Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
                         Vector2 velocity = Vector2.Subtract(player.Center, cross);
                         velocity.Normalize();
                         velocity *= 8;
                         velocity += player.velocity / 2;
-                        int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 6, 0, Main.myPlayer, 0, 0); //25, EXPERT ONLY
+                        int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 0, 0); //20
+						if (Main.expertMode)
+							Main.projectile[p].damage = npc.damage / 6; //25
                     }
                     if (aiTimer % 110 == 0)
                         ShootBlood(mod.NPCType("ExplosiveZitEnemy"), false);
@@ -396,26 +396,26 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							npc.ai[2] = 1;
 							npc.velocity = Vector2.Zero;
 
+							if (maxSpook != 1f) //shorten time spent fading after first cycle
+								fadeLimit = 90f;
+
 							if (Main.expertMode)
 							{
 								npc.dontTakeDamage = true;
-								ShootSpinalBolts();
-								if (npc.life < npc.lifeMax / 6)
-									ShootBigBeam();
 
-								if (maxSpook != 1f) //shorten time spent fading after first cycle
-									fadeLimit = 90f;
+								ShootSpinalBolts();
 
 								if (maxSpook < 7f) //gain 2 extra dashes per cycle, up to 6
 									maxSpook += 2f;
 							}
 							else
 							{
-								if (npc.life < npc.lifeMax / 6)
-									ShootSpinalBolts();
+								maxSpook = 2f;
+							}
 
-								if (npc.life < npc.lifeMax / 9)
-									ShootBigBeam();
+							if (npc.life < npc.lifeMax / 6)
+							{
+								ShootBigBeam();
 							}
 						}
 						else //messy. this section above and below feels very messy
@@ -443,7 +443,11 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						}
 						else if (npc.ai[3] == fadeLimit)
 						{
-							npc.Center = Main.player[npc.target].Center + new Vector2(0, -500); //teleport above player
+							if (Main.expertMode)
+								npc.Center = Main.player[npc.target].Center + new Vector2(0, -500); //teleport above player
+							else
+								npc.Center = Main.player[npc.target].Center + new Vector2(0, 550); //teleport below player
+
 							npc.dontTakeDamage = false;
 
 							Main.bloodMoon = true;
@@ -550,7 +554,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                 Vector2 distance = player.Center - mouth;
                 
                 if (Main.expertMode)
-                    distance += player.velocity * 45;
+                {
+					distance += player.velocity * 45;
+				}
 
                 float gravity = 0.3f;
                 float time = 90f;
@@ -582,13 +588,19 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					Vector2 direction = Main.player[npc.target].Center - (npc.Center + offset);
 					direction.Normalize();
 					direction *= 7;
-					int p = Projectile.NewProjectile(npc.Center + offset, direction, type, npc.damage / 8, 1, Main.myPlayer, 0, 0); //10
+					int p = Projectile.NewProjectile(npc.Center + offset, direction, type, npc.damage / 6, 1, Main.myPlayer, 0, 0); //13.33
 					Main.projectile[p].netUpdate = true;
 					if (Main.expertMode)
-                        Main.projectile[p].damage = npc.damage / 10; //15
+                        Main.projectile[p].damage = npc.damage / 8; //16.25
 				}
 			}
 			npc.netUpdate = true;
+		}
+
+		public override void OnHitPlayer (Player target, int damage, bool crit)
+		{
+			target.AddBuff(BuffID.Bleeding, 30 * Main.rand.Next(20, 27)); //10-13 sec
+			target.AddBuff(BuffID.OnFire, 360);
 		}
 		
 		public override void NPCLoot()

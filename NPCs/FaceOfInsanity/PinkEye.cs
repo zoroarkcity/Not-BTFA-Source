@@ -68,7 +68,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				distance.Normalize();
 
 				distance *= 17f;
-				if (longDistance)
+				if (longDistance && Main.expertMode)
 					distance *= 2f;
 
 				npc.velocity = distance;
