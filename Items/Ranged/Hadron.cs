@@ -6,37 +6,37 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using System;
 
-namespace ForgottenMemories.Items.Ranged 
+namespace ForgottenMemories.Items.Ranged
 {
 	public class Hadron : ModItem
 	{
 		public override void SetDefaults()
 		{
-
-			item.damage = 120;
-			item.ranged = true;
-			item.width = 200;
-			item.height = 58;
-			item.useTime = 28;
-			item.useAnimation = 28;
 			item.useStyle = 5;
-			item.knockBack = 1;
-			item.value = 1400000;
+			item.useAnimation = 40;
+			item.useTime = 40;
+			item.shootSpeed = 40f;
+			item.knockBack = 2f;
+			item.width = 20;
+			item.reuseDelay = 20;
+			item.height = 12;
+			item.damage = 50;
+			//item.UseSound = SoundID.Item13;
+			item.shoot = mod.ProjectileType("Hadron_Held");
 			item.rare = 10;
-			//item.UseSound = SoundID.Item41;
-			item.autoReuse = true;
-			item.useAmmo = AmmoID.Bullet;
-			item.shoot = mod.ProjectileType("Hadron");
-			item.shootSpeed = 15f;
+			item.value = Item.sellPrice(0, 10, 0, 0);
 			item.noMelee = true;
-			item.channel = true;
 			item.noUseGraphic = true;
+			item.ranged = true;
+			item.channel = true;
+			item.useAmmo = AmmoID.Bullet;
+			item.autoReuse = true;
 		}
 
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Hadron");
-		  Tooltip.SetDefault("Fires a spread of bullets and void missiles \nIncreases in firing speed, velocity, and damage over time \n'Infused with lunar and dark energies'");
+		  Tooltip.SetDefault("Fires a chain of luminite bullets and void missiles \nIncreases in firing speed, velocity, and damage over time \n'Infused with lunar and dark energies'");
 		}
 		
 		public override bool CanUseItem(Player player)
@@ -50,7 +50,18 @@ namespace ForgottenMemories.Items.Ranged
             }
             return true;
         }
-
+		protected int dustTimer = 0;
+		public override void HoldItem (Player player)	
+		{
+			if (player.channel)
+			{
+				dustTimer++;
+			}
+			if (dustTimer >= 30)
+			{
+				dustTimer = 0;
+			}
+		}
 		
 		public override void AddRecipes()
 		{
@@ -62,10 +73,15 @@ namespace ForgottenMemories.Items.Ranged
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
-		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("Hadron"), damage, knockBack, player.whoAmI);
+			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("Hadron_Held"), damage, knockBack, player.whoAmI);
+			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("Hadron_Missile"), damage*3, knockBack, player.whoAmI);
+			Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 70f;	
+			if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+			{
+				position += muzzleOffset;
+			}
 			return false;
 		}
 	}
