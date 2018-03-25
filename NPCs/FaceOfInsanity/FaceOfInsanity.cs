@@ -15,7 +15,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		int BloodRainTimer = 0;
 		int DashTimer = 0;
         int outOfRangeTimer = 0;
-		int blindTimer = 0;
+		int blindTimer = 29;
 		bool phase2 = false;
 		float maxSpook = 1f;
 		const float spookyDashSpeed = 38f;
@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 20000;
+            npc.lifeMax = 18000;
             npc.damage = 80;
             npc.defense = 22;
             npc.knockBackResist = 0f;
@@ -187,6 +187,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             Player player = Main.player[npc.target];
             Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
             Vector2 distance = player.Center - cross;
+            distance += player.velocity * 30;
 
             int boltsPerVolley = 4;
             float gravity = 0.35f;
@@ -194,7 +195,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             if (Main.expertMode)
             {
                 boltsPerVolley = 6;
-                distance += player.velocity * 30;
             }
             
             Vector2 Vel = new Vector2(distance.X / time, distance.Y / time - 0.5f * gravity * time);
@@ -226,22 +226,24 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public void ProcessBlinding()
 		{
-			blindTimer++;
-
-			if (blindTimer == 28)
+			if (blindTimer == 29)
 			{
 				for (int i = 0; i < 255; i++)
 				{
-					Vector2 distance = Main.player[i].Center - npc.Center;
-					if (distance.Length() <= 1500)
-					{
-						if (Main.player[i].buffImmune[BuffID.Darkness])
-							Main.player[i].buffImmune[BuffID.Darkness] = false; //ignore immunity
-						Main.player[i].AddBuff(BuffID.Darkness, 29);
-					}
+                    if (Main.player[i].active && !Main.player[i].dead)
+                    {
+                        Vector2 distance = Main.player[i].Center - npc.Center;
+                        if (distance.Length() <= 1500)
+                        {
+                            if (Main.player[i].buffImmune[BuffID.Darkness])
+                                Main.player[i].buffImmune[BuffID.Darkness] = false; //ignore immunity
+                            Main.player[i].AddBuff(BuffID.Darkness, 30);
+                        }
+                    }
 				}
 				blindTimer = 0;
 			}
+            blindTimer++;
 		}
 
         public override void AI()
@@ -462,7 +464,10 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 								if (npc.ai[2] != maxSpook && Main.expertMode)
 								{
                                     if (npc.ai[2] == 3f)
-										ShootBigBeam();
+                                        ShootBigBeam();
+                                    else if (npc.ai[2] == 5f)
+                                        ShootSpinalBolts();
+
 									ShootEyeBeams(player, true);
                                     SpookyDash();
 								}
@@ -511,9 +516,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public override bool StrikeNPC (ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
 		{
-			if (maxSpook > 1f)
-				damage *= 0.9;
-			
 			if (spookyDashing)
 			{
 				damage *= 0.5;
@@ -543,13 +545,31 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			if (!rain)
 			{
-                for (int index = 0; index < Main.rand.Next(4, 6); index++)
-                    NPC.NewNPC((int)(npc.Center.X + Main.rand.Next(-50, 51)), (int)npc.Center.Y + 70, type, 0, 0f, 0f, 0f, 0f, npc.target);
+                Player player = Main.player[npc.target];
+                Vector2 mouth = new Vector2(npc.Center.X, npc.Center.Y + 70);
+                Vector2 distance = player.Center - mouth;
+                
+                if (Main.expertMode)
+                    distance += player.velocity * 45;
+
+                float gravity = 0.3f;
+                float time = 90f;
+
+                Vector2 Vel = new Vector2(distance.X / time, distance.Y / time - 0.5f * gravity * time);
+
+                for (int index = 0; index < Main.rand.Next(4, 7); index++)
+                {
+                    Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-4, 5) / 2f, (float)Main.rand.Next(-4, 5) / 2f);
+                    NPC.NewNPC((int)mouth.X, (int)mouth.Y, type, 0, 0f, velocity.X, velocity.Y, 0f, npc.target);
+                }
 
                 if (Main.expertMode)
 				{
-					for (int index = 0; index < Main.rand.Next(1, 3); index++)
-						NPC.NewNPC((int)(npc.Center.X + Main.rand.Next(-50, 51)), (int)npc.Center.Y + 70, type, 0, 0f, 0f, 0f, 0f, npc.target);
+                    for (int index = 0; index < Main.rand.Next(1, 4); index++)
+                    {
+                        Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-4, 5) / 2f, (float)Main.rand.Next(-4, 5) / 2f);
+                        NPC.NewNPC((int)mouth.X, (int)mouth.Y, type, 0, 0f, velocity.X, velocity.Y, 0f, npc.target);
+                    }
 				}
 
 				Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);

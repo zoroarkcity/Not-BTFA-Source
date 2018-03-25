@@ -37,7 +37,7 @@ namespace ForgottenMemories.NPCs.Acheron
         {
             npc.aiStyle = -1;
             npc.lifeMax = 1;
-            npc.damage = 44;
+            npc.damage = 50;
             npc.defense = 0;
             npc.knockBackResist = 0f;
             npc.width = 98;
@@ -53,12 +53,12 @@ namespace ForgottenMemories.NPCs.Acheron
 			NPCID.Sets.TrailingMode[npc.type] = 1;
 
 			if (Main.expertMode)
-				npc.damage = 113;
+				npc.damage = 100;
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.damage = 113; //this one doesnt work. i have no idea why
+			npc.damage = 100; //this one doesnt work. i have no idea why
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

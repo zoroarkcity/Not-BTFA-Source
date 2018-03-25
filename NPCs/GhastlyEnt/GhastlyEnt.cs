@@ -161,15 +161,15 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			Phase1Movement(player);
 			if (npc.ai[3] % 180 == 0)
 			{
-				switch(Main.rand.Next(2))
+				switch(Main.rand.Next(3))
 				{
 					case 0: biphronSeeds = true;
 						SeedPos = player.Center;
 						break;
 					case 1: Leafnados(player);
 						break;
-					//case 2: LeafRain(player);
-					//	break;
+					case 2: LeafRain(player);
+						break;
 				}
 			}
 			
@@ -179,6 +179,24 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			}
 		}
 		
+		public void LeafRain(Player player)
+		(
+			for(int i = 0; i < 3; i++)
+			{
+				Vector2 Position = player.Center;
+				Position.Y -= 100 + ((i == (0 | 2))? 50 : 0);
+				Position.X += (i * 50) - 50;
+				for(int k = 0; k < 5; k++)
+				{
+					Vector2 Vel = player.Center - Position;
+					Vel.Normalize();
+					Vel *= 5;
+					Vector2 Offset = new Vector2(10, 0).RotatedBy((MathHelper.Pi / 5) * k);
+					Projectile.NewProjectile(Position + Offset, Vel, mod.ProjectileType("GiantLeaf"), (int)(npc.damage / 2), 1f, player.whoAmI, 0, 0);
+				}
+			}
+		)
+		
 		public void BiphronSeeds(Player player, Vector2 Position)
 		{
 			Position.Y -= 100;
@@ -186,7 +204,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			
 			if(npc.ai[3] % 15 == 0)
 			{
-				Projectile.NewProjectile(Position, new Vector2(0, 10), mod.ProjectileType("GhentSeed"), 60, 1f, player.whoAmI, 0, 0);
+				Projectile.NewProjectile(Position, new Vector2(0, 10), mod.ProjectileType("GhentSeed"), (int)(npc.damage / 2), 1f, player.whoAmI, 0, 0);
 				seedcounter++;
 			}
 			if(seedcounter > 8)
@@ -201,9 +219,9 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			Vector2 vel = player.Center - npc.Center;
 			vel.Normalize();
 			vel *= 10;
-			Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LeafnadoHoming"), 50, 1f, player.whoAmI, 1, 0);
-			Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LeafnadoHoming"), 50, 1f, player.whoAmI, 2, 0);
-			Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("LeafnadoHoming"), 50, 1f, player.whoAmI, 3, 0);
+			Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LeafnadoHoming"), (int)(npc.damage / 2), 1f, player.whoAmI, 1, 0);
+			Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LeafnadoHoming"), (int)(npc.damage / 2), 1f, player.whoAmI, 2, 0);
+			Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("LeafnadoHoming"), (int)(npc.damage / 2), 1f, player.whoAmI, 3, 0);
 		}
 		
 		public void Phase1Movement(Player player)
