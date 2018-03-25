@@ -38,5 +38,10 @@ namespace ForgottenMemories.Projectiles.Arterius
 				Main.dust[dust].velocity *= i/5;
 			}
 		}
+
+		public override void OnHitPlayer(Player target, int damage, bool crit)
+		{
+			target.AddBuff(BuffID.Bleeding, 30 * Main.rand.Next(8, 13)); //4-6 sec
+		}
 	}
 }

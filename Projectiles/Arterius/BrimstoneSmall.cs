@@ -79,6 +79,11 @@ namespace ForgottenMemories.Projectiles.Arterius
 				Main.dust[index2].noGravity = true;
 			}
 		}
+
+		public override void OnHitPlayer(Player target, int damage, bool crit)
+		{
+			target.AddBuff(BuffID.OnFire, 240);
+		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
