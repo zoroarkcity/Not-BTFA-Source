@@ -78,6 +78,8 @@ namespace ForgottenMemories
 		public bool ManaShard = false;
 		public bool DivineBlessing = false;
 		public int firestormCooldown = 0;
+
+		public int spookedByArte = 0;
 		
 		public override void ResetEffects()
 		{
@@ -468,6 +470,18 @@ namespace ForgottenMemories
 				}	
 		}
 		
+		public override void PreUpdateBuffs()
+		{
+			if (spookedByArte != 0)
+			{
+				spookedByArte--;
+				player.blind = true;
+				/*if (player.buffImmune[BuffID.Darkness])
+					player.buffImmune[BuffID.Darkness] = false;
+				player.AddBuff(BuffID.Darkness, 2);*/
+			}
+		}
+
 		public override bool Shoot (Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			if (item.ranged && (item.type != (mod.ItemType("ArkDagger") | mod.ItemType("Fist_of_the_Hallow_Ent") | mod.ItemType("HadesHand"))))
