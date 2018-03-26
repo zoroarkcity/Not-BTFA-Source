@@ -98,10 +98,10 @@ namespace ForgottenMemories.Projectiles.Arterius
 			}
         }
 
-		public override void OnHitPlayer(Player target, int damage, bool crit)
+		/*public override void OnHitPlayer(Player target, int damage, bool crit)
 		{
 			target.AddBuff(BuffID.OnFire, 360);
-		}
+		}*/
 		
 		public override void Kill(int timeLeft)
 		{
