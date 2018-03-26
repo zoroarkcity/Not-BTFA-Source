@@ -37,6 +37,7 @@ namespace ForgottenMemories.Items.Consumable
 			if (player.whoAmI == Main.myPlayer)
 			{
 				Main.NewText("A malevolent force seeps into the most pestillent stone...", 150, 31, 242);
+				TGEMWorld.Blight = true;
 				for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 22E-05); k++)
 				{
 					int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);

@@ -37,6 +37,7 @@ namespace ForgottenMemories.Items.Consumable
 			if (player.whoAmI == Main.myPlayer)
 			{
 				Main.NewText("Ice crystallizes beneath the tundra!", 36, 242, 242);
+				TGEMWorld.Cryotine = true;
 				for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 22E-05); k++)
 				{
 					int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);

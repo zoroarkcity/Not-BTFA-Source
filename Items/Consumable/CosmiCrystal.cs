@@ -38,6 +38,7 @@ namespace ForgottenMemories.Items.Consumable
 			if (player.whoAmI == Main.myPlayer)
 			{
 				Main.NewText("Your world is blessed with extraterrestrial clumps!", 175, 167, 75);
+				TGEMWorld.Cosmirock = true;
 				for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 14E-05); k++)
 				{
 					int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);

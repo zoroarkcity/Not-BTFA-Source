@@ -37,6 +37,7 @@ namespace ForgottenMemories.Items.Consumable
 			if (player.whoAmI == Main.myPlayer)
 			{
 				Main.NewText("Gelatine seeps into the subterranean caverns!", 0, 29, 255);
+				TGEMWorld.Gelatine = true;
 				for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 18E-05); k++)
 				{
 					int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
