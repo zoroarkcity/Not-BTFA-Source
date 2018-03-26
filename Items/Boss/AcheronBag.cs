@@ -32,12 +32,9 @@ namespace ForgottenMemories.Items.Boss
 			return true;
 		}
 
-		public override void OpenBossBag(Player player)
+		public void MakeAnItem(Player player)
 		{
-			player.TryGettingDevArmor();
-            player.QuickSpawnItem(mod.ItemType("Curse"), 1); 
-			
-			switch (Main.rand.Next(6))
+			switch (Main.rand.Next(5))
 			{
 				case 0: 
 					player.QuickSpawnItem(mod.ItemType("Thanatos"), 1);
@@ -45,34 +42,39 @@ namespace ForgottenMemories.Items.Boss
 				case 1: 
 					player.QuickSpawnItem(mod.ItemType("Styx"), 1);
 					break;
+				
 				case 2:
-					player.QuickSpawnItem(mod.ItemType("AcheronStaff"), 1);
-					break;
-				case 3:
 					player.QuickSpawnItem(mod.ItemType("MacabreGrimoire"), 1);
 					break;
-				case 4:
+				case 3:
 					player.QuickSpawnItem(mod.ItemType("Cerberus"), 1);
 					break;
-				case 5:
+				case 4:
 					player.QuickSpawnItem(mod.ItemType("HadesHand"), 1);
 					player.QuickSpawnItem(mod.ItemType("LostSoul"), Main.rand.Next(150, 201));
 					break;
+				/*case 5:
+					player.QuickSpawnItem(mod.ItemType("AcheronStaff"), 1);
+					break;*/
 				default:
 					break;
 			}
+		}
+
+		public override void OpenBossBag(Player player)
+		{
+			player.TryGettingDevArmor();
+            player.QuickSpawnItem(mod.ItemType("Curse"), 1); 
 			
-			if (Main.rand.Next(5) == 0)
-			{
-				player.QuickSpawnItem(mod.ItemType("BansheeLure"), 1);
-			}
+			MakeAnItem(player);
+			MakeAnItem(player);
+			
+			//if (Main.rand.Next(5) == 0) player.QuickSpawnItem(mod.ItemType("BansheeLure"), 1);
 			
 			if (Main.rand.Next(7) == 0)
 			{
-				player.QuickSpawnItem(mod.ItemType("PickleRick"), 1);
+				player.QuickSpawnItem(mod.ItemType("picklerick"), 1);
 			}
-			
-				
 		}
 	}
 }
