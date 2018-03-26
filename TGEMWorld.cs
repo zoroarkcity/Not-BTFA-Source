@@ -27,6 +27,8 @@ namespace ForgottenMemories
 		
 		public static bool spawnedGems = false;
 		public static int TremorTime;
+
+		public static bool Cosmirock = false;
 		
 		public override void Initialize()
 		{
@@ -43,6 +45,7 @@ namespace ForgottenMemories
 			downedForestInvasion = false;
 			downedMag = false;
 			spawnedGems = false;
+			Cosmirock = false;
 		}
 		
 		public override TagCompound Save()
@@ -60,6 +63,8 @@ namespace ForgottenMemories
 			
 			if (spawnedGems) ore.Add("Gems");
 			if (downedMag) downed.Add("Mag");
+
+			if (Cosmirock) ore.Add ("Cosmirock");
 			
 			return new TagCompound {
 				{"downed", downed},
@@ -80,6 +85,8 @@ namespace ForgottenMemories
 			spawnedGems = ore.Contains("Gems");
 			downedMag = downed.Contains("Mag");
 			downedForestInvasion = downed.Contains("forestInvasion");
+
+			Cosmirock = ore.Contains("Cosmirock");
 			
 			downedAcheron = downed.Contains("acheron");
 		}
@@ -97,6 +104,7 @@ namespace ForgottenMemories
 			flags[7] = downedAcheron;
 			flags[9] = spawnedGems;
 			flags[8] = downedMag;
+			flags[10] = Cosmirock;
 			writer.Write(flags);
 		}
 		
@@ -113,6 +121,7 @@ namespace ForgottenMemories
 			downedForestInvasion = flags[8];
 			downedAcheron = flags[7];
 			spawnedGems = flags[9];
+			Cosmirock = flags[10];
 		}
 		
 		public override void PostUpdate()
