@@ -35,6 +35,8 @@ namespace ForgottenMemories.Projectiles.Acheron
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
 			SpriteEffects spriteEffects = SpriteEffects.None;
+			if (projectile.velocity.X < 0)
+				spriteEffects = SpriteEffects.FlipHorizontally;
 			Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)projectile.position.X + (double)projectile.width * 0.5) / 16, (int)(((double)projectile.position.Y + (double)projectile.height * 0.5) / 16.0));
 			Texture2D texture2D3 = Main.projectileTexture[projectile.type];
 			int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type];
@@ -91,6 +93,11 @@ namespace ForgottenMemories.Projectiles.Acheron
 		public override void AI()
 		{
 			projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
+			if (projectile.velocity.X < 0)
+			{
+				projectile.rotation += (float) Math.PI;
+			}
+
 			if ((float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) > MathHelper.PiOver2 && (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) < (3 * MathHelper.PiOver2))
 			{
 				projectile.spriteDirection = -1;
@@ -99,6 +106,7 @@ namespace ForgottenMemories.Projectiles.Acheron
 			{
 				projectile.spriteDirection = 1;
 			}
+
 			if (Main.rand.Next(5) == 0)
 			{
 				int dust2 = Dust.NewDust(projectile.position + projectile.velocity, projectile.height, projectile.width, 20, 0f, 0f);
