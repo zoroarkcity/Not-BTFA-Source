@@ -25,6 +25,7 @@ namespace ForgottenMemories.NPCs.Acheron
     public class AcheronDeath : ModNPC
     {
 		Vector2 TPLocation;
+		public bool droppedLoot = false;
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
@@ -61,7 +62,11 @@ namespace ForgottenMemories.NPCs.Acheron
 			if (npc.alpha >= 255)
 			{
 				npc.life = 0;
-				NPCLoot();
+				if (!droppedLoot)
+				{
+					NPCLoot();
+					droppedLoot = true;
+				}
 			}
 			
 			for (int i = 0; i < 8; i++)
@@ -81,10 +86,37 @@ namespace ForgottenMemories.NPCs.Acheron
 			int frame = (int)npc.frameCounter; 
 			npc.frame.Y = frame * frameHeight; 
 		}
-		
+
+		public void MakeAnItem()
+		{
+			switch (Main.rand.Next(5))
+			{
+				case 0: 
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Thanatos")));
+					break;
+				case 1: 
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Styx")));
+					break;
+				case 2:
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("MacabreGrimoire")));
+					break;
+				case 3:
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Cerberus")));
+					break;
+				case 4:
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("HadesHand")));
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LostSoul")), Main.rand.Next(100, 151));
+					break;
+				case 5:
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("AcheronStaff")));
+					break;
+				default:
+					break;
+			}
+		}
+
 		public override void NPCLoot()
 		{
-			TGEMWorld.TryForBossMask(npc.Center, npc.type);
 			TGEMWorld.downedAcheron = true;
 			if (Main.expertMode)
 			{
@@ -92,35 +124,10 @@ namespace ForgottenMemories.NPCs.Acheron
 			}
 			else
 			{
-				switch (Main.rand.Next(6))
-				{
-					case 0: 
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Thanatos")));
-						break;
-					case 1: 
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Styx")));
-						break;
-					case 2:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("AcheronStaff")));
-						break;
-					case 3:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("MacabreGrimoire")));
-						break;
-					case 4:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Cerberus")));
-						break;
-					case 5:
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("HadesHand")));
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LostSoul")), Main.rand.Next(100, 151));
-						break;
-					default:
-						break;
-				}
-				{
-				
-				if (Main.rand.Next(6) == 0)
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BansheeLure")));
-				}
+				TGEMWorld.TryForBossMask(npc.Center, mod.NPCType("Acheron"));
+				MakeAnItem();
+				MakeAnItem();
+				//if (Main.rand.Next(6) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BansheeLure")));
 			}
 		}
 	}
