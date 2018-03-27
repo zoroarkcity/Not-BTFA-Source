@@ -69,7 +69,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 50000 + ((numPlayers) * 5000);
+			npc.lifeMax = 54000 + ((numPlayers) * 5400);
 			npc.damage = 125;
 			npc.defense = 42;
 		}
