@@ -36,7 +36,7 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.aiStyle = -1;
             npc.lifeMax = 7000;
             npc.damage = 44;
-            npc.defense = 0;
+            npc.defense = 6;
             npc.knockBackResist = 0f;
             npc.width = 98;
             npc.height = 112;
@@ -62,7 +62,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 			{
-				npc.lifeMax = 8000 + ((numPlayers) * 2500);
+				npc.lifeMax = 9000 + ((numPlayers) * 900);
 				npc.damage = 96;
 			}
 		
@@ -215,7 +215,7 @@ namespace ForgottenMemories.NPCs.Acheron
 					SpawnBarriers();
 				}
 				else
-					npc.defense = 12;
+					npc.defense = 14;
 
 				Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
 				transitioned = true;
@@ -353,7 +353,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			{
 				Phase2Attack(player);
 
-				if (Main.expertMode && npc.life <= npc.lifeMax / 10) //uses both attacks simultaneously at low health in expert
+				if (Main.expertMode && npc.life <= npc.lifeMax / 9) //uses both attacks simultaneously at low health in expert
 				{
 					willFireCurly = !willFireCurly;
 					Phase2Attack(player);
