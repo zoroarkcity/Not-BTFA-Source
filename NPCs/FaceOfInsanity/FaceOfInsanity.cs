@@ -62,7 +62,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 24000 + ((numPlayers) * 2400);
+			npc.lifeMax = 30000 + ((numPlayers) * 3000);
 			npc.damage = 130;
 			npc.defense = 28;
 		}
