@@ -52,6 +52,8 @@ namespace ForgottenMemories.NPCs.Acheron
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 1;
 
+			npc.buffImmune[BuffID.OnFire] = true;
+
 			if (Main.expertMode)
 				npc.damage = 100;
         }

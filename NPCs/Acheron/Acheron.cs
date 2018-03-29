@@ -53,6 +53,8 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.npcSlots = 15;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 1;
+
+			npc.buffImmune[BuffID.OnFire] = true;
 			
             if (ForgottenMemories.instance.songsLoaded)
                 music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/out");
@@ -248,7 +250,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			{
 				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("SoulWell"), npc.damage / 3, 0, Main.myPlayer, 0, 0); //14.67
 				if (Main.expertMode)
-					Main.projectile[p].damage = npc.damage / 5; //19.2
+					Main.projectile[p].damage = npc.damage / 8; //12
 
 				npc.ai[3] = 0;
 				npc.netUpdate = true;
@@ -313,12 +315,12 @@ namespace ForgottenMemories.NPCs.Acheron
 		{
 			if (willFireCurly)
 			{
-				int p1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 4, 1, Main.myPlayer, player.whoAmI, 1f); //11
-				int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 4, 1, Main.myPlayer, player.whoAmI, -1f); //11
+				int p1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 3, 1, Main.myPlayer, player.whoAmI, 1f); //14.67
+				int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 3, 1, Main.myPlayer, player.whoAmI, -1f); //14.67
 				if (Main.expertMode)
 				{
-					Main.projectile[p1].damage = npc.damage / 5; //19.2
-					Main.projectile[p2].damage = npc.damage / 5; //19.2
+					Main.projectile[p1].damage = npc.damage / 7; //13.71
+					Main.projectile[p2].damage = npc.damage / 7; //13.71
 				}
 			}
 			else
@@ -330,7 +332,7 @@ namespace ForgottenMemories.NPCs.Acheron
 					Vector2 Vel = new Vector2(10, 0).RotatedBy(rotation + index * (2*MathHelper.Pi/5));
 					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul2"), npc.damage / 3, 1, Main.myPlayer, 0, 0); //14.67
 					if (Main.expertMode)
-						Main.projectile[p].damage = npc.damage / 5; //19.2
+						Main.projectile[p].damage = npc.damage / 7; //13.71
 				}
 			}
 		}
@@ -345,9 +347,9 @@ namespace ForgottenMemories.NPCs.Acheron
 				Vel.Normalize();
 				Vel *= 9.5f;
 				Vel += player.velocity;
-				int p = Projectile.NewProjectile(Position.X, Position.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul"), npc.damage / 4, 1, Main.myPlayer, 0, 0); //11
+				int p = Projectile.NewProjectile(Position.X, Position.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul"), npc.damage / 3, 1, Main.myPlayer, 0, 0); //14.67
 				if (Main.expertMode)
-					Main.projectile[p].damage = npc.damage / 6; //16
+					Main.projectile[p].damage = npc.damage / 8; //12
 			}
 			else if (npc.ai[0] == 160)
 			{
