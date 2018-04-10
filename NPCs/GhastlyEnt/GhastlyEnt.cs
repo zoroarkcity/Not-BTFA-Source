@@ -42,10 +42,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-			{
-				npc.lifeMax = 50000 + ((numPlayers) * 20000);
-				npc.damage = 90;
-			}
+		{
+			npc.lifeMax = 50000 + ((numPlayers) * 20000);
+			npc.damage = 90;
+		}
 		
 		public override void SetStaticDefaults()
 		{
@@ -70,7 +70,6 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			int num159 = 1;
 			float value3 = 1f;
 			float num160 = 0f;
-			
 			
 			int num161 = num159;
 			while (npc.velocity != Vector2.Zero &&((num158 > 0 && num161 < num157) || (num158 < 0 && num161 > num157)))
@@ -147,7 +146,6 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 					npc.timeLeft = 10;
 				}
             }
-			
 		}
 		
 		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -180,7 +178,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		}
 		
 		public void LeafRain(Player player)
-		(
+		{
 			for(int i = 0; i < 3; i++)
 			{
 				Vector2 Position = player.Center;
@@ -195,7 +193,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 					Projectile.NewProjectile(Position + Offset, Vel, mod.ProjectileType("GiantLeaf"), (int)(npc.damage / 2), 1f, player.whoAmI, 0, 0);
 				}
 			}
-		)
+		}
 		
 		public void BiphronSeeds(Player player, Vector2 Position)
 		{
