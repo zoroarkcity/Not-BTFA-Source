@@ -612,19 +612,31 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			else
 			{
-				switch (Main.rand.Next(4))
+				switch (Main.rand.Next(7))
 				{
 					case 0: 
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("HemorrhageStaff")));
 						break;
-					case 1: 
+					/*case 1: //stop calling weapons that dont exist pls
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("SeveredTongue")));
-						break;
-					case 2:
+						break;*/
+					case 1:
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BloodLeech")), Main.rand.Next(250, 271));
 						break;
-					case 3:
+					case 2:
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("GoredLung")));
+						break;
+					case 3:
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("TonsilLauncher")));
+						break;
+					case 4:
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Scabular")));
+						break;
+					case 5:
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Curor")));
+						break;
+					case 6:
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("CapillaryRepeater")));
 						break;
 					default:
 						break;
