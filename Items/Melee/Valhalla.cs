@@ -39,7 +39,7 @@ namespace ForgottenMemories.Items.Melee
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "SoaringEnergy", 8);
-			recipe.AddIngredient(ItemID.Valor, 1)
+			recipe.AddIngredient(ItemID.Valor, 1);
 			recipe.AddTile(TileID.Anvils);			
 			recipe.SetResult(this);
 			recipe.AddRecipe();
