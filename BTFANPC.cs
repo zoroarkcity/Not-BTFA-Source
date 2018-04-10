@@ -17,6 +17,8 @@ namespace ForgottenMemories
 		public bool BloodLeech = false;
 		public bool MarbleArrow = false;
 		public bool Necro = false;
+		public bool boilingBlood = false;
+		public int boilingBloodCounter = 7;
 		
 		public override void ResetEffects(NPC npc)
         {
@@ -26,6 +28,7 @@ namespace ForgottenMemories
 			BloodLeech = false;
 			MarbleArrow = false;
 			Necro = false;
+			boilingBlood = false;
         } 
 		
 		public override bool InstancePerEntity {get{return true;}}
@@ -53,6 +56,21 @@ namespace ForgottenMemories
             }
         }
 		
+		public override void DrawEffects(NPC npc, ref Color drawColor)
+		{
+			if (boilingBlood) //PLACEHOLDER DUST, PLEASE SPRAY YOUR MAGIC DUST JUICE ON THIS
+			{
+				if (Main.rand.Next(7) < 6)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("BloodDust2"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 44, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.2f;
+                    Main.dust[dust].velocity.Y -= 0.15f;
+                }
+				Lighting.AddLight(npc.position, 0.5f, 0, 0);
+			}
+		}
+
 		public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
 			if (npc.FindBuffIndex(mod.BuffType("BlightFlame")) >= 0)
@@ -159,6 +177,23 @@ namespace ForgottenMemories
 				if (damage < num * 3)
 					damage = num * 3;
 			}
+
+			if (boilingBlood)
+			{
+				if (npc.lifeRegen > 0)
+				{
+					npc.lifeRegen = 0;
+				}
+				npc.lifeRegen -= boilingBloodCounter;
+				if (damage < 14)
+				{
+					damage = 14;
+				}
+			}
+			else
+			{
+				boilingBloodCounter = 7;
+			}
 		}
 		
 		public override void SetupShop(int type, Chest shop, ref int nextSlot) // add items to npc shops
@@ -229,6 +264,12 @@ namespace ForgottenMemories
 					Main.projectile[p].usesLocalNPCImmunity = true;
 					Main.projectile[p].localNPCHitCooldown = 10;
 				}
+			}
+
+			if (boilingBlood)
+			{
+				int p = Projectile.NewProjectile(npc.position.X, npc.position.Y, 0, 0, mod.ProjectileType("BloodBall"), 84, 4.4f, Main.myPlayer, 1f);
+				Main.projectile[p].Kill();
 			}
 			
 			if(TGEMWorld.forestInvasionUp)
