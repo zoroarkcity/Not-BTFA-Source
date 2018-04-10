@@ -20,12 +20,11 @@ namespace ForgottenMemories.Items.Boss
 			bossBagNPC = mod.NPCType("FaceOfInsanity");
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Treasure Bag");
-      Tooltip.SetDefault("Right click to open");
-    }
-
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Treasure Bag");
+			Tooltip.SetDefault("Right click to open");
+		}
 
 		public override bool CanRightClick()
 		{
@@ -37,19 +36,31 @@ namespace ForgottenMemories.Items.Boss
 			player.TryGettingDevArmor();
             player.QuickSpawnItem(mod.ItemType("BloodHeart"), 1);
 			
-			switch (Main.rand.Next(4))
+			switch (Main.rand.Next(7))
 			{
 				case 0: 
-					player.QuickSpawnItem(mod.ItemType("SeveredTongue"), 1);
-					break;
-				case 1: 
 					player.QuickSpawnItem(mod.ItemType("HemorrhageStaff"), 1);
 					break;
-				case 2:
+				/*case 1: 
+					player.QuickSpawnItem(mod.ItemType("SeveredTongue"), 1);
+					break;*/
+				case 1:
 					player.QuickSpawnItem(mod.ItemType("BloodLeech"), Main.rand.Next(270, 300));
 					break;
-				case 3:
+				case 2:
 					player.QuickSpawnItem(mod.ItemType("GoredLung"), 1);
+					break;
+				case 3:
+					player.QuickSpawnItem(mod.ItemType("TonsilLauncher"), 1);
+					break;
+				case 4:
+					player.QuickSpawnItem(mod.ItemType("Scabular"), 1);
+					break;
+				case 5:
+					player.QuickSpawnItem(mod.ItemType("Curor"), 1);
+					break;
+				case 6:
+					player.QuickSpawnItem(mod.ItemType("CapillaryRepeater"), 1);
 					break;
 				default:
 					break;
