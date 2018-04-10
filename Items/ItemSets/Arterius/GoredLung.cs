@@ -30,13 +30,12 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 			item.useAmmo = AmmoID.Gel;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Gored Lung");
-      Tooltip.SetDefault("Sprays streams of blood, leaves behind some lasting blood");
-    }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Gored Lung");
+			Tooltip.SetDefault("Sprays streams of blood, leaves behind some lasting blood");
+		}
 
-		
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-4, 0);

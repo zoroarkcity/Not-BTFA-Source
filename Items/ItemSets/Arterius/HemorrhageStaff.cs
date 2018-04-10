@@ -18,8 +18,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
     {
         public override void SetDefaults()
         {
-
-            item.damage = 38;
+			item.damage = 38;
             item.summon = true;
             item.mana = 10;
             item.width = 42;
@@ -41,13 +40,12 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 			ProjectileID.Sets.MinionTargettingFeature[item.shoot] = true;
         }
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Hemorrhage Staff");
-      Tooltip.SetDefault("Summons Living Blood to fight");
-    }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Hemorrhage Staff");
+			Tooltip.SetDefault("Summons Living Blood to fight");
+		}
 
-		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			Vector2 mouse = Main.MouseWorld;
