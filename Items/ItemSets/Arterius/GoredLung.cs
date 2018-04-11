@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 		{
 			item.CloneDefaults(ItemID.Flamethrower);
 
-			item.damage = 37;
+			item.damage = 34;
 			item.ranged = true;
 			item.width = 44;
 			item.height = 20;

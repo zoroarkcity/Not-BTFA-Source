@@ -18,13 +18,13 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 		
 		public override void SetDefaults()
 		{
-			item.damage = 24;
+			item.damage = 20;
 			item.noMelee = true;
 			item.ranged = true;
 			item.width = 40;
 			item.height = 26;
-			item.useTime = 27;
-			item.useAnimation = 27;
+			item.useTime = 22;
+			item.useAnimation = 22;
 			item.useStyle = 5;
 			item.shoot = 3;
 			item.useAmmo = AmmoID.Arrow;
@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 			item.value = Item.sellPrice(0, 2, 8, 0);
 			item.rare = 4;
 			item.autoReuse = true;
-			item.shootSpeed = 11f;
+			item.shootSpeed = 13f;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

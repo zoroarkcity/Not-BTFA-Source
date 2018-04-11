@@ -18,14 +18,14 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 		
 		public override void SetDefaults()
 		{
-			item.damage = 69;
+			item.damage = 59;
 			item.noMelee = true;
 			item.magic = true;
 			item.mana = 14;
 			item.width = 40;
 			item.height = 40;
-			item.useTime = 23;
-			item.useAnimation = 23;
+			item.useTime = 21;
+			item.useAnimation = 21;
 			item.useStyle = 1;
 			item.shoot = mod.ProjectileType("BloodBall");
 			item.UseSound = SoundID.Item8;
@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 			item.value = Item.sellPrice(0, 2, 8, 0);
 			item.rare = 4;
 			item.autoReuse = true;
-			item.shootSpeed = 9.4f;
+			item.shootSpeed = 11.8f;
 		}
 	}
 }
