@@ -9,6 +9,8 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 	public class BloodLeech : ModProjectile
 	{
 		int index1 = 999;
+		//float increment = 0f;
+
 		public override void SetDefaults()
 		{
 			projectile.width = 15;
@@ -37,23 +39,27 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 		public override void AI()
 		{
 			int num1 = 25;
-			if ((double) projectile.ai[0] == 0.0)
+			if (projectile.ai[0] == 0f)
 			{
-				projectile.ai[1] += 1f;
-				if (projectile.ai[1] >= 45f)
+				if (projectile.ai[1] < 45f)
+				{
+					projectile.ai[1] += 1f;
+				}
+				else
 				{
 					float num984 = 0.98f;
 					float num985 = 0.35f;
-					if (projectile.type == 636)
-					{
-						num984 = 0.995f;
-						num985 = 0.15f;
-					}
 					projectile.ai[1] = 45f;
-					projectile.velocity.X = projectile.velocity.X * num984;
-					projectile.velocity.Y = projectile.velocity.Y + num985;
+					projectile.velocity.X *= num984;
+					projectile.velocity.Y += num985;
 				}
-				projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
+
+				projectile.rotation = projectile.velocity.ToRotation() + 1.5708f;
+				/*if (projectile.velocity.X < 1)
+					increment -= 0.41887902f; //24 degrees per tick
+				else
+					increment += 0.41887902f;
+				projectile.rotation += increment;*/
 			}
 			
 			if ((double) projectile.ai[0] == 1.0)
@@ -88,6 +94,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(mod.BuffType("BloodLeech"), 900, false);
+			target.immune[projectile.owner] = 0;
 			
 			projectile.ai[0] = 1f;
 			for (int i = 0; i <= 200; i++)
@@ -102,7 +109,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 			projectile.netUpdate = true;
 			
 			projectile.damage = 0;
-			int length = 7;
+			int length = 14;
 			Point[] pointArray = new Point[length];
 			int num2 = 0;
 			for (int x = 0; x < 1000; ++x)
