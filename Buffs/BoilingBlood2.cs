@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.Buffs
 {
-	public class BoilingBlood : ModBuff
+	public class BoilingBlood2 : ModBuff
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Boiling Blood");
-			Description.SetDefault("Melting from within");
+			DisplayName.SetDefault("Boiling Blood II");
+			Description.SetDefault("Increased damage taken");
 			Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
@@ -20,15 +20,7 @@ namespace ForgottenMemories.Buffs
         
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<BTFANPC>(mod).boilingBlood = true;
+            npc.GetGlobalNPC<BTFANPC>(mod).boilingBlood2 = true;
         }
-
-		public override bool ReApply (NPC npc, int time, int buffIndex)
-		{
-			if (npc.GetGlobalNPC<BTFANPC>(mod).boilingBloodCounter < 70)
-				npc.GetGlobalNPC<BTFANPC>(mod).boilingBloodCounter += 7;
-
-			return false;
-		}
 	}
 }
