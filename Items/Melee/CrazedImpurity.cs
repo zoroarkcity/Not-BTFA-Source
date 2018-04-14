@@ -70,7 +70,7 @@ namespace ForgottenMemories.Items.Melee
 			recipe.AddIngredient(null, "impurity", 1);
 			recipe.AddIngredient(ItemID.StarWrath, 1);
 			recipe.AddIngredient(ItemID.DarkShard, 1);
-			recipe.AddIngredient(null, "CosmodiumBar", 15);
+			recipe.AddIngredient(ItemID.LunarBar, 8);
 			recipe.AddTile(412);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

@@ -88,7 +88,7 @@ namespace ForgottenMemories.Items.Magic
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.ShadowbeamStaff, 1);
 			recipe.AddIngredient(null, "LaserbeamStaff", 1);
-			recipe.AddIngredient(null,"CosmodiumBar", 12);
+			recipe.AddIngredient(ItemID.LunarBar, 8);
 			recipe.AddTile(412);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

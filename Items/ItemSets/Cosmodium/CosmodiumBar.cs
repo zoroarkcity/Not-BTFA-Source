@@ -24,7 +24,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmodium
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Cosmodium Bar");
-      Tooltip.SetDefault("");
+      Tooltip.SetDefault("UNOBTAINABLE AND GARBAGE");
     }
 	
 	

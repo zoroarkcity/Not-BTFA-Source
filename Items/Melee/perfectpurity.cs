@@ -41,7 +41,7 @@ namespace ForgottenMemories.Items.Melee
 			recipe.AddIngredient(null, "Purity", 1);
 			recipe.AddIngredient(ItemID.Meowmere, 1);
 			recipe.AddIngredient(ItemID.LightShard, 1);
-			recipe.AddIngredient(null, "CosmodiumBar", 15);
+			recipe.AddIngredient(ItemID.LunarBar, 8);
 			recipe.AddTile(412);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

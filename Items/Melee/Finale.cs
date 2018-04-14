@@ -137,7 +137,7 @@ namespace ForgottenMemories.Items.Melee
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null,"Climax", 1);
-			recipe.AddIngredient(null,"CosmodiumBar", 18);
+			recipe.AddIngredient(ItemID.LunarBar, 18);
 			recipe.AddIngredient(null,"CrazedImpurity", 1);
 			recipe.AddIngredient(null,"perfectpurity", 1);
 			recipe.AddIngredient(ItemID.GravityGlobe, 1);

@@ -86,7 +86,7 @@ namespace ForgottenMemories.Items.Magic
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.InfernoFork, 1);
 			recipe.AddIngredient(ItemID.UnholyTrident, 1);
-			recipe.AddIngredient(null,"CosmodiumBar", 12);
+			recipe.AddIngredient(ItemID.LunarBar, 8);
 			recipe.AddTile(412);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
