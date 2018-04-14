@@ -19,6 +19,7 @@ namespace ForgottenMemories
 		public bool Necro = false;
 		public bool boilingBlood = false;
 		public int boilingBloodCounter = 7;
+		public bool boilingBlood2 = false;
 		
 		public override void ResetEffects(NPC npc)
         {
@@ -29,6 +30,7 @@ namespace ForgottenMemories
 			MarbleArrow = false;
 			Necro = false;
 			boilingBlood = false;
+			boilingBlood2 = false;
         } 
 		
 		public override bool InstancePerEntity {get{return true;}}
@@ -55,6 +57,14 @@ namespace ForgottenMemories
                 npc.timeLeft = 1000;
             }
         }
+
+		public override bool StrikeNPC (NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+		{
+			if (boilingBlood2)
+				damage *= 1.1;
+			
+			return true;
+		}
 		
 		public override void DrawEffects(NPC npc, ref Color drawColor)
 		{
@@ -142,9 +152,9 @@ namespace ForgottenMemories
 				  if (Main.projectile[index].active && Main.projectile[index].type == mod.ProjectileType("BloodLeech") && ((double) Main.projectile[index].ai[0] == 1.0 && (double) Main.projectile[index].ai[1] == (double) npc.whoAmI))
 					++num;
 				}
-				npc.lifeRegen -= num * 4 * 3;
-				if (damage < num * 3)
-					damage = num * 3;
+				npc.lifeRegen -= num * 10 * 2;
+				if (damage < num)
+					damage = num;
 			}
 			
 			if (MarbleArrow == true)
@@ -268,7 +278,7 @@ namespace ForgottenMemories
 
 			if (boilingBlood)
 			{
-				int p = Projectile.NewProjectile(npc.position.X, npc.position.Y, 0, 0, mod.ProjectileType("BloodBall"), 84, 4.4f, Main.myPlayer, 1f);
+				int p = Projectile.NewProjectile(npc.position.X, npc.position.Y, 0, 0, mod.ProjectileType("BloodBall"), 84, 4.4f, Main.myPlayer, 0f, 1f);
 				Main.projectile[p].Kill();
 			}
 			
