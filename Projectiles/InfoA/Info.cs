@@ -18,9 +18,9 @@ namespace ForgottenMemories.Projectiles.InfoA
 		public bool Planetary = false;
 		public bool Split = false;
 		public bool wtf = false;
-		public bool BlightedBow = false;
+		//public bool BlightedBow = false;
 		public bool FrostCrystal = false;
-		public bool Blight = false;
+		//public bool Blight = false;
 		public bool SnowSplit = false;
 		public bool NotSummon = false;
 		public bool Curse = false;
@@ -42,16 +42,24 @@ namespace ForgottenMemories.Projectiles.InfoA
 				Vector2 Source = (Main.player[projectile.owner].Center);
 				Vector2 vector2 = (projectile.DirectionFrom(Source) * 6f);
 				int Damage2 = (int) ((double) projectile.damage * 1.5);
-				Projectile.NewProjectile((float) Source.X, (float) Source.Y, (float) vector2.X, (float) vector2.Y, mod.ProjectileType("WaterBeam"), Damage2, 0.0f, projectile.owner, 0.0f, 0.0f);
+				Projectile.NewProjectile(Source.X, Source.Y, vector2.X, vector2.Y, mod.ProjectileType("WaterBeam"), Damage2, 0, projectile.owner);
 			}
 			
-			if (Blight && crit)
+			/*if (Blight && crit)
 			{
 				Vector2 Source = (Main.player[projectile.owner].Center);
 				Vector2 vector2 = (projectile.DirectionFrom(Source) * 6f);
-				//int Damage2 = (int) ((double) projectile.damage * 1.5);
 				Projectile.NewProjectile((float) Source.X, (float) Source.Y, (float) vector2.X, (float) vector2.Y, mod.ProjectileType("BlightBeam"), projectile.damage, 0.0f, projectile.owner, 0.0f, 0.0f);
 			}
+
+			if (BlightedBow && crit)
+			{
+				Vector2 Source = (Main.player[projectile.owner].Center);
+				Source.X += Main.rand.Next(-100, 101);
+				Source.Y += Main.rand.Next(-100, 101);
+				Vector2 vector2 = (projectile.DirectionFrom(Source) * 6f);
+				Projectile.NewProjectile(Source.X,  Source.Y, vector2.X, vector2.Y, mod.ProjectileType("BlightBeam"), projectile.damage / 3, 0, projectile.owner);
+			}*/
 			
 			if (Curse == true && target.life < 1)
 			{
@@ -87,10 +95,11 @@ namespace ForgottenMemories.Projectiles.InfoA
 				Main.projectile[z].tileCollide = false;
 				Main.projectile[z].penetrate = 1;
 			}
-			if (BlightedBow == true)
+
+			/*if (BlightedBow == true)
 			{
 				target.AddBuff(mod.BuffType("BlightFlame"), 360, false);
-			}
+			}*/
 			
 			if (Main.rand.Next(2) == 0 && Planetary == true)
 			{
@@ -204,13 +213,13 @@ namespace ForgottenMemories.Projectiles.InfoA
 				ProjectileID.Sets.SentryShot[projectile.type] = false;
 			}
 			
-			if (BlightedBow == true)
+			/*if (BlightedBow == true)
 			{
 				int dust;
 				dust = Dust.NewDust(projectile.Center, 0, 0, 173, 0f, 0f); 
 				Main.dust[dust].scale = 1.2f;
 				Main.dust[dust].noGravity = true;
-			}
+			}*/
 			
 			if (wtf == true && projectile.velocity.X == 0 && projectile.velocity.Y == 0)
 			{
