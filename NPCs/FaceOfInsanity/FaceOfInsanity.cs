@@ -63,8 +63,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
 			npc.lifeMax = 30000 + ((numPlayers) * 3000);
-			npc.damage = 130;
-			npc.defense = 28;
+			npc.damage = 120;
+			npc.defense = 24;
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -159,8 +159,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
             if (Main.expertMode)
 			{
-				Main.projectile[p1].damage = npc.damage / 6; //25
-				Main.projectile[p2].damage = npc.damage / 6;
+				Main.projectile[p1].damage = npc.damage * 2 / 13; //18.46 -> 76
+				Main.projectile[p2].damage = npc.damage * 2 / 13;
 			}
         }
 
@@ -178,7 +178,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
             if (Main.expertMode)
             {
-                Main.projectile[p].damage = npc.damage * 4 / 15; //40
+                Main.projectile[p].damage = (int) (npc.damage / 4.11764706); //same as arte contact damage
             }
         }
 
@@ -204,7 +204,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                 Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-5, 6) / 2f, (float)Main.rand.Next(-5, 6) / 2f);
                 int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 1f, 0); //20
                 if (Main.expertMode)
-                    Main.projectile[p].damage = npc.damage / 6; //25
+                    Main.projectile[p].damage = npc.damage / 6; //20 -> 82
             }
 
             Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
@@ -315,8 +315,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         velocity.Normalize();
                         velocity *= 8;
                         velocity += player.velocity / 2;
-                        int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 6, 0, Main.myPlayer, 0, 0); //25 EXPERT ONLY
-						//if (Main.expertMode) Main.projectile[p].damage = npc.damage / 6; //25
+						int damage = npc.damage / 6; //20 -> 82 EXPERT ONLY
+                        int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), damage, 0, Main.myPlayer, 0, 0);
                     }
                     if (aiTimer % 110 == 0)
                         ShootBlood(mod.NPCType("ExplosiveZitEnemy"), false);
