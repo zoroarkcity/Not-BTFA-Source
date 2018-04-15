@@ -8,7 +8,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 {
 	public class BloodLeech : ModProjectile
 	{
-		int index1 = 999;
+		//int index1 = 999;
 		//float increment = 0f;
 
 		public override void SetDefaults()
@@ -97,14 +97,15 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 			target.immune[projectile.owner] = 0;
 			
 			projectile.ai[0] = 1f;
-			for (int i = 0; i <= 200; i++)
+			projectile.ai[1] = target.whoAmI;
+			/*for (int i = 0; i <= 200; i++)
 			{
 				if (Main.npc[i] == target)
 				{
 					index1 = i;
 					projectile.ai[1] = (float) index1;
 				}
-			}
+			}*/
 			projectile.velocity = (target.Center - projectile.Center) * 0.75f;
 			projectile.netUpdate = true;
 			
@@ -114,7 +115,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 			int num2 = 0;
 			for (int x = 0; x < 1000; ++x)
 			{
-				if (x != projectile.whoAmI && Main.projectile[x].active && (Main.projectile[x].owner == Main.myPlayer && Main.projectile[x].type == projectile.type) && ((double) Main.projectile[x].ai[0] == 1.0 && (double) Main.projectile[x].ai[1] == (double) index1))
+				if (x != projectile.whoAmI && Main.projectile[x].active && (Main.projectile[x].owner == Main.myPlayer && Main.projectile[x].type == projectile.type) && ((double) Main.projectile[x].ai[0] == 1.0 && (double) Main.projectile[x].ai[1] == target.whoAmI))
 				{
 					pointArray[num2++] = new Point(x, Main.projectile[x].timeLeft);
 					if (num2 >= pointArray.Length)
