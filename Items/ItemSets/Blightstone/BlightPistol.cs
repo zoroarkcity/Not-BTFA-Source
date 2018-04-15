@@ -17,16 +17,18 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 {
 	public class BlightPistol : ModItem
 	{
-		int counter = 0;
+		public int counter = 3;
+
 		public override void SetDefaults()
 		{
-			item.damage = 40;
+			item.damage = 36;
 			item.ranged = true;
 			item.width = 32;
 			item.height = 20;
 
-			item.useTime = 20;
-			item.useAnimation = 20;
+			item.useTime = 4;
+			item.useAnimation = 12;
+			item.reuseDelay = 12;
 			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 1;
@@ -40,13 +42,14 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.crit = 4;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Blight Pistol");
-		  Tooltip.SetDefault("Critical hits cause you to fire a beam of high-pressure blighted fire");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlightPistol");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Blight Pistol");
+			Tooltip.SetDefault("Fires a salvo of blighted energy");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlightPistol");
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -66,13 +69,24 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
-
+		}
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			Projectile projectile = Main.projectile[Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI, 0f, 0f)];
-			projectile.GetGlobalProjectile<Info>(mod).Blight = true;
+			type = mod.ProjectileType("BlightBullet");
+			Vector2 speed = new Vector2(speedX, speedY);
+			if (counter == 3)
+			{
+				counter = 1;
+			}
+			else
+			{
+				counter++;
+				double rotation = Main.rand.Next(-3, 3) * Math.PI / 180;
+				speed = speed.RotatedBy(rotation);
+			}
+			Projectile.NewProjectile(position, speed, type, damage, knockBack, player.whoAmI);
+			Main.PlaySound(2, (int) position.X, (int) position.Y, 11);
 			return false;
 		}
 		

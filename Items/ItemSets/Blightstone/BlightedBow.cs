@@ -11,18 +11,16 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 {
     public class BlightedBow : ModItem
     {
-
-        public override void SetDefaults()
+		public override void SetDefaults()
         {
-
-            item.damage = 40;
+			item.damage = 34;
             item.noMelee = true;
             item.ranged = true;
             item.width = 14;
             item.height = 21;
 
-            item.useTime = 33;
-            item.useAnimation = 33;
+            item.useTime = 30;
+            item.useAnimation = 30;
             item.useStyle = 5;
             item.shoot = 3;
             item.useAmmo = 40;
@@ -31,17 +29,17 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
             item.rare = 5;
             item.UseSound = SoundID.Item5;
             item.autoReuse = true;
-            item.shootSpeed = 14f;
-
+            item.shootSpeed = 7f;
         }
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Blighted Bow");
-      Tooltip.SetDefault("Fires a spread of arrows, has a chance to imbue arrows with blighted fire");
-    BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlightedBow");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Blighted Bow");
+			Tooltip.SetDefault("Fires a spread of blighted arrows\nCritical hits summon portals of dark energy");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlightedBow");
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -61,27 +59,22 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 				SpriteEffects.None, 
 				0f
 			);
-		}/////////////////////////////////////////////////////////WORLD GLOWMASK///////////////////////////
+		}
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+			type = mod.ProjectileType("BlightArrow");
+			
 			for (int k = 0; k < 3; k++)
 			{
 				int spread = -5 + (5 * k);
 				Vector2 velVect = new Vector2(speedX, speedY);
 				Vector2 velVect2 = velVect.RotatedBy(MathHelper.ToRadians(spread));
 				
-				if (Main.rand.Next(3) == 0)
-				{
-					int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, (int)(damage * 1.25), knockBack, Main.myPlayer, 0, 0);
-					Main.projectile[p].GetGlobalProjectile<Info>(mod).BlightedBow = true;
-				}
-				
-				else
-				{
-					Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
-				}
+				int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
+				//Main.projectile[p].GetGlobalProjectile<Info>(mod).BlightedBow = true;
 			}
+
             return false;
         }
 		
