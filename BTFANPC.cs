@@ -20,6 +20,10 @@ namespace ForgottenMemories
 		public bool boilingBlood = false;
 		public int boilingBloodCounter = 7;
 		public bool boilingBlood2 = false;
+		public bool groped = false;
+		public bool titanCrush = false;
+		public bool bleeding = false;
+		public bool blightFlame = false;
 		
 		public override void ResetEffects(NPC npc)
         {
@@ -31,6 +35,10 @@ namespace ForgottenMemories
 			Necro = false;
 			boilingBlood = false;
 			boilingBlood2 = false;
+			groped = false;
+			titanCrush = false;
+			bleeding = false;
+			blightFlame = false;
         } 
 		
 		public override bool InstancePerEntity {get{return true;}}
@@ -83,39 +91,45 @@ namespace ForgottenMemories
 
 		public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-			if (npc.FindBuffIndex(mod.BuffType("BlightFlame")) >= 0)
+			if (blightFlame)
 			{
+				npc.lifeRegen -= 40;
+				
 				if (damage < 10)
 				{
 					damage = 10;
 				}
 			}
 			
-			if (npc.FindBuffIndex(mod.BuffType("TitanCrush")) >= 0)
+			if (titanCrush)
 			{
+				npc.lifeRegen -= 20;
+				
 				if (damage < 20)
 				{
 					damage = 20;
 				}
 			}
 			
-			if (npc.FindBuffIndex(mod.BuffType("Frostburn2")) >= 0)
+			/*if (npc.FindBuffIndex(mod.BuffType("Frostburn2")) >= 0) //THIS DOESNT EVEN EXIST
 			{
 				if (damage < 10)
 				{
 					damage = 10;
 				}
-			}
+			}*/
 			
-			if (npc.FindBuffIndex(mod.BuffType("Bleeding")) >= 0)
+			if (bleeding)
 			{
+				npc.lifeRegen -= 8;
+				
 				if (damage < 4)
 				{
 					damage = 4;
 				}
 			}
 			
-			if (BlightCelled == true)
+			if (BlightCelled)
 			{
 				if (npc.lifeRegen > 0)
 					npc.lifeRegen = 0;
@@ -130,7 +144,7 @@ namespace ForgottenMemories
 					damage = num * 5;
 			}
 			
-			if (FilicidCelled == true)
+			if (FilicidCelled)
 			{
 				int num = 0;
 				for (int index = 0; index < 1000; ++index)
@@ -141,7 +155,7 @@ namespace ForgottenMemories
 				npc.defense -= num * 2;
 			}
 			
-			if (BloodLeech == true)
+			if (BloodLeech)
 			{
 				if (npc.lifeRegen > 0)
 					npc.lifeRegen = 0;
@@ -157,7 +171,7 @@ namespace ForgottenMemories
 					damage = num;
 			}
 			
-			if (MarbleArrow == true)
+			if (MarbleArrow)
 			{
 				if (npc.lifeRegen > 0)
 					npc.lifeRegen = 0;
@@ -172,7 +186,7 @@ namespace ForgottenMemories
 					damage = num * 5;
 			}
 			
-			if (Necro == true)
+			if (Necro)
 			{
 				if (npc.lifeRegen > 0)
 					npc.lifeRegen = 0;
@@ -203,6 +217,15 @@ namespace ForgottenMemories
 			else
 			{
 				boilingBloodCounter = 7;
+			}
+
+			if (groped)
+			{
+				if (npc.lifeRegen > 0)
+					npc.lifeRegen = 0;
+				npc.lifeRegen -= 40;
+				if (damage < 4)
+					damage = 4;
 			}
 		}
 		
