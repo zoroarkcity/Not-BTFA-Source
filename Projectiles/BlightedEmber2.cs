@@ -18,7 +18,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.width = 20;
 			projectile.height = 20;
 			projectile.friendly = true;
-			projectile.melee = true;
+			projectile.magic  = true;
 			projectile.penetrate = 4;
 			projectile.timeLeft = 80;
 			projectile.alpha = 255;
