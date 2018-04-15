@@ -8,24 +8,20 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.Buffs
 {
-	public class Bleeding : ModBuff
+	public class Groped : ModBuff
 	{
 		public override void SetDefaults()
 		{
 			Main.buffNoTimeDisplay[Type] = false;
-			DisplayName.SetDefault("Bleeding");
+			DisplayName.SetDefault("Groped");
 		}
 		
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<BTFANPC>(mod).bleeding = true;
-
-			if (Main.rand.Next(2) == 0)
-			{
-				int dust2 = Dust.NewDust(npc.position, npc.width, npc.height, 5);
-				Main.dust[dust2].scale = 1.5f;
-				Main.dust[dust2].noGravity = true;		
-			}
+			npc.GetGlobalNPC<BTFANPC>(mod).groped = true;
+			
+			if (npc.dontTakeDamage)
+				npc.DelBuff(buffIndex);
 		}
 	}
 }

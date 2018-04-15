@@ -17,7 +17,7 @@ namespace ForgottenMemories.Buffs
 		}
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.lifeRegen -= 40;
+			npc.GetGlobalNPC<BTFANPC>(mod).blightFlame = true;
 
 			if (Main.rand.Next(2) == 0)
 			{

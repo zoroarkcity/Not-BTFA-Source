@@ -18,7 +18,7 @@ namespace ForgottenMemories.Buffs
 		public override void Update(NPC npc, ref int buffIndex)
 		{
 			npc.defense = (int)(npc.defense / 2);
-			npc.lifeRegen -= 20;
+			npc.GetGlobalNPC<BTFANPC>(mod).titanCrush = true;
 
 			if (Main.rand.Next(3) == 0)
 			{
