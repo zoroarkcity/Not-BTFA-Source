@@ -11,6 +11,9 @@ namespace ForgottenMemories.Projectiles.Acheron
 	public class GrimoireHandB : ModProjectile
 	{
 		int timer = 0;
+		int gropedID = -1;
+		int previousDamage = 0;
+
 		public override void SetDefaults()
 		{
 			projectile.width = 24;
@@ -25,6 +28,7 @@ namespace ForgottenMemories.Projectiles.Acheron
 			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 10;
+			projectile.timeLeft = 360;
 		}
 		
 		public override void SetStaticDefaults()
@@ -89,45 +93,123 @@ namespace ForgottenMemories.Projectiles.Acheron
 			Main.spriteBatch.Draw(texture2D3, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color29, projectile.rotation, origin2, projectile.scale, spriteEffects, 0f);
 			return false;
 		}
-		
+
 		public override void AI()
 		{
-			projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
-			if (projectile.velocity.X < 0)
+			if (gropedID == -1)
 			{
-				projectile.rotation += (float) Math.PI;
-			}
+				projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
+				if (projectile.velocity.X < 0)
+				{
+					projectile.rotation += (float) Math.PI;
+				}
 
-			if ((float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) > MathHelper.PiOver2 && (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) < (3 * MathHelper.PiOver2))
-			{
-				projectile.spriteDirection = -1;
+				if ((float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) > MathHelper.PiOver2 && (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) < (3 * MathHelper.PiOver2))
+				{
+					projectile.spriteDirection = -1;
+				}
+				else
+				{
+					projectile.spriteDirection = 1;
+				}
+
+				if (Main.rand.Next(5) == 0)
+				{
+					int dust2 = Dust.NewDust(projectile.position + projectile.velocity, projectile.height, projectile.width, 20, 0f, 0f);
+				}
+			
+				if (projectile.ai[0] > 0)
+				{
+					projectile.alpha += 10;
+			
+					if (projectile.alpha >= 255)
+						projectile.Kill();
+				}
+				else if (projectile.alpha > 0)
+				{
+					projectile.alpha -= 15;
+				}
 			}
 			else
 			{
-				projectile.spriteDirection = 1;
-			}
+				NPC npc = Main.npc[gropedID];
 
-			if (Main.rand.Next(5) == 0)
-			{
-				int dust2 = Dust.NewDust(projectile.position + projectile.velocity, projectile.height, projectile.width, 20, 0f, 0f);
-			}
-			
-			if (projectile.ai[0] > 0)
-			{
-				projectile.alpha += 10;
-			
-				if (projectile.alpha >= 255)
+				if (npc.active && !npc.dontTakeDamage)
+				{
+					projectile.Center = npc.Center - projectile.velocity * 2f;
+					projectile.gfxOffY = npc.gfxOffY;
+				}
+				else
+				{
 					projectile.Kill();
+				}
 			}
-			else if (projectile.alpha > 0)
+		}
+
+		public override void Kill (int timeLeft)
+		{
+			if (gropedID != -1)
 			{
-				projectile.alpha -= 15;
+				Main.PlaySound(SoundID.Item14, projectile.position);
+
+				projectile.position.X += projectile.width / 2;
+				projectile.position.Y += projectile.height / 2;
+
+				float modifier = 100f;
+			
+				projectile.width = (int) (modifier * projectile.scale);
+				projectile.height = (int) (modifier * projectile.scale);
+
+				projectile.position.X -= projectile.width / 2;
+				projectile.position.Y -= projectile.height / 2;
+
+				for(int i = 0; i < 40; i++) //PLS SPRAY DUST JUICE ON THIS PLS PLS MEW
+				{
+					int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 20, 0, 0, 0, default(Color), 3.4f);
+					
+					Main.dust[dust].noGravity = true;
+					Main.dust[dust].velocity *= 4.4f;
+					Main.dust[dust].noLight = true;
+
+					int rng = Main.rand.Next(3);
+
+					if (rng == 0)
+					{
+						Main.dust[dust].velocity *= 1.5f;
+						Main.dust[dust].scale *= 0.7f;
+					}
+					else if (rng == 1)
+					{
+						Main.dust[dust].velocity *= 1.2f;
+						Main.dust[dust].scale *= 0.9f;
+					}
+				}
+			
+				if (projectile.owner == Main.myPlayer)
+				{
+					projectile.damage = previousDamage;
+					projectile.Damage();
+				}
 			}
 		}
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			projectile.ai[0] += 1;
+			if (gropedID == -1)
+			{
+				projectile.ai[0] += 1;
+				gropedID = target.whoAmI;
+
+				projectile.velocity = (target.Center - projectile.Center) * 0.75f;
+				projectile.netUpdate = true;
+				projectile.ignoreWater = true;
+				projectile.tileCollide = false;
+
+				previousDamage = projectile.damage;
+				projectile.damage = 0;
+
+				target.AddBuff(mod.BuffType("Groped"), projectile.timeLeft);
+			}
 		}
 		
 		public override bool OnTileCollide (Vector2 velocity1)
