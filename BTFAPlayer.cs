@@ -174,6 +174,48 @@ namespace ForgottenMemories
 				Projectile.NewProjectile(Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y, 0f, 0f, mod.ProjectileType("InGameWikiMechanism"), 0, 0, player.whoAmI);
 			}	
 		}
+
+		public bool TargetInBlightRing (NPC target)
+		{
+			Vector2 smartOffset = player.Center - target.position; //get vector between npc origin and player
+			
+			//limit x and y of offset to within npc's hitbox
+			if (smartOffset.X > target.width)
+				smartOffset.X = target.width;
+			else if (smartOffset.X < 0)
+				smartOffset.X = 0;
+
+			if (smartOffset.Y > target.height)
+				smartOffset.Y = target.height;
+			else if (smartOffset.Y < 0)
+				smartOffset.Y = 0;
+
+			smartOffset += target.position; //result is the closest point on the npc's hitbox to the player
+
+			return (Vector2.Distance(smartOffset, player.Center) < 151f);
+		}
+
+		public override void ModifyHitNPC (Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+		{
+			if (player.ownedProjectileCounts[mod.ProjectileType("BlightLaserOrbit")] != 0)
+			{
+				if (TargetInBlightRing(target))
+				{
+					damage = (int) (damage * 1.25);
+				}
+			}
+		}
+
+		public override void ModifyHitNPCWithProj (Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			if (player.ownedProjectileCounts[mod.ProjectileType("BlightLaserOrbit")] != 0 & proj.melee)
+			{
+				if (TargetInBlightRing(target))
+				{
+					damage = (int) (damage * 1.25);
+				}
+			}
+		}
 		
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
@@ -404,7 +446,7 @@ namespace ForgottenMemories
 				BlightCounter++;
 				if (BlightCounter >= 180)
 				{
-					int p = Projectile.NewProjectile((player.position.X + 150), (player.position.Y), 0f, 0f, mod.ProjectileType("BlightLaserOrbit"), 120, 0f, player.whoAmI, 0f, 0f);
+					int p = Projectile.NewProjectile((player.position.X + 150), (player.position.Y), 0f, 0f, mod.ProjectileType("BlightLaserOrbit"), 0, 0f, player.whoAmI, 0f, 0f);
 					Main.projectile[p].position += new Vector2 (Main.projectile[p].width/2, Main.projectile[p].height/2);
 					BlightCounter = 0;
 				}
