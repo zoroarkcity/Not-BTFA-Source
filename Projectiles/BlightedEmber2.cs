@@ -8,7 +8,6 @@ using Terraria.Utilities;
 
 namespace ForgottenMemories.Projectiles
 {
-	
 	public class BlightedEmber2 : ModProjectile
 	{
 		Vector2 Gayer;
@@ -29,6 +28,7 @@ namespace ForgottenMemories.Projectiles
 		{
 			DisplayName.SetDefault("Blighted Ember");
 		}
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			projectile.penetrate--;
@@ -39,13 +39,44 @@ namespace ForgottenMemories.Projectiles
 			else
 			{
 				if (projectile.velocity.X != oldVelocity.X)
-				{
 					projectile.velocity.X = -oldVelocity.X;
-				}
 				if (projectile.velocity.Y != oldVelocity.Y)
-				{
 					projectile.velocity.Y = -oldVelocity.Y;
+
+				float angle = projectile.velocity.ToRotation();
+
+				int possibleTarget = -1;
+				float possibleAngle = 0;
+				float closestDistance = 500f;
+					
+				for (int i = 0; i < 200; i++) //find target
+				{
+					NPC npc = Main.npc[i];
+
+					if (npc.active && npc.chaseable && npc.lifeMax > 5 && !npc.dontTakeDamage && !npc.friendly && !npc.immortal)
+					{
+						Vector2 difference = npc.Center - projectile.Center;
+						float distance = difference.Length();
+						
+						if (distance < closestDistance)
+						{
+							float angleVariation = difference.ToRotation() - projectile.velocity.ToRotation(); //must be within 90 degrees
+							if (Math.Abs(angleVariation) <= 1.57079633 && Collision.CanHit(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
+							{
+								closestDistance = distance;
+								possibleTarget = i;
+								possibleAngle = angleVariation;
+							}
+						}
+					}
 				}
+
+				if (possibleTarget != -1)
+				{
+					NPC npc = Main.npc[possibleTarget];
+					projectile.velocity = projectile.velocity.RotatedBy(possibleAngle);
+				}
+
 				Main.PlaySound(SoundID.Item10, projectile.position);
 			}
 			return false;

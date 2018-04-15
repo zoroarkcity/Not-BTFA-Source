@@ -15,11 +15,13 @@ namespace ForgottenMemories.Projectiles
 			projectile.friendly = true;
 			projectile.ranged = true;
 			projectile.penetrate = 3;
-			//projectile.timeLeft = 60;
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 10;
 			projectile.extraUpdates = 10;
 			projectile.alpha = 255;
+			projectile.tileCollide = false;
+			projectile.ignoreWater = true;
+			projectile.timeLeft = 1200;
 		}
 		
 		public override void SetStaticDefaults()
@@ -34,14 +36,13 @@ namespace ForgottenMemories.Projectiles
 
 		public override void AI()
 		{
-			if ((double) projectile.localAI[0] == 0.0)
+			if (projectile.localAI[0] == 0f)
 			{
-			  projectile.localAI[0] = 1f;
-			  Main.PlaySound(SoundID.Item17, projectile.position);
+				projectile.localAI[0] = 1f;
+				Main.PlaySound(SoundID.Item17, projectile.position);
 			}
 			
-			
-			if ((double) projectile.ai[0] > 3.0)
+			if (projectile.ai[0] > 3f)
 			{
 				for (int index1 = 0; index1 < 1; ++index1)
 				{
