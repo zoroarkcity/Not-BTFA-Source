@@ -9,23 +9,20 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 	[AutoloadEquip(EquipType.Head)]
 	public class VeilstoneHelmet : ModItem
 	{
-
 		public override void SetDefaults()
 		{
-
 			item.width = 18;
 			item.height = 18;
-
 			item.value = 250000;
 			item.rare = 5;
-			item.defense = 20;
+			item.defense = 27;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Blightstone Helmet");
-      Tooltip.SetDefault("14% increased melee damage and 7% increased melee crit chance");
-    }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Blightstone Helmet");
+			Tooltip.SetDefault("15% increased melee damage and 12% increased melee crit chance");
+		}
 
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -40,8 +37,8 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 
 		public override void UpdateEquip(Player player)
 		{
-			player.meleeDamage += 0.14f;
-			player.meleeCrit += 7;
+			player.meleeDamage += 0.15f;
+			player.meleeCrit += 12;
 		}
 
 		public override void UpdateArmorSet(Player player)

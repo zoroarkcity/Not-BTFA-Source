@@ -9,25 +9,20 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 	[AutoloadEquip(EquipType.Head)]
 	public class BlightstoneMask : ModItem
 	{
-
 		public override void SetDefaults()
 		{
-
 			item.width = 18;
 			item.height = 18;
-
-
 			item.value = 250000;
 			item.rare = 5;
-			item.defense = 8;
+			item.defense = 16;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Blightstone Mask");
-      Tooltip.SetDefault("11% increased ranged and thrown damage\n25% chance not to consume ammo or thrown weapons");
-    }
-
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Blightstone Mask");
+			Tooltip.SetDefault("14% increased ranged and thrown damage\n25% chance not to consume ammo or thrown weapons");
+		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
@@ -41,8 +36,8 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 
 		public override void UpdateEquip(Player player)
 		{
-			player.rangedDamage += 0.11f;
-			player.thrownDamage += 0.11f;
+			player.rangedDamage += 0.14f;
+			player.thrownDamage += 0.14f;
 			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).BlightConserve = true;
 		}
 

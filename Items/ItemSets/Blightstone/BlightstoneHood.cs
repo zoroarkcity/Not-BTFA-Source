@@ -9,25 +9,20 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 	[AutoloadEquip(EquipType.Head)]
 	public class BlightstoneHood : ModItem
 	{
-
 		public override void SetDefaults()
 		{
-
 			item.width = 18;
 			item.height = 18;
-
-
 			item.value = 250000;
 			item.rare = 5;
-			item.defense = 4;
+			item.defense = 5;
 		}
 
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Blightstone Hood");
-			Tooltip.SetDefault("10% increased summon and magic damage\nMax minions increased by 2 and Max mana increased by 80");
+			Tooltip.SetDefault("15% increased summon and magic damage\nMax minions increased by 2 and increases maximum mana by 80");
 		}
-
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
@@ -41,8 +36,8 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 
 		public override void UpdateEquip(Player player)
 		{
-			player.minionDamage += 0.11f;
-			player.magicDamage += 0.11f;
+			player.minionDamage += 0.15f;
+			player.magicDamage += 0.15f;
 			player.maxMinions += 2;
 			player.statManaMax2 += 80;
 		}
