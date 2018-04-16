@@ -22,18 +22,18 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
             item.useStyle = 1;
             item.knockBack = 3;
             item.value = 250000;
-            item.rare = 5;
+            item.rare = 7;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType ("BlightedChakram");
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
         }
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Blighted Chakram");
-      Tooltip.SetDefault("Throws 4 chakrams that pierce through enemies at an insane velocity");
-    }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Blighted Chakram");
+			Tooltip.SetDefault("Throws 4 chakrams that pierce through enemies at an insane velocity");
+		}
 
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

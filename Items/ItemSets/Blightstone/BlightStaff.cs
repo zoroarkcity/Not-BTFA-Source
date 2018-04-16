@@ -16,32 +16,32 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 82;
+			item.damage = 83;
 			item.magic = true;
-
 			item.width = 25;
 			item.height = 25;
 			item.useTime = 20;
 			item.useAnimation = 20;
 			item.useStyle = 5;
 			Item.staff[item.type] = true;
-			item.knockBack = 1;
+			item.knockBack = 3;
 			item.value = 250000;
-			item.rare = 5;
+			item.rare = 7;
 			item.UseSound = SoundID.Item20;
 			item.shoot = mod.ProjectileType("BlightedEmber2");
-			item.shootSpeed = 10f;
+			item.shootSpeed = 10.5f;
 			item.autoReuse = true;
-			item.mana = 8;
+			item.mana = 11;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Blighted Inferno Scepter");
-      Tooltip.SetDefault("Creates an inferno of malevolent fire");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlightStaff");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Blighted Inferno Scepter");
+			Tooltip.SetDefault("Creates an inferno of malevolent fire");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlightStaff");
+		}
+		
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -61,7 +61,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
+		}
 
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

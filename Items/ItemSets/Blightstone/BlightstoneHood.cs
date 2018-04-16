@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.width = 18;
 			item.height = 18;
 			item.value = 250000;
-			item.rare = 5;
+			item.rare = 7;
 			item.defense = 5;
 		}
 

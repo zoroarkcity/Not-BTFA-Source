@@ -10,7 +10,6 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 	{
 		public override void SetDefaults()
 		{
-
 			item.damage = 43;
 			item.summon = true;
 			item.mana = 15;
@@ -26,20 +25,19 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
             item.buffType = mod.BuffType("BlightstoneDragon");
             item.buffTime = 3600;
 			item.value = 250000;
-			item.rare = 5;
+			item.rare = 7;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("BlightstoneDragon");
 			item.shootSpeed = 10f;
 			ProjectileID.Sets.MinionTargettingFeature[item.shoot] = true;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Blightstone Dragon Staff");
-      Tooltip.SetDefault("Creates a blightstone dragon to fight for you");
-    }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Blightstone Dragon Staff");
+			Tooltip.SetDefault("Creates a blightstone dragon to fight for you");
+		}
 
-		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			Vector2 mouse = Main.MouseWorld;

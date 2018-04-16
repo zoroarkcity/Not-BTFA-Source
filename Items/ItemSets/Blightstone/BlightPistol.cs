@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.noMelee = true;
 			item.knockBack = 1;
 			item.value = 50000;
-			item.rare = 5;
+			item.rare = 7;
 			item.UseSound = SoundID.Item11;
 			item.autoReuse = true;
 			item.shoot = 10;
