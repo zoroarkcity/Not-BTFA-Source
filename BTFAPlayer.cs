@@ -19,7 +19,6 @@ namespace ForgottenMemories
 {
 	public class BTFAPlayer : ModPlayer
 	{
-		
 		public bool GroundPound;
 		public bool Pound;
 		public bool AquaPowers;
@@ -80,6 +79,8 @@ namespace ForgottenMemories
 		public int firestormCooldown = 0;
 
 		public int spookedByArte = 0;
+		public int blightDashCooldown = 0;
+		public bool hasBlightFlashed = true;
 		
 		public override void ResetEffects()
 		{
@@ -128,6 +129,32 @@ namespace ForgottenMemories
 			frostguard = false;
 			BeeHive = false;
 			DivineBlessing = false;
+
+			if (!hasBlightFlashed)
+			{
+				if (blightDashCooldown == 0)
+				{
+					for (int index = 0; index < 8; ++index)
+						Dust.NewDust(new Vector2(player.position.X, player.position.Y), player.width, player.height, 173, 0.0f, 0.0f, 0, default(Color), 1f);
+					
+					for (int index1 = 0; index1 < 24; ++index1)
+					{
+						int index2 = Dust.NewDust(new Vector2(player.position.X, player.position.Y), player.width, player.height, 173, 0.0f, 0.0f, 0, default(Color), 2f);
+						Main.dust[index2].noGravity = true;
+						Main.dust[index2].velocity *= 2f;
+						int index3 = Dust.NewDust(new Vector2(player.position.X, player.position.Y), player.width, player.height, 173, 0.0f, 0.0f, 0, default(Color), 1f);
+						//Main.dust[index3].velocity *= 1f;
+						Main.dust[index3].noGravity = true;
+					}
+
+					Main.PlaySound(25, (int)player.position.X, (int)player.position.Y);
+					hasBlightFlashed = true;
+				}
+				else
+				{
+					blightDashCooldown--;
+				}
+			}
 		}
 		
 		public override void PostUpdate()
