@@ -20,7 +20,6 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 
 		public override void SetDefaults()
 		{
-
 			item.damage = 48;
 			item.noMelee = true;
 			item.ranged = true;
@@ -34,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.useAmmo = 40;
 			item.knockBack = 1;
 			item.value = 50000;
-			item.rare = 5;
+			item.rare = 6;
 			item.UseSound = SoundID.Item5;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;

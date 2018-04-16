@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.noMelee = true;
 			item.knockBack = 4f;
 			item.value = 50000;
-			item.rare = 5;
+			item.rare = 6;
 			item.UseSound = SoundID.Item38;
 			item.autoReuse = true;
 			//item.shoot = 134;

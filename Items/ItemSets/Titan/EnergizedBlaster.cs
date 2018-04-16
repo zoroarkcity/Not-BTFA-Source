@@ -18,7 +18,6 @@ namespace ForgottenMemories.Items.ItemSets.Titan
     {
         public override void SetDefaults()
         {
-
             item.damage = 88;
             item.ranged = true;
             item.width = 31;
@@ -31,7 +30,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
             item.noMelee = true;
             item.knockBack = 4;
             item.value = 50000;
-            item.rare = 5;
+            item.rare = 6;
             item.UseSound = SoundID.Item75;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("EnergyOrb");

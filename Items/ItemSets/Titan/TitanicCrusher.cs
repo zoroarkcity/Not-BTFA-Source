@@ -17,7 +17,6 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 	{
 		public override void SetDefaults()
 		{
-
 			item.useStyle = 5;
 			item.width = 24;
 			item.height = 24;
@@ -26,13 +25,14 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.melee = true;
 			item.channel = true;
 			item.noMelee = true;
+
 			item.useAnimation = 44;
 			item.useTime = 44;
 			item.shootSpeed = 18f;
 			item.knockBack = 3.75f;
 			item.damage = 82;
 			item.value = 140000;
-			item.rare = 5;
+			item.rare = 6;
 			item.shoot = mod.ProjectileType("TitanicCrusher");
 		}
 

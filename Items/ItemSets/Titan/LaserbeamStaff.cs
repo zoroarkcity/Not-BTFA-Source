@@ -31,7 +31,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.shoot = mod.ProjectileType("LaserbeamStaff");
 			item.mana = 14;
 			item.value = 50000;
-            item.rare = 5;
+            item.rare = 6;
 			item.noMelee = true;
 			item.noUseGraphic = true;
 			item.magic = true;

@@ -10,10 +10,8 @@ namespace ForgottenMemories.Items.ItemSets.Titan
  {
 	public class BeamSlicer : ModItem
 	{
-		
 		public override void SetDefaults()
 		{
-
 			item.damage = 47;
 			item.thrown = true;
 			item.noMelee = true;
@@ -29,7 +27,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.knockBack = 1;
 			item.UseSound = SoundID.Item1;
 			item.value = 900;
-			item.rare = 5;
+			item.rare = 6;
 			item.consumable = true;
 			item.maxStack = 999;
 			item.autoReuse = true;

@@ -18,9 +18,9 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		Vector2 homovector = new Vector2(0f, 7f);
 		Vector2 bivector = new Vector2(-7f, 0f);
 		Vector2 lesvector = new Vector2(7f, 0f);
+
 		public override void SetDefaults()
 		{
-
 			item.damage = 49;
 			item.melee = true;
 			item.width = 88;
@@ -31,7 +31,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.useStyle = 1;
 			item.knockBack = 9;
 			item.value = 50000;
-			item.rare = 5;
+			item.rare = 6;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shoot = 1;
