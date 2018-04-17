@@ -25,17 +25,17 @@ namespace ForgottenMemories.Buffs
 			player.endurance -= 0.1f;
 			player.lifeRegen -= 3;
 			
-			player.magicDamage += 0.15f;
-			player.meleeDamage += 0.15f;
-			player.rangedDamage += 0.15f;
-			player.minionDamage += 0.15f;
-			player.thrownDamage += 0.15f;
+			player.magicDamage += 0.2f;
+			player.meleeDamage += 0.2f;
+			player.rangedDamage += 0.2f;
+			player.minionDamage += 0.2f;
+			player.thrownDamage += 0.2f;
 			player.moveSpeed += 0.3f;
 
-			player.meleeCrit += 10;
-			player.rangedCrit += 10;
-			player.magicCrit += 10;
-			player.thrownCrit += 10;
+			player.meleeCrit += 15;
+			player.rangedCrit += 15;
+			player.magicCrit += 15;
+			player.thrownCrit += 15;
 			
 			if (Main.rand.Next(5) == 0)
 			{
@@ -47,8 +47,6 @@ namespace ForgottenMemories.Buffs
 				vector.Normalize();
 				vector *= (float)Main.rand.Next(50, 100) * 0.04f;
 				Main.dust[num5].velocity = vector;
-				//vector.Normalize();
-				//vector *= 34f;
 				Main.dust[num5].position = player.Center;
 			}
 		}

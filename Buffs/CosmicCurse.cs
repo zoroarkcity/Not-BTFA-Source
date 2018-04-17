@@ -15,9 +15,14 @@ namespace ForgottenMemories.Buffs
 			Main.buffNoTimeDisplay[Type] = false;
 			DisplayName.SetDefault("Cosmos Curse");
 		}
+
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.defense -= 7;
+			npc.defense -= 10;
+
+			if (npc.lifeRegen > 0)
+				npc.lifeRegen = 0;
+			npc.lifeRegen -= 10;
 
 			if (Main.rand.Next(2) == 0)
 			{
