@@ -1,26 +1,24 @@
-Recent Update
-- added 2 new bosses named acheron and magnoliac 
-- ghastly ent resprited, reworked and fought in mid hardmode instead of late prehardmode 
-- arterius has been resprited
-- added special essence wisp enemies that each drop a material @ofor a new set 
-- new tree invasion, fought in late prehardmode and can be refought around mech tier for additional items 
-- removed vanilla changes
-- resprited most of the mod
-- recoded a lot of old weapons for better effects 
-- new ores that spawn with a manual spawner instead of on boss kills 
-- lots of new weapons, accessories and armors
-
+0.4.2 Update Notes:
+- Reworked the Titan Rock, Acheron, Arterius and Ghastly Ent AIs.
+- Reworked Titan Rock, Acheron and Arterius weapons.
+- Wisps were removed, giving place to new unique enemies for each essence:
+	. nightly names pls choose something
+	. dune
+	. soaring
+	. undead
+- Ore spawners now dropped correctly.
+- Cosmodium has been fully removed from relevant recipes and replaced by appropriate materials.
+- Rebalanced and updated sprites for various items.
 
 This mod adds in a total of:
-310 Items
-14 Enemies
-1 Town NPC
-3 Bosses
-Some balance changes to vanilla, can be turned off in the config file
-credits:
-East, Hamboy- Owner, Ideas
-Skyre- Music
-AwesomeSauce- Ideas
-Zoroarkcity, Kachow, ColinAV516, Homo Weirdus, Fargowilta, Eldrazi, GameBro, Sin Costan, goldenapple, East - Coding/Help with coding
-Zoroarkcity, Puff, Gratgaisdead, Sal, ScouterScout, Bla2e, Peas, ColinAV516, WoodenPhones, Earth, Hitoshima, Queso, Some Schmo, Crimsoneye495, Frous, Eli10293, ArmyFrog, VoxelFox, Oliver1992killer10, quickseed40, Graydee, DivermanSam, VoidTex, PhoenixBlade - Spriting/Help with spriting
-Zoroarkcity, ColinAV516, Crimsoneye495, CarpentersCutlace - Merging their mods with this one
+-310 Items (check before update)
+-14 Enemies (check before update)
+-2 Town NPCs
+-5 Bosses
+-Some balance changes to vanilla, can be turned off in the config file
+
+Credits:
+- Coding - East, Zoroarkcity, Terry N. Muse
+- Spriting - Salehin, Insert, Willsm, gratgaisdead, Phil, dwshin
+- Ideas and balancing - Necr0canc3r, jesusonwheels, Hamboy
+- Various contributions - Frous, Bla2e, Puff, Svante, Valkyrie, Grox, Eldrazi, Crimsoneye495, Earth, JrTighe and many more!
