@@ -17,9 +17,9 @@ namespace ForgottenMemories.Projectiles
 			projectile.thrown = true;
 			projectile.friendly = true;
 			projectile.hostile = false;
-			projectile.penetrate = 3;
+			projectile.penetrate = 8;
 			projectile.tileCollide = true;
-			projectile.timeLeft = 360;
+			projectile.timeLeft = 420;
 			projectile.light = 0.5f;
 			projectile.extraUpdates = 1;
 		}
@@ -109,6 +109,8 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{	
+			target.immune[projectile.owner] = 4;
+			
 			target.AddBuff(mod.BuffType("CosmicCurse"), 180, false);
 		}
 		
@@ -121,13 +123,13 @@ namespace ForgottenMemories.Projectiles
 				projectile.Kill();
 			}
 			
-			if ((double) projectile.velocity.Y != (double) velocity1.Y || (double) projectile.velocity.X != (double) velocity1.X)
-                {
-                  if ((double) projectile.velocity.X != (double) velocity1.X)
-                    projectile.velocity.X = -velocity1.X;
-                  if ((double) projectile.velocity.Y != (double) velocity1.Y)
-                    projectile.velocity.Y = -velocity1.Y;
-                }
+			if (projectile.velocity.Y != velocity1.Y || projectile.velocity.X != velocity1.X)
+            {
+                if (projectile.velocity.X != velocity1.X)
+                projectile.velocity.X = -velocity1.X;
+                if (projectile.velocity.Y != velocity1.Y)
+                projectile.velocity.Y = -velocity1.Y;
+            }
 			return false;
 		}
 	}

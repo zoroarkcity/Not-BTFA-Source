@@ -29,7 +29,7 @@ namespace ForgottenMemories.Projectiles
 		public override void AI()
 		{
 			for (int index1 = 0; index1 < 5; ++index1)
-			  {
+			{
 				float num1 = projectile.velocity.X / 3f * (float) index1;
 				float num2 = projectile.velocity.Y / 3f * (float) index1;
 				int num3 = 4;
@@ -39,16 +39,15 @@ namespace ForgottenMemories.Projectiles
 				Main.dust[index2].velocity += projectile.velocity * 0.1f;
 				Main.dust[index2].position.X -= num1;
 				Main.dust[index2].position.Y -= num2;
-			  }
-			  if (Main.rand.Next(5) == 0)
-			  {
+			}
+			if (Main.rand.Next(5) == 0)
+			{
 				int num = 4;
 				int index = Dust.NewDust(new Vector2(projectile.position.X + (float) num, projectile.position.Y + (float) num), projectile.width - num * 2, projectile.height - num * 2, 172, 0.0f, 0.0f, 100, new Color(), 0.6f);
 				Main.dust[index].velocity *= 0.25f;
 				Main.dust[index].velocity += projectile.velocity * 0.5f;
-			  }
-				
-				
+			}
+			
 			Vector2 targetPos = projectile.Center;
             float targetDist = 350f;
             bool targetAcquired = false;
@@ -69,7 +68,7 @@ namespace ForgottenMemories.Projectiles
 			
             if (targetAcquired)
             {
-                float homingSpeedFactor = 6f;
+                float homingSpeedFactor = 10f;
                 Vector2 homingVect = targetPos - projectile.Center;
                 float dist = projectile.Distance(targetPos);
                 dist = homingSpeedFactor / dist;
@@ -81,6 +80,8 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
+			target.immune[projectile.owner] = 5;
+			
 			target.AddBuff(mod.BuffType("CosmicCurse"), 180, false);
 		}
 	}
