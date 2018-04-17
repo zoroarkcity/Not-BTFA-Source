@@ -440,9 +440,12 @@ namespace ForgottenMemories
 				newProj.melee = false;
 			}
 			
-			if (CosmicPowers == true && player.statLife <= (int)(player.statLifeMax2 / 2))
+			if (CosmicPowers == true)
 			{
-				player.AddBuff(mod.BuffType<CosmicBoon>(), 2, false);
+				if (player.statLife <= player.statLifeMax2 / 2)
+					player.AddBuff(mod.BuffType<CosmicBoon>(), 2);
+				else
+					player.AddBuff(mod.BuffType<CosmicGift>(), 2);
 			}
 			
 			if (player.ownedProjectileCounts[mod.ProjectileType("SlimeGuard")] < 1 && slimeGuard == true)
@@ -565,13 +568,23 @@ namespace ForgottenMemories
 		{
 			if (CosmicPowers)
 			{
-				int amountOfProjectiles = Main.rand.Next(1, 3);
-				for (int i = 0; i < amountOfProjectiles; ++i)
+				int amountOfProjectiles = Main.rand.Next(2, 6);
+				/*for (int i = 0; i < amountOfProjectiles; ++i)
 				{
 					float sX = (float)Main.rand.Next(-40, 40) * 0.1f;
 					float pX = (float)Main.rand.Next(-120, 120) * 2;
 					int projectile = Projectile.NewProjectile(player.Center.X + pX, player.Center.Y - 500, sX, 5, mod.ProjectileType("CosmirockMeteor"), 45, 0f, player.whoAmI, 0f, 0f);
-					Main.projectile[projectile].melee = false;
+					Main.projectile[projectile].timeLeft = 1000;
+				}*/
+
+				for (int index1 = 0; index1 < amountOfProjectiles; ++index1)
+				{
+					Vector2 position = player.Center + new Vector2(Main.rand.Next(-500, 501), -Main.rand.Next(500, 801));
+					Vector2 target = player.Center + new Vector2(Main.rand.Next(-150, 151), 0);
+					Vector2 speed = target - position;
+					speed.Normalize();
+					speed *= 8f;
+					int projectile = Projectile.NewProjectile(position.X, position.Y, speed.X, speed.Y, mod.ProjectileType("CosmirockMeteor"), 60, 10f, player.whoAmI, player.Center.Y);
 					Main.projectile[projectile].timeLeft = 1000;
 				}
 			}
