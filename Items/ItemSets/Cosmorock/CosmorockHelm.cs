@@ -9,30 +9,26 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 	[AutoloadEquip(EquipType.Head)]
 	public class CosmorockHelm : ModItem
 	{
-
 		public override void SetDefaults()
 		{
-
 			item.width = 18;
 			item.height = 18;
 
-			item.value = 210000;
+			item.value = Item.sellPrice(0, 4, 20, 0);
 			item.rare = 6;
-			item.defense = 14;
+			item.defense = 12;
 		}
 
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cosmic Helmet");
-			Tooltip.SetDefault("10% reduced damage taken");
+			Tooltip.SetDefault("10% increased damage\n10% reduced damage taken");
 		}
-		
 		
 		public override bool DrawHead()	
 		{
 			return false;
 		}
-
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
@@ -42,11 +38,16 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		public override void UpdateEquip(Player player)
 		{
 			player.endurance += 0.1f;
+			player.meleeDamage += 0.1f;
+			player.rangedDamage += 0.1f;
+			player.thrownDamage += 0.1f;
+			player.magicDamage += 0.1f;
+			player.minionDamage += 0.1f;
 		}
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Taking damage rains down meteors \nWhen below 50% health defensive stats are increased at the cost of damage and movement speed";
+			player.setBonus = "Taking damage rains down meteors\nIncreased damage and decreased defense when above 50% life\nIncreased defense and decreased damage when below 50% life";
 			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).CosmicPowers = true;
 		}
 		
