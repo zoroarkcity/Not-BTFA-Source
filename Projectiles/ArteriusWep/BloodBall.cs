@@ -31,9 +31,9 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 				float num1 = projectile.velocity.X / 3f * (float) index1;
 				float num2 = projectile.velocity.Y / 3f * (float) index1;
 				int num3 = 4;
-				int index2 = Dust.NewDust(new Vector2(projectile.position.X + (float) num3, projectile.position.Y + (float) num3), projectile.width - num3 * 2, projectile.height - num3 * 2, mod.DustType("BloodDust2"), 0.0f, 0.0f, 0, default(Color), 0.6f);
+				int index2 = Dust.NewDust(new Vector2(projectile.position.X + (float) num3, projectile.position.Y + (float) num3), projectile.width - num3 * 2, projectile.height - num3 * 2, mod.DustType("BloodDust2"), 0.0f, 0.0f, 0, default(Color), 1.2f);
 				Main.dust[index2].noGravity = true;
-				Main.dust[index2].scale = 1.4f;
+				Main.dust[index2].scale = 1.2f;
 				Main.dust[index2].velocity *= 0.1f;
 				Main.dust[index2].velocity += projectile.velocity * 0.1f;
 				Main.dust[index2].position.X -= num1;
@@ -42,7 +42,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 			if (Main.rand.Next(2) == 0)
 			{
 				int num = 4;
-				int index = Dust.NewDust(new Vector2(projectile.position.X + (float) num, projectile.position.Y + (float) num), projectile.width - num * 2, projectile.height - num * 2, 60, 0.0f, 0.0f, 0, default(Color), 0.6f);
+				int index = Dust.NewDust(new Vector2(projectile.position.X + (float) num, projectile.position.Y + (float) num), projectile.width - num * 2, projectile.height - num * 2, 60, 0.0f, 0.0f, 0, default(Color), 0.8f);
 				Main.dust[index].velocity *= 0.25f;
 				Main.dust[index].velocity += projectile.velocity * 0.5f;
 				Main.dust[index].noGravity = true;
@@ -59,8 +59,12 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 				projectile.position.Y += projectile.height / 2;
 
 				float modifier = 120f;
+				int explosion = 32;
 				if (projectile.ai[1] == 1f)
+				{
 					modifier *= 2f;
+					explosion *= 2;
+				}
 			
 				projectile.width = (int) (modifier * projectile.scale);
 				projectile.height = (int) (modifier * projectile.scale);
@@ -71,7 +75,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 				for (int index = 0; index < 8; ++index)
 					Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, mod.DustType("BloodDust2"), 0.0f, 0.0f, 0, new Color(), 2f);
 
-				for (int index1 = 0; index1 < 32; ++index1)
+				for (int index1 = 0; index1 < explosion; ++index1)
 				{
 					int index2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, mod.DustType("BloodDust2"), 0.0f, 0.0f, 0, new Color(), 3f);
 					Main.dust[index2].noGravity = true;
