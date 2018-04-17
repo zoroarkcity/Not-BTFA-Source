@@ -22,16 +22,16 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cosmic Chestplate");
-			Tooltip.SetDefault("6% increased critical strike chance\nIncreases max life by 50");
+			Tooltip.SetDefault("10% increased critical strike chance\nIncreases max life by 50");
 		}
 
 		public override void UpdateEquip(Player player)
 		{
 			player.statLifeMax2 += 50;
-			player.meleeCrit += 6;
-			player.rangedCrit += 6;
-			player.magicCrit += 6;
-			player.thrownCrit += 6;
+			player.meleeCrit += 10;
+			player.rangedCrit += 10;
+			player.magicCrit += 10;
+			player.thrownCrit += 10;
 		}
 		
 		public override void AddRecipes()

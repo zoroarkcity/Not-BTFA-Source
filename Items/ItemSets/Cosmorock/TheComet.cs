@@ -17,7 +17,6 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 	{
 		public override void SetDefaults()
 		{
-
 			item.useStyle = 5;
 			item.width = 24;
 			item.height = 24;
@@ -31,20 +30,21 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 
 			item.shootSpeed = 16f;
 			item.knockBack = 3.75f;
-			item.damage = 45;
-			item.value = 200000;
+			item.damage = 59;
+			item.value = Item.sellPrice(0, 4, 80, 0);
 			item.rare = 6;
 			item.maxStack = 1;
 			item.shoot = mod.ProjectileType("TheComet");
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("The Comet");
-      Tooltip.SetDefault("Explodes on hit, has high velocity");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/TheComet");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("The Comet");
+			Tooltip.SetDefault("Creates explosions on hit, has high velocity");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/TheComet");
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -64,9 +64,8 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
+		}
 
-		
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

@@ -17,11 +17,9 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 {
     public class Galactica : ModItem
     {
-
         public override void SetDefaults()
         {
-
-            item.damage = 32;
+            item.damage = 26;
             item.noMelee = true;
             item.ranged = true;
             item.width = 14;
@@ -33,21 +31,21 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
             item.shoot = 3;
             item.useAmmo = 40;
             item.knockBack = 1;
-            item.value = 250000;
+            item.value = Item.sellPrice(0, 5, 0, 0);
             item.rare = 6;
             item.UseSound = SoundID.Item5;
             item.autoReuse = true;
             item.shootSpeed = 10f;
-
         }
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Galactica");
-      Tooltip.SetDefault("Fires a bouncing comet shard in addition to 2 arrows");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/Galactica");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Galactica");
+			Tooltip.SetDefault("Fires a bouncing comet shard in addition to 2 arrows");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/Galactica");
+		}
+		
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -67,7 +65,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
+		}
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -79,7 +77,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 				
 				if (spread == 0)
 				{
-					Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, mod.ProjectileType("CometShard"), (int)(damage* 0.8), knockBack, Main.myPlayer, 0, 0);
+					Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, mod.ProjectileType("CometShard"), (int)(damage * 0.75), knockBack, Main.myPlayer, 0, 0);
 				}
 				
 				else

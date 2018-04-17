@@ -19,8 +19,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 	{
 		public override void SetDefaults()
 		{
-
-			item.damage = 44;
+			item.damage = 53;
 			item.magic = true;
 
 			item.width = 50;
@@ -28,25 +27,26 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 			item.useTime = 18;
 			item.useAnimation = 18;
 			item.useStyle = 5;
-			item.knockBack = 1;
-			item.value = 200000;
+			item.knockBack = 2;
+			item.value = Item.sellPrice(0, 5, 0, 0);
 			item.rare = 6;
-			item.mana = 5;
+			item.mana = 7;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("CosmorockLaser");
-			item.shootSpeed = 11f;
+			item.shootSpeed = 12f;
 			item.noMelee = true;
 			Item.staff[item.type] = true;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Cosmic Sceptre");
-      Tooltip.SetDefault("Fires homing bolts, has a chance to launch a meteor instead");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/CosmorockStaff");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Cosmic Sceptre");
+			Tooltip.SetDefault("Fires homing bolts, has a chance to launch a meteor instead");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/CosmorockStaff");
+		}
+	
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -66,15 +66,13 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
-
+		}
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			if (Main.rand.Next(4) == 0)
 			{
-				int proj = Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX, speedY, mod.ProjectileType("CosmirockMeteor"), damage, knockBack, player.whoAmI);
-				Main.projectile[proj].melee = false;
+				int proj = Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX, speedY, mod.ProjectileType("CosmirockMeteor"), damage, knockBack * 4, player.whoAmI);
 				Main.projectile[proj].magic = true;
 				Main.projectile[proj].timeLeft = 200;
 				return false;

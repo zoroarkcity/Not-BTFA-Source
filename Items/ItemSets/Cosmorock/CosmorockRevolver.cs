@@ -17,23 +17,22 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 {
 	public class CosmorockRevolver : ModItem
 	{
-		int counter = 0;
+		int counter = 3;
 		public override void SetDefaults()
 		{
-
 			item.damage = 35;
 			item.ranged = true;
 			item.width = 23;
 			item.height = 13;
 
-			item.useTime = 2;
-			item.useAnimation = 6;
-			item.reuseDelay = 20;
+			item.useTime = 3;
+			item.useAnimation = 12;
+			item.reuseDelay = 24;
 			item.useStyle = 5;
 			item.autoReuse = true;
 			item.noMelee = true;
 			item.knockBack = 4;
-			item.value = 200000;
+			item.value = Item.sellPrice(0, 4, 80, 0);
 			item.rare = 6;
 			item.UseSound = SoundID.Item11;
 			item.shoot = 10;
@@ -41,13 +40,14 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 			item.useAmmo = AmmoID.Bullet;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Cosmorock Revolver");
-      Tooltip.SetDefault("Fires bullets in bursts of 2 in addition to a meteor");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/CosmorockRevolver");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Cosmorock Revolver");
+			Tooltip.SetDefault("Fires a meteor and a salvo of three bullets");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/CosmorockRevolver");
+		}
+	
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -67,25 +67,23 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
-
+		}
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			counter++;
-			float sX = speedX + (Main.rand.Next(-60, 60) * 0.02f);
-			float sY = speedY + (Main.rand.Next(-60, 60) * 0.02f);
 			
-			if (counter > 2)
+			if (counter > 3)
 			{
-				int proj = Projectile.NewProjectile(player.Center.X, player.Center.Y, sX, sY, mod.ProjectileType("CosmirockMeteor"), damage, knockBack, player.whoAmI);
-				Main.projectile[proj].melee = false;
+				int proj = Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX, speedY, mod.ProjectileType("CosmirockMeteor"), (int) (damage * 1.2), knockBack, player.whoAmI);
 				Main.projectile[proj].ranged = true;
+				Main.projectile[proj].timeLeft *= 2;
 				counter = 0;
 			}
-			
 			else
 			{
+				float sX = speedX + (Main.rand.Next(-70, 71) * 0.02f);
+				float sY = speedY + (Main.rand.Next(-70, 71) * 0.02f);
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, sX, sY, type, damage, knockBack, player.whoAmI);
 			}
 			

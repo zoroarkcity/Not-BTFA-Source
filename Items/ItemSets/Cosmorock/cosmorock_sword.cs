@@ -16,32 +16,32 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 	{
 		public override void SetDefaults()
 		{
-
-			item.damage = 56;
+			item.damage = 55;
 			item.melee = true;
 			item.width = 60;
 			item.height = 60;
 
-			item.useTime = 44;
-			item.useAnimation = 22;
+			item.useTime = 25;
+			item.useAnimation = 25;
 			item.useStyle = 1;
-			item.knockBack = 2;
-			item.value = 200000;
+			item.knockBack = 5;
+			item.value = Item.sellPrice(0, 5, 0, 0);
 			item.rare = 6;
 			item.shoot = mod.ProjectileType("CosmirockMeteor");
-			item.shootSpeed = 5f;
-			item.useTurn = true;
+			item.shootSpeed = 6.5f;
+			item.useTurn = false;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Cosmos Blade");
-      Tooltip.SetDefault("Fires a spread of short-ranged meteors");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/cosmorock_sword");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Cosmos Blade");
+			Tooltip.SetDefault("Fires a spread of short-ranged meteors");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/cosmorock_sword");
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -61,9 +61,8 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
+		}
 
-		
 		public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.Next(2) == 0)
@@ -78,13 +77,14 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			int projectileAmount = Main.rand.Next(2, 3);
+			int projectileAmount = Main.rand.Next(2, 4);
 			for (int k = 0; k < projectileAmount; k++)
 			{
 				Vector2 velVect = new Vector2(speedX, speedY);
 				Vector2 velVect2 = velVect.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-15, 15)));
 				
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(position.X, position.Y, velVect2.X, velVect2.Y, type, damage, knockBack, player.whoAmI);
+				Main.projectile[p].melee = true;
 			}
             return false;
         }
