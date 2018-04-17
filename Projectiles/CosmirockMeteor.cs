@@ -13,7 +13,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.width = 36;
 			projectile.height = 34;
 			projectile.aiStyle = -1;
-			projectile.melee = true;
+			//projectile.melee = true;
 			projectile.friendly = true;
 			projectile.hostile = false;
 			projectile.penetrate = 1;
@@ -30,6 +30,18 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void AI()
 		{
+			if (projectile.ai[0] != 0)
+			{
+				if (projectile.Center.Y > projectile.ai[0])
+				{
+					projectile.tileCollide = true;
+				}
+				else
+				{
+					projectile.tileCollide = false;
+				}
+			}
+
 			projectile.rotation += projectile.velocity.X / 2f;
 			Vector2 vector2 = projectile.Center + Vector2.Normalize(projectile.velocity) * 10f;
 			Dust dust1 = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, 15, 0.0f, 0.0f, 0, new Color(), 1f)];
