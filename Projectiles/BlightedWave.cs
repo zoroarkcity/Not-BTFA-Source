@@ -88,7 +88,10 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(mod.BuffType("BlightMark"), 240);
+			int blightMark = mod.BuffType("BlightMark");
+			if (target.buffImmune[blightMark])
+				target.buffImmune[blightMark] = false;
+			target.AddBuff(blightMark, 180);
 		}
 	}
 }

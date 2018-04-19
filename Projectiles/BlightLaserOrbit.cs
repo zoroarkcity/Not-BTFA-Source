@@ -20,6 +20,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.height = 1;
 			projectile.friendly = true;
 			projectile.tileCollide = false;
+			projectile.ignoreWater = true;
 			Main.projFrames[projectile.type] = 4;
 			projectile.extraUpdates = 100;
 			projectile.alpha = 255;
