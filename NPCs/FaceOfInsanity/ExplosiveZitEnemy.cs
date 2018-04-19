@@ -20,7 +20,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.width = 28;
 			npc.height = 32;
 			npc.friendly = false;
-			npc.damage = 72;
+			npc.damage = 50;
 			npc.defense = 0;
 			npc.lifeMax = 1;
 			npc.aiStyle = -1;
@@ -32,7 +32,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.damage = 144;
+			npc.damage = 74;
 		}
 		
 		public override void SetStaticDefaults()
@@ -44,12 +44,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			if (!hasSpawned)
 			{
-				/*Player player = Main.player[npc.target];
-				float xDistance = player.Center.X - npc.Center.X;
-				maxVelY = gravity * time / 2f;
-				npc.velocity.X = xDistance / time + Main.rand.Next(-2, 2);
-				npc.velocity.Y = -maxVelY + Main.rand.Next(-2, 2);*/
-                npc.velocity.X = npc.ai[1];
+				npc.velocity.X = npc.ai[1];
                 npc.velocity.Y = npc.ai[2];
 
 				hasSpawned = true;
@@ -78,19 +73,18 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			{
 				npc.hide = true;
 				npc.life = 0;
-				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("ExplosiveZit"), npc.damage / 4, 1, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("ExplosiveZit"), (int) (npc.damage / 4.11764706), 1, Main.myPlayer, 0, 0);
 				Main.projectile[p].netUpdate = true;
 				Main.projectile[p].Kill();
 			}
 			npc.ai[0]++;
 
-			//if (npc.velocity.Y < npc.ai[1]) 
 			npc.velocity.Y += gravity;
 		}
 		
 		public override bool CheckDead()
 		{
-			int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("ExplosiveZit"), npc.damage / 4, 1, Main.myPlayer, 0, 0);
+			int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("ExplosiveZit"), (int) (npc.damage / 4.11764706), 1, Main.myPlayer, 0, 0);
 			Main.projectile[p].netUpdate = true;
 			Main.projectile[p].Kill();
 

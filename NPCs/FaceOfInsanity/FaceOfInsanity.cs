@@ -125,7 +125,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		public void SpookyDash()
 		{
 			Vector2 direction = Vector2.Subtract(Main.player[npc.target].Center, npc.Center);
-			//Main.player[npc.target].GetModPlayer<BTFAPlayer>(mod).spookTimer = 120;
 
 			if (phase2)
 				spookyDashing = true;
@@ -159,7 +158,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
             if (Main.expertMode)
 			{
-				Main.projectile[p1].damage = npc.damage * 2 / 13; //18.46 -> 76
+				Main.projectile[p1].damage = npc.damage * 2 / 13; //76.02
 				Main.projectile[p2].damage = npc.damage * 2 / 13;
 			}
         }
@@ -199,12 +198,14 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             
             Vector2 Vel = new Vector2(distance.X / time, distance.Y / time - 0.5f * gravity * time);
 
+			int damage = npc.damage / 4; //20
+			if (Main.expertMode)
+				damage = npc.damage / 6; //82.35
+
             for (int i = 0; i < boltsPerVolley; i++)
             {
                 Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-5, 6) / 2f, (float)Main.rand.Next(-5, 6) / 2f);
-                int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 4, 0, Main.myPlayer, 1f, 0); //20
-                if (Main.expertMode)
-                    Main.projectile[p].damage = npc.damage / 6; //20 -> 82
+                int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), damage, 0, Main.myPlayer, 1f, 0);
             }
 
             Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
@@ -315,7 +316,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         velocity.Normalize();
                         velocity *= 8;
                         velocity += player.velocity / 2;
-						int damage = npc.damage / 6; //20 -> 82 EXPERT ONLY
+						int damage = npc.damage / 6; //82.35 ONLY IN EXPERT
                         int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), damage, 0, Main.myPlayer, 0, 0);
                     }
                     if (aiTimer % 110 == 0)
@@ -590,7 +591,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					int p = Projectile.NewProjectile(npc.Center + offset, direction, type, npc.damage / 6, 1, Main.myPlayer, 0, 0); //13.33
 					Main.projectile[p].netUpdate = true;
 					if (Main.expertMode)
-                        Main.projectile[p].damage = npc.damage / 8; //16.25
+                        Main.projectile[p].damage = npc.damage / 7; //70.59
 				}
 			}
 			npc.netUpdate = true;
