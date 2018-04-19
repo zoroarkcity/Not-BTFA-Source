@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 47;
+			item.damage = 42;
 			item.thrown = true;
 			item.noMelee = true;
 			item.noUseGraphic = true;
@@ -33,13 +33,14 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.autoReuse = true;
 		}
 
-    public override void SetStaticDefaults()
-    {
-		DisplayName.SetDefault("Beam Slicer");
-		Tooltip.SetDefault("Stops midair, firing lasers at nearby enemies");
-		BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BeamSlicer");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Beam Slicer");
+			Tooltip.SetDefault("Stops midair, firing lasers at nearby enemies");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BeamSlicer");
+		}
+	
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -59,6 +60,6 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 				SpriteEffects.None, 
 				0f
 			);
-		}/////////////////////////////////////////////////////////WORLD GLOWMASK///////////////////////////
+		}
 	}
 }

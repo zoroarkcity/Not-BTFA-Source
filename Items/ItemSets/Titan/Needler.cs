@@ -17,17 +17,16 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 {
 	public class Needler : ModItem
 	{
-
 		public override void SetDefaults()
 		{
-			item.damage = 48;
+			item.damage = 46;
 			item.noMelee = true;
 			item.ranged = true;
 			item.width = 27;
 			item.height = 11;
-			item.useTime = 17;
+			item.useTime = 20;
 
-			item.useAnimation = 17;
+			item.useAnimation = 20;
 			item.useStyle = 5;
 			item.shoot = 3;
 			item.useAmmo = 40;
@@ -39,13 +38,14 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.shootSpeed = 10f;
 		}
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Needle Bow");
-      Tooltip.SetDefault("Has a chance to fire homing lasers on hit");
-      BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/Needler");
-    }
-	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Needle Bow");
+			Tooltip.SetDefault("Has a chance to fire homing lasers on hit");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/Needler");
+		}
+		
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
@@ -65,23 +65,10 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 				SpriteEffects.None, 
 				0f
 			);
-		}////////////
-
-
+		}
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			/*if (Main.rand.Next(3) == 0)
-			{
-				for (int i = 0; i < 2; i++)
-				{
-					float sX = speedX;
-					float sY = speedY;
-					sX += (float)Main.rand.Next(-60, 61) * 0.03f;
-					sY += (float)Main.rand.Next(-60, 61) * 0.03f;
-					Projectile.NewProjectile(position.X, position.Y, sX, sY, mod.ProjectileType("laserbeamNeedle"), damage / 2, knockBack, player.whoAmI);
-				}
-			}*/
 			int id = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);
 			Main.projectile[id].GetGlobalProjectile<Info>(mod).firedFromNeedler = true;
 
