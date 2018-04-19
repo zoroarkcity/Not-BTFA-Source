@@ -13,14 +13,14 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
     {
 		public override void SetDefaults()
         {
-			item.damage = 34;
+			item.damage = 39;
             item.noMelee = true;
             item.ranged = true;
             item.width = 14;
             item.height = 21;
 
-            item.useTime = 30;
-            item.useAnimation = 30;
+            item.useTime = 25;
+            item.useAnimation = 25;
             item.useStyle = 5;
             item.shoot = 3;
             item.useAmmo = 40;

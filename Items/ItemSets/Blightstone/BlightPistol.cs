@@ -21,13 +21,13 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 
 		public override void SetDefaults()
 		{
-			item.damage = 36;
+			item.damage = 35;
 			item.ranged = true;
 			item.width = 32;
 			item.height = 20;
 
-			item.useTime = 4;
-			item.useAnimation = 12;
+			item.useTime = 3;
+			item.useAnimation = 9;
 			item.reuseDelay = 12;
 			item.useStyle = 5;
 			item.noMelee = true;
@@ -39,7 +39,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.shoot = 10;
 			item.shootSpeed = 5.25f;
 			item.useAmmo = AmmoID.Bullet;
-			item.crit = 4;
+			//item.crit = 4;
 		}
 
 		public override void SetStaticDefaults()
@@ -82,7 +82,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			else
 			{
 				counter++;
-				double rotation = Main.rand.Next(-3, 3) * Math.PI / 180;
+				double rotation = Main.rand.Next(-4, 5) * Math.PI / 180;
 				speed = speed.RotatedBy(rotation);
 			}
 			Projectile.NewProjectile(position, speed, type, damage, knockBack, player.whoAmI);

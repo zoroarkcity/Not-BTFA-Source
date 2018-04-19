@@ -16,7 +16,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 83;
+			item.damage = 61;
 			item.magic = true;
 			item.width = 25;
 			item.height = 25;

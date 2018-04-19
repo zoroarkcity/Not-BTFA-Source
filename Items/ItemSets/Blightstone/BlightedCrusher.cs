@@ -16,7 +16,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 57;
+			item.damage = 61;
 			item.melee = true;
 			item.width = 60;
 			item.height = 60;
@@ -27,11 +27,11 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.knockBack = 6;
 			item.value = 250000;
 			item.rare = 7;
-			item.useTurn = true;
+			item.useTurn = false;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("BlightedWave");
-			item.shootSpeed = 12f;
+			item.shootSpeed = 14f;
 		}
 
 		public override void SetStaticDefaults()
@@ -73,7 +73,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 				item.useAnimation = 36;
 				item.shoot = 0;
 				
-				if (player.GetModPlayer<BTFAPlayer>(mod).blightDashCooldown != 0)
+				if (player.GetModPlayer<BTFAPlayer>(mod).blightDashCooldown != 0 || player.itemAnimation != 0)
 					return false;
 			}
 			else
@@ -91,7 +91,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
             { 
 				if (player.direction == -1 && player.GetModPlayer<BTFAPlayer>(mod).blightDashCooldown == 0)
 				{
-					player.velocity.X = 14.5f * (float) -1;
+					player.velocity.X = -15.25f;
 					Point tileCoordinates1 = (player.Center + new Vector2((float) (-1 * player.width / 2 + 2), (float) ((double) player.gravDir * (double) -player.height / 2.0 + (double) player.gravDir * 2.0))).ToTileCoordinates();
 					Point tileCoordinates2 = (player.Center + new Vector2((float) (-1 * player.width / 2 + 2), 0.0f)).ToTileCoordinates();
 					if (WorldGen.SolidOrSlopedTile(tileCoordinates1.X, tileCoordinates1.Y) || WorldGen.SolidOrSlopedTile(tileCoordinates2.X, tileCoordinates2.Y))
@@ -101,7 +101,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 				}
 				else if (player.direction == 1 && player.GetModPlayer<BTFAPlayer>(mod).blightDashCooldown == 0)
 				{
-					player.velocity.X = 14.5f * (float) 1;
+					player.velocity.X = 15.25f;
 					Point tileCoordinates1 = (player.Center + new Vector2((float) (1 * player.width / 2 + 2), (float) ((double) player.gravDir * (double) -player.height / 2.0 + (double) player.gravDir * 2.0))).ToTileCoordinates();
 					Point tileCoordinates2 = (player.Center + new Vector2((float) (1 * player.width / 2 + 2), 0.0f)).ToTileCoordinates();
 					if (WorldGen.SolidOrSlopedTile(tileCoordinates1.X, tileCoordinates1.Y) || WorldGen.SolidOrSlopedTile(tileCoordinates2.X, tileCoordinates2.Y))
@@ -110,8 +110,8 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 					}
 				}
 				player.GetModPlayer<BTFAPlayer>(mod).hasBlightFlashed = false;
+				//player.GetModPlayer<BTFAPlayer>(mod).blightDashCooldown = 180;
 				return true;
-		        
             }
             return true;
 		}
@@ -147,14 +147,6 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 		{
 			if (player.altFunctionUse == 2)
 			{
-				/*hitbox.X += hitbox.Width / 2;
-				hitbox.Y += hitbox.Height / 2 + 30;
-				
-				hitbox.Width = 120;
-				hitbox.Height = 45;
-
-				hitbox.X -= hitbox.Width / 2;
-				hitbox.Y -= hitbox.Height / 2;*/
 				noHitbox = true;
 
 				if (player.ownedProjectileCounts[mod.ProjectileType("BlightedCrusherHitbox")] == 0)
