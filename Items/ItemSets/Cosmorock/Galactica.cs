@@ -19,14 +19,14 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
     {
         public override void SetDefaults()
         {
-            item.damage = 26;
+            item.damage = 23;
             item.noMelee = true;
             item.ranged = true;
             item.width = 14;
             item.height = 21;
 
-            item.useTime = 30;
-            item.useAnimation = 30;
+            item.useTime = 31;
+            item.useAnimation = 31;
             item.useStyle = 5;
             item.shoot = 3;
             item.useAmmo = 40;

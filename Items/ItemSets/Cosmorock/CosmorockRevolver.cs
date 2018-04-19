@@ -20,7 +20,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		int counter = 3;
 		public override void SetDefaults()
 		{
-			item.damage = 35;
+			item.damage = 30;
 			item.ranged = true;
 			item.width = 23;
 			item.height = 13;
@@ -75,15 +75,15 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 			
 			if (counter > 3)
 			{
-				int proj = Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX, speedY, mod.ProjectileType("CosmirockMeteor"), (int) (damage * 1.2), knockBack, player.whoAmI);
+				int proj = Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX, speedY, mod.ProjectileType("CosmirockMeteor"), damage, knockBack, player.whoAmI);
 				Main.projectile[proj].ranged = true;
 				Main.projectile[proj].timeLeft *= 2;
 				counter = 0;
 			}
 			else
 			{
-				float sX = speedX + (Main.rand.Next(-70, 71) * 0.02f);
-				float sY = speedY + (Main.rand.Next(-70, 71) * 0.02f);
+				float sX = speedX + (Main.rand.Next(-60, 61) * 0.02f);
+				float sY = speedY + (Main.rand.Next(-60, 61) * 0.02f);
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, sX, sY, type, damage, knockBack, player.whoAmI);
 			}
 			

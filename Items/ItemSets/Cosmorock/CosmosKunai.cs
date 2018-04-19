@@ -17,15 +17,15 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 55;
+			item.damage = 53;
 			item.thrown = true;
 			item.shoot = mod.ProjectileType("CosmosKunai");
 
 			item.consumable = true;
 			item.knockBack = 3f;
 			item.shootSpeed = 12f;
-			item.useTime = 8;
-			item.useAnimation = 8;
+			item.useTime = 9;
+			item.useAnimation = 9;
 			item.consumable = true;
 			item.maxStack = 999;
 			item.useStyle = 1;

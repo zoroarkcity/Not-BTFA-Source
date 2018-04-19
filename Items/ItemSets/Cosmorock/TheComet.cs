@@ -30,7 +30,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 
 			item.shootSpeed = 16f;
 			item.knockBack = 3.75f;
-			item.damage = 59;
+			item.damage = 49;
 			item.value = Item.sellPrice(0, 4, 80, 0);
 			item.rare = 6;
 			item.maxStack = 1;
