@@ -30,9 +30,9 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override void SetDefaults()
 		{
 			npc.aiStyle = -1;
-			npc.lifeMax = 40000;
+			npc.lifeMax = 32000;
 			npc.damage = 80;
-			npc.defense = 32;
+			npc.defense = 22;
 			npc.knockBackResist = 0f;
 			npc.width = 170;
 			npc.height = 170;
@@ -69,9 +69,9 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 54000 + ((numPlayers) * 5400);
+			npc.lifeMax = 48000 + ((numPlayers) * 4800);
 			npc.damage = 100;
-			npc.defense = 42;
+			npc.defense = 32;
 		}
 
 		public void MakeBurstBall()
@@ -156,6 +156,10 @@ namespace ForgottenMemories.NPCs.TitanRock
 			CleanseBuff(BuffID.CursedInferno);
 			CleanseBuff(BuffID.ShadowFlame);
 			CleanseBuff(BuffID.Ichor);
+			if (Main.expertMode)
+			{
+				npc.defense = 42;
+			}
 		}
 		
 		public override void AI()
