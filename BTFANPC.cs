@@ -12,7 +12,6 @@ namespace ForgottenMemories
 	{
 		int DagNum = 0;
 		public bool BlightCelled = false;
-		
 		public bool FilicidCelled = false;
 		public bool BloodLeech = false;
 		public bool MarbleArrow = false;
@@ -24,6 +23,7 @@ namespace ForgottenMemories
 		public bool titanCrush = false;
 		public bool bleeding = false;
 		public bool blightFlame = false;
+		public int blightChakramHits = 0;
 		
 		public override void ResetEffects(NPC npc)
         {
