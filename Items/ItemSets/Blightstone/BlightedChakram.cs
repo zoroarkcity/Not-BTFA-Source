@@ -10,60 +10,51 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
     {
         public override void SetDefaults()
         {
-			item.damage = 130;            
+			item.damage = 73;
+			item.noMelee = true;
             item.melee = false;
 			item.thrown = true;
             item.width = 30;
             item.height = 30;
 
-            item.useTime = 10;
-            item.useAnimation = 10;
+            item.useTime = 12;
+            item.useAnimation = 12;
             item.noUseGraphic = true;
             item.useStyle = 1;
-            item.knockBack = 3;
+            item.knockBack = 6;
             item.value = 250000;
             item.rare = 7;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType ("BlightedChakram");
+            item.shoot = mod.ProjectileType("BlightedChakram");
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
+			item.useTurn = false;
         }
 
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Blighted Chakram");
-			Tooltip.SetDefault("Throws 4 chakrams that pierce through enemies at an insane velocity");
+			Tooltip.SetDefault("Throws chakrams that baptise enemies in blighted flame\nLeft click to throw homing chakrams\nRight click to throw piercing chakrams");
 		}
-
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			//float damageMultiplier = (player.meleeDamage + player.thrownDamage) / 2;
-			//damage = item.damage * damageMultiplier;
-			
-			int projectileAmount = 4;
-			Vector2 velVect = new Vector2(speedX, speedY);
-			//Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect.X, velVect.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
-			for (int k = 0; k < projectileAmount; k++)
+			if (player.altFunctionUse == 2)
 			{
-				Vector2 velVect2 = velVect.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-15, 15)));
-				
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("BlightedChakram2"), 0, 0f, Main.myPlayer);
+				Projectile.NewProjectile(position.X, position.Y, 0, 0, mod.ProjectileType("BChakramContact"), damage, knockBack, Main.myPlayer, p);
+			}
+			else
+			{
+				Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, Main.myPlayer);
 			}
             return false;
         }
 		
-        public override bool CanUseItem(Player player)       //this make that you can shoot only 1 boomerang at once
-        {
-            for (int i = 0; i < 1000; ++i)
-            {
-                if (Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].type == item.shoot)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        public override bool AltFunctionUse(Player player)
+		{
+			return true;
+		}
 		
 		public override void AddRecipes()
 		{
