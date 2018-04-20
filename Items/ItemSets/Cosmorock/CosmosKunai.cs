@@ -17,7 +17,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 53;
+			item.damage = 49;
 			item.thrown = true;
 			item.shoot = mod.ProjectileType("CosmosKunai");
 
