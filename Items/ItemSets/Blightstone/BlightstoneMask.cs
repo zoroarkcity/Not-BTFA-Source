@@ -13,7 +13,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 		{
 			item.width = 18;
 			item.height = 18;
-			item.value = 250000;
+			item.value = Item.sellPrice(0, 6, 0, 0);
 			item.rare = 7;
 			item.defense = 16;
 		}

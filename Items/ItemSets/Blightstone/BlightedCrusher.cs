@@ -25,7 +25,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.crit = 16;
 			item.useStyle = 1;
 			item.knockBack = 6;
-			item.value = 250000;
+			item.value = Item.sellPrice(0, 8, 0, 0);
 			item.rare = 7;
 			item.useTurn = false;
 			item.UseSound = SoundID.Item1;

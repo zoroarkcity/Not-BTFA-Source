@@ -25,7 +25,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.useStyle = 5;
 			Item.staff[item.type] = true;
 			item.knockBack = 3;
-			item.value = 250000;
+			item.value = Item.sellPrice(0, 8, 0, 0);
 			item.rare = 7;
 			item.UseSound = SoundID.Item20;
 			item.shoot = mod.ProjectileType("BlightedEmber2");

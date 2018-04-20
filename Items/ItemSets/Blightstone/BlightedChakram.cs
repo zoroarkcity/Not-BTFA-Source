@@ -10,19 +10,19 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
     {
         public override void SetDefaults()
         {
-			item.damage = 73;
+			item.damage = 74;
 			item.noMelee = true;
             item.melee = false;
 			item.thrown = true;
             item.width = 30;
             item.height = 30;
 
-            item.useTime = 12;
-            item.useAnimation = 12;
+            item.useTime = 11;
+            item.useAnimation = 11;
             item.noUseGraphic = true;
             item.useStyle = 1;
             item.knockBack = 6;
-            item.value = 250000;
+            item.value = Item.sellPrice(0, 8, 0, 0);
             item.rare = 7;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("BlightedChakram");
