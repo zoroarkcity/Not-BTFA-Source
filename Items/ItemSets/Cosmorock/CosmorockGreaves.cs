@@ -23,12 +23,12 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cosmic Greaves");
-			Tooltip.SetDefault("9% increased movement speed\nIncreased life regen");
+			Tooltip.SetDefault("10% increased movement speed\nIncreased life regen");
 		}
 
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed += 0.09f;
+			player.moveSpeed += 0.1f;
 		}
 
 		public override void AddRecipes()
