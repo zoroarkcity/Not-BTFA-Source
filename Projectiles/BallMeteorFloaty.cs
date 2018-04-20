@@ -35,28 +35,28 @@ namespace ForgottenMemories.Projectiles
         public void BaseAI() //ai stolen from original ball meteor
         {
             projectile.rotation += projectile.velocity.X / 2f;
-            Vector2 vector2 = projectile.Center + Vector2.Normalize(projectile.velocity) * 10f;
-            Dust dust1 = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, 60, 0.0f, 0.0f, 0, new Color(), 1f)];
-            dust1.position = vector2;
-            dust1.velocity = projectile.velocity.RotatedBy(1.57079637050629, new Vector2()) * 0.33f + projectile.velocity / 4f;
-            dust1.position += projectile.velocity.RotatedBy(1.57079637050629, new Vector2());
-            dust1.fadeIn = 0.5f;
-            dust1.noGravity = true;
-            Dust dust2 = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, 60, 0.0f, 0.0f, 0, new Color(), 1f)];
-            dust2.position = vector2;
-            dust2.velocity = projectile.velocity.RotatedBy(-1.57079637050629, new Vector2()) * 0.33f + projectile.velocity / 4f;
-            dust2.position += projectile.velocity.RotatedBy(-1.57079637050629, new Vector2());
-            dust2.fadeIn = 0.5f;
-            dust2.noGravity = true;
-            for (int index1 = 0; index1 < 1; ++index1)
+			if (Main.rand.Next(2) == 0)
             {
-                int index2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 60, 0.0f, 0.0f, 0, new Color(), 1f);
-                Main.dust[index2].velocity *= 0.5f;
-                Main.dust[index2].scale *= 1.3f;
-                Main.dust[index2].fadeIn = 1f;
-                Main.dust[index2].noGravity = true;
-            }
-            //if (projectile.position.Y > (double)projectile.ai[1]) projectile.tileCollide = true;
+				Vector2 vector2 = projectile.Center + Vector2.Normalize(projectile.velocity) * 10f;
+				Dust dust1 = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, 60, 0.0f, 0.0f, 0, new Color(), 1f)];
+				dust1.position = vector2;
+				dust1.velocity = projectile.velocity.RotatedBy(1.57079637050629, new Vector2()) * 0.33f + projectile.velocity / 4f;
+				dust1.position += projectile.velocity.RotatedBy(1.57079637050629, new Vector2());
+				dust1.fadeIn = 0.5f;
+				dust1.noGravity = true;
+				Dust dust2 = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, 60, 0.0f, 0.0f, 0, new Color(), 1f)];
+				dust2.position = vector2;
+				dust2.velocity = projectile.velocity.RotatedBy(-1.57079637050629, new Vector2()) * 0.33f + projectile.velocity / 4f;
+				dust2.position += projectile.velocity.RotatedBy(-1.57079637050629, new Vector2());
+				dust2.fadeIn = 0.5f;
+				dust2.noGravity = true;
+				int index2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 60, 0.0f, 0.0f, 0, new Color(), 1f);
+				Main.dust[index2].velocity *= 0.5f;
+				Main.dust[index2].scale *= 1.3f;
+				Main.dust[index2].fadeIn = 1f;
+				Main.dust[index2].noGravity = true;
+				//if (projectile.position.Y > (double)projectile.ai[1]) projectile.tileCollide = true;
+			}
         }
 
         public override void AI()
