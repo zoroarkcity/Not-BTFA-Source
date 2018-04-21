@@ -31,7 +31,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.aiStyle = -1;
 			npc.lifeMax = 28000;
 			npc.damage = 80;
-			npc.defense = 22;
+			npc.defense = 14;
 			npc.knockBackResist = 0f;
 			npc.width = 170;
 			npc.height = 170;
@@ -71,7 +71,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		{
 			npc.lifeMax = 42000 + ((numPlayers) * 4200);
 			npc.damage = 100;
-			npc.defense = 32;
+			npc.defense = 21;
 		}
 
 		public void MakeBurstBall()

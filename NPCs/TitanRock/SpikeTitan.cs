@@ -18,7 +18,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.HitSound = SoundID.NPCHit41;
 			npc.DeathSound = SoundID.NPCHit41;
 			npc.value = 0f;
-			npc.knockBackResist = 0f;
+			npc.knockBackResist = 0.15f;
 			npc.aiStyle = 14;
 			animationType = NPCID.GiantBat;
 			npc.lavaImmune = true;
