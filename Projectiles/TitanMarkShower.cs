@@ -31,7 +31,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.scale = 1.3f;
             projectile.light = 0.7f;
 
-            offset = projectile.width * (projectile.scale - 1) / 2f;
+            //offset = projectile.width * (projectile.scale - 1) / 2f;
 		}
 
         public override bool CanHitPlayer(Player target)
