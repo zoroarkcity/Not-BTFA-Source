@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public override void SetDefaults()
 		{
 			npc.aiStyle = -1;
-			npc.lifeMax = 32000;
+			npc.lifeMax = 28000;
 			npc.damage = 80;
 			npc.defense = 22;
 			npc.knockBackResist = 0f;
@@ -53,6 +53,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Venom] = true;
 			npc.buffImmune[BuffID.Confused] = true;
+			npc.buffImmune[BuffID.OnFire] = true;
 		}
 		
 		public override void SetStaticDefaults()
@@ -68,7 +69,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 48000 + ((numPlayers) * 4800);
+			npc.lifeMax = 42000 + ((numPlayers) * 4200);
 			npc.damage = 100;
 			npc.defense = 32;
 		}
@@ -154,7 +155,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public void InitializePhase2()
 		{
 			bisexual = true;
-			CleanseBuff(BuffID.OnFire);
 			CleanseBuff(BuffID.CursedInferno);
 			CleanseBuff(BuffID.ShadowFlame);
 			CleanseBuff(BuffID.Ichor);
@@ -189,6 +189,12 @@ namespace ForgottenMemories.NPCs.TitanRock
 						direction.Normalize();
 						npc.velocity.Y = direction.Y * 7.5f;
 						npc.velocity.X = direction.X * 7.5f;
+						/*for (int i = 0; i < 3; i++)
+						{
+							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"));
+							double angle = (120 * i) * Math.PI / 180;
+							Main.npc[n].velocity = new Vector2(0, 9f).RotatedBy(angle);
+						}*/
 					}
 					else if (phase2timer == 60 || phase2timer == 130 || phase2timer == 200 || phase2timer == 270 || phase2timer == 340)
 					{
@@ -417,29 +423,29 @@ namespace ForgottenMemories.NPCs.TitanRock
 				else if (timer == 350) //initializing phase 1 spin
 				{
 					angleModifier = 0;
+
+					gayvector = npc.Center - player.Center; //points from player to npc (i.e. behind boss)
+					gayvector.Normalize();
 					
 					if (Main.expertMode)
 					{
 						takeLessDamage = true;
 						curlDirection *= -1;
-					}
 
-					gayvector = npc.Center - player.Center; //points from player to npc (i.e. behind boss)
-					gayvector.Normalize();
-
-					for (int i = 1; i <= 5; i++) //spawn shit with velocity behind boss
-					{
-						int type = mod.NPCType("TitanBat");
-						int modifier = 18;
-						if (i == 2 || i == 4)
+						for (int i = 0; i < 3; i++) //spawn shit with velocity behind boss
 						{
-							type = mod.NPCType("SpikeTitan");
-							modifier -= 4;
+							/*int type = mod.NPCType("TitanBat");
+							int modifier = 14;
+							if (i == 1 || i == 2)
+							{
+								type = mod.NPCType("SpikeTitan");
+								modifier -= 4;
+							}*/
+							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"));
+							double angle = (-45 + 45 * i) * Math.PI / 180; //angle range is -45 0, +45
+							Main.npc[n].velocity = gayvector.RotatedBy(angle);
+							Main.npc[n].velocity *= 14f;
 						}
-						int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, type);
-						double angle = (-90 + 30 * i) * Math.PI / 180; //angle range is -60, -30, 0, +30, +60
-						Main.npc[n].velocity = gayvector.RotatedBy(angle);
-						Main.npc[n].velocity *= modifier;
 					}
 
 					gayvector = gayvector.RotatedBy(0.785398163); //always starts spin bullets at 45 degree angle to player

@@ -13,8 +13,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.width = 64;
 			npc.height = 64;
 			npc.damage = 40;
-			npc.defense = 30;
-			npc.lifeMax = 350;
+			npc.defense = 25;
+			npc.lifeMax = 300;
 			npc.HitSound = SoundID.NPCHit41;
 			npc.DeathSound = SoundID.NPCDeath44;
 			npc.value = 0f;
@@ -24,6 +24,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.lavaImmune = true;
 			aiType = NPCID.GiantBat;
 			npc.scale = 1.25f;
+
+			npc.buffImmune[BuffID.Poisoned] = true;
+			npc.buffImmune[BuffID.Venom] = true;
+			npc.buffImmune[BuffID.Confused] = true;
+			npc.buffImmune[BuffID.OnFire] = true;
 		}
 		
 		public override void SetStaticDefaults()
@@ -35,7 +40,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 700;
+			npc.lifeMax = 600;
 			npc.damage = 80;
 		}
 		
