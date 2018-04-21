@@ -81,6 +81,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 			int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("Ball"), (int) npc.damage / 5, 1, Main.myPlayer, 3f, 0);
 			Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
+			Main.projectile[p].scale = 1.3f;
 
 			if (Main.expertMode)
 			{
@@ -111,6 +112,7 @@ namespace ForgottenMemories.NPCs.TitanRock
                 double angle = Main.rand.Next(-45, 46) * Math.PI / 180;
                 Vector2 velocity = new Vector2(0, -5f * variance).RotatedBy(angle);
                 int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("BallMeteorFloaty"), projDamage, 1, Main.myPlayer);
+				Main.projectile[p].netUpdate = true;
             }
 		}
 
@@ -187,14 +189,19 @@ namespace ForgottenMemories.NPCs.TitanRock
 					{
 						Vector2 direction = Main.player[npc.target].Center - npc.Center;
 						direction.Normalize();
-						npc.velocity.Y = direction.Y * 7.5f;
-						npc.velocity.X = direction.X * 7.5f;
-						/*for (int i = 0; i < 3; i++)
+						npc.velocity.Y = direction.Y * 7f;
+						npc.velocity.X = direction.X * 7f;
+						
+						for (int i = 0; i < 4; i++) //spawn shit with velocity behind boss
 						{
-							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"));
-							double angle = (120 * i) * Math.PI / 180;
+							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"), 0, -300 + 20 * i);
+							double angle = (45 + 90 * i) * Math.PI / 180;
 							Main.npc[n].velocity = new Vector2(0, 9f).RotatedBy(angle);
-						}*/
+							if (i == 1 || i == 3)
+							{
+								Main.npc[n].ai[3] = 1f;
+							}
+						}
 					}
 					else if (phase2timer == 60 || phase2timer == 130 || phase2timer == 200 || phase2timer == 270 || phase2timer == 340)
 					{
@@ -290,7 +297,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 					bool showerTime = (shootTimer == 200 || shootTimer == 600);
 					if ((showerTime && Main.expertMode) || shootTimer == 0 || shootTimer == 400 || shootTimer == 800)
 					{
-						int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), (int) npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
+						int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
 						if (Main.expertMode)
 							Main.projectile[p].damage = npc.damage * 2 / 9; //91.5
 					}
@@ -434,14 +441,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 						for (int i = 0; i < 3; i++) //spawn shit with velocity behind boss
 						{
-							/*int type = mod.NPCType("TitanBat");
-							int modifier = 14;
-							if (i == 1 || i == 2)
-							{
-								type = mod.NPCType("SpikeTitan");
-								modifier -= 4;
-							}*/
-							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"));
+							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"), 0, -300 - 20 * i);
 							double angle = (-45 + 45 * i) * Math.PI / 180; //angle range is -45 0, +45
 							Main.npc[n].velocity = gayvector.RotatedBy(angle);
 							Main.npc[n].velocity *= 14f;
@@ -557,6 +557,16 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void NPCLoot()
 		{
+			for (int i = 0; i < 200; i++)
+			{
+				if (Main.npc[i].active && Main.npc[i].type == mod.NPCType("SpikeTitan"))
+				{
+					Main.npc[i].life = 0;
+					Main.npc[i].checkDead();
+					Main.npc[i].netUpdate = true;
+				}
+			}
+			
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore1"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore2"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore3"), 1f);

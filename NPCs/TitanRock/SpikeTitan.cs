@@ -7,7 +7,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 {
 	public class SpikeTitan : ModNPC
 	{
-		int timer = -300; //starts with initial delay of 380 ticks for first shot, then 80 ticks for every shot after
+		//int timer = -300; //starts with initial delay of 380 ticks for first shot, then 80 ticks for every shot after
 		public override void SetDefaults()
 		{
 			npc.width = 64;
@@ -16,7 +16,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.defense = 25;
 			npc.lifeMax = 300;
 			npc.HitSound = SoundID.NPCHit41;
-			npc.DeathSound = SoundID.NPCDeath44;
+			npc.DeathSound = SoundID.NPCHit41;
 			npc.value = 0f;
 			npc.knockBackResist = 0f;
 			npc.aiStyle = 14;
@@ -57,17 +57,30 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void AI()
 		{
-			timer++;
-			if (timer == 80)
+			npc.ai[0]++;
+			if (npc.ai[0] == 80f)
 			{
 				Vector2 direction = Main.player[npc.target].Center - npc.Center;
 				direction.Normalize();
-				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 4f, direction.Y * 4f, mod.ProjectileType("Ball2"), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+				direction *= 6;
+
+				int damage = npc.damage / 2;
 				if (Main.expertMode)
 				{
-					Main.projectile[p].damage = npc.damage / 4;
+					damage = npc.damage / 4;
 				}
-				timer = 0;
+				
+				if (npc.ai[3] == 1f) //double shot at 5 degree offset
+				{
+					Projectile.NewProjectile(npc.Center, direction.RotatedBy(0.0872664626), mod.ProjectileType("Ball2"), damage, 1, Main.myPlayer, 0, 0);
+					Projectile.NewProjectile(npc.Center, direction.RotatedBy(-0.0872664626), mod.ProjectileType("Ball2"), damage, 1, Main.myPlayer, 0, 0);
+				}
+				else
+				{
+					Projectile.NewProjectile(npc.Center, direction, mod.ProjectileType("Ball2"), damage, 1, Main.myPlayer, 0, 0);
+				}
+
+				npc.ai[0] = 0;
 			}
 		}
 	}
