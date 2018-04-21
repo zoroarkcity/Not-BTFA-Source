@@ -65,7 +65,15 @@ namespace ForgottenMemories.Projectiles
             }
 			else if (projectile.ai[0] == 3f)
 			{
-				projectile.scale = 1.3f;
+				for (int i = 0; i < 4; i++)
+				{
+					Vector2 scaledOrigin = projectile.Center - new Vector2(26, 26);
+					int dust = Dust.NewDust(scaledOrigin, 52, 52, 60, 0f, 0f, 0, new Color(), 1f); 
+					Main.dust[dust].velocity *= 0.5f;
+					Main.dust[dust].scale *= 1.3f;
+					Main.dust[dust].fadeIn = 1f;
+					Main.dust[dust].noGravity = true;
+				}
 				
 				if (projectile.timeLeft < 120)
 					Phase2Ring();
