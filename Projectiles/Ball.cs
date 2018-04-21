@@ -57,7 +57,7 @@ namespace ForgottenMemories.Projectiles
 		{
 			if (projectile.ai[0] == 1f)
 			{
-				projectile.velocity *= 1.0125f;
+				projectile.velocity *= 1.012f;
 			}
             else if (projectile.ai[0] == 2f && projectile.timeLeft <= 75)
             {
