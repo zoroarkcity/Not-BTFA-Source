@@ -18,13 +18,12 @@ namespace ForgottenMemories.NPCs.TitanRock
 		int phase2timer = 0;
 		int shootTimer = 0;
 		int curlDirection = 1;
+		int angleModifier = 0;
 		bool bisexual = false; //is phase 2
-		//bool bisexual2 = false;
 		bool takeLessDamage = false;
-		//float teleportF;
 		bool despawn = false;
-		Vector2 gayvector = new Vector2(0f, -5f);
-		Vector2 homovector = new Vector2(0f, 5f);
+		Vector2 gayvector = new Vector2(0f, -7.5f); //11.25
+		//Vector2 homovector = new Vector2(0f, 5f);
 		Vector2 frickvector = new Vector2(0f, 2f);
 		
 		public override void SetDefaults()
@@ -97,39 +96,42 @@ namespace ForgottenMemories.NPCs.TitanRock
 		public void MakeFloatyMeteors()
 		{
 			int meteorsPerVolley = 5;
+			int projDamage = npc.damage / 5;
 
             if (Main.expertMode)
-                meteorsPerVolley += 2;
+			{
+				meteorsPerVolley += 2;
+				projDamage = npc.damage * 2 / 9; //91.5
+			}
             
             for (int i = 0; i < meteorsPerVolley; i++)
             {
-                float variance = (1f + (float)Main.rand.Next(-25, 126) / 100f);
+                float variance = 0.5f + 1.25f * i / meteorsPerVolley;
                 double angle = Main.rand.Next(-45, 46) * Math.PI / 180;
                 Vector2 velocity = new Vector2(0, -5f * variance).RotatedBy(angle);
-                int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("BallMeteorFloaty"), (int) npc.damage / 5, 1, Main.myPlayer);
-				if (Main.expertMode)
-					Main.projectile[p].damage = npc.damage * 2 / 9; //91.5
+                int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocity.X, velocity.Y, mod.ProjectileType("BallMeteorFloaty"), projDamage, 1, Main.myPlayer);
             }
 		}
 
         public void Phase2Ring()
         {
-            for (int i = 0; i < 10; ++i)
+            int projDamage = npc.damage / 5;
+			if (Main.expertMode)
+			{
+				projDamage = npc.damage * 2 / 9;
+			}
+			
+			for (int i = 0; i < 10; ++i)
             {
                 frickvector = frickvector.RotatedBy(System.Math.PI / 5);
 
-				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), (int)npc.damage / 5, 1, Main.myPlayer, 1f, 0);
+				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, frickvector.X, frickvector.Y, mod.ProjectileType("Ball"), projDamage, 1, Main.myPlayer, 1f, 0);
 				
-				if (Main.expertMode)
+				if (Main.expertMode && npc.life < npc.lifeMax / 4)
 				{
-					Main.projectile[p].damage = npc.damage * 2 / 9; //91.5
-
-					if (npc.life < npc.lifeMax / 4)
-					{
-						Main.projectile[p].ai[0] = 4f;
-						Main.projectile[p].ai[1] = 0.0125f * curlDirection;
-						Main.projectile[p].timeLeft += 120;
-					}
+					Main.projectile[p].ai[0] = 4f;
+					Main.projectile[p].ai[1] = 0.0125f * curlDirection;
+					Main.projectile[p].timeLeft += 120;
 				}
             }
 
@@ -375,6 +377,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 					
 					if (timer == 100 || timer == 200)
 					{	
+						int projDamage = npc.damage / 5;
+
 						for (int i = 0; i < 6; ++i)
 						{
 							Vector2 direction = Main.player[npc.target].Center - npc.Center;
@@ -383,15 +387,18 @@ namespace ForgottenMemories.NPCs.TitanRock
 							float sY = direction.Y * 8f;
 							sX += (float)Main.rand.Next(-15, 16) * 0.1f;
 							sY += (float)Main.rand.Next(-15, 16) * 0.1f;
-							int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), npc.damage / 5, 1, Main.myPlayer, 0, 0);
+							int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), projDamage, 1, Main.myPlayer, 0, 0);
 							Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 							Main.projectile[p].netUpdate = true;
 						}
 					}
+
 					if (timer == 50 || timer == 150 || timer == 250)
 					{	
 						if (npc.life <= npc.lifeMax * 6 / 7 && Main.expertMode)
 						{
+							int projDamage = npc.damage / 5;
+							
 							for (int i = 0; i < 3; ++i)
 							{
 								Vector2 direction = Main.player[npc.target].Center - npc.Center;
@@ -400,27 +407,43 @@ namespace ForgottenMemories.NPCs.TitanRock
 								float sY = direction.Y * 8f;
 								sX += (float)Main.rand.Next(-15, 16) * 0.1f;
 								sY += (float)Main.rand.Next(-15, 16) * 0.1f;
-								int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), npc.damage / 5, 1, Main.myPlayer, 0, 0);
+								int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, sX, sY, mod.ProjectileType("Ball2"), projDamage, 1, Main.myPlayer, 0, 0);
 								Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 								Main.projectile[p].netUpdate = true;
 							}
 						}
 					}
 				}
-				else if (timer == 350)
+				else if (timer == 350) //initializing phase 1 spin
 				{
+					angleModifier = 0;
+					
 					if (Main.expertMode)
 					{
 						takeLessDamage = true;
 						curlDirection *= -1;
 					}
-					Vector2 direction = player.Center - npc.Center;
-					direction.Normalize();
-					direction *= 5f;
 
-					gayvector = direction.RotatedBy(System.Math.PI / 2);
-					homovector = direction.RotatedBy(-System.Math.PI / 2);
-					//gay homo vectors always start perpendicular to distance between target and boss
+					gayvector = npc.Center - player.Center; //points from player to npc (i.e. behind boss)
+					gayvector.Normalize();
+
+					for (int i = 1; i <= 5; i++) //spawn shit with velocity behind boss
+					{
+						int type = mod.NPCType("TitanBat");
+						int modifier = 18;
+						if (i == 2 || i == 4)
+						{
+							type = mod.NPCType("SpikeTitan");
+							modifier -= 4;
+						}
+						int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, type);
+						double angle = (-90 + 30 * i) * Math.PI / 180; //angle range is -60, -30, 0, +30, +60
+						Main.npc[n].velocity = gayvector.RotatedBy(angle);
+						Main.npc[n].velocity *= modifier;
+					}
+
+					gayvector = gayvector.RotatedBy(0.785398163); //always starts spin bullets at 45 degree angle to player
+					gayvector *= 7.5f;
 				}
 				else if (timer > 350)
 				{
@@ -434,44 +457,47 @@ namespace ForgottenMemories.NPCs.TitanRock
 					
 					if (timer2 >= 5)
 					{
-						double swirlyIncrement = System.Math.PI / 36;
+						double swirlyIncrement = System.Math.PI;
 
-						//int damage5;
 						if (Main.expertMode)
 						{
-							//damage5 = npc.damage / 6; //82.35
-
-							if (npc.life <= npc.lifeMax * 6 / 7)
-							{
-								swirlyIncrement = System.Math.PI / 31;
-							}
+							swirlyIncrement /= 31;
 						}
-						/*else
+						else
 						{
-							damage5 = npc.damage / 5;
-						}*/
+							swirlyIncrement /= 36;
+						}
 
 						swirlyIncrement *= curlDirection;
+						
+						if (angleModifier < 18) //rotate at half speed for first 18 shots (1.5 seconds)
+						{
+							gayvector = gayvector.RotatedBy(swirlyIncrement / 2);
+						}
+						else
+						{
+							gayvector = gayvector.RotatedBy(swirlyIncrement);
+						}
 
-						gayvector = gayvector.RotatedBy(swirlyIncrement);
-						homovector = homovector.RotatedBy(swirlyIncrement);
+						angleModifier++;
+
+						int projDamage = npc.damage / 5;
 					
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, gayvector.X * 1.5f, gayvector.Y * 1.5f, mod.ProjectileType("Ball"), npc.damage / 5, 1, Main.myPlayer, 2f, 0);
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, homovector.X * 1.5f, homovector.Y * 1.5f, mod.ProjectileType("Ball"), npc.damage / 5, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center, gayvector, mod.ProjectileType("Ball"), projDamage, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center, -gayvector, mod.ProjectileType("Ball"), projDamage, 1, Main.myPlayer, 2f, 0);
+
+						Vector2 lesvector = gayvector.RotatedBy(System.Math.PI / 2);
+						Projectile.NewProjectile(npc.Center, lesvector, mod.ProjectileType("Ball"), projDamage, 1, Main.myPlayer, 2f, 0);
+						Projectile.NewProjectile(npc.Center, -lesvector, mod.ProjectileType("Ball"), projDamage, 1, Main.myPlayer, 2f, 0);
+
 						Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 75);
 						timer2 = 0;
 					}
 				}
 				
-				if (Main.rand.Next(500) == 0)
-				{
-					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TitanBat"));
-				}
-				
 				if (timer3 == 600 || timer3 == 1200)
 				{
 					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
-					//if (Main.expertMode) Main.projectile[p].damage = npc.damage / 6; //82.35
 				}
 				
 				if (timer >= 650)
@@ -483,9 +509,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 			if (timer3 == 1200)
 			{
-				if (!bisexual)
-					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpikeTitan"));
-				
 				timer3 = 0;
 			}
 				
@@ -509,10 +532,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 			if (takeLessDamage)
 			{
 				damage *= 0.5;
-			}
-			else if (/*npc.FindBuffIndex(BuffID.Ichor) == -1 && */npc.FindBuffIndex(BuffID.CursedInferno) != -1)
-			{
-				damage += 5; //cursed inferno also helps hurt titan rock a bit
 			}
 
 			return true;

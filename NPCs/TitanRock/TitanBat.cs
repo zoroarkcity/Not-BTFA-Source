@@ -11,9 +11,9 @@ namespace ForgottenMemories.NPCs.TitanRock
 		{
 			npc.width = 20;
 			npc.height = 14;
-			npc.damage = 25;
-			npc.defense = 10;
-			npc.lifeMax = 150;
+			npc.damage = 35;
+			npc.defense = 15;
+			npc.lifeMax = 100;
 			npc.HitSound = SoundID.NPCHit41;
 			npc.DeathSound = SoundID.NPCDeath44;
 			npc.value = 0f;
@@ -28,12 +28,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 			DisplayName.SetDefault("Titan Bat");
 			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.GiantBat];
 		}
-
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
 			npc.lifeMax = 200;
-			npc.damage = 50;
+			npc.damage = 70;
 		}
 		
 		public override bool PreNPCLoot()

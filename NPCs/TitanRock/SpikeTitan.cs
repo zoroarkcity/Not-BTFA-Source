@@ -7,14 +7,14 @@ namespace ForgottenMemories.NPCs.TitanRock
 {
 	public class SpikeTitan : ModNPC
 	{
-		int timer = 0;
+		int timer = -300; //starts with initial delay of 380 ticks for first shot, then 80 ticks for every shot after
 		public override void SetDefaults()
 		{
 			npc.width = 64;
 			npc.height = 64;
-			npc.damage = 25;
-			npc.defense = 10;
-			npc.lifeMax = 200;
+			npc.damage = 40;
+			npc.defense = 30;
+			npc.lifeMax = 350;
 			npc.HitSound = SoundID.NPCHit41;
 			npc.DeathSound = SoundID.NPCDeath44;
 			npc.value = 0f;
@@ -35,8 +35,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = (int)(npc.lifeMax * 1f);
-			npc.damage = (int)(npc.damage * 1f);
+			npc.lifeMax = 700;
+			npc.damage = 80;
 		}
 		
 		public override bool PreNPCLoot()
@@ -57,10 +57,13 @@ namespace ForgottenMemories.NPCs.TitanRock
 			{
 				Vector2 direction = Main.player[npc.target].Center - npc.Center;
 				direction.Normalize();
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 4f, direction.Y * 4f, mod.ProjectileType("Ball2"), 20, 1, Main.myPlayer, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 4f, direction.Y * 4f, mod.ProjectileType("Ball2"), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+				if (Main.expertMode)
+				{
+					Main.projectile[p].damage = npc.damage / 4;
+				}
 				timer = 0;
 			}
 		}
-		
 	}
 }
