@@ -59,7 +59,7 @@ namespace ForgottenMemories.NPCs.Acheron
             if (ForgottenMemories.instance.songsLoaded)
                 music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/out");
             else
-                music = MusicID.Boss3;
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Acheron");
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
