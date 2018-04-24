@@ -70,10 +70,12 @@ namespace ForgottenMemories.NPCs.TitanRock
 					damage = npc.damage / 4;
 				}
 				
-				if (npc.ai[3] == 1f) //double shot at 5 degree offset
+				if (npc.ai[3] == 1f)
 				{
-					Projectile.NewProjectile(npc.Center, direction.RotatedBy(0.0872664626), mod.ProjectileType("Ball2"), damage, 1, Main.myPlayer, 0, 0);
-					Projectile.NewProjectile(npc.Center, direction.RotatedBy(-0.0872664626), mod.ProjectileType("Ball2"), damage, 1, Main.myPlayer, 0, 0);
+					//Projectile.NewProjectile(npc.Center, direction.RotatedBy(0.0872664626), mod.ProjectileType("Ball2"), damage, 1, Main.myPlayer, 0, 0);
+					//Projectile.NewProjectile(npc.Center, direction.RotatedBy(-0.0872664626), mod.ProjectileType("Ball2"), damage, 1, Main.myPlayer, 0, 0);
+					Vector2 projVel = new Vector2(0, -6).RotatedBy(npc.rotation);
+					Projectile.NewProjectile(npc.Center, projVel, mod.ProjectileType("BallMeteorFloaty"), damage, 1, Main.myPlayer, 0, 0);
 				}
 				else
 				{

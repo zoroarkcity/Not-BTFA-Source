@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		{
 			npc.aiStyle = -1;
 			npc.lifeMax = 28000;
-			npc.damage = 75;
+			npc.damage = 80;
 			npc.defense = 14;
 			npc.knockBackResist = 0f;
 			npc.width = 170;
@@ -70,7 +70,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 		{
 			npc.lifeMax = 42000 + ((numPlayers) * 4200);
 			npc.damage = 100;
-			npc.defense = 21;
+			npc.defense = 28;
 		}
 
 		public void MakeBurstBall()
@@ -84,7 +84,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 			if (Main.expertMode)
 			{
-				Main.projectile[p].damage = npc.damage * 3 / 14; //88.24
+				Main.projectile[p].damage = npc.damage * 2 / 9; //91.5
 				
 				if (npc.life < npc.lifeMax / 4)
 				{
@@ -102,7 +102,7 @@ namespace ForgottenMemories.NPCs.TitanRock
             if (Main.expertMode)
 			{
 				meteorsPerVolley += 2;
-				projDamage = npc.damage * 3 / 14; //88.24
+				projDamage = npc.damage * 2 / 9; //91.5
 			}
             
             for (int i = 0; i < meteorsPerVolley; i++)
@@ -120,7 +120,7 @@ namespace ForgottenMemories.NPCs.TitanRock
             int projDamage = npc.damage / 5;
 			if (Main.expertMode)
 			{
-				projDamage =npc.damage * 3 / 14; //88.24
+				projDamage =npc.damage * 2 / 9; //91.5
 			}
 			
 			for (int i = 0; i < 14; ++i)
@@ -191,13 +191,13 @@ namespace ForgottenMemories.NPCs.TitanRock
 						npc.velocity.Y = direction.Y * 7f;
 						npc.velocity.X = direction.X * 7f;
 						
-						for (int i = 0; i < 4; i++) //spawn shit with velocity behind boss
+						if (Main.expertMode)
 						{
-							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"), 0, -300 + 20 * i);
-							double angle = (45 + 90 * i) * Math.PI / 180;
-							Main.npc[n].velocity = new Vector2(0, 9f).RotatedBy(angle);
-							if (i == 1 || i == 3)
+							for (int i = 0; i < 4; i++) //spawn shit with velocity around boss
 							{
+								int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"), 0, -300 + 20 * i);
+								double angle = (45 + 90 * i) * Math.PI / 180;
+								Main.npc[n].velocity = new Vector2(0, 9f).RotatedBy(angle);
 								Main.npc[n].ai[3] = 1f;
 							}
 						}
@@ -298,7 +298,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 					{
 						int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
 						if (Main.expertMode)
-							Main.projectile[p].damage = npc.damage * 3 / 14; //88.24
+							Main.projectile[p].damage = npc.damage * 2 / 9; //91.5
 					}
 
 					bool burstBallTime = (shootTimer == 220 || shootTimer == 440 || shootTimer == 660 || shootTimer == 880);
@@ -389,11 +389,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 					
 					if (timer == 100 || timer == 200)
 					{	
-						int projDamage = npc.damage / 5;
-						if (Main.expertMode)
+						int projDamage = npc.damage / 5; //82.35 in expert
+						/*if (Main.expertMode)
 						{
 							projDamage = npc.damage * 3 / 16; //77.21
-						}
+						}*/
 
 						for (int i = 0; i < 6; ++i)
 						{
@@ -413,11 +413,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 					{	
 						if (npc.life <= npc.lifeMax * 6 / 7 && Main.expertMode)
 						{
-							int projDamage = npc.damage / 5;
-							if (Main.expertMode)
+							int projDamage = npc.damage / 5; //82.35 in expert
+							/*if (Main.expertMode)
 							{
 								projDamage = npc.damage * 3 / 16; //77.21
-							}
+							}*/
 							
 							for (int i = 0; i < 3; ++i)
 							{
@@ -446,10 +446,10 @@ namespace ForgottenMemories.NPCs.TitanRock
 						takeLessDamage = true;
 						curlDirection *= -1;
 
-						for (int i = 0; i < 3; i++) //spawn shit with velocity behind boss
+						for (int i = 0; i < 4; i++) //spawn shit with velocity behind boss
 						{
 							int n = NPC.NewNPC((int) npc.Center.X, (int) npc.Center.Y, mod.NPCType("SpikeTitan"), 0, -300 - 20 * i);
-							double angle = (-45 + 45 * i) * Math.PI / 180; //angle range is -45 0, +45
+							double angle = (-60 + 40 * i) * Math.PI / 180; //angle range is -60, -20, +20, +60
 							Main.npc[n].velocity = gayvector.RotatedBy(angle);
 							Main.npc[n].velocity *= 14f;
 						}
@@ -494,11 +494,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 						angleModifier++;
 
-						int projDamage = npc.damage / 5;
-						if (Main.expertMode)
+						int projDamage = npc.damage / 5; //82.35 in expert
+						/*if (Main.expertMode)
 						{
 							projDamage = npc.damage * 3 / 16; //77.21
-						}
+						}*/
 					
 						Projectile.NewProjectile(npc.Center, gayvector, mod.ProjectileType("Ball"), projDamage, 1, Main.myPlayer, 2f, 0);
 						Projectile.NewProjectile(npc.Center, -gayvector, mod.ProjectileType("Ball"), projDamage, 1, Main.myPlayer, 2f, 0);
@@ -515,10 +515,10 @@ namespace ForgottenMemories.NPCs.TitanRock
 				if (timer3 == 600 || timer3 == 1200)
 				{
 					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TitanMarkShower"), npc.damage / 5, 1, Main.myPlayer, player.whoAmI);
-					if (Main.expertMode)
+					/*if (Main.expertMode)
 					{
 						Main.projectile[p].damage = npc.damage * 3 / 16; //77.21
-					}
+					}*/
 				}
 				
 				if (timer >= 650)
@@ -552,7 +552,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 		{
 			if (takeLessDamage)
 			{
-				damage *= 0.5;
+				damage *= 0.4;
+			}
+			else
+			{
+				damage *= 0.9;
 			}
 
 			return true;
