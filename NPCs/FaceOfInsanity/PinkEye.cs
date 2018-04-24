@@ -15,7 +15,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.height = 20;
 			npc.damage = 35;
 			npc.defense = 10;
-			npc.lifeMax = 100;
+			npc.lifeMax = 150;
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.value = 0f;
@@ -33,6 +33,14 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			//animationType = NPCID.GiantBat;
 		}
 		
+		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+			if (TGEMWorld.downedArterius)
+			{
+				npc.damage = 90;
+			}
+		}
+
 		public override void FindFrame(int frameHeight)
 		{
 			npc.frameCounter += 0.2f;
@@ -76,12 +84,14 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			
 			if (npc.ai[0] > 180)
 			{
-				int p = Projectile.NewProjectile(npc.Center + (vector * 15), vector * 7, mod.ProjectileType("BrimstoneSmall"), 25, 0, npc.target, 0, 0);
+				int p = Projectile.NewProjectile(npc.Center + (vector * 15), vector * 7, mod.ProjectileType("BrimstoneSmall"), (int) (npc.damage * 0.72), 0, npc.target, 0, 0);
 				Main.projectile[p].netUpdate = true;
 				npc.netUpdate = true;
 				npc.ai[0] = 0;
 				if (Main.expertMode)
-					Main.projectile[p].damage = 17;
+				{
+					Main.projectile[p].damage = (int) (npc.damage / 4.11764706);
+				}
 			}
 			
 			if (Main.dayTime) //despawn

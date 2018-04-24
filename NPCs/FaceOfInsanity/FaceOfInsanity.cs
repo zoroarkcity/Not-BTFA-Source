@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 18000;
+            npc.lifeMax = 20000;
             npc.damage = 80;
             npc.defense = 14;
             npc.knockBackResist = 0f;
@@ -62,9 +62,15 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 30000 + ((numPlayers) * 3000);
+			npc.lifeMax = 27000 + ((numPlayers) * 2700);
 			npc.damage = 120;
 			npc.defense = 24;
+
+			if (TGEMWorld.downedArterius)
+			{
+				npc.lifeMax = 30000 + ((numPlayers) * 3000);
+				npc.damage = 140;
+			}
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -213,7 +219,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public void CheckOutOfRange()
         {
-            //Vector2 targetLocation = new Vector2(player.Center.X, player.Center.Y - 250);
             Vector2 distance = Vector2.Subtract(Main.player[npc.target].Center, npc.Center);
             bool outOfRange = distance.Length() > 1500;
 
@@ -396,6 +401,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							npc.ai[2] = 1;
 							npc.velocity = Vector2.Zero;
 
+							if (Main.expertMode && TGEMWorld.downedArterius && maxSpook == 1f)
+								maxSpook = 3f;
+
 							if (maxSpook != 1f) //shorten time spent fading after first cycle
 								fadeLimit = 90f;
 
@@ -421,8 +429,13 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						else //messy. this section above and below feels very messy
 						{
                             ShootBigBeam();
-							if (Main.expertMode && maxSpook > 1f)
-                                ShootSpinalBolts();
+							if (Main.expertMode)
+							{
+								if (maxSpook > 1f)
+									ShootSpinalBolts();
+
+								//if (TGEMWorld.downedArterius) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
+							}
 						}
 
 						npc.ai[1] = 0;
@@ -434,9 +447,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						
 						if (npc.ai[3] < fadeLimit) //stop and fade
 						{
-                            //Main.player[npc.target].GetModPlayer<BTFAPlayer>(mod).spookTimer = 120;
-							
-							if (fadeLimit == 120f)
+                            if (fadeLimit == 120f)
                                 npc.alpha += 2;
                             else
                                 npc.alpha += 3;
@@ -444,14 +455,20 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						else if (npc.ai[3] == fadeLimit)
 						{
 							if (Main.expertMode)
+							{
 								npc.Center = Main.player[npc.target].Center + new Vector2(0, -500); //teleport above player
+								if (TGEMWorld.downedArterius)
+								{
+									ShootBlood(mod.NPCType("ExplosiveZitEnemy"), false);
+								}
+							}
 							else
+							{
 								npc.Center = Main.player[npc.target].Center + new Vector2(0, 550); //teleport below player
+							}
 
 							npc.dontTakeDamage = false;
-
 							Main.bloodMoon = true;
-
                             SpookyDash();
 						}
 						else
@@ -492,7 +509,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					else if (npc.ai[1] == 180)
 					{
                         ShootSpinalBolts();
-						if (Main.expertMode && maxSpook > 1f)
+						if (Main.expertMode && (maxSpook > 1f || TGEMWorld.downedArterius))
 							ShootBigBeam();
 					}
 					else if (npc.ai[1] == 45 || npc.ai[1] == 90 || npc.ai[1] == 135 || npc.ai[1] == 225 || npc.ai[1] == 270 || npc.ai[1] == 315)
@@ -500,8 +517,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         ShootEyeBeams(player, false);
 					}
 				}
-
-				//if (aiTimer % 300 <= 0 && Main.expertMode) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
 			}
 			
 			if (Main.dayTime || !player.active || player.dead) //despawn
@@ -522,8 +537,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			if (spookyDashing)
 			{
-				damage *= 0.5;
-				return false;
+				damage *= 0.66;
+				//return false;
 			}
 
 			return true;
@@ -610,7 +625,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ArteriusBag")));
 			}
-			
 			else
 			{
 				switch (Main.rand.Next(7))
