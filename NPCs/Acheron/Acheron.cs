@@ -56,10 +56,11 @@ namespace ForgottenMemories.NPCs.Acheron
 
 			npc.buffImmune[BuffID.OnFire] = true;
 			
-            if (ForgottenMemories.instance.songsLoaded)
+            /*if (ForgottenMemories.instance.songsLoaded)
                 music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/out");
             else
-                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Acheron");
+				music = MusicID.Boss3;*/
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Acheron");
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

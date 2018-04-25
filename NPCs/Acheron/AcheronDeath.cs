@@ -42,10 +42,11 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.noTileCollide = true;
             npc.noGravity = true;
 			npc.DeathSound = SoundID.NPCDeath6;
-            if (ForgottenMemories.instance.songsLoaded)
+            /*if (ForgottenMemories.instance.songsLoaded)
                 music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/out");
             else
-                music = MusicID.Boss3;
+				music = MusicID.Boss3;*/
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Acheron");
         }
 		
 		public override void SetStaticDefaults()
