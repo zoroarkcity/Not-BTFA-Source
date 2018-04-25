@@ -15,7 +15,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		int BloodRainTimer = 0;
 		int DashTimer = 0;
         int outOfRangeTimer = 0;
-		int blindTimer = 29;
+		int blindTimer = 59;
 		bool phase2 = false;
 		float maxSpook = 1f;
 		const float spookyDashSpeed = 38f;
@@ -31,7 +31,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.aiStyle = -1;
             npc.lifeMax = 20000;
             npc.damage = 80;
-            npc.defense = 14;
+            npc.defense = 4;
             npc.knockBackResist = 0f;
             npc.width = 128;
             npc.height = 154;
@@ -63,14 +63,14 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 27000 + ((numPlayers) * 2700);
+			npc.lifeMax = 24000 + ((numPlayers) * 2400);
 			npc.damage = 120;
 			npc.defense = 24;
 
 			if (TGEMWorld.downedArterius)
 			{
 				npc.lifeMax = 30000 + ((numPlayers) * 3000);
-				npc.damage = 140;
+				npc.damage = 135;
 			}
 		}
 		
@@ -233,7 +233,10 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
 		public void ProcessBlinding()
 		{
-			if (blindTimer == 30)
+			if (!TGEMWorld.downedArterius)
+				return;
+			
+			if (blindTimer == 60)
 			{
 				for (int i = 0; i < 255; i++)
 				{
@@ -242,7 +245,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         Vector2 distance = Main.player[i].Center - npc.Center;
                         if (distance.Length() <= 1500)
                         {
-                            Main.player[i].GetModPlayer<BTFAPlayer>(mod).spookedByArte = 31;
+                            Main.player[i].AddBuff(mod.BuffType("Menaced"), 61);
                         }
                     }
 				}
@@ -331,7 +334,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         ShootBlood(mod.ProjectileType("zBloodStream"), true);
                 }
 				
-				if (aiTimer % 360 <= 0)
+				if (TGEMWorld.downedArterius && aiTimer % 360 <= 0)
 				{
 					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
 				}
@@ -342,6 +345,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			{
 				if (npc.alpha < 255)
 				{
+					//if (npc.alpha == 0 && TGEMWorld.downedArterius) Main.NewText("A deathly chill crawls down your spine...", new Color(214, 0, 0, 0));
+
 					npc.alpha += 5;
 				}
 				else
@@ -548,7 +553,17 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		public override bool CheckDead()
 		{
 			if (spookyDashing && !spawnedInBloodMoon)
+			{
 				Main.bloodMoon = false;
+			}
+
+			for (int i = 0; i < 255; i++)
+			{
+                if (Main.player[i].active && !Main.player[i].dead)
+                {
+                    Main.player[i].ClearBuff(mod.BuffType("Menaced"));
+                }
+			}
 			
 			return true;
 		}
@@ -658,6 +673,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 						break;
 				}
 			}
+			if (!TGEMWorld.downedArterius)
+				Main.NewText("Ethereal murmurs fill the night...", new Color(214, 0, 0, 0));
 			TGEMWorld.downedArterius = true;
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Arterius/ArteriusGore1"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Arterius/ArteriusGore2"), 1f);
