@@ -42,6 +42,11 @@ namespace ForgottenMemories.Projectiles
 				Main.dust[index2].position.X -= num1;
 				Main.dust[index2].position.Y -= num2;
 			}
+
+			if (projectile.ai[1] == 1f)
+			{
+				Lighting.AddLight(projectile.Center, 0.66f, 0, 0);
+			}
 		}
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
