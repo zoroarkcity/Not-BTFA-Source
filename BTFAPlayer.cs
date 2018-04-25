@@ -78,7 +78,7 @@ namespace ForgottenMemories
 		public bool DivineBlessing = false;
 		public int firestormCooldown = 0;
 
-		public int spookedByArte = 0;
+		public bool spookedByArte = false;
 		public int blightDashCooldown = 0;
 		public bool hasBlightFlashed = true;
 		
@@ -129,6 +129,7 @@ namespace ForgottenMemories
 			frostguard = false;
 			BeeHive = false;
 			DivineBlessing = false;
+			spookedByArte = false;
 
 			if (!hasBlightFlashed)
 			{
@@ -542,15 +543,13 @@ namespace ForgottenMemories
 				}	
 		}
 		
-		public override void PreUpdateBuffs()
+		public override void PostUpdateBuffs()
 		{
-			if (spookedByArte != 0)
+			if (spookedByArte)
 			{
-				spookedByArte--;
 				player.blind = true;
-				/*if (player.buffImmune[BuffID.Darkness])
-					player.buffImmune[BuffID.Darkness] = false;
-				player.AddBuff(BuffID.Darkness, 2);*/
+				player.nightVision = false;
+				player.detectCreature = false;
 			}
 		}
 
