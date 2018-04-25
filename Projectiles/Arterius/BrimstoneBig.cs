@@ -48,7 +48,7 @@ namespace ForgottenMemories.Projectiles.Arterius
                 trackTimer++;
             else if (distance.Length() <= 150)
             {
-                projectile.velocity.Normalize();
+                projectile.velocity = Vector2.Zero;
                 almostHitPlayer = true;
             }
 
@@ -96,6 +96,18 @@ namespace ForgottenMemories.Projectiles.Arterius
 					return;
 				}
 			}
+
+			if (projectile.velocity == Vector2.Zero)
+			{
+				if (ringTimer == 0 || ringTimer == 30 || ringTimer == 60 || ringTimer == 90)
+				{
+					Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("BrimstoneRing"), projectile.damage, 0, Main.myPlayer, 0, 0);
+				}
+				
+				ringTimer++;
+			}
+			else
+				ringTimer = 0;
         }
 
 		/*public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -140,18 +152,8 @@ namespace ForgottenMemories.Projectiles.Arterius
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			if (projectile.velocity.Length() <= 1f)
-			{
-				if (ringTimer == 0 || ringTimer == 15 || ringTimer == 30 || ringTimer == 45)
-				{
-					Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("BrimstoneRing"), projectile.damage, 0, Main.myPlayer, 0, 0);
-				}
-				
-				ringTimer++;
+			if (ringTimer != 0)
 				return false;
-			}
-			else
-				ringTimer = 0;
 			
 			Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)projectile.position.X + (double)projectile.width * 0.5) / 16, (int)(((double)projectile.position.Y + (double)projectile.height * 0.5) / 16.0));
 			float num150 = (float)(Main.projectileTexture[projectile.type].Width - projectile.width) * 0.5f + (float)projectile.width * 0.5f;
