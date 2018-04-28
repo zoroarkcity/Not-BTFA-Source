@@ -66,7 +66,14 @@ namespace ForgottenMemories.Projectiles
 			Main.projectile[p].magic = false;
 			Main.projectile[p].friendly = false;
 			Main.projectile[p].hostile = true;
-			Main.projectile[p].timeLeft += 120 + 15 * Main.rand.Next(9); //180 to 300 ticks total
+			if (projectile.ai[1] == 1f)
+			{
+				Main.projectile[p].timeLeft += 30 + 6 * Main.rand.Next(6); //30 to 60 ticks total
+			}
+			else
+			{
+				Main.projectile[p].timeLeft += 120 + 15 * Main.rand.Next(9); //120 to 240 ticks total
+			}
 			return true;
 		}
 	}
