@@ -14,6 +14,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		bool biphronSeeds = false;
 		Vector2 SeedPos;
 		int seedcounter;
+		int timer1 = 0;
 		
         public override void SetDefaults()
         {
@@ -56,6 +57,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
 			SpriteEffects spriteEffects = SpriteEffects.None;
+			if (npc.spriteDirection > 0)
+			{
+				spriteEffects = SpriteEffects.FlipHorizontally;
+			}
 			Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
 			Texture2D texture2D3 = Main.npcTexture[npc.type];
 			int num156 = Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type];
@@ -97,36 +102,30 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
 				goto IL_6881;
 			}
-			
-					
-			Microsoft.Xna.Framework.Color color29 = npc.GetAlpha(color25);
+
+			string ownTexture = "NPCs/GhastlyEnt/GhastlyEnt";
 			if (p3)
 			{
-				Texture2D texture2D4 = mod.GetTexture("NPCs/GhastlyEnt/GhastlyEntP3");
-				int num1561 = texture2D4.Height / Main.npcFrameCount[npc.type];
-				int y31 = num1561 * (int)npc.frameCounter;
-				Microsoft.Xna.Framework.Rectangle rectangle2 = new Microsoft.Xna.Framework.Rectangle(0, y31, texture2D4.Width, num1561);
-				Vector2 origin3 = rectangle2.Size() / 2f;
-				SpriteEffects effects = spriteEffects;
-				if (npc.spriteDirection > 0)
-				{
-					effects = SpriteEffects.FlipHorizontally;
-				}
-				float num165 = npc.rotation;
-				Microsoft.Xna.Framework.Color color39 = npc.GetAlpha(color25);
-				Main.spriteBatch.Draw(texture2D4, npc.position + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle2), color39, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin3, npc.scale, effects, 0f);
-				return false;
+				ownTexture += "P3";
 			}
-			return true;
+
+			Texture2D texture2D4 = mod.GetTexture(ownTexture);
+			int num1561 = texture2D4.Height / Main.npcFrameCount[npc.type];
+			int y31 = num1561 * (int)npc.frameCounter;
+			Microsoft.Xna.Framework.Rectangle rectangle2 = new Microsoft.Xna.Framework.Rectangle(0, y31, texture2D4.Width, num1561);
+			Vector2 origin3 = rectangle2.Size() / 2f;
+			float num166 = npc.rotation;
+			Microsoft.Xna.Framework.Color color39 = npc.GetAlpha(color25);
+			Main.spriteBatch.Draw(texture2D4, npc.position + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle2), color39, num166 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin3, npc.scale, spriteEffects, 0f);
+			return false;
 		}
 
         public override void AI()
         {
 			npc.TargetClosest(true);
 			npc.spriteDirection = npc.direction;
-            Player player = Main.player[npc.target];
 			
-			npc.ai[0]++;
+            Player player = Main.player[npc.target];
 			
 			if (npc.alpha > 255)
 				npc.alpha = 255;
@@ -155,9 +154,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public void Phase1(Player player)
 		{
-			npc.ai[3]++;
+			timer1++;
 			Phase1Movement(player);
-			if (npc.ai[3] % 180 == 0)
+
+			if (timer1 % 180 == 0)
 			{
 				switch(Main.rand.Next(3))
 				{
@@ -198,11 +198,11 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		public void BiphronSeeds(Player player, Vector2 Position)
 		{
 			Position.Y -= 100;
-			Position.X += ((npc.ai[3] % 180) - 60) * 4;
+			Position.X += ((timer1 % 180) - 60) * 4;
 			
-			if(npc.ai[3] % 15 == 0)
+			if(timer1 % 15 == 0)
 			{
-				Projectile.NewProjectile(Position, new Vector2(0, 10), mod.ProjectileType("GhentSeed"), (int)(npc.damage / 2), 1f, player.whoAmI, 0, 0);
+				Projectile.NewProjectile(Position, new Vector2(0, 10), mod.ProjectileType("WavyLeaf"), (int)(npc.damage / 2), 1f, player.whoAmI, 0, 0);
 				seedcounter++;
 			}
 			if(seedcounter > 8)
@@ -224,85 +224,159 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public void Phase1Movement(Player player)
 		{
-			bool flag1 = false;
-			int num1 = 16;
-			bool flag3 = false;
-			bool flag4 = false;
-			if (npc.position.X > (double) npc.ai[0] - (double) num1 && npc.position.X < (double) npc.ai[0] + (double) num1)
-				flag3 = true;
-			else if (npc.velocity.X < 0.0 && npc.direction > 0 || npc.velocity.X > 0.0 && npc.direction < 0)
-				flag3 = true;
-			int num2 = num1 + 24;
-			if (npc.position.Y > (double) npc.ai[1] - (double) num2 && npc.position.Y < (double) npc.ai[1] + (double) num2)
-				flag4 = true;
-			if (flag3 & flag4)
+			bool flag2 = false;
+
+			if (npc.ai[2] >= 0)
 			{
-				npc.ai[2]++;
-				if ((double) npc.ai[2] >= 30.0 && num2 == 16)
-					flag1 = true;
-				if ((double) npc.ai[2] >= 60.0)
+				int num1 = 16;
+				bool flag3 = false;
+				if (npc.position.X > npc.ai[0] - num1 && npc.position.X < npc.ai[0] + num1)
 				{
-					npc.ai[2] = -200f;
-					npc.direction = npc.direction * -1;
-					npc.velocity.X *= -1;
+					flag3 = true;
+				}
+				else if (npc.velocity.X < 0 && npc.direction > 0 || npc.velocity.X > 0 && npc.direction < 0)
+				{
+					flag3 = true;
+				}
+
+				int num2 = num1 + 24;
+				bool flag4 = false;
+				if (npc.position.Y > npc.ai[1] - num2 && npc.position.Y < npc.ai[1] + num2)
+				{
+					flag4 = true;
+				}
+
+				if (flag3 && flag4)
+				{
+					npc.ai[2] += 1f;
+
+					if (npc.ai[2] >= 60)
+					{
+						npc.ai[2] = -200f;
+						npc.direction = npc.direction * -1;
+						npc.velocity.X *= -1f;
+						npc.collideX = false;
+					}
+				}
+				else
+				{
+					npc.ai[0] = npc.position.X;
+					npc.ai[1] = npc.position.Y;
+					npc.ai[2] = 0.0f;
 				}
 			}
 			else
 			{
-				npc.ai[0] = (float) npc.position.X;
-				npc.ai[1] = (float) npc.position.Y;
-				npc.ai[2] = 0.0f;
+				if (Main.player[npc.target].position.X + (double) (Main.player[npc.target].width / 2) > npc.position.X + (double) (npc.width / 2))
+					npc.direction = -1;
+				else
+					npc.direction = 1;
 			}
-			npc.TargetClosest(true);
-			
-			if (Main.player[npc.target].position.X + (double) (Main.player[npc.target].width / 2) > npc.position.X + (double) (npc.width / 2))
-				npc.direction = -1;
-			else
-				npc.direction = 1;
-		  
-			int index1 = (int) ((npc.position.X + (double) (npc.width / 2)) / 16.0) + npc.direction * 2;
-			int num3 = (int) ((npc.position.Y + (double) npc.height) / 16.0);
+
+			int index1 = (int) npc.Center.X / 16 + npc.direction * 2;
+			int num3 = (int) npc.Center.Y / 16; //y position at which to start looking for blocks below
 			bool flag5 = true;
 			bool flag6 = false;
-			int num4 = 3;
+			int num4 = 10; //roughly half ghent height in tiles
 
-			for (int index2 = num3; index2 < num3 + num4; ++index2)
+			for (int index2 = num3; index2 < num3 + num4; index2++)
 			{
 				if (Main.tile[index1, index2] == null)
+				{
 					Main.tile[index1, index2] = new Tile();
+				}
+
 				if (Main.tile[index1, index2].nactive() && Main.tileSolid[(int) Main.tile[index1, index2].type] || (int) Main.tile[index1, index2].liquid > 0)
 				{
 					if (index2 <= num3 + 1)
-					  flag6 = true;
+					{
+						flag6 = true;
+					}
 					flag5 = false;
 					break;
 				}
 			}
-			if (flag1)
+
+			float adjustedHeight = npc.position.Y + npc.height - 21; //compare player's center to a point at ghent's feet, elevated by (player height / 2)
+			if (player.Center.Y < adjustedHeight) //makes ghent not always half in the ground when targeting a player on the same elevation
+				npc.directionY = -1;
+			else
+				npc.directionY = 1;
+
+			if (Main.player[npc.target].npcTypeNoAggro[npc.type])
 			{
-			  flag6 = false;
-			  flag5 = true;
+				bool flag3 = false;
+				for (int index2 = num3; index2 < num3 + num4 - 2; index2++)
+				{
+					if (Main.tile[index1, index2] == null)
+					{
+						Main.tile[index1, index2] = new Tile();
+					}
+
+					if (Main.tile[index1, index2].nactive() && Main.tileSolid[(int) Main.tile[index1, index2].type] || (int) Main.tile[index1, index2].liquid > 0)
+					{
+						flag3 = true;
+						break;
+					}
+				}
+				npc.directionY = (!flag3).ToDirectionInt();
 			}
-			
-			if(player.position.Y < npc.position.Y - 50)
-			{
-				flag5 = false;
-			}
+
 			if (flag5)
 			{
 				npc.velocity.Y += 0.1f;
+
 				if (npc.velocity.Y > 3)
+				{
 					npc.velocity.Y = 3;
+				}
 			}
-			else if (npc.velocity.Y < -4)
+			else
 			{
-				npc.velocity.Y = -4;
+				if (npc.directionY < 0 && npc.velocity.Y > 0)
+				{
+					npc.velocity.Y -= 0.1f;
+				}
+
+				if (npc.velocity.Y < -4)
+				{
+					npc.velocity.Y = -4;
+				}
 			}
-			float num11 = 4f;
 			
-			if (npc.direction == 1 && npc.velocity.X > -num11)
+			if (npc.collideX)
+			{
+				npc.velocity.X = npc.oldVelocity.X * -0.4f;
+
+				if (npc.direction == -1 && npc.velocity.X > 0 && npc.velocity.X < 1)
+				{
+					npc.velocity.X = 1;
+				}
+				if (npc.direction == 1 && npc.velocity.X < 0 && npc.velocity.X > -1)
+				{
+					npc.velocity.X = -1;
+				}
+			}
+			if (npc.collideY)
+			{
+				npc.velocity.Y = npc.oldVelocity.Y * -0.25f;
+
+				if (npc.velocity.Y > 0 && npc.velocity.Y < 1)
+				{
+					npc.velocity.Y = 1;
+				}
+				if (npc.velocity.Y < 0 && npc.velocity.Y > -1)
+				{
+					npc.velocity.Y = -1;
+				}
+			}
+
+			float num11 = 2f;
+			
+			if (npc.direction == -1 && npc.velocity.X > -num11)
 			{
 				npc.velocity.X -= 0.1f;
+
 				if (npc.velocity.X > num11)
 				{
 					npc.velocity.X -= 0.1f;
@@ -311,13 +385,17 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				{
 					npc.velocity.X += 0.05f;
 				}
+
 				if (npc.velocity.X < -num11)
+				{
 					npc.velocity.X = -num11;
+				}
 			}
-			else if (npc.direction == -1 && npc.velocity.X < num11)
+			else if (npc.direction == 1 && npc.velocity.X < num11)
 			{
 				npc.velocity.X += 0.1f;
-				if (npc.velocity.X < num11)
+
+				if (npc.velocity.X < -num11)
 				{
 					npc.velocity.X += 0.1f;
 				}
@@ -326,13 +404,18 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 					npc.velocity.X -= 0.05f;
 				}
 				if (npc.velocity.X > num11)
+				{
 					npc.velocity.X = num11;
+				}
 			}
-			float num12 = 2f;
+
+			float num12 = 1.5f;
+			
 			if (npc.directionY == -1 && npc.velocity.Y > -num12)
 			{
 				npc.velocity.Y -= 0.04f;
-				if (npc.velocity.Y > (double) num12)
+
+				if (npc.velocity.Y > num12)
 				{
 					npc.velocity.Y -= 0.05f;
 				}
@@ -340,29 +423,38 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				{
 					npc.velocity.Y += 0.03f;
 				}
+
 				if (npc.velocity.Y < -num12)
+				{
 					npc.velocity.Y = -num12;
+				}
 			}
-			if (npc.directionY == 1 && npc.velocity.Y < num12)
+			else if (npc.directionY == 1 && npc.velocity.Y < num12)
 			{
 				npc.velocity.Y += 0.04f;
-				if (npc.velocity.Y < num12)
+
+				if (npc.velocity.Y < -num12)
 				{
 					npc.velocity.Y += 0.05f;
 				}
-				else if (npc.velocity.Y < 0)
+				else if (npc.velocity.Y < 0.0)
 				{
 					npc.velocity.Y -= 0.03f;
 				}
+
 				if (npc.velocity.Y > num12)
+				{
 					npc.velocity.Y = num12;
+				}
 			}
 		}
 		
 		public override void OnHitPlayer(Player target, int damage, bool crit)
 		{
 			if (p3)
-				target.AddBuff(BuffID.CursedInferno, 60 * Main.rand.Next(3, 6), false);
+			{
+				target.AddBuff(BuffID.CursedInferno, 60 * Main.rand.Next(3, 6));
+			}
 		}
 		
 		 public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
@@ -378,26 +470,28 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			int frame = (int)npc.frameCounter; 
 			npc.frame.Y = frame * frameHeight; 
 		}
-			public override void NPCLoot()
-			{
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore1"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore3"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore4"), 1f);
+
+		public override void NPCLoot()
+		{
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore1"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore3"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore4"), 1f);
 			
-				TGEMWorld.TryForBossMask(npc.Center, npc.type);
-				TGEMWorld.downedGhastlyEnt = true;
-				if (Main.expertMode)
-				{
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("MegaTreeBag")));
-				}
-				else
-				{
-					int amountToDrop = Main.rand.Next(10,30);
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ForestEnergy"), amountToDrop);
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Wood, (amountToDrop * 3));
-				}
+			TGEMWorld.TryForBossMask(npc.Center, npc.type);
+			TGEMWorld.downedGhastlyEnt = true;
+
+			if (Main.expertMode)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("MegaTreeBag")));
 			}
-        }
+			else
+			{
+				int amountToDrop = Main.rand.Next(10,30);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ForestEnergy"), amountToDrop);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Wood, (amountToDrop * 3));
+			}
+		}
     }
+ }
