@@ -34,7 +34,7 @@ namespace ForgottenMemories.NPCs.Acheron
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 7000;
+            npc.lifeMax = 6000;
             npc.damage = 44;
             npc.defense = 6;
             npc.knockBackResist = 0f;
@@ -64,10 +64,10 @@ namespace ForgottenMemories.NPCs.Acheron
         }
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-			{
-				npc.lifeMax = 9000 + ((numPlayers) * 900);
-				npc.damage = 96;
-			}
+		{
+			npc.lifeMax = 8000 + ((numPlayers) * 800);
+			npc.damage = 96;
+		}
 		
 		public override void SetStaticDefaults()
 		{
@@ -251,7 +251,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			{
 				int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("SoulWell"), npc.damage / 3, 0, Main.myPlayer, 0, 0); //14.67
 				if (Main.expertMode)
-					Main.projectile[p].damage = npc.damage / 8; //12
+					Main.projectile[p].damage = npc.damage / 4; //65.88
 
 				npc.ai[3] = 0;
 				npc.netUpdate = true;
@@ -314,15 +314,14 @@ namespace ForgottenMemories.NPCs.Acheron
 
 		public void Phase2Attack(Player player)
 		{
+			int damage = npc.damage / 3; //14.67
+			if (Main.expertMode)
+				damage = npc.damage / 6; //65.88
+			
 			if (willFireCurly)
 			{
-				int p1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 3, 1, Main.myPlayer, player.whoAmI, 1f); //14.67
-				int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), npc.damage / 3, 1, Main.myPlayer, player.whoAmI, -1f); //14.67
-				if (Main.expertMode)
-				{
-					Main.projectile[p1].damage = npc.damage / 7; //13.71
-					Main.projectile[p2].damage = npc.damage / 7; //13.71
-				}
+				int p1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), damage, 1, Main.myPlayer, player.whoAmI, 1f);
+				int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("HomingSoulCurly"), damage, 1, Main.myPlayer, player.whoAmI, -1f);
 			}
 			else
 			{
@@ -331,9 +330,7 @@ namespace ForgottenMemories.NPCs.Acheron
 				for (int index = 0; index < 5; index++)
 				{
 					Vector2 Vel = new Vector2(10, 0).RotatedBy(rotation + index * (2*MathHelper.Pi/5));
-					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul2"), npc.damage / 3, 1, Main.myPlayer, 0, 0); //14.67
-					if (Main.expertMode)
-						Main.projectile[p].damage = npc.damage / 7; //13.71
+					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul2"), damage, 1, Main.myPlayer, 0, 0); //14.67
 				}
 			}
 		}
@@ -350,13 +347,13 @@ namespace ForgottenMemories.NPCs.Acheron
 				Vel += player.velocity;
 				int p = Projectile.NewProjectile(Position.X, Position.Y, Vel.X, Vel.Y, mod.ProjectileType("HomingSoul"), npc.damage / 3, 1, Main.myPlayer, 0, 0); //14.67
 				if (Main.expertMode)
-					Main.projectile[p].damage = npc.damage / 8; //12
+					Main.projectile[p].damage = npc.damage / 7; //56.47
 			}
 			else if (npc.ai[0] == 160)
 			{
 				Phase2Attack(player);
 
-				if (Main.expertMode && npc.life <= npc.lifeMax / 9) //uses both attacks simultaneously at low health in expert
+				if (Main.expertMode && npc.life <= npc.lifeMax / 8) //uses both attacks simultaneously at low health in expert
 				{
 					willFireCurly = !willFireCurly;
 					Phase2Attack(player);
