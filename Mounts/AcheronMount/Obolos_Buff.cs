@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
  
-namespace WhirlingWorlds.Items.Acheron_Mount
+namespace ForgottenMemories.Mounts.AcheronMount
 {
     public class Obolos_Buff : ModBuff
     {
