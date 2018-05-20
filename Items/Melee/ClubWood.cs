@@ -43,7 +43,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Wood, 25);
+			recipe.AddIngredient(ItemID.Wood, 40);
 			recipe.AddIngredient(ItemID.Cobweb, 15);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this);
