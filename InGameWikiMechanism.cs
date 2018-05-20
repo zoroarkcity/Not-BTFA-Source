@@ -99,7 +99,7 @@ namespace ForgottenMemories
 				            Main.NewText("Soaring Wisp", 255, 255, 0);
 				            Main.NewText("Removed, not found naturally, previously found in the sky", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
-				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.SoaringEnergy>()), 0, 0, 0);
 							projectile.Kill();
 						}
 					
@@ -108,25 +108,34 @@ namespace ForgottenMemories
 				            Main.NewText("Nightly Owl", 255, 255, 0);
 				            Main.NewText("Found on the surface at night, docile until attacked, rams into the player", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
-				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.DarkEnergy>()), 0, 0, 0);
 							projectile.Kill();
 						}
 						
 						if (npc.type == mod.NPCType("Desert_Totem"))
 			            {
-				            Main.NewText("Nightly Owl", 255, 255, 0);
+				            Main.NewText("Desert Totem", 255, 255, 0);
 				            Main.NewText("Found in the underground desert post EOC, sometimes hides in its shell, creates a sand tornado on death", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
-				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.BossEnergy>()), 0, 0, 0);
 							projectile.Kill();
 						}
 						
 						if (npc.type == mod.NPCType("Undead_Heart"))
 			            {
-				            Main.NewText("Nightly Owl", 255, 255, 0);
+				            Main.NewText("Undead Heart", 255, 255, 0);
 				            Main.NewText("Found in the dungeon, rams into the player", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
 				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
+							projectile.Kill();
+						}
+	
+							if (npc.type == mod.NPCType("Bird"))
+			            {
+				            Main.NewText("Soaring Pecker", 255, 255, 0);
+				            Main.NewText("Found in the sky post EOW/BOC, dives at the player", 255, 255, 255);
+				            Main.NewText("Drop Table", 255, 255, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.SoaringEnergy>()), 0, 0, 0);
 							projectile.Kill();
 						}
 					}

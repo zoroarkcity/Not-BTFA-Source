@@ -4,7 +4,7 @@
 - Wisps were removed, giving place to new unique enemies for each essence:
 	. Nightly Owl
 	. Desert Totem
-	. yet to be named
+	. Soaring Pecker
 	. Undead Heart
 	(If you still need wisps for some strange reason, they can be spawned in with cheat sheet)
 - Ore spawners now dropped correctly
