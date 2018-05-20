@@ -43,7 +43,7 @@ namespace ForgottenMemories.Items.Boss
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.SoulofNight, 1);
+			recipe.AddIngredient(ItemID.SoulofNight, 5);
 			recipe.AddIngredient(2887, 5);
 			recipe.AddIngredient(ItemID.Vertebrae, 2);
 			recipe.AddTile(TileID.MythrilAnvil);
@@ -51,7 +51,7 @@ namespace ForgottenMemories.Items.Boss
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.SoulofNight, 1);
+			recipe.AddIngredient(ItemID.SoulofNight, 5);
 			recipe.AddIngredient(60, 5);
 			recipe.AddIngredient(ItemID.RottenChunk, 2);
 			recipe.AddTile(TileID.MythrilAnvil);
