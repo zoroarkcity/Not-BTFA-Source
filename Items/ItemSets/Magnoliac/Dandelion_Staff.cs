@@ -20,7 +20,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac        //We need this to ba
 		public override void SetDefaults()
 		{
 
-			item.damage = 20;
+			item.damage = 35;
 			item.noMelee = true;
 			item.noUseGraphic = false;
 			item.magic = true;
