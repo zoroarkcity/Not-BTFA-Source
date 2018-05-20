@@ -32,7 +32,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
 
 		public override void OpenBossBag(Player player)
 		{
-			player.TryGettingDevArmor();
+            player.QuickSpawnItem(mod.ItemType("ChlorophyllPod"), 1); 
 			
 			switch (Main.rand.Next(4))
 			{
