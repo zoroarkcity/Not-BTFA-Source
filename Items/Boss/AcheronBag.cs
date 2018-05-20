@@ -75,6 +75,11 @@ namespace ForgottenMemories.Items.Boss
 			{
 				player.QuickSpawnItem(mod.ItemType("picklerick"), 1);
 			}
+			
+			if (Main.rand.Next(7) == 0)
+			{
+				player.QuickSpawnItem(mod.ItemType("Obolos"), 1);
+			}
 		}
 	}
 }
