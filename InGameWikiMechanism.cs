@@ -70,7 +70,7 @@ namespace ForgottenMemories
 						if (npc.type == mod.NPCType("NightlyWisp"))
 			            {
 				            Main.NewText("Nightly Wisp", 255, 255, 0);
-				            Main.NewText("Spawns on the surface during night, despawns when sun rises", 255, 255, 255);
+				            Main.NewText("Removed, not found naturally, previously found on the surface at night", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
 				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.DarkEnergy>()), 0, 0, 0);
 							projectile.Kill();
@@ -79,7 +79,7 @@ namespace ForgottenMemories
 						if (npc.type == mod.NPCType("DuneWisp"))
 			            {
 				            Main.NewText("Dune Wisp", 255, 255, 0);
-				            Main.NewText("Spawns in the desert after defeating Eye of Cthulhu, creates a tornado upon death", 255, 255, 255);
+				            Main.NewText("Removed, not found naturally, previously found in the desert post eoc", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
 				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.BossEnergy>()), 0, 0, 0);
 							projectile.Kill();
@@ -88,7 +88,7 @@ namespace ForgottenMemories
 						if (npc.type == mod.NPCType("UndeadWisp"))
 			            {
 				            Main.NewText("Undead Wisp", 255, 255, 0);
-				            Main.NewText("Spawns in the dungeon, splits upon death", 255, 255, 255);
+				            Main.NewText("Removed, not found naturally, previously found in the dungeon", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
 				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
 							projectile.Kill();
@@ -97,7 +97,34 @@ namespace ForgottenMemories
 						if (npc.type == mod.NPCType("SoaringWisp"))
 			            {
 				            Main.NewText("Soaring Wisp", 255, 255, 0);
-				            Main.NewText("Spawns in the sky after defeating Eater of Worlds or Brain of Cthulhu", 255, 255, 255);
+				            Main.NewText("Removed, not found naturally, previously found in the sky", 255, 255, 255);
+				            Main.NewText("Drop Table", 255, 255, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
+							projectile.Kill();
+						}
+					
+						if (npc.type == mod.NPCType("Some_Fucking_Owl"))
+			            {
+				            Main.NewText("Nightly Owl", 255, 255, 0);
+				            Main.NewText("Found on the surface at night, docile until attacked, rams into the player", 255, 255, 255);
+				            Main.NewText("Drop Table", 255, 255, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
+							projectile.Kill();
+						}
+						
+						if (npc.type == mod.NPCType("Desert_Totem"))
+			            {
+				            Main.NewText("Nightly Owl", 255, 255, 0);
+				            Main.NewText("Found in the underground desert post EOC, sometimes hides in its shell, creates a sand tornado on death", 255, 255, 255);
+				            Main.NewText("Drop Table", 255, 255, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
+							projectile.Kill();
+						}
+						
+						if (npc.type == mod.NPCType("Undead_Heart"))
+			            {
+				            Main.NewText("Nightly Owl", 255, 255, 0);
+				            Main.NewText("Found in the dungeon, rams into the player", 255, 255, 255);
 				            Main.NewText("Drop Table", 255, 255, 0);
 				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.UndeadEnergy>()), 0, 0, 0);
 							projectile.Kill();

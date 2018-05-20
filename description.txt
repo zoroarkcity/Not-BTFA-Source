@@ -2,13 +2,15 @@
 - Reworked the Titan Rock, Acheron, Arterius and Ghastly Ent AIs.
 - Reworked Titan Rock, Acheron and Arterius weapons.
 - Wisps were removed, giving place to new unique enemies for each essence:
-	. nightly names pls choose something
-	. dune
-	. soaring
-	. undead
-- Ore spawners now dropped correctly.
-- Cosmodium has been fully removed from relevant recipes and replaced by appropriate materials.
-- Rebalanced and updated sprites for various items.
+	. Nightly Owl
+	. Desert Totem
+	. yet to be named
+	. Undead Heart
+	(If you still need wisps for some strange reason, they can be spawned in with cheat sheet)
+- Ore spawners now dropped correctly
+- Cosmodium has been fully removed from relevant recipes and replaced by appropriate materials
+- Rebalanced various items and updated their sprites
+- Boss Checklist positions have been fixed
 
 This mod adds in a total of:
 -310 Items (check before update)
@@ -18,7 +20,7 @@ This mod adds in a total of:
 -Some balance changes to vanilla, can be turned off in the config file
 
 Credits:
-- Coding - East, Zoroarkcity, Terry N. Muse
-- Spriting - Salehin, Insert, Willsm, gratgaisdead, Phil, dwshin
-- Ideas and balancing - Necr0canc3r, jesusonwheels, Hamboy
+- Coding - East, Zoroarkcity, Terry N. Muse, ColinAV, Five
+- Spriting - Salehin, Insert, Willsm, Gratgaisdead, Phil, DWshin
+- Ideas and balancing - Necr0canc3r, Jesusonwheels, Hamboy
 - Various contributions - Frous, Bla2e, Puff, Svante, Valkyrie, Grox, Eldrazi, Crimsoneye495, Earth, JrTighe and many more!

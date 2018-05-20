@@ -53,7 +53,7 @@ namespace ForgottenMemories.NPCs.Town
 
 		public override string TownNPCName()
 		{
-			switch (WorldGen.genRand.Next(3))
+			switch (WorldGen.genRand.Next(4))
 			{
 				case 0:
 					return "Danny";
@@ -61,6 +61,8 @@ namespace ForgottenMemories.NPCs.Town
 					return "Frank";
 				case 2:
 					return "DeVito";
+				case 3:
+					return "Colin";
 				default:
 					return "Tymon";
 			}
