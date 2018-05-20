@@ -41,14 +41,6 @@ namespace ForgottenMemories.NPCs.Night
 			int frame = (int)npc.frameCounter; 
 			npc.frame.Y = frame * frameHeight; 
 		}
-
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
-			int x = spawnInfo.spawnTileX;
-			int y = spawnInfo.spawnTileY;
-			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime ? 0.05f : 0f;
-		}
 		
 		public override void AI()
 		{

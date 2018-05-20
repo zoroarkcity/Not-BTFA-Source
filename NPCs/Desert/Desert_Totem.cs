@@ -53,6 +53,13 @@ namespace ForgottenMemories.NPCs.Desert
 				npc.aiStyle = 3;
 			}
         }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			int x = spawnInfo.spawnTileX;
+			int y = spawnInfo.spawnTileY;
+			int tile = (int)Main.tile[x, y].type;
+			return spawnInfo.desertCave && NPC.downedBoss1 ? 0.05f : 0f;
+		}
 		public override void HitEffect(int hitDirection, double damage)
 		{
 			if (npc.life <= 0)

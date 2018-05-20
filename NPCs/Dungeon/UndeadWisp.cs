@@ -42,14 +42,6 @@ namespace ForgottenMemories.NPCs.Dungeon
 			int frame = (int)npc.frameCounter; 
 			npc.frame.Y = frame * frameHeight; 
 		}
-
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
-			int x = spawnInfo.spawnTileX;
-			int y = spawnInfo.spawnTileY;
-			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.player.ZoneDungeon ? 0.075f : 0f;
-		}
 		
 		public override void AI()
 		{

@@ -12,7 +12,7 @@ namespace ForgottenMemories.NPCs.Night
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("An Owl");
+			DisplayName.SetDefault("Nightly Owl");
 			Main.npcFrameCount[npc.type] = 7;
 		}
         public override void SetDefaults()
@@ -32,6 +32,13 @@ namespace ForgottenMemories.NPCs.Night
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 3;
         }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			int x = spawnInfo.spawnTileX;
+			int y = spawnInfo.spawnTileY;
+			int tile = (int)Main.tile[x, y].type;
+			return spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime ? 0.05f : 0f;
+		}
 		public override void AI()
         {
 			Player player = Main.player[npc.target];
