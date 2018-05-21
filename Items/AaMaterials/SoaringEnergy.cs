@@ -28,7 +28,7 @@ namespace ForgottenMemories.Items.AaMaterials
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Soaring Essence");
+      DisplayName.SetDefault("Soaring Wisp");
       Tooltip.SetDefault("'Sourced from a deadly altitude'");
 	  Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(4, 4));
     }

@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.AaMaterials
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Nightly Essence");
+      DisplayName.SetDefault("Nightly Wisp");
       Tooltip.SetDefault("'Embroidered with stars'");
 	  Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(4, 4));
     }

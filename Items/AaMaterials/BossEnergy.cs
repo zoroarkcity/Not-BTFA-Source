@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.AaMaterials
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Dune Essence");
+      DisplayName.SetDefault("Dune Wisp");
       Tooltip.SetDefault("'The construct of an oasis'");
 	  Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(4, 4));
     }

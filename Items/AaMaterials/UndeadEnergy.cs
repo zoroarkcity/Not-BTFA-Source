@@ -28,7 +28,7 @@ namespace ForgottenMemories.Items.AaMaterials
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Undead Essence");
+      DisplayName.SetDefault("Undead Wisp");
       Tooltip.SetDefault("'A key element in ressurection'");
 	  Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(4, 4));
     }
