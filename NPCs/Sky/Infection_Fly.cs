@@ -79,7 +79,7 @@ namespace ForgottenMemories.NPCs.Sky
 		}
 		public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
 		{
-			WhirlingWorldsUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Infection_Fly/Infection_Fly_Glow")); //REPLACE THIS WITH BTFA ONE
+			BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Sky/Infection_Fly"));
 		}
 		public override void OnHitPlayer(Player player, int damage, bool crit)
 		{

@@ -22,11 +22,12 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 14;
 			aiType = NPCID.GiantBat;
+			bannerItem = mod.ItemType("PineFlyerBannerItem");
 		}
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pine Flier");
+			DisplayName.SetDefault("Pine Flyer");
 			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.GiantBat];
 			animationType = NPCID.GiantBat;
 		}
