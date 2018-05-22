@@ -48,7 +48,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
         {
             ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "CherryBranch", 16);
-			recipe.AddIngredient(null, "AncientFoliage", 10);
+			recipe.AddIngredient(null, "ForestEnergy", 10);
 			recipe.AddIngredient(ItemID.SoulofNight, 10);
             recipe.SetResult(this);
             recipe.AddRecipe();
