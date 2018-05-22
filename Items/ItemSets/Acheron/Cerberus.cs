@@ -16,8 +16,8 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 		{
 			item.damage = 20;
 			item.ranged = true;
-			item.width = 40;
-			item.height = 20;
+			item.width = 24;
+			item.height = 16;
 			item.useTime = 35;
 			item.useAnimation = 35;
 			item.useStyle = 5;
