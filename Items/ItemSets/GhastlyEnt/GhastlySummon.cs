@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
-namespace ForgottenMemories.ItemSets.GhastlyEnt
+namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 {
     public class GhastlySummon : ModItem
     {
