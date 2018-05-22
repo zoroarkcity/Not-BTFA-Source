@@ -71,5 +71,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			int type = (WorldGen.crimson) ? ItemID.Shadewood : ItemID.Ebonwood;
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, type, amountToDrop);
 		}
+		   
+		if(Main.rand.Next(20) == 0)
+		{
+		Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("HexwoodWand"));
+		}
 	}
 }

@@ -10,7 +10,7 @@ public class LivingWoodCannon : ModItem
     public override void SetDefaults()
     {
 
-        item.damage = 38;
+        item.damage = 33;
         item.ranged = true;
         item.width = 34;
         item.height = 26;
