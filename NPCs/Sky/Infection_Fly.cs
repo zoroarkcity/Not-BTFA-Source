@@ -12,7 +12,7 @@ namespace ForgottenMemories.NPCs.Sky
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Infection Fly");
+			DisplayName.SetDefault("Aerial Aphid");
 			Main.npcFrameCount[npc.type] = 6;
 		}
         public override void SetDefaults()
