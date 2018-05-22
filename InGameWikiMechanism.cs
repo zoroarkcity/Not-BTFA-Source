@@ -138,6 +138,14 @@ namespace ForgottenMemories
 				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.SoaringEnergy>()), 0, 0, 0);
 							projectile.Kill();
 						}
+							if (npc.type == mod.NPCType("Infection_Fly"))
+			            {
+				            Main.NewText("Soaring Pecker", 255, 255, 0);
+				            Main.NewText("Found in the sky post EOW/BOC, flies into the player", 255, 255, 255);
+				            Main.NewText("Drop Table", 255, 255, 0);
+				            Main.NewText(string.Format("[i:{0}]", mod.ItemType<Items.AaMaterials.SoaringEnergy>()), 0, 0, 0);
+							projectile.Kill();
+						}
 					}
                 }
             }
