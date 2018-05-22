@@ -18,11 +18,11 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.height = 44;
 			npc.damage = 28;
 			npc.defense = 12;
-			npc.lifeMax = 80;
+			npc.lifeMax = 140;
 			npc.HitSound = SoundID.NPCHit7;
 			npc.DeathSound = SoundID.NPCDeath3;
 			npc.value = 60f;
-			npc.knockBackResist = 0.5f;
+			npc.knockBackResist = 1f;
 			npc.aiStyle = 3;
 			aiType = 508;
 		}

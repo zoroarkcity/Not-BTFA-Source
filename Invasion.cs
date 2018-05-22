@@ -51,7 +51,7 @@ namespace ForgottenMemories
                 {
                     Main.invasionType = -1;
                     TGEMWorld.forestInvasionUp = true;
-                    Main.invasionSize = 100 * numPlayers;
+                    Main.invasionSize = 250 * numPlayers;
                     Main.invasionSizeStart = Main.invasionSize;
                     Main.invasionProgress = 0;
                     Main.invasionProgressIcon = 0 + 3;
