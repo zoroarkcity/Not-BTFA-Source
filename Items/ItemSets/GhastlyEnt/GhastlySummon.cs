@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.ItemSets.GhastlyEnt
 {
-    public class MagnoliacSummoner : ModItem
+    public class GhastlySummon : ModItem
     {
         public override void SetDefaults()
         {
