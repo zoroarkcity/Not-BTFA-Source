@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.Items.AaMaterials
 {
-	public class ForestEnergy : ModItem
+	public class CherryBranch : ModItem
 	{
 		public override void SetDefaults()
 		{
@@ -14,15 +14,15 @@ namespace ForgottenMemories.Items.AaMaterials
 			item.width = 10;
 			item.height = 10;
 			item.noMelee = true; 
-			item.value = 10000;
-			item.rare = 3;
+			item.value = 20000;
+			item.rare = 6;
 			item.scale = 0.75f;
 			item.maxStack = 999;
 		}
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Ancient Foliage");
+      DisplayName.SetDefault("Cherry Branch");
       Tooltip.SetDefault("");
     }
 

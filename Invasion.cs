@@ -72,7 +72,7 @@ namespace ForgottenMemories
             }
             if (Main.invasionSize <= 0)
             {
-                text = "The woodland terrors retreat to their roots!.";
+                text = "The woodland terrors retreat to their roots!";
             }
             if (Main.netMode == 0)
             {

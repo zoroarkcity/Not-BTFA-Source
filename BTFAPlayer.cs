@@ -170,7 +170,7 @@ namespace ForgottenMemories
 						{
 							NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Magnoliac")));
 							MagnoliacBool = false;
-							Main.NewText("A beast flaps it's wings to descend !", 175, 75, 255);
+							Main.NewText("A beast flaps its wings and descends from a faraway canopy!", 175, 75, 255);
 						}	
 					}
                 }
@@ -182,7 +182,7 @@ namespace ForgottenMemories
 						{
 							NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Magnoliac")));
 							MagnoliacBool = false;
-							Main.NewText("A beast flaps it's wings to descend !", 175, 75, 255);
+							Main.NewText("A beast flaps its wings and descends from a faraway canopy!", 175, 75, 255);
 						}	
 					}
                 }
@@ -190,7 +190,7 @@ namespace ForgottenMemories
 				{
 					GentBool = false;
 					NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("GhastlyEnt")));
-					Main.NewText("Father of nature awakens !", 175, 75, 255);
+					Main.NewText("The wretched father of nature awakens!", 175, 75, 255);
                 }
 			}
 		}

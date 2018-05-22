@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
-namespace ForgottenMemories.NPCs.Magnoliac
+namespace ForgottenMemories.ItemSets.GhastlyEnt
 {
     public class MagnoliacSummoner : ModItem
     {
@@ -19,7 +19,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
 
 
             item.value = 1000;
-            item.rare = 3;
+            item.rare = 5;
             item.useAnimation = 30;
             item.useTime = 30;
             item.useStyle = 6;
@@ -28,27 +28,27 @@ namespace ForgottenMemories.NPCs.Magnoliac
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Alluring Bud");
-      Tooltip.SetDefault("Summons an avian foe that has a strong connection with nature...");
+      DisplayName.SetDefault("Sinful Orchid");
+      Tooltip.SetDefault("Summons an the dreaded protector of nature...");
     }
 
         public override bool CanUseItem(Player player)
         {           
-            return !NPC.AnyNPCs(mod.NPCType("Magnoliac"));
+            return !NPC.AnyNPCs(mod.NPCType("GhastlyEnt"));
         }
         public override bool UseItem(Player player)
         {
-            NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 900), (mod.NPCType("Magnoliac")));
+            NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 900), (mod.NPCType("GhastlyEnt")));
             Main.PlaySound(15, (int)player.position.X - (int)player.position.Y, 0);
-			Main.NewText("A beast flaps its wings and descends from a faraway canopy!", 175, 75, 255);
+			Main.NewText("The wretched father of nature awakens!", 175, 75, 255);
 
             return true;
         }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ForestEnergy", 16);
-			recipe.AddIngredient(null, "DevilFlame", 8);
+			recipe.AddIngredient(null, "CherryBranch", 16);
+			recipe.AddIngredient(ItemID.SoulofNight, 10);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

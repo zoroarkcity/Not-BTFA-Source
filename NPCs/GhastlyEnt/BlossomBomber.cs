@@ -118,6 +118,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 				int dust = Dust.NewDust(npc.position, npc.width, npc.height, 191);
 			}
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CherryBomb"), Main.rand.Next(50, 61));
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CherryBomb"), Main.rand.Next(1, 4));
 		}
 	}
 }
