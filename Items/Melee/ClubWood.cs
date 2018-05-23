@@ -15,9 +15,9 @@ namespace ForgottenMemories.Items.Melee
 
 
 			item.damage = 9; 
-			item.crit = 13;
+			item.crit = 4;
 			item.melee = true;
-			item.knockBack = 8; 
+			item.knockBack = 4; 
 			item.autoReuse = true; 
 			item.useTurn = true; 
 
