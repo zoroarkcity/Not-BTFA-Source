@@ -22,6 +22,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 0.5f;
 			npc.aiStyle = 3;
 			aiType = 508;
+			bannerItem = mod.ItemType("BorealTreemanBannerItem");
 		}
 		
 		public override void SetStaticDefaults()
