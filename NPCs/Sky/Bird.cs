@@ -19,7 +19,7 @@ namespace ForgottenMemories.NPCs.Sky
         public override void SetDefaults()
         {
             npc.aiStyle = 14;
-			npc.lifeMax = 400;	 
+			npc.lifeMax = 225;	 
             npc.defense = 5;  
 			npc.value = 500f;
             npc.knockBackResist = 0.1f;
