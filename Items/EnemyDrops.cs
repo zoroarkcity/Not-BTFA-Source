@@ -16,7 +16,7 @@ namespace ForgottenMemories.Items
 			
 			if (npc.type == 32 && Main.rand.Next(3) == 0)
 			{
-				int amountToDrop = Main.rand.Next(1,2);
+				int amountToDrop = Main.rand.Next(1,4);
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("WaterShard"), amountToDrop); 
 			}
 			
@@ -97,12 +97,12 @@ namespace ForgottenMemories.Items
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VortexSphere"), 1); 
 			}
 			
-			if (npc.type == 483 && Main.rand.Next(10) == 0)
+			if (npc.type == 483 && Main.rand.Next(5) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Tourmaline"), Main.rand.Next(1, 3)); 
 			}
 			
-			if (npc.type == 481 && Main.rand.Next(10) == 0)
+			if (npc.type == 481 && Main.rand.Next(5) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Citrine"), Main.rand.Next(1, 3)); 
 			}
