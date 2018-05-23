@@ -125,96 +125,10 @@ namespace ForgottenMemories.NPCs.Town
 				
 				shop.item[nextSlot].SetDefaults(mod.ItemType("PlungerArrow"));
 				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.BandofRegeneration);
-				nextSlot++;
 			}
-			
-			if (Main.hardMode)
-			{
-				shop.item[nextSlot].SetDefaults(ItemID.DemonScythe);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.EnchantedSword);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.Arkhalis);
-				nextSlot++;
-			}
-			
-			if (TGEMWorld.downedTitanRock)
-			{
-				shop.item[nextSlot].SetDefaults(ItemID.CrystalSerpent);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.Ichor);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.CursedFlame);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.Bananarang);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.Bladetongue);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(3210);
-				nextSlot++;
-			}
-			
-			if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-			{
-				shop.item[nextSlot].SetDefaults(ItemID.Uzi);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.FrostStaff);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.UnholyTrident);
-				nextSlot++;
-			}
-			
 			if (NPC.downedPlantBoss)
-			{
-				
+			{			
 				shop.item[nextSlot].SetDefaults(mod.ItemType("TrashCannon"));
-				nextSlot++;
-			
-				shop.item[nextSlot].SetDefaults(ItemID.TurtleShell);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.FrozenTurtleShell);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.CrossNecklace);
-				nextSlot++;
-				
-			}
-			
-			if (NPC.downedGolemBoss)
-			{
-				
-				shop.item[nextSlot].SetDefaults(ItemID.RodofDiscord);
-				nextSlot++;
-				
-			}
-			
-			if (NPC.downedMoonlord)
-			{
-				shop.item[nextSlot].SetDefaults(ItemID.RainbowGun);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.PiranhaGun);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.StaffoftheFrostHydra);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(ItemID.VampireKnives);
-				nextSlot++;
-				
-				shop.item[nextSlot].SetDefaults(1571);
 				nextSlot++;
 			}
 		}
