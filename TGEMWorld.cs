@@ -8,6 +8,30 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.Generation;
 using Terraria.ModLoader.IO;
 using ForgottenMemories.Tiles;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.GameContent;
+using Terraria.GameContent.Achievements;
+using Terraria.GameContent.Biomes;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.Generation;
+using Terraria.GameContent.Tile_Entities;
+using Terraria.Graphics.Capture;
+using Terraria.ID;
+using Terraria.IO;
+using Terraria.Localization;
+using Terraria.Map;
+using Terraria.ObjectData;
+using Terraria.Utilities;
+using Terraria.World.Generation;
+using System.IO;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace ForgottenMemories
 {
@@ -134,36 +158,77 @@ namespace ForgottenMemories
 				}
 				CustomInvasion.UpdateCustomInvasion();
 			}
-			if(!spawnedGems)
-			{
-				for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 15E-04); k++)
-					{
-						int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
-						int j = WorldGen.genRand.Next((int) Main.worldSurface - 1, Main.maxTilesY - 10);
-						Tile tile = Main.tile[i, j];
-						if ((tile.type == 368) && tile.active())
-						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<TourmalineOre>());
-						}
-						if ((tile.type == 367) && tile.active())
-						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<CitrineOre>());
-						}
-					}
-					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 15E-04); k++)
-					{
-						int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
-						int j = WorldGen.genRand.Next((int) Main.worldSurface - 1, Main.maxTilesY - 10);
-						Tile tile = Main.tile[i, j];
-						if ((tile.type == 57) && tile.active())
-						{
-							WorldGen.TileRunner(i, j, (double)WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(2, 6), mod.TileType<SpinelOre>());
-						}
-					}
-				spawnedGems = true;
-			}
 		}
-		
+		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+		{
+			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
+			tasks.Insert(genIndex + 1, new PassLegacy("BTFA Gems", delegate (GenerationProgress progress)
+			{	
+				int spinelGen = 0;
+				while (spinelGen <= 200)  //this allows us to have 200 ore veins increase or decrease it at your will
+				{
+					int spinelX = Main.rand.Next(Main.maxTilesX);
+					double spinelNum = (int) (Main.rockLayer + Main.rockLayer + (double) Main.maxTilesY) / 3.0;
+					int spinelY = Main.rand.Next(Main.maxTilesY);
+					if (spinelX >= Main.maxTilesX - 50)
+					{
+						spinelX = spinelX - 50;
+					}
+					if (spinelX <= 50)
+					{
+						spinelX = spinelX + 50;
+					}						
+					if ((Main.tile[spinelX, spinelY].type == 57))
+					{
+						spinelGen++;
+						WorldGen.TileRunner(spinelX, spinelY, (double) WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), mod.TileType<SpinelOre>(), false, 0.0f, 0.0f, false, true);
+					}
+				
+				}
+				int tourmalineGen = 0;
+				while (tourmalineGen <= 400)  //this allows us to have 400 ore veins increase or decrease it at your will
+				{
+					int tourmalineX = Main.rand.Next(Main.maxTilesX);
+					double spinelNum = (int) (Main.rockLayer + Main.rockLayer + (double) Main.maxTilesY) / 3.0;
+					int tourmalineY = Main.rand.Next(Main.maxTilesY);
+					if (tourmalineX >= Main.maxTilesX - 50)
+					{
+						tourmalineX = tourmalineX - 50;
+					}
+					if (tourmalineX <= 50)
+					{
+						tourmalineX = tourmalineX + 50;
+					}						
+					if ((Main.tile[tourmalineX, tourmalineY].type == 368))
+					{
+						tourmalineGen++;
+						WorldGen.TileRunner(tourmalineX, tourmalineY, (double) WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), mod.TileType<TourmalineOre>(), false, 0.0f, 0.0f, false, true);
+					}
+				
+				}
+				int citrineGen = 0;
+				while (citrineGen <= 400)  //this allows us to have 400 ore veins increase or decrease it at your will
+				{
+					int citrineX = Main.rand.Next(Main.maxTilesX);
+					double spinelNum = (int) (Main.rockLayer + Main.rockLayer + (double) Main.maxTilesY) / 3.0;
+					int citrineY = Main.rand.Next(Main.maxTilesY);
+					if (citrineX >= Main.maxTilesX - 50)
+					{
+						citrineX = citrineX - 50;
+					}
+					if (citrineX <= 50)
+					{
+						citrineX = citrineX + 50;
+					}						
+					if ((Main.tile[citrineX, citrineY].type == 367))
+					{
+						citrineGen++;
+						WorldGen.TileRunner(citrineX, citrineY, (double) WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), mod.TileType<CitrineOre>(), false, 0.0f, 0.0f, false, true);
+					}
+				
+				}
+			}));	
+		}
 		public static void TryForBossMask(Vector2 center, int type)
 		{
 			if (Main.rand.Next(7) == 0 && !Main.expertMode)
