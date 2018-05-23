@@ -25,6 +25,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 0.5f;
 			npc.aiStyle = 3;
 			aiType = 508;
+			bannerItem = mod.ItemType("BlossomBomberBannerItem");
 		}
 		
 		public override void SetStaticDefaults()
