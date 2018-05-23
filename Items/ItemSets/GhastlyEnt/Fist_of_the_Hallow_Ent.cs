@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 	{
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fist of the Hallow Ent");
+            DisplayName.SetDefault("Fist of the Hollow Ent");
 			Tooltip.SetDefault("Left-click to lob an explosive ball that will explode into cursed flames on impact\nRight-click to cast a cursed flameball that will leave cursed flame trails");
         }
 		public override void SetDefaults()
