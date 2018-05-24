@@ -25,6 +25,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 3;
 			aiType = 508;
+			bannerItem = mod.ItemType("LivingMortarBannerItem");
 		}
 		
 		public override void SetStaticDefaults()
