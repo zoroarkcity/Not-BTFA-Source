@@ -20,7 +20,7 @@ public class FirestormBottle : ModItem
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Firestorm in a Bottle");
-      Tooltip.SetDefault("Enhances your jump, leaving behind fire");
+      Tooltip.SetDefault("Enhances your jump, leaving behind damaging fire");
     }
 
 

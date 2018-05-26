@@ -15,7 +15,7 @@ namespace ForgottenMemories.Items.Boss
 			item.height = 36;
 			item.maxStack = 20;
 
-			item.rare = 0;
+			item.rare = 3;
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
@@ -25,7 +25,7 @@ namespace ForgottenMemories.Items.Boss
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Unstable Wisp");
-		  Tooltip.SetDefault("May have disastrous effects if used in the underworld");
+		  Tooltip.SetDefault("Summons Acheron \n'May have disastrous effects if used in the underworld'");
 		}
 
 		

@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.Acessory
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Mana Star");
-      Tooltip.SetDefault("Increased maximum mana by 40");
+      Tooltip.SetDefault("Increases maximum mana by 40");
     }
 
 

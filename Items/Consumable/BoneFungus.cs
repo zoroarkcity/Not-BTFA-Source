@@ -9,7 +9,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Marrowbloom");
-			Tooltip.SetDefault("'Skeletons enjoy this death smelling fungus' \n Summons the skeleton merchant");
+			Tooltip.SetDefault("'The deceased enjoy this death smelling fungus' \n Summons the skeleton merchant");
 		}
 
 		public override void SetDefaults()

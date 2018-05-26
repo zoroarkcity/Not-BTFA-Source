@@ -32,7 +32,7 @@ namespace ForgottenMemories.Items.Ammo
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Purple Dart");
-			Tooltip.SetDefault("Shot out of blowpipes, explodes into yellow fire on contact");
+			Tooltip.SetDefault("Ammo for blowpipes \nCreates an explosion of yellow fire");
 		}
 
 		

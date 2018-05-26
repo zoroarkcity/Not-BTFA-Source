@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Alluring Bud");
-      Tooltip.SetDefault("Summons an avian foe that has a strong connection with nature...");
+      Tooltip.SetDefault("Summons Magnoliac \n'Has a strong connection with nature...'");
     }
 
         public override bool CanUseItem(Player player)

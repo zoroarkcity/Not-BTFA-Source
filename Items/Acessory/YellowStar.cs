@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.Acessory
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Yellow Star");
-		  Tooltip.SetDefault("Increased maximum mana by 20");
+		  Tooltip.SetDefault("Increases maximum mana by 20");
 		}
 		
 		public override void AddRecipes()

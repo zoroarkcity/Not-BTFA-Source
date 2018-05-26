@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.AaMaterials
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Cherry Branch");
-      Tooltip.SetDefault("");
+      Tooltip.SetDefault("'Covered in blossom'");
     }
 
 	}

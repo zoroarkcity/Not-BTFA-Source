@@ -31,7 +31,7 @@ public class FleshDart : ModItem
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Flesh Dart");
-      Tooltip.SetDefault("Shot out of blowpipes, blood goes everywhere");
+      Tooltip.SetDefault("Ammo for blowpipes \nCreates a large amount of blood");
     }
 
 	

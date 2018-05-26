@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Sinful Orchid");
-      Tooltip.SetDefault("Summons an the dreaded protector of nature...");
+      Tooltip.SetDefault("Summons the Ghastly Ent");
     }
 
         public override bool CanUseItem(Player player)

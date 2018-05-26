@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.Boss
 			item.height = 32;
 			item.maxStack = 20;
 
-			item.rare = 3;
+			item.rare = 5;
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
@@ -24,7 +24,7 @@ namespace ForgottenMemories.Items.Boss
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Bleeding Residue");
-      Tooltip.SetDefault("'Has a strong enough stench to attract a horrific being...' \nOnly usable during night");
+      Tooltip.SetDefault("Summons Arterius \nOnly usable during the night \n'Has a strong enough stench to attract a horrific being...'");
     }
 
 		

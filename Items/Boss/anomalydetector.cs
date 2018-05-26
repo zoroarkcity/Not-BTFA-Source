@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.Boss
 			item.height = 32;
 			item.maxStack = 20;
 
-			item.rare = 3;
+			item.rare = 5;
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
@@ -24,7 +24,7 @@ namespace ForgottenMemories.Items.Boss
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Anomaly Detector");
-      Tooltip.SetDefault("Calls a cosmic being");
+      Tooltip.SetDefault("Summons the Titan Rock \n'Calls a cosmic being'");
     }
 
 		

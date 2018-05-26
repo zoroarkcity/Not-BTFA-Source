@@ -26,7 +26,7 @@ namespace ForgottenMemories.Items.Ammo
 
             item.maxStack = 999;
 
-            item.damage = 6;
+            item.damage = 4;
 			item.knockBack = 9f;
             item.ammo = AmmoID.Arrow;
 

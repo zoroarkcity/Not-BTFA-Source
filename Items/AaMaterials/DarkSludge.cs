@@ -20,7 +20,7 @@ namespace ForgottenMemories.Items.AaMaterials
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Dark Sludge");
-      Tooltip.SetDefault("Smells and looks disgusting");
+      Tooltip.SetDefault("'Smells and looks disgusting'");
     }
 
 

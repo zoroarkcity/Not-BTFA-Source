@@ -15,7 +15,7 @@ namespace ForgottenMemories.Items.Armor
 		{
 			item.width = 32;
 			item.height = 32;
-			item.rare = 2;
+			item.rare = 4;
 			item.vanity = true;
 		}
 

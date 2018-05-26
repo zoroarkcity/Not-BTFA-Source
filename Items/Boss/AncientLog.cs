@@ -15,7 +15,7 @@ namespace ForgottenMemories.Items.Boss
 			item.height = 32;
 			item.maxStack = 20;
 
-			item.rare = 0;
+			item.rare = 3;
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;

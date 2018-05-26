@@ -31,7 +31,7 @@ public class ShadowDart : ModItem
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Shadow Dart");
-      Tooltip.SetDefault("Shot out of blowpipes, Leaves damaging afterimages");
+      Tooltip.SetDefault("Ammo for blowpipes \nCreates a trail of damaging afterimages");
     }
 
 	
