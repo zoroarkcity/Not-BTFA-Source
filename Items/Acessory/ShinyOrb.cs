@@ -11,7 +11,8 @@ public class ShinyOrb : ModItem
 
 			item.width = 22;
 			item.height = 22;
-
+			item.consumable = true;
+			item.createTile = mod.TileType("OrbTile");
 			item.value = 100000;
 			item.expert = true;
 			item.rare = 9;

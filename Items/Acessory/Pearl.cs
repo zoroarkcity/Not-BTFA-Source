@@ -13,6 +13,8 @@ public class Pearl : ModItem
         item.height = 28;
         item.value = 100000;
         item.rare = 1;
+		item.consumable = true;
+		item.createTile = mod.TileType("GoldBottleTile");
         item.accessory = true;
     }
 

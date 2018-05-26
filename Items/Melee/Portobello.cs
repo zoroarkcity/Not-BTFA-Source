@@ -12,7 +12,8 @@ namespace ForgottenMemories.Items.Melee
 			ItemID.Sets.GamepadExtraRange[item.type] = 15;
 			ItemID.Sets.GamepadSmartQuickReach[item.type] = true;
 			Tooltip.SetDefault("Confuses hit enemies");
-		}
+            DisplayName.SetDefault("Xenon");
+        }
 
 		public override void SetDefaults()
 		{

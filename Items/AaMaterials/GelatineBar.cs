@@ -21,6 +21,7 @@ namespace ForgottenMemories.Items.AaMaterials
 			item.useAnimation = 15;
 			item.useTime = 10;
 			item.useStyle = 1;
+			item.consumable = true;
 
         }
 

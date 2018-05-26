@@ -23,7 +23,7 @@ public class NightlyAxe : ModItem
         item.rare = 1;
         item.UseSound = SoundID.Item1;
         item.autoReuse = true;
-		item.axe = 10;
+		item.axe = 8;
 		item.useTurn = true;
     }
 
