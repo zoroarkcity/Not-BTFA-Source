@@ -10,7 +10,7 @@ namespace ForgottenMemories.Items.Hook
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Carnage Clinger");
+			DisplayName.SetDefault("Tongue Twister");
 		}
 
 		public override void SetDefaults()
