@@ -4,23 +4,23 @@
 - Wisps were removed, giving place to new unique enemies for each essence:
 	. Nightly Owl
 	. Desert Totem
-	. Soaring Pecker
+	. Soaring Pecker and Infection Fly
 	. Undead Heart
 	(If you still need wisps for some strange reason, they can be spawned in with cheat sheet)
-- Ore spawners now dropped correctly
-- Cosmodium has been fully removed from relevant recipes and replaced by appropriate materials
+- Ore spawners are now dropped correctly, once on the first death of a boss and with a 1/10 chance afterwards
+- Cosmodium (a now unobtainable ore) has been fully removed from relevant recipes and replaced by appropriate materials
 - Rebalanced various items and updated their sprites
-- Boss Checklist positions have been fixed
+- Boss Checklist progression positions have been fixed, along with the lack of a summon item for Acheron
+- Acheron and Arterius have recieved new soundtracks
 
 This mod adds in a total of:
 -310 Items (check before update)
 -14 Enemies (check before update)
 -2 Town NPCs
 -5 Bosses
--Some balance changes to vanilla, can be turned off in the config file
 
 Credits:
 - Coding - East, Zoroarkcity, Terry N. Muse, ColinAV, Five
 - Spriting - Salehin, Insert, Willsm, Gratgaisdead, Phil, DWshin
 - Ideas and balancing - Necr0canc3r, Jesusonwheels, Hamboy
-- Various contributions - Frous, Bla2e, Puff, Svante, Valkyrie, Grox, Eldrazi, Crimsoneye495, Earth, JrTighe and many more!
+- Various contributions - Frous, Bla2e, Puff, Svante, Valkyrie, Grox, Eldrazi, Crimsoneye495, MiningDiamonds8, JrTighe and many more!
