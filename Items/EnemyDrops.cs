@@ -97,12 +97,12 @@ namespace ForgottenMemories.Items
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VortexSphere"), 1); 
 			}
 			
-			if (npc.type == 483 && Main.rand.Next(5) == 0)
+			if (npc.type == 483 && Main.rand.Next(10) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Tourmaline"), Main.rand.Next(1, 3)); 
 			}
 			
-			if (npc.type == 481 && Main.rand.Next(5) == 0)
+			if (npc.type == 481 && Main.rand.Next(10) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Citrine"), Main.rand.Next(1, 3)); 
 			}
@@ -139,7 +139,7 @@ namespace ForgottenMemories.Items
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MartianYoyo"), 1); 
 			}
 
-			if (npc.value > 0.0 && Main.rand.Next(5) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight)
+			if (npc.value > 0.0 && Main.rand.Next(5) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight && NPC.downedBoss2)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DevilFlame"), 1); 
 			}
@@ -170,7 +170,7 @@ namespace ForgottenMemories.Items
 			
 			if (npc.type == NPCID.Snatcher)
 			{
-				if (Main.rand.Next(50) == 0)
+				if (Main.rand.Next(30) == 0)
 				{
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ExoticBoquet"), Main.rand.Next(1, 1));
 				}
@@ -232,6 +232,13 @@ namespace ForgottenMemories.Items
 				}
 			}
 			if (npc.type == NPCID.BloodCrawler)
+			{
+				if (Main.rand.Next(12) == 0)
+				{
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Spiderbook"), Main.rand.Next(1, 1));
+				}
+			}
+			if (npc.type == NPCID.BloodCrawlerWall)
 			{
 				if (Main.rand.Next(12) == 0)
 				{

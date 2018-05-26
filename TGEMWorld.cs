@@ -165,7 +165,7 @@ namespace ForgottenMemories
 			tasks.Insert(genIndex + 1, new PassLegacy("BTFA Gems", delegate (GenerationProgress progress)
 			{	
 				int spinelGen = 0;
-				while (spinelGen <= 200)  //this allows us to have 200 ore veins increase or decrease it at your will
+				while (spinelGen <= 300)  //this allows us to have X ore veins increase or decrease it at your will
 				{
 					int spinelX = Main.rand.Next(Main.maxTilesX);
 					double spinelNum = (int) (Main.rockLayer + Main.rockLayer + (double) Main.maxTilesY) / 3.0;
@@ -186,7 +186,7 @@ namespace ForgottenMemories
 				
 				}
 				int tourmalineGen = 0;
-				while (tourmalineGen <= 400)  //this allows us to have 400 ore veins increase or decrease it at your will
+				while (tourmalineGen <= 1200)  //this allows us to have X ore veins increase or decrease it at your will
 				{
 					int tourmalineX = Main.rand.Next(Main.maxTilesX);
 					double spinelNum = (int) (Main.rockLayer + Main.rockLayer + (double) Main.maxTilesY) / 3.0;
@@ -207,7 +207,7 @@ namespace ForgottenMemories
 				
 				}
 				int citrineGen = 0;
-				while (citrineGen <= 400)  //this allows us to have 400 ore veins increase or decrease it at your will
+				while (citrineGen <= 1200)  //this allows us to have X ore veins increase or decrease it at your will
 				{
 					int citrineX = Main.rand.Next(Main.maxTilesX);
 					double spinelNum = (int) (Main.rockLayer + Main.rockLayer + (double) Main.maxTilesY) / 3.0;
