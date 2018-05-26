@@ -11,9 +11,9 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetDefaults()
 		{
 
-			item.damage = 21;
+			item.damage = 46;
 			item.magic = true;
-			item.mana = 12;
+			item.mana = 15;
 			item.width = 25;
 			item.height = 26;
 			item.useTime = 23;
@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 
 		public override void SetStaticDefaults()
 		{
-		  DisplayName.SetDefault("Hex Wand");
+		  DisplayName.SetDefault("Eldritch Wand");
 		  Tooltip.SetDefault("Casts a piercing bolt of dark magic that slowly chases after enemies");
 		}
 	}

@@ -22,6 +22,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 0.5f;
 			npc.aiStyle = 26;
 			aiType = 508;
+			bannerItem = mod.ItemType("RedwoodRammerBannerItem");
 		}
 		
 		public override void SetStaticDefaults()

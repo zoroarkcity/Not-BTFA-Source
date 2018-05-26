@@ -21,7 +21,7 @@ namespace ForgottenMemories.Mounts.AcheronMount
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
 			DisplayName.SetDefault("Obolos");
-			Description.SetDefault("Set sail !");
+			Description.SetDefault("Set sail!");
         }
  
         public override void Update(Player player, ref int buffIndex)

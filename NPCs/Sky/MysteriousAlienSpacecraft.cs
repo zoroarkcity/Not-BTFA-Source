@@ -21,6 +21,7 @@ namespace ForgottenMemories.NPCs.Sky
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 14;
 			aiType = -1;
+			bannerItem = mod.ItemType("MysteriousAlienSpacecraftBannerItem");
 		}
 		
 		public override void SetStaticDefaults()

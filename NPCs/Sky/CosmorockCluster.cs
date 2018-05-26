@@ -20,6 +20,7 @@ namespace ForgottenMemories.NPCs.Sky
 			npc.noGravity = true;
 			npc.value = 100;
 			npc.knockBackResist = 0f;
+			bannerItem = mod.ItemType("CosmorRckClusterBannerItem");
 		}
 		
 		public override void SetStaticDefaults()

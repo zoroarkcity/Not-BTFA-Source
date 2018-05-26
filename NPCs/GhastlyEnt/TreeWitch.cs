@@ -24,6 +24,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 3;
 			aiType = NPCID.AngryBones;
+			bannerItem = mod.ItemType("ShadewoodWitchBannerItem");
 		}
 		
 		public override void SetStaticDefaults()
