@@ -69,6 +69,10 @@ namespace ForgottenMemories.Items.Boss
 			{
 				player.QuickSpawnItem(mod.ItemType("ArteryMask"), 1);
 			}
+			if (Main.rand.Next(7) == 0)
+			{
+				player.QuickSpawnItem(mod.ItemType("ArteryHook"), 1);
+			}
 		}
 	}
 }

@@ -84,7 +84,7 @@ namespace ForgottenMemories.Items.Fishable
 			}  
 			if (Main.rand.Next(12) == 0)
 			{
-			player.QuickSpawnItem(Treasure[Main.rand.Next(0, Valuable.Count)], Main.rand.Next(2, 10));
+			player.QuickSpawnItem(Treasure[Main.rand.Next(0, Valuable.Count)], Main.rand.Next(4, 10));
 			}  
 			if (Main.rand.Next(10) == 0)
 			{
