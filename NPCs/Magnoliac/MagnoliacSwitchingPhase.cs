@@ -34,6 +34,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
 			npc.friendly = true;
             npc.netAlways = true;
 			npc.scale = 1f;
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/ForestArmy");
         }
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
