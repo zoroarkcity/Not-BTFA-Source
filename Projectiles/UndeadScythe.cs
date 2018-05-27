@@ -15,10 +15,9 @@ namespace ForgottenMemories.Projectiles
 		{
 			projectile.width = 18;
 			projectile.height = 18;
-			projectile.aiStyle = 1;
+			projectile.aiStyle = 3;
 			projectile.friendly = true;
-			projectile.thrown = true;
-			projectile.penetrate = 4;
+			projectile.penetrate = 1;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
 		}
@@ -76,7 +75,7 @@ namespace ForgottenMemories.Projectiles
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-			SpriteEffects spriteEffects = SpriteEffects.None;
+			SpriteEffects spriteEffects = SpriteEffects.FlipHorizontally;
 			Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)projectile.position.X + (double)projectile.width * 0.5) / 16, (int)(((double)projectile.position.Y + (double)projectile.height * 0.5) / 16.0));
 			Texture2D texture2D3 = Main.projectileTexture[projectile.type];
 			int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type];

@@ -22,14 +22,14 @@ namespace ForgottenMemories.Dusts
 			dust.position += dust.velocity / 4;
 			dust.rotation += dust.velocity.X / 8;
 			dust.scale -= 0.03f;
+			dust.position += dust.velocity;
+			dust.rotation += dust.velocity.X * 0.15f;
+			dust.scale *= 0.99f;
+			float light = 0.35f * dust.scale;
+			Lighting.AddLight(dust.position, light, light, light);
 			if (dust.scale < 0.2f)
 			{
 				dust.active = false;
-			}
-			else
-			{
-				float strength = dust.scale / 2f;
-				Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), 0.3f, 0.1f, 0f);
 			}
 			return false;
 		}
