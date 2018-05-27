@@ -22,7 +22,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.useAnimation = 17;
 
 			item.consumable = true;
-			item.maxStack = 999;
+			item.maxStack = 1;
 			item.useStyle = 1;
 			item.noUseGraphic = true;
 			item.noMelee = true;
