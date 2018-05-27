@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.NPCs.Dungeon
 {
-    public class Undead_Heart : ModNPC
+    public class Undead_Heart : ModNPC // lol ballsack
     {
 		public override void SetStaticDefaults()
 		{
@@ -18,9 +18,9 @@ namespace ForgottenMemories.NPCs.Dungeon
         public override void SetDefaults()
         {
             npc.aiStyle = 0;  
-			npc.lifeMax = 1000;	 
+			npc.lifeMax = 350;	 
             npc.defense = 0;  
-            npc.knockBackResist = 2f;
+            npc.knockBackResist = 0.5f;
             npc.width = 34;
             npc.height = 48;
 			npc.damage = 10;

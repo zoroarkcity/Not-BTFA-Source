@@ -18,8 +18,6 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.shootSpeed = 10f;
 			item.useTime = 17;
 			item.useAnimation = 17;
-
-			item.consumable = true;
 			item.maxStack = 1;
 			item.useStyle = 1;
 			item.noUseGraphic = true;

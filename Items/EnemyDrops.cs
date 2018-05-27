@@ -145,9 +145,14 @@ namespace ForgottenMemories.Items
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MartianYoyo"), 1); 
 			}
 
-			if (npc.value > 0.0 && Main.rand.Next(5) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight && NPC.downedBoss2)
+			if (npc.value > 0.0 && Main.rand.Next(5) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight && NPC.downedBoss2 && !Main.Harmode)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DevilFlame"), 1); 
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DevilFlame"), Main.rand.Next(1, 2)); 
+			}
+			
+			if (npc.value > 0.0 && Main.rand.Next(10) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight && NPC.downedBoss2 && Main.Hardmode)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DevilFlame"), Main.rand.Next(1, 2));
 			}
 			
 			if (npc.value > 0.0 && Main.rand.Next(25) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight)
@@ -163,13 +168,13 @@ namespace ForgottenMemories.Items
 			if (Main.hardMode && (double) npc.value > 0.0 && NPC.downedGolemBoss && !NPC.downedAncientCultist && (double) npc.lifeMax >= 299)
 			{
 				if (Main.rand.Next(7) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneHoly)
-					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), 1, false, 0, false, false);
+					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), Main.rand.Next(1, 3)); 
 			}
 			
 			if (Main.hardMode && (double) npc.value > 0.0 && NPC.downedAncientCultist && (double) npc.lifeMax >= 299) 
 			{
 				if (Main.rand.Next(20) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneHoly)
-					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), 1, false, 0, false, false);
+					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), Main.rand.Next(1, 3)); 
 			} 
 			
 			if (npc.type == NPCID.ManEater)
