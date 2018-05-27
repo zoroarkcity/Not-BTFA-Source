@@ -112,7 +112,7 @@ namespace ForgottenMemories.Projectiles.Spiritflame
 			Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(0, y3, texture2D3.Width, num156);
 			Vector2 origin2 = rectangle.Size() / 2f;
 			Main.spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position - (7 * projectile.velocity) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), lightColor, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
-			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritSpear"), projectile.position - (7 * projectile.velocity) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritSpear_Proj"), projectile.position - (7 * projectile.velocity) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
 			return false;
 		}
 	}

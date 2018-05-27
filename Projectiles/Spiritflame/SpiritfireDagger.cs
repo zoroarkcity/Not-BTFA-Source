@@ -49,9 +49,9 @@ namespace ForgottenMemories.Projectiles.Spiritflame
 			Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(0, y3, texture2D3.Width, num156);
 			Vector2 origin2 = rectangle.Size() / 2f;
 			Main.spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), lightColor, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
-			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritfireDagger"), projectile.position + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
-			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritfireDagger"), projectile.position + (gayvector * 1.5f) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color25, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
-			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritfireDagger"), projectile.position + (-gayvector * 1.5f) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color25, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritfireDaggerProj"), projectile.position + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritfireDaggerProj"), projectile.position + (gayvector * 1.5f) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color25, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/SpiritfireDaggerProj"), projectile.position + (-gayvector * 1.5f) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color25, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
 			gayvector = gayvector.RotatedBy(System.Math.PI / 35);
 			return false;
 		}
