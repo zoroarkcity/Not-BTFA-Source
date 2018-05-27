@@ -488,33 +488,33 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			}
 			else
 			{
-			    switch (Main.rand.Next(5))
+			    switch (Main.rand.Next(7))
 			    {
 				    case 0: 
-					    player.QuickSpawnItem(mod.ItemType("Fist_of_the_Hallow_Ent"), 1);
+					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Fist_of_the_Hallow_Ent")));
 					    break;
 				    case 1: 
-					    player.QuickSpawnItem(mod.ItemType("ForestBlast"), 1);
+					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ForestBlast")));
 					    break;
 				    case 2: 
-					    player.QuickSpawnItem(mod.ItemType("GhastlyKnife"), 1);
+					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("GhastlyKnife")), Main.rand.Next(400, 550));
 					    break;
 				    case 3: 
-					    player.QuickSpawnItem(mod.ItemType("LeafScythe"), 1);
+					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LeafScythe")));
 					    break;
 				    case 4: 
-					    player.QuickSpawnItem(mod.ItemType("LivingTreeSword"), 1);
+					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LivingTreeSword")));
 					    break;
 				    case 5: 
-					    player.QuickSpawnItem(mod.ItemType("WoodChipper"), 1);
+					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("WoodChipper")));
 					    break;
 				    case 6: 
-					    player.QuickSpawnItem(mod.ItemType("TreeStaff"), 1);
+					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("TreeStaff")));
 					    break;
 				    default:
 					    break;
-				    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ForestEnergy"), Main.rand.Next(22, 35));
-				    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BlossomBranch"), Main.rand.Next(5, 10));
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ForestEnergy")), Main.rand.Next(22, 35));
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BlossomBranch")), Main.rand.Next(5, 10));
 			    }
 			}
 		}
