@@ -9,25 +9,27 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using System;
+
 namespace ForgottenMemories.Items.Melee
 {
 	public class BlueFlare : ModItem
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 128;
+			item.damage = 180;
 			item.melee = true;
 			item.width = 88;
 			item.height = 88;
-			item.useTime = 13;
-			item.useAnimation = 13;
-			item.useTurn = true;
+			item.useTime = 12;
+			item.useAnimation = 12;
+            item.consumable = true;
 			item.useStyle = 1;
 			item.knockBack = 6;
 			item.value = 250000;
 			item.rare = 10;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
+			item.shootSpeed = 15f;
 		}
 
 		public override void SetStaticDefaults()

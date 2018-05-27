@@ -148,6 +148,11 @@ namespace ForgottenMemories.NPCs.Town
 				shop.item[nextSlot].SetDefaults(mod.ItemType("MagmaGlobStaff"));
 				nextSlot++;
 			}
+			if (TGEMWorld.downedGhastlyEnt)
+			{
+				shop.item[nextSlot].SetDefaults(mod.ItemType("Geloline"));
+				nextSlot++;
+			}
 		}
 
 		public override void TownNPCAttackStrength(ref int damage, ref float knockback)
