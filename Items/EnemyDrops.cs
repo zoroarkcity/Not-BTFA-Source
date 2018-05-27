@@ -1,8 +1,14 @@
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using System.Collections.Generic;
+using System;
 namespace ForgottenMemories.Items
 {
 	public class CrystalDrop : GlobalNPC
@@ -154,13 +160,13 @@ namespace ForgottenMemories.Items
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pearl"), 1); 
 			}
 			
-			if (Main.hardMode && (double) npc.value > 0.0 && !main.downedMechBossAny && target.lifeMax >= 299) //if the enemy has over 300 health, is not a critter and is in the hardmode hallow, pre mech
+			if (Main.hardMode && (double) npc.value > 0.0 && NPC.downedGolemBoss && !NPC.downedAncientCultist && (double) npc.lifeMax >= 299)
 			{
 				if (Main.rand.Next(7) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneHoly)
 					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), 1, false, 0, false, false);
 			}
 			
-			if (Main.hardMode && (double) npc.value > 0.0 && main.downedMechBossAny && target.lifeMax >= 299) //if the enemy has over 300 health, is not a critter and is in the hardmode hallow, post mech
+			if (Main.hardMode && (double) npc.value > 0.0 && NPC.downedAncientCultist && (double) npc.lifeMax >= 299) 
 			{
 				if (Main.rand.Next(20) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneHoly)
 					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), 1, false, 0, false, false);
