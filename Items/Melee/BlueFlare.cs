@@ -27,9 +27,10 @@ namespace ForgottenMemories.Items.Melee
 			item.knockBack = 6;
 			item.value = 250000;
 			item.rare = 10;
-			item.UseSound = SoundID.Item1;
+			item.UseSound = SoundID.Item71;
 			item.autoReuse = true;
 			item.shootSpeed = 15f;
+			item.shoot = mod.ProjectileType("InvisProj");
 		}
 
 		public override void SetStaticDefaults()
@@ -105,20 +106,21 @@ namespace ForgottenMemories.Items.Melee
 			}
 			else
 			{
-			   item.damage = 128;
-			   item.melee = true;
-			   item.width = 88;
-			   item.height = 88;
-			   item.useTime = 13;
-			   item.useAnimation = 13;
-			   item.useTurn = true;
-			   item.useStyle = 1;
-			   item.knockBack = 6;
-			   item.value = 250000;
-			   item.rare = 10;
-			   item.UseSound = SoundID.Item71;	
-			   item.autoReuse = true;
-			   item.consumable = false;
+			  item.damage = 180;
+			  item.melee = true;
+			  item.width = 88;
+			  item.height = 88;
+			  item.useTime = 12;
+			  item.useAnimation = 12;
+              item.consumable = false;
+			  item.useStyle = 1;
+			  item.knockBack = 6;
+			  item.value = 250000;
+			  item.rare = 10;
+			  item.UseSound = SoundID.Item71;
+			  item.autoReuse = true;
+			  item.shootSpeed = 15f;
+			  item.shoot = mod.ProjectileType("InvisProj");
 			}
 			return base.CanUseItem(player);
 		}

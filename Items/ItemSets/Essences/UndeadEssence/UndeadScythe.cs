@@ -41,7 +41,7 @@ namespace ForgottenMemories.Items.ItemSets.Essences.UndeadEssence
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Exanimating Sickle");
+			DisplayName.SetDefault("Sickle of Animation");
 			Tooltip.SetDefault("Turns into an underling on impact with an enemy \nThe Underling will act as a minion for a short time before vanishing \nUnderlings do not take up minion slots and do 10 damage");
 		    BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/UndeadScythe");
 		}

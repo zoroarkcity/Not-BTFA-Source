@@ -71,7 +71,7 @@ namespace ForgottenMemories.Projectiles
 			Main.dust[dust6].scale = 2;
 			Main.dust[dust7].scale = 2;
 			Main.dust[dust8].scale = 2;
-			Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y);
+			Main.PlaySound(SoundID.Item71, (int)projectile.position.X, (int)projectile.position.Y);
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -135,9 +135,8 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			Projectile.NewProjectile(target.Center.X, target.Center.Y + 100, 0, -10, mod.ProjectileType("UndeadScytheMinion"), (int)(projectile.damage / 3), 0f, projectile.owner);
-			
-			Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y);
+			Projectile.NewProjectile(target.Center.X, target.Center.Y + 0, 0, 0, mod.ProjectileType("UndeadScytheMinion"), (int)(projectile.damage / 3), 0f, projectile.owner);
+			Main.PlaySound(SoundID.Item71, (int)projectile.position.X, (int)projectile.position.Y);
 		}
 	}
 }
