@@ -32,7 +32,7 @@ namespace ForgottenMemories.Items.Ranged
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Bee Cannon");
-      Tooltip.SetDefault("Fires a large exploding stinger");
+      Tooltip.SetDefault("Fires a large exploding stinger \nDoes not use ammo");
     }
 	
 	public override Vector2? HoldoutOffset()

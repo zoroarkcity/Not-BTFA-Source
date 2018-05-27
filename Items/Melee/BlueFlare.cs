@@ -28,13 +28,12 @@ namespace ForgottenMemories.Items.Melee
 			item.rare = 10;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
-			item.consumable = true; 
 		}
 
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Dragonfire Blade");
-		  Tooltip.SetDefault("Striking enemies creates a pillar of fire \nRight click the sword in your inventory to change its mode");
+		  Tooltip.SetDefault("Striking enemies creates a pillar of fire \nRight click the sword as you hold it to change its mode \nMay move a slot when changed \nCan also be crafted into its counterpart for free if necessary");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlueFlare");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
@@ -89,15 +88,37 @@ namespace ForgottenMemories.Items.Melee
 				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 59);
 			}
 		}
-		public override bool CanRightClick() 
+		public override bool AltFunctionUse(Player player)
 		{
 			return true;
 		}
 
-		public override void RightClick(Player player)
+		public override bool CanUseItem(Player player)
 		{
-		Main.PlaySound(SoundID.Item71, player.position, 0);
-		player.QuickSpawnItem(mod.ItemType("RedFlare"), 1);
+			if (player.altFunctionUse == 2)
+			{
+		       player.QuickSpawnItem(mod.ItemType("RedFlare"), 1);
+			   item.UseSound = SoundID.Item71;			
+			   item.consumable = true;
+			}
+			else
+			{
+			   item.damage = 128;
+			   item.melee = true;
+			   item.width = 88;
+			   item.height = 88;
+			   item.useTime = 13;
+			   item.useAnimation = 13;
+			   item.useTurn = true;
+			   item.useStyle = 1;
+			   item.knockBack = 6;
+			   item.value = 250000;
+			   item.rare = 10;
+			   item.UseSound = SoundID.Item71;	
+			   item.autoReuse = true;
+			   item.consumable = false;
+			}
+			return base.CanUseItem(player);
 		}
 	}
 }

@@ -75,7 +75,7 @@ namespace ForgottenMemories.NPCs.Desert
 		{
 			{
 			Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, 658, (int)(npc.damage/6), 1f, npc.target, 0f, 0f);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BossEnergy"), Main.rand.Next(4, 7));
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BossEnergy"), Main.rand.Next(2, 7));
 		}
 		}
 		public override void FindFrame(int frameHeight)

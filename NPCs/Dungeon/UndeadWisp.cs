@@ -89,26 +89,6 @@ namespace ForgottenMemories.NPCs.Dungeon
 		
 		public override void NPCLoot()
 		{
-			if (npc.ai[1] == 0)
-			{
-				int n = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-20, 20), (int)npc.Center.Y + Main.rand.Next(-20, 20), npc.type);
-				Main.npc[n].netUpdate = true;
-				Main.npc[n].ai[1] = 1;
-				Main.npc[n].value = 0;
-				Main.npc[n].scale = 0.75f;
-				Main.npc[n].width -= (int)(npc.width/4);
-				Main.npc[n].height -= (int)(npc.height/4);
-				
-				int n2 = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-20, 20), (int)npc.Center.Y + Main.rand.Next(-20, 20), npc.type);
-				Main.npc[n2].netUpdate = true;
-				Main.npc[n2].ai[1] = 1;
-				Main.npc[n2].scale = 0.75f;
-				Main.npc[n2].value = 0;
-				Main.npc[n2].width -= (int)(npc.width/4);
-				Main.npc[n2].height -= (int)(npc.height/4);
-				
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("UndeadEnergy"), Main.rand.Next(4, 7));
-			}
 		}
 	}
 }

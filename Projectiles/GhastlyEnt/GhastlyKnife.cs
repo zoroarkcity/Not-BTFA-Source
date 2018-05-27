@@ -28,9 +28,7 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 		
 		public override void Kill(int timeLeft)
 		{
-			if (Main.rand.Next(3) == 0)
-        	{
-        		Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height, mod.ItemType("GhastlyKnife"));
+			{ 
         	}
 			for (int i = 0; i < 5; i++)
 			{

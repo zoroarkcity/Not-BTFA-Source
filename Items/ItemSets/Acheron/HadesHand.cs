@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 26;
+			item.damage = 32;
 			item.ranged = true;
 			item.width = 32;
 			item.height = 32;

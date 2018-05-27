@@ -36,7 +36,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Dragonfire Blade");
-		  Tooltip.SetDefault("Launches a number of explosive fireballs inaccurately \nRight click the sword in your inventory to change its mode");
+		  Tooltip.SetDefault("Launches a number of explosive fireballs inaccurately \nRight click the sword as you hold it to change its mode \nMay move a slot when changed \nCan also be crafted into its counterpart for free if necessary");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/RedFlare");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
@@ -101,15 +101,38 @@ namespace ForgottenMemories.Items.Melee
 				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 6);
 			}
 		}
-		public override bool CanRightClick() 
+		public override bool AltFunctionUse(Player player)
 		{
 			return true;
 		}
 
-		public override void RightClick(Player player)
+		public override bool CanUseItem(Player player)
 		{
-		Main.PlaySound(SoundID.Item71, player.position, 0);
-		player.QuickSpawnItem(mod.ItemType("BlueFlare"), 1);
+			if (player.altFunctionUse == 2)
+			{
+		       player.QuickSpawnItem(mod.ItemType("BlueFlare"), 1);
+			   item.UseSound = SoundID.Item71;			
+			   item.consumable = true;
+			}
+			else
+			{
+			   item.damage = 128;
+			   item.melee = true;
+			   item.width = 88;
+			   item.height = 88;
+			   item.useTime = 13;
+			   item.useAnimation = 13;
+			   item.useTurn = true;
+			   item.useStyle = 1;
+			   item.knockBack = 6;
+			   item.value = 250000;
+			   item.rare = 10;
+			   item.UseSound = SoundID.Item71;	
+			   item.autoReuse = true;
+			   item.consumable = false;
+			   item.shoot = mod.ProjectileType("RedFlareBolt");
+			}
+			return base.CanUseItem(player);
 		}
 	}
 }

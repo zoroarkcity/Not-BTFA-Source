@@ -118,8 +118,8 @@ namespace ForgottenMemories.NPCs.Dungeon
 		}
 		public override void NPCLoot()
 		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("UndeadEnergy"), Main.rand.Next(4, 7));
-			if (Main.rand.Next(25) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("UndeadScythe")));
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("UndeadEnergy"), Main.rand.Next(2, 7));
+			if (Main.rand.Next(12) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("UndeadScythe")));
 		}
     }
 }
