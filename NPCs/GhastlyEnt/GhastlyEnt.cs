@@ -488,9 +488,34 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			}
 			else
 			{
-				int amountToDrop = Main.rand.Next(10,30);
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ForestEnergy"), amountToDrop);
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Wood, (amountToDrop * 3));
+			    switch (Main.rand.Next(5))
+			    {
+				    case 0: 
+					    player.QuickSpawnItem(mod.ItemType("Fist_of_the_Hallow_Ent"), 1);
+					    break;
+				    case 1: 
+					    player.QuickSpawnItem(mod.ItemType("ForestBlast"), 1);
+					    break;
+				    case 2: 
+					    player.QuickSpawnItem(mod.ItemType("GhastlyKnife"), 1);
+					    break;
+				    case 3: 
+					    player.QuickSpawnItem(mod.ItemType("LeafScythe"), 1);
+					    break;
+				    case 4: 
+					    player.QuickSpawnItem(mod.ItemType("LivingTreeSword"), 1);
+					    break;
+				    case 5: 
+					    player.QuickSpawnItem(mod.ItemType("WoodChipper"), 1);
+					    break;
+				    case 6: 
+					    player.QuickSpawnItem(mod.ItemType("TreeStaff"), 1);
+					    break;
+				    default:
+					    break;
+				    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ForestEnergy"), Main.rand.Next(22, 35));
+				    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BlossomBranch"), Main.rand.Next(5, 10));
+			    }
 			}
 		}
     }

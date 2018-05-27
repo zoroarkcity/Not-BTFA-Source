@@ -37,6 +37,7 @@ namespace ForgottenMemories.Items.Boss
 			player.TryGettingDevArmor();
             player.QuickSpawnItem(mod.ItemType("AmberCrystal"), 1); 
 			player.QuickSpawnItem(mod.ItemType("ForestEnergy"), Main.rand.Next(22, 35));
+			player.QuickSpawnItem(mod.ItemType("BlossomBranch"), Main.rand.Next(5, 10));
 			
 			switch (Main.rand.Next(5))
 			{
@@ -55,6 +56,12 @@ namespace ForgottenMemories.Items.Boss
 				case 4:
 					player.QuickSpawnItem(mod.ItemType("LivingTreeSword"), 1);
 					break;
+				case 5:
+					player.QuickSpawnItem(mod.ItemType("WoodChipper"), 1);
+					break;
+				case 6:
+					player.QuickSpawnItem(mod.ItemType("TreeStaff"), 1);
+					break;
 				default:
 					break;
 			}
@@ -62,9 +69,7 @@ namespace ForgottenMemories.Items.Boss
 			if (Main.rand.Next(7) == 0)
 			{
 				player.QuickSpawnItem(mod.ItemType("GhastlyMask"), 1);
-			}
-			
-				
+			}			
 		}
 	}
 }
