@@ -36,7 +36,7 @@ namespace ForgottenMemories.Items.Throwing
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Cherry Bomb");
-      Tooltip.SetDefault("'Don't put it in a pie'");
+      Tooltip.SetDefault("'Doesn't go down very well in a cherry pie'");
     }
 
 	}}

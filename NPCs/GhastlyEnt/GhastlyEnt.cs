@@ -488,7 +488,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			}
 			else
 			{
-			    switch (Main.rand.Next(7))
+			    switch (Main.rand.Next(6))
 			    {
 				    case 0: 
 					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Fist_of_the_Hallow_Ent")));
@@ -497,18 +497,15 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ForestBlast")));
 					    break;
 				    case 2: 
-					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("GhastlyKnife")), Main.rand.Next(400, 550));
-					    break;
-				    case 3: 
 					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LeafScythe")));
 					    break;
-				    case 4: 
+				    case 3: 
 					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LivingTreeSword")));
 					    break;
-				    case 5: 
+				    case 4: 
 					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("WoodChipper")));
 					    break;
-				    case 6: 
+				    case 5: 
 					    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("TreeStaff")));
 					    break;
 				    default:

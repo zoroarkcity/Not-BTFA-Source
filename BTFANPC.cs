@@ -253,35 +253,21 @@ namespace ForgottenMemories
 						nextSlot++;
 					}
 				}
+				for (int i = 0; i < 200; i++)
+				{
+					Player player = Main.player[i];
+					if (player.HasItem(mod.ItemType("HadesHand")))
+					{
+					    shop.item[nextSlot].SetDefaults(mod.ItemType("LostSoul"));
+						nextSlot++;
+					}
+				}
 			}
 			
 			if (type == 124)
             {
                 shop.item[nextSlot].SetDefaults(mod.ItemType("MechanicsHammer"));
                 nextSlot++;
-            }
-			
-			switch (type)
-            {	
-				case NPCID.WitchDoctor:
-                {				
-			        if (NPC.downedBoss2)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WormholePotion);
-                        nextSlot++;
-                    }
-				    break;
-				}
-				
-				case NPCID.SkeletonMerchant:
-                {				
-			        if (NPC.downedBoss3)
-                    {
-                        shop.item[nextSlot].SetDefaults(mod.ItemType("BoneFungus"));
-                        nextSlot++;
-                    }
-				    break;
-                }
             }
 		}
 		

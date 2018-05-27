@@ -49,6 +49,9 @@ namespace ForgottenMemories.NPCs.Magnoliac
 					player.QuickSpawnItem(mod.ItemType("Acorn_Launcher"), 1);
 					player.QuickSpawnItem(ItemID.Acorn, Main.rand.Next(30, 60));
 					break;
+				case 4:
+					player.QuickSpawnItem(mod.ItemType("GhastlyKnife"), 1);
+					break;
 				default:
 					break;
 			}

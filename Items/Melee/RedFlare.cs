@@ -22,7 +22,7 @@ namespace ForgottenMemories.Items.Melee
 			item.height = 88;
 			item.useTime = 12;
 			item.useAnimation = 12;
-
+            item.consumable = true;
 			item.useStyle = 1;
 			item.knockBack = 6;
 			item.value = 250000;
@@ -36,7 +36,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Dragonfire Blade");
-		  Tooltip.SetDefault("Launches explosive bolts of fire inaccurately");
+		  Tooltip.SetDefault("Launches a number of explosive fireballs inaccurately \nRight click the sword in your inventory to change its mode");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/RedFlare");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
@@ -100,6 +100,16 @@ namespace ForgottenMemories.Items.Melee
 			{
 				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 6);
 			}
+		}
+		public override bool CanRightClick() 
+		{
+			return true;
+		}
+
+		public override void RightClick(Player player)
+		{
+		Main.PlaySound(SoundID.Item71, player.position, 0);
+		player.QuickSpawnItem(mod.ItemType("BlueFlare"), 1);
 		}
 	}
 }

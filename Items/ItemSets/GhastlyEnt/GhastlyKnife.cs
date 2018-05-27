@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 
 		public override void SetDefaults()
 		{
-			item.damage = 37;
+			item.damage = 32;
 			item.thrown = true;
 			item.shoot = mod.ProjectileType("GhastlyKnife");
 
@@ -28,7 +28,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.noMelee = true;
 			item.autoReuse = true;
 			item.value = 38;
-			item.rare = 2;
+			item.rare = 3;
 			item.shootSpeed = 15f;
 			item.autoReuse = true;
 			item.UseSound = SoundID.Item1;

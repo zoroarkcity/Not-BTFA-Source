@@ -66,7 +66,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
             }
 			else
 			{
-				switch (Main.rand.Next(4))
+				switch (Main.rand.Next(5))
 				{
 					case 0: 
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Beechorang"));
@@ -80,6 +80,9 @@ namespace ForgottenMemories.NPCs.Magnoliac
 					case 3:
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Acorn_Launcher"));
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Acorn"), Main.rand.Next(30, 60));
+						break;
+					case 4:
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GhastlyKnife"));
 						break;
 					default:
 						break;

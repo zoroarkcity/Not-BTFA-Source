@@ -67,7 +67,7 @@ namespace ForgottenMemories.Items.Boss
 			player.QuickSpawnItem(mod.ItemType("ForestEnergy"), Main.rand.Next(22, 35));
 			player.QuickSpawnItem(mod.ItemType("BlossomBranch"), Main.rand.Next(5, 10));
 			
-			switch (Main.rand.Next(5))
+			switch (Main.rand.Next(6))
 			{
 				case 0: 
 					player.QuickSpawnItem(mod.ItemType("Fist_of_the_Hallow_Ent"), 1);
@@ -76,18 +76,15 @@ namespace ForgottenMemories.Items.Boss
 					player.QuickSpawnItem(mod.ItemType("ForestBlast"), 1);
 					break;
 				case 2:
-					player.QuickSpawnItem(mod.ItemType("GhastlyKnife"), Main.rand.Next(400, 550));
-					break;
-				case 3:
 					player.QuickSpawnItem(mod.ItemType("LeafScythe"), 1);
 					break;
-				case 4:
+				case 3:
 					player.QuickSpawnItem(mod.ItemType("LivingTreeSword"), 1);
 					break;
-				case 5:
+				case 4:
 					player.QuickSpawnItem(mod.ItemType("WoodChipper"), 1);
 					break;
-				case 6:
+				case 5:
 					player.QuickSpawnItem(mod.ItemType("TreeStaff"), 1);
 					break;
 				default:

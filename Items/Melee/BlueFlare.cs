@@ -28,12 +28,13 @@ namespace ForgottenMemories.Items.Melee
 			item.rare = 10;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
+			item.consumable = true; 
 		}
 
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Dragonfire Blade");
-		  Tooltip.SetDefault("Striking enemies creates a pillar of fire");
+		  Tooltip.SetDefault("Striking enemies creates a pillar of fire \nRight click the sword in your inventory to change its mode");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlueFlare");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
@@ -87,6 +88,16 @@ namespace ForgottenMemories.Items.Melee
 			{
 				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 59);
 			}
+		}
+		public override bool CanRightClick() 
+		{
+			return true;
+		}
+
+		public override void RightClick(Player player)
+		{
+		Main.PlaySound(SoundID.Item71, player.position, 0);
+		player.QuickSpawnItem(mod.ItemType("RedFlare"), 1);
 		}
 	}
 }
