@@ -35,7 +35,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Dragonfire Blade");
-		  Tooltip.SetDefault("Striking enemies creates a pillar of fire \nRight click the sword as you hold it to change its mode \nMay move a slot when changed \nCan also be crafted into its counterpart for free if necessary");
+		  Tooltip.SetDefault("Striking enemies creates a geyser of turquoise fire \nRight click the sword as you hold it to change its mode \nMay move a slot when changed \nCan also be crafted into its counterpart for free if necessary");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlueFlare");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	

@@ -154,11 +154,17 @@ namespace ForgottenMemories.Items
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pearl"), 1); 
 			}
 			
-			if (Main.hardMode && (double) npc.value > 0.0)
+			if (Main.hardMode && (double) npc.value > 0.0 && !main.downedMechBossAny && target.lifeMax >= 299) //if the enemy has over 300 health, is not a critter and is in the hardmode hallow, pre mech
 			{
-				if (Main.rand.Next(4) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDesert)
+				if (Main.rand.Next(7) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneHoly)
 					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), 1, false, 0, false, false);
 			}
+			
+			if (Main.hardMode && (double) npc.value > 0.0 && main.downedMechBossAny && target.lifeMax >= 299) //if the enemy has over 300 health, is not a critter and is in the hardmode hallow, post mech
+			{
+				if (Main.rand.Next(20) == 0 && Main.player[(int) Player.FindClosest(npc.position, npc.width, npc.height)].ZoneHoly)
+					Item.NewItem((int) npc.position.X, (int) npc.position.Y, npc.width, npc.height, mod.ItemType("SpiritflameChunk"), 1, false, 0, false, false);
+			} 
 			
 			if (npc.type == NPCID.ManEater)
 			{

@@ -61,7 +61,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-                        recipe.AddIngredient(null,"murderblade", 1);
+            recipe.AddIngredient(null,"murderblade", 1);
 			recipe.AddIngredient(ItemID.FragmentSolar, 20);
 			recipe.AddTile(412);
 			recipe.SetResult(this);

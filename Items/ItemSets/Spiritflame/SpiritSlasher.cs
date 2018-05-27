@@ -17,7 +17,7 @@ namespace ForgottenMemories.Items.ItemSets.Spiritflame
 		public override void SetDefaults()
 		{
 
-			item.damage = 46;
+			item.damage = 56;
 			item.melee = true;
 			item.width = 58;
 			item.height = 52;
