@@ -60,6 +60,7 @@ namespace ForgottenMemories
 		public int lifestealTimer = 0;
 		public bool firestorm = false;
 		public bool doubleJumpMeteor = false;
+		public bool Chicken = false;
 		
 		public bool Tartarus = false;
 		public bool meteor = false;
@@ -130,6 +131,7 @@ namespace ForgottenMemories
 			BeeHive = false;
 			DivineBlessing = false;
 			spookedByArte = false;
+			Chicken = false;
 
 			if (!hasBlightFlashed)
 			{

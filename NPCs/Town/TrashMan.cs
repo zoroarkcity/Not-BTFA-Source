@@ -130,6 +130,8 @@ namespace ForgottenMemories.NPCs.Town
 			{			
 				shop.item[nextSlot].SetDefaults(mod.ItemType("TrashCannon"));
 				nextSlot++;
+				shop.item[nextSlot].SetDefaults(mod.ItemType("TrashSeed"));
+				nextSlot++;
 			}
 		}
 

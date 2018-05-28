@@ -23,6 +23,11 @@ namespace ForgottenMemories.Items.Ammo
 			item.ammo = AmmoID.Gel;
 			item.maxStack = 999;
 			item.consumable = true;
+            item.createTile = mod.TileType("GelolineTile"); 
+            item.placeStyle = 0;
+            item.useAnimation = 10; 
+            item.useTime = 10;  
+            item.useStyle = 1;
 		}
 
     public override void SetStaticDefaults()
