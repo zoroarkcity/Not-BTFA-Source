@@ -54,6 +54,7 @@ namespace ForgottenMemories.Items.Fishable
 			if (Main.hardMode)
 			{
 				Ammo.Add(1302); //High Velocity Bullet
+				Ammo.Add(mod.ItemType("Geloline")); 
 			}	
 			if (NPC.downedPlantBoss)
 			{

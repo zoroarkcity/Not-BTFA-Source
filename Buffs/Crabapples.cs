@@ -10,18 +10,19 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.Buffs
 {
-	public class Graniteskin : ModBuff
+	public class Crabapples : ModBuff
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Granite Skin");
-			Description.SetDefault("Increases defense by 16");
-			//Main.buffNoTimeDisplay[Type] = true;
+			DisplayName.SetDefault("Crabapples");
+			Description.SetDefault("'Ok... this is epic'");
+			Main.buffNoTimeDisplay[Type] = true;
 		}
 		
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.statDefense += 16;
+            player.statLifeMax2 += 999999;
+			player.lifeRegen += 999999;
 		}
 	}
 }
