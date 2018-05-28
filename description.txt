@@ -1,7 +1,8 @@
 0.4.2 Update Notes:
 - Reworked the Titan Rock, Acheron, Arterius and Ghastly Ent AIs.
 - Reworked Titan Rock, Acheron and Arterius weapons.
-- Wisps were removed, giving place to new unique enemies for each essence:
+- Essences renamed to wisps to avoid confusion with other mods
+- Wisps (enemies) were removed, giving place to new unique enemies for each wisp (item):
 	. Nightly Owl
 	. Desert Totem
 	. Soaring Pecker and Infection Fly
@@ -15,7 +16,9 @@
 - Acheron and Arterius have recieved new soundtracks
 - Spiritflame has been moved to the Post-Golem Hallow, if you currently have spiritflame it will have the golem-tier damage rates, so you may want to save it for later
 - The Ghastly Ent now drops its loot in normal mode and has had changes regarding its loot table
-- An assortment of random items, including a mount dropped by Acheron to a very early game hook
+- An assortment of random items, ranging from a mount dropped by Acheron, an upgrade to gel as ammo and a very early game hook made with rope
+- Dragonfire Blades can now change mode via right clicking while in hand, although this can still be done with crafting
+- All enemies have banners, along with four decorative wisp ones crafted with their respective wisps
 
 This mod adds in a total of:
 -310 Items (check before update)
