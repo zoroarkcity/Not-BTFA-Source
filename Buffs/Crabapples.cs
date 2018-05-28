@@ -21,8 +21,12 @@ namespace ForgottenMemories.Buffs
 		
 		public override void Update(Player player, ref int buffIndex)
 		{
+            player.noFallDmg = true;
             player.statLifeMax2 = 9999999;
+            player.statManaMax2 = 9999999;
 			player.lifeRegen = 999999;
+            player.manaCost = 0f;
+            player.maxMinions = 999999;
 		}
 	}
 }

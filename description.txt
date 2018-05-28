@@ -8,10 +8,14 @@
 	. Undead Heart
 	(If you still need wisps for some strange reason, they can be spawned in with cheat sheet)
 - Ore spawners are now dropped correctly, once on the first death of a boss and with a 1/10 chance afterwards
+- The three gems included with the mod, citrine, tourmaline and spinel are now found rarely in marble, granite and ash respectively, but can still by dropped by vanilla enemies
 - Cosmodium (a now unobtainable ore) has been fully removed from relevant recipes and replaced by appropriate materials
 - Rebalanced various items and updated their sprites
 - Boss Checklist progression positions have been fixed, along with the lack of a summon item for Acheron
 - Acheron and Arterius have recieved new soundtracks
+- Spiritflame has been moved to the Post-Golem Hallow, if you currently have spiritflame it will have the golem-tier damage rates, so you may want to save it for later
+- The Ghastly Ent now drops its loot in normal mode and has had changes regarding its loot table
+- An assortment of random items, including a mount dropped by Acheron to a very early game hook
 
 This mod adds in a total of:
 -310 Items (check before update)
