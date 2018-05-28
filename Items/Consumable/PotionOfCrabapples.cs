@@ -8,7 +8,7 @@ namespace ForgottenMemories.Items.Consumable
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Crabapple Tonic");
+			DisplayName.SetDefault("Crabapple Juice");
 			Tooltip.SetDefault("Cheat Item- Grants a large amount of health, for a very long time \nUnobtainable without inventory editors \n9999999 Maximum Health \n9999999 Maximum mana \nInsane life regen \nNo mana cost \n999999 Minion slots");
 		}
 
