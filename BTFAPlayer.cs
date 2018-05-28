@@ -64,6 +64,7 @@ namespace ForgottenMemories
 		
 		public bool Tartarus = false;
 		public bool meteor = false;
+		public bool rockSick = false;
 		public bool hadron = false;
 		public bool pearl = false;
 		public bool pearl2 = false;
@@ -132,6 +133,7 @@ namespace ForgottenMemories
 			DivineBlessing = false;
 			spookedByArte = false;
 			Chicken = false;
+		    rockSick = false;
 
 			if (!hasBlightFlashed)
 			{
@@ -348,7 +350,7 @@ namespace ForgottenMemories
 		public override void SetupStartInventory(IList<Item> items)
 		{
 			
-			if (Tools.OneIn(5))
+			if (Tools.OneIn(3))
 			{
 				Item item = new Item();
                 item.SetDefaults(mod.ItemType<OldBlade>());
@@ -356,7 +358,7 @@ namespace ForgottenMemories
 				items.Insert(0, item);
 			}
 			
-			if (Tools.OneIn(5))
+			if (Tools.OneIn(3))
 			{
 				Item item = new Item();
                 item.SetDefaults(mod.ItemType<OldPick>());
@@ -365,7 +367,7 @@ namespace ForgottenMemories
 			}
 			
 			
-			if (Tools.OneIn(5))
+			if (Tools.OneIn(3))
 			{
 				Item item = new Item();
                 item.SetDefaults(mod.ItemType<OldAxe>());
@@ -449,6 +451,10 @@ namespace ForgottenMemories
 					player.AddBuff(mod.BuffType<CosmicBoon>(), 2);
 				else
 					player.AddBuff(mod.BuffType<CosmicGift>(), 2);
+			}
+			if (rockSick == true)
+			{
+			    player.lifeRegen += 2;
 			}
 			
 			if (player.ownedProjectileCounts[mod.ProjectileType("SlimeGuard")] < 1 && slimeGuard == true)

@@ -146,9 +146,17 @@ namespace ForgottenMemories.NPCs.Night
 		
 		public override void NPCLoot()
 		{
-			if (Main.rand.Next(5) < 2) //40%
+			if (Main.rand.Next(5) < 2 && !TGEMWorld.downedArterius) //40%
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BloodClot"), 1);
+			}
+			if (Main.rand.Next(20) == 0 && TGEMWorld.downedArterius) //5%
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BloodClot"), 1);
+			}
+			if (Main.rand.Next(20) == 0)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Rock"), 1);
 			}
 		}
 	}
