@@ -27,7 +27,7 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void SetStaticDefaults()
 		{
-		  DisplayName.SetDefault("Bee Hive");
+		  DisplayName.SetDefault("Hive of Enriching");
 		  Tooltip.SetDefault("Taking damage releases powerful bees and wasps, and temporarily increases life regen");
 		}
 

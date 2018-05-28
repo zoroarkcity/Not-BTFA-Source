@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace ForgottenMemories.Tiles.Banner
+namespace ForgottenMemories.Tiles.Banner.Decoration
 {
     public class DuneWispBannerTile : ModTile
     {

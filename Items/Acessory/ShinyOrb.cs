@@ -17,6 +17,10 @@ public class ShinyOrb : ModItem
 			item.expert = true;
 			item.rare = 9;
 			item.accessory = true;
+			item.useTime = 10;
+			item.useStyle = 1;
+			item.useTurn = true;
+			item.autoReuse = true;
 		}
 
     public override void SetStaticDefaults()

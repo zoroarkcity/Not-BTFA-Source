@@ -1,7 +1,11 @@
+using System.Collections.Generic;
+using System;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ForgottenMemories.Items.Banner
+namespace ForgottenMemories.Items.Banner.Decoration
 {
 	public class DuneWispBannerItem : ModItem
 	{
@@ -34,6 +38,6 @@ namespace ForgottenMemories.Items.Banner
             recipe.AddTile(86);
             recipe.SetResult(this, 1);
             recipe.AddRecipe();
-        }`
+        }
 	}
 }

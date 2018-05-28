@@ -12,7 +12,6 @@ namespace ForgottenMemories.Tiles
 	{
 		public override void SetDefaults()
 		{
-            Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileSolid[Type] = false;
             Main.tileLavaDeath[Type] = true;
