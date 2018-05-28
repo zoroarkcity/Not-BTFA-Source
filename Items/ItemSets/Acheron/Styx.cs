@@ -37,7 +37,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 		{
 			DisplayName.SetDefault("Styx");
 			Tooltip.SetDefault("[c/FFFF00:(Adjustable Weapon)]\n"
-	            + "Summons a soul fountain from parallel realities that steals life away from enemies\n"
+	            + "Summons a soul fountain from tartarus that steals life away from enemies\n"
 	            + "Left-click to summon the fountain on yourself\n"
 	            + "Right-click to adjust fountain speed\n"
 				+ "Deletes the fountain after 4th speed value\n"
