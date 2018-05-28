@@ -23,7 +23,7 @@ namespace ForgottenMemories.NPCs.Dungeon
             npc.knockBackResist = 0.5f;
             npc.width = 34;
             npc.height = 48;
-			npc.damage = 10;
+			npc.damage = 35;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
