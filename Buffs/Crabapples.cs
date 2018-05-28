@@ -21,8 +21,8 @@ namespace ForgottenMemories.Buffs
 		
 		public override void Update(Player player, ref int buffIndex)
 		{
-            player.statLifeMax2 += 999999;
-			player.lifeRegen += 999999;
+            player.statLifeMax2 = 9999999;
+			player.lifeRegen = 999999;
 		}
 	}
 }
