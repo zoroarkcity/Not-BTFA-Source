@@ -10,11 +10,11 @@ namespace ForgottenMemories.Items.ItemSets.Acheron     //The directory for your 
         public override void SetDefaults()
         {
 
-            item.damage = 50;     //The damage stat for the Weapon.
+            item.damage = 44;     //The damage stat for the Weapon.
             item.melee = true;      //This defines if it does Melee damage and if its effected by Melee increasing Armor/Accessories.
             item.width = 35;   //The size of the width of the hitbox in pixels.
             item.height = 35;  //The size of the height of the hitbox in pixels.          
-            item.useTime = 40;   //How fast the Weapon is used.
+            item.useTime = 30;   //How fast the Weapon is used.
             item.useAnimation = 20;     //How long the Weapon is used for.
 			item.useTurn = true;
 			item.scale = 1f;
@@ -31,7 +31,7 @@ namespace ForgottenMemories.Items.ItemSets.Acheron     //The directory for your 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Thanatos");
-            Tooltip.SetDefault("Releases homing thanatos skulls on swing");
+            Tooltip.SetDefault("Releases banshee skulls in a random direction on swing \nBanshee skulls can phase through blocks and home in on enemies");
         }
 
 		
