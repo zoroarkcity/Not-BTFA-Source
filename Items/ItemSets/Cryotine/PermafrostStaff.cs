@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 		{
 		item.CloneDefaults(ItemID.QueenSpiderStaff); 
 
-			item.damage = 14;  
+			item.damage = 24;  
 			item.mana = 15;   
 			item.width = 40;
 			item.height = 40;

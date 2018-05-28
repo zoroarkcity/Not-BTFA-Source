@@ -10,7 +10,7 @@ public class CryotinePickaxe : ModItem
     public override void SetDefaults()
     {
 
-        item.damage = 14;
+        item.damage = 18;
         item.melee = true;
         item.width = 28;
         item.height = 28;

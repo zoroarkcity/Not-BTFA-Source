@@ -11,7 +11,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 		public override void SetDefaults()
 		{
 			item.CloneDefaults(3836);
-			item.damage = 19;
+			item.damage = 27;
 
 			item.melee = true;
 			item.width = 52;

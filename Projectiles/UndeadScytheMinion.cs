@@ -54,7 +54,7 @@ namespace ForgottenMemories.Projectiles
                 projectile.Kill();
             }
             return false;
-        }
+		}
     }
 }
 

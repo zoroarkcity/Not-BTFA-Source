@@ -11,7 +11,7 @@ public class CryotineShuriken : ModItem
     public override void SetDefaults()
     {
 
-        item.damage = 16;
+        item.damage = 26;
         item.thrown = true;
 		item.noMelee = true;
 		item.noUseGraphic = true;

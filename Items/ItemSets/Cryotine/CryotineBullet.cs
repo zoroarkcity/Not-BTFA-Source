@@ -11,7 +11,7 @@ public class CryotineBullet : ModItem
     public override void SetDefaults()
     {
 
-        item.damage = 8;
+        item.damage = 10;
         item.ranged = true;
         item.width = 22;
         item.height = 22;

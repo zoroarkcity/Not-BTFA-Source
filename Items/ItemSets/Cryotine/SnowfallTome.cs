@@ -13,7 +13,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 		public override void SetDefaults()
 		{
 
-			item.damage = 13;
+			item.damage = 23;
 			item.mana = 8;
 			item.magic = true;
 			item.width = 88;
