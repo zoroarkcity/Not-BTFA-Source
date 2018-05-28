@@ -31,7 +31,7 @@ namespace ForgottenMemories.Items.Boss
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Unstable Wisp");
-		  Tooltip.SetDefault("Summons Acheron \n'May have disastrous effects if used in the underworld'");
+		  Tooltip.SetDefault("Summons Acheron \nOnly useable in the underworld");
 		}
 
 		

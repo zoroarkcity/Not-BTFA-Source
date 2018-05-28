@@ -108,9 +108,9 @@ namespace ForgottenMemories.NPCs.Acheron
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("HadesHand")));
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("LostSoul")), Main.rand.Next(100, 151));
 					break;
-				case 5:
+				/*case 5:
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("AcheronStaff")));
-					break;
+					break;*/
 				default:
 					break;
 			}
