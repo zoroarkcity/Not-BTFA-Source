@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -34,7 +35,18 @@ namespace ForgottenMemories.Projectiles
         {
             return true;
         }
-		
+        public override void AI()
+        {
+            Player player = Main.player[projectile.owner];
+			
+			if (!player.active || player.dead)
+            {			
+				if (projectile.timeLeft > 350)
+				{
+					projectile.timeLeft = 350;
+				}
+            }
+    	}
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (projectile.penetrate == 0)

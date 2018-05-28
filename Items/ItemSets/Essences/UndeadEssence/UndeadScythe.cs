@@ -18,13 +18,13 @@ namespace ForgottenMemories.Items.ItemSets.Essences.UndeadEssence
 		public override void SetDefaults()
 		{
 
-			item.damage = 32;
+			item.damage = 35;
 			item.summon = true;
 			item.noMelee = true;
 			item.noUseGraphic = true;
 			item.width = 22;
 			item.height = 22;
-            item.mana = 30;
+            item.mana = 15;
 			item.useTime = 14;
 			item.useAnimation = 14;
 			item.useStyle = 1;
@@ -42,7 +42,7 @@ namespace ForgottenMemories.Items.ItemSets.Essences.UndeadEssence
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sickle of Animation");
-			Tooltip.SetDefault("Turns into an underling on impact with an enemy \nThe Underling will act as a minion for a short time before vanishing \nUnderlings do not take up minion slots and do 10 damage");
+			Tooltip.SetDefault("Turns into an underling on impact with an enemy \nThe Underling will act as a summoned minion for a short time before vanishing \nUnderlings do not take up minion slots");
 		    BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/UndeadScythe");
 		}
 	    public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	

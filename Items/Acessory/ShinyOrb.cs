@@ -26,7 +26,7 @@ public class ShinyOrb : ModItem
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Shiny Orb");
-      Tooltip.SetDefault("Standing still increases life regen, summons homing energy over time");
+      Tooltip.SetDefault("Standing still increases life regen \nYou summon homing energy over time");
     }
 
 

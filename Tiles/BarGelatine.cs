@@ -13,10 +13,9 @@ namespace ForgottenMemories.Tiles
         public override void SetDefaults()
         {
 			Main.tileSolidTop[Type] = true;
-			Main.tileTable[Type] = true; 
 			Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
-            Main.tileSolid[Type] = false;
+            Main.tileSolid[Type] = true;
             Main.tileLavaDeath[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
