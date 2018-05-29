@@ -13,7 +13,7 @@ public class FirestormBottle : ModItem
         item.height = 28;
 
         item.value = 150000;
-        item.rare = 2;
+        item.rare = 1;
         item.accessory = true;
     }
 

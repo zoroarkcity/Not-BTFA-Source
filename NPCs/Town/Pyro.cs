@@ -100,16 +100,16 @@ namespace ForgottenMemories.NPCs.Town
 			int demo = NPC.FindFirstNPC(NPCID.Demolitionist);
 			if (demo >= 0 && Main.rand.Next(4) == 0)
 			{
-				return "Wow, " +  Main.npc[demo].GivenName + " thinks blowing things up is fun. What a loser";
+				return "Wow, " +  Main.npc[demo].GivenName + " thinks blowing things up is fun. What a loser!";
 			}
 			switch (Main.rand.Next(3))
 			{
 				case 0:
-					return "I assume if you have come to me you want to burn down a forest! If it is that case, please buy everything!";
+					return "I assume you want to burn down a forest, given you've come to me... If it is that case, please buy everything!";
 				case 1:
-                    return "I promise won't burn down your house, but I can't guarantee that there will be no accidents";
+                    return "I promise won't burn down your house, but I can't guarantee that there will be no accidents...";
 				default:
-					return "Fire is great, isn't it!";
+					return "Fire is great, isn't it?";
 			}
 		}
 

@@ -19,7 +19,7 @@ namespace ForgottenMemories.Items.Ammo
 			item.knockBack = 0.5f;
 			item.UseSound = SoundID.Item1;
 			item.value = 50;
-			item.rare = 3;
+			item.rare = 6;
 			item.ammo = AmmoID.Gel;
 			item.maxStack = 999;
 			item.consumable = true;
