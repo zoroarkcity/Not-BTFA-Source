@@ -9,7 +9,7 @@ namespace ForgottenMemories.Items.Pet.Chicken
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Giant Chicken"); 
-			Main.projFrames[projectile.type] = 6;
+			Main.projFrames[projectile.type] = 13;
 			Main.projPet[projectile.type] = true;
 		}
 
