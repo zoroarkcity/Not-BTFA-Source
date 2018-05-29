@@ -45,9 +45,6 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
       DisplayName.SetDefault("Ent Staff");
       Tooltip.SetDefault("Summons a ghastly tree to fight for you");
     }
-
-		}
-		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			Vector2 mouse = Main.MouseWorld;
