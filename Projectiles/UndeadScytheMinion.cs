@@ -22,7 +22,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.timeLeft = 900; //lasts 15 seconds 
 			projectile.width = 44;
 			projectile.height = 26;
-            projectile.damage = 8;
+            projectile.damage = 12;
         }
 
 		public override void SetStaticDefaults()

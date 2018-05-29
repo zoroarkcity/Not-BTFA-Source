@@ -54,13 +54,4 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		{
 			return new Vector2(-1, 0);
 		}
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ForestEnergy", 10);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 	}}

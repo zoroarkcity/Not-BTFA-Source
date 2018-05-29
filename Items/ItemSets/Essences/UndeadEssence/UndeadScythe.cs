@@ -18,13 +18,13 @@ namespace ForgottenMemories.Items.ItemSets.Essences.UndeadEssence
 		public override void SetDefaults()
 		{
 
-			item.damage = 35;
+			item.damage = 28;
 			item.summon = true;
 			item.noMelee = true;
 			item.noUseGraphic = true;
 			item.width = 22;
 			item.height = 22;
-            item.mana = 15;
+            item.mana = 10;
 			item.useTime = 14;
 			item.useAnimation = 14;
 			item.useStyle = 1;
