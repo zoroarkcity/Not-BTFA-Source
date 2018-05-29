@@ -33,8 +33,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.damage = 80;
             npc.defense = 4;
             npc.knockBackResist = 0f;
-            npc.width = 128;
-            npc.height = 154;
+            npc.width = 168;
+            npc.height = 220;
             npc.value = Item.buyPrice(0, 8, 0, 0);
             npc.boss = true;
             npc.lavaImmune = true;
@@ -50,15 +50,12 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             else
                 music = MusicID.Boss4;*/
 			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Arterius");
-
-			if (Main.bloodMoon)
-				spawnedInBloodMoon = true;
         }
 		
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Arterius");
-			Main.npcFrameCount[npc.type] = 5;
+			Main.npcFrameCount[npc.type] = 4;
 		}
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -124,9 +121,6 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			if(phase2)
 				BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/FaceOfInsanity/ArteriusP2_Glow"));
-			
-			else
-				BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/FaceOfInsanity/Arterius_Glow"));
 		}
 		
 		public void SpookyDash()
