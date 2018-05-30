@@ -11,6 +11,7 @@ namespace ForgottenMemories.Items.Pet.Chicken
 			DisplayName.SetDefault("Giant Chicken"); 
 			Main.projFrames[projectile.type] = 13;
 			Main.projPet[projectile.type] = true;
+			projectile.tileCollide = true;
 		}
 
 		public override void SetDefaults()
@@ -22,7 +23,7 @@ namespace ForgottenMemories.Items.Pet.Chicken
 		public override bool PreAI()
 		{
 			Player player = Main.player[projectile.owner];
-		//	player.BabyDino = false; // Relic from aiType
+		    //player.BabyDino = false; // Relic from aiType
 			return true;
 		}
 
