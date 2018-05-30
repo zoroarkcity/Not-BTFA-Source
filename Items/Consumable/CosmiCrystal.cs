@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cosmic Crystal");
-			Tooltip.SetDefault("'Contains a large amount of astral energy' \nSpawns Cosmorock in your world");
+			Tooltip.SetDefault("'Contains a large amount of astral energy' \nSpawns Cosmorock in your world \nCheat Item, breaks in multiplayer");
 		}
 
         public override bool UseItem(Player player)

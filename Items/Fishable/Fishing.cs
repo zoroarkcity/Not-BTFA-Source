@@ -16,11 +16,11 @@ namespace ForgottenMemories.Items.Fishing
        
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            if (liquidType == 0 && Main.rand.Next(35) == 0) 
+            if (liquidType == 0 && Main.rand.Next(50) == 0) 
             {
                 caughtType = mod.ItemType("ForgottenCrate");
             }
-			if (liquidType == 0 && Main.rand.Next(35) == 0) 
+			if (liquidType == 0 && Main.rand.Next(50) == 0) 
             {
                 caughtType = mod.ItemType("AmmoBag");
             }

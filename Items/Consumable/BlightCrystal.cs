@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Blighted Crystal");
-		  Tooltip.SetDefault("'Contains immense malevolent powers' \nSpawns Blighted ore in your world's evil biome");
+		  Tooltip.SetDefault("'Contains immense malevolent powers' \nSpawns Blighted ore in your world's evil biome \nCheat Item, breaks in multiplayer");
 		}
 
         public override bool UseItem(Player player)

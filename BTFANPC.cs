@@ -327,7 +327,7 @@ namespace ForgottenMemories
 					}
                 }
             }
-			
+/*
 			if (npc.type == NPCID.KingSlime)
 			{
 				if (!TGEMWorld.Gelatine || Main.rand.Next(10) == 0)
@@ -353,8 +353,8 @@ namespace ForgottenMemories
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BlightCrystal"), 1); 
 					TGEMWorld.Blight = true;
 				}
-			}
-		}
+			} */
+		} 
 		
 		public override void EditSpawnPool(IDictionary< int, float > pool, NPCSpawnInfo spawnInfo)
         {
