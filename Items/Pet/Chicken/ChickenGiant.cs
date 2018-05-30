@@ -12,8 +12,8 @@ namespace ForgottenMemories.Items.Pet.Chicken
 			Main.projFrames[projectile.type] = 13;
 			Main.projPet[projectile.type] = true;
 			projectile.tileCollide = true;
-			projectile.width = 25;
-			projectile.height = 27;
+			projectile.width = 50;
+			projectile.height = 54;
 		}
 
 		public override void SetDefaults()
