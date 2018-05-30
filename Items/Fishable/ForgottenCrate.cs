@@ -73,7 +73,7 @@ namespace ForgottenMemories.Items.Fishable
 			    BossSummon.Add(mod.ItemType("AncientLog"));			    
 				BossSummon.Add(mod.ItemType("Unstable_Wisp"));
 			}
-            if (main.hardMode)
+            if (Main.hardMode)
             {
 				Valuable.Add(mod.ItemType("BrassAlloy"));
 				BossSummon.Add(mod.ItemType("BloodClot"));
