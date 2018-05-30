@@ -14,8 +14,8 @@ namespace ForgottenMemories.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Crabapples");
-			Description.SetDefault("'Ok... this is epic'");
+			DisplayName.SetDefault("Hyperactive");
+			Description.SetDefault("I'm not buying you that drink again: its bad for you");
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 		
