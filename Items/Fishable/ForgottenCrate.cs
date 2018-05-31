@@ -84,10 +84,6 @@ namespace ForgottenMemories.Items.Fishable
 				Valuable.Add(mod.ItemType("ForestEnergy"));
 			}
 			Valuable.ToArray();
-			Treasure.ToArray();
-			Essence.ToArray();
-			BossSummon.ToArray();
-			Fungus.ToArray();
 			player.QuickSpawnItem(Essence[Main.rand.Next(0, Valuable.Count)], Main.rand.Next(3, 8));
 		    player.QuickSpawnItem(ItemID.GoldCoin, Main.rand.Next(1, 11));
 			if (Main.rand.Next(2) == 0)

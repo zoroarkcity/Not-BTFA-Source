@@ -21,7 +21,7 @@ namespace ForgottenMemories.Mounts.AcheronMount
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Obolos");
-			Tooltip.SetDefault("Summons a rideable Acheron Boat mount for you to sail");
+			Tooltip.SetDefault("Summons a rideable Ethereal Boat for you to sail");
 		}
     }
 }
