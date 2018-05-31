@@ -90,6 +90,14 @@ namespace ForgottenMemories.NPCs.Sky
 		{
 			BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Sky/Infection_Fly"));
 		}
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			if (npc.life <= 0)
+			{
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Infection_Fly"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Infection_Fly_2"), 1f);
+			}
+		}
 		public override void OnHitPlayer(Player player, int damage, bool crit)
 		{
 			npc.life = 0;

@@ -64,11 +64,8 @@ namespace ForgottenMemories.NPCs.Desert
 		{
 			if (npc.life <= 0)
 			{
-				/*Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Arachnergy_Gore_2"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Arachnergy_Gore_3"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Arachnergy_Gore_4"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Arachnergy_Gore_5"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Arachnergy_Gore_6"), 1f);*/
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Desert_Totem"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Desert_Totem_2"), 1f);
 			}
 		}
 		public override void NPCLoot ()

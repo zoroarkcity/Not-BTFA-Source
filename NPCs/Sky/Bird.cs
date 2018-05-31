@@ -78,7 +78,11 @@ namespace ForgottenMemories.NPCs.Sky
 		}
 		public override void HitEffect(int hitDirection, double damage)
 		{
-			//Insert gore codes here
+			if (npc.life <= 0)
+			{
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Bird"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Bird_2"), 1f);
+			}
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
