@@ -11,16 +11,16 @@ public class ShinyOrb : ModItem
 
 			item.width = 22;
 			item.height = 22;
-			item.consumable = true;
-			item.createTile = mod.TileType("OrbTile");
 			item.value = 100000;
 			item.expert = true;
 			item.rare = 9;
 			item.accessory = true;
+/*			item.consumable = true;
+			item.createTile = mod.TileType("OrbTile");
 			item.useTime = 10;
 			item.useStyle = 1;
 			item.useTurn = true;
-			item.autoReuse = true;
+			item.autoReuse = true; */
 		}
 
     public override void SetStaticDefaults()

@@ -13,13 +13,7 @@ public class Pearl : ModItem
         item.height = 28;
         item.value = 100000;
         item.rare = 1;
-		item.consumable = true;
-		item.createTile = mod.TileType("PlacedPearl");
         item.accessory = true;
-		item.useTime = 10;
-		item.useStyle = 1;
-		item.useTurn = true;
-		item.autoReuse = true;
     }
 
     public override void SetStaticDefaults()

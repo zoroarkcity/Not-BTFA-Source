@@ -263,12 +263,6 @@ namespace ForgottenMemories
 					}
 				}
 			}
-			
-			if (type == 124)
-            {
-                shop.item[nextSlot].SetDefaults(mod.ItemType("MechanicsHammer"));
-                nextSlot++;
-            }
 		}
 		
 		public override void NPCLoot(NPC npc)

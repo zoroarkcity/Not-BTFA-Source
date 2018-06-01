@@ -21,8 +21,8 @@ namespace ForgottenMemories.Items.Acessory
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Blood Heart");
-      Tooltip.SetDefault("Gives you a chance to steal life on enemy hit");
+      DisplayName.SetDefault("Weeping Heart");
+      Tooltip.SetDefault("Gives you a chance to lifesteal when you hit an enemy");
     }
 
 
