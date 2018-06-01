@@ -15,8 +15,8 @@ namespace ForgottenMemories.NPCs.Sky
 			npc.damage = 30;
 			npc.defense = 16;
 			npc.lifeMax = 130;
-			npc.HitSound = SoundID.NPCHit1;
-			npc.DeathSound = SoundID.NPCDeath1;
+			npc.HitSound = SoundID.NPCHit53;
+			npc.DeathSound = SoundID.NPCDeath56;
 			npc.value = 70f;
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 14;
@@ -43,7 +43,7 @@ namespace ForgottenMemories.NPCs.Sky
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.player.ZoneSkyHeight ? 0.18f : 0f;
+			return spawnInfo.player.ZoneSkyHeight ? 0.15f : 0f;
 		}
 		
 		public override void NPCLoot()
