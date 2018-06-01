@@ -15,7 +15,7 @@ namespace ForgottenMemories.NPCs.Granite
 		{
 			npc.width = 48;
 			npc.height = 36;
-			npc.damage = 21;
+			npc.damage = 8;
 			npc.defense = 8;
 			npc.lifeMax = 40;
 			npc.HitSound = SoundID.NPCHit1;
