@@ -478,8 +478,8 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore3"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore4"), 1f);
-			
-			TGEMWorld.TryForBossMask(npc.Center, npc.type);
+			int amountToDrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GreaterHealingPotion, amountToDrop);   
 			TGEMWorld.downedGhastlyEnt = true;
 
 			if (Main.expertMode)
@@ -512,6 +512,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 					    break;
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ForestEnergy")), Main.rand.Next(22, 35));
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BlossomBranch")), Main.rand.Next(5, 10));
+			    TGEMWorld.TryForBossMask(npc.Center, npc.type);
 			    }
 			}
 		}

@@ -10,7 +10,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetDefaults()
 		{
 
-			item.damage = 40;
+			item.damage = 77;
 			item.melee = true;
 			item.width = 58;
 			item.height = 52;
@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Harvester");
-			Tooltip.SetDefault("Creates a bouncing forest portal");
+			Tooltip.SetDefault("Creates a bouncing forest rift that ejects leaves");
 		}
 	}
 }

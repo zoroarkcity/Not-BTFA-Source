@@ -119,6 +119,8 @@ namespace ForgottenMemories.NPCs.Acheron
 		public override void NPCLoot()
 		{
 			TGEMWorld.downedAcheron = true;
+			int amountToDrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LesserHealingPotion, amountToDrop);   
 			if (Main.expertMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("AcheronBag")));

@@ -94,11 +94,11 @@ namespace ForgottenMemories.NPCs.Sky
 		public override void NPCLoot()
 		{
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoaringEnergy"), Main.rand.Next(2, 7));
-			if(Main.rand.Next(12) == 0 && !Main.hardMode)
+			if(Main.rand.Next(16) == 0 && !Main.hardMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Valhalla"));
 			}
-			if(Main.rand.Next(33) == 0 && Main.hardMode)
+			if(Main.rand.Next(32) == 0 && Main.hardMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Valhalla"));
 			}

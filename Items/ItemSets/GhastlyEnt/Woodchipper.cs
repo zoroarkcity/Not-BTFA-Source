@@ -11,7 +11,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetDefaults()
 		{
 
-			item.damage = 55;
+			item.damage = 85;
 			item.ranged = true;
 			item.width = 22;
 			item.height = 24;
@@ -32,7 +32,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wood Chipper");
-			Tooltip.SetDefault("Fires a bullet along with woodchips");
+			Tooltip.SetDefault("Fires a bullet along with a number of woodchips");
 		}
 
 

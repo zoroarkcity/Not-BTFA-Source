@@ -591,8 +591,8 @@ namespace ForgottenMemories.NPCs.TitanRock
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore3"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore4"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore5"), 1f);
-			
-			TGEMWorld.TryForBossMask(npc.Center, npc.type);
+			int titandrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GreaterHealingPotion, titandrop);   
 			if (Main.expertMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("TitanRockBag")));
@@ -601,7 +601,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			{
 				int amountToDrop = Main.rand.Next(12,16);
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SpaceRockFragment"), amountToDrop);
-				
+				TGEMWorld.TryForBossMask(npc.Center, npc.type);
 				switch (Main.rand.Next (8))
 				{
 				case 0:

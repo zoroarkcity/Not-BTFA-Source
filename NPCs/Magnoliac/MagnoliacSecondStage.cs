@@ -60,6 +60,8 @@ namespace ForgottenMemories.NPCs.Magnoliac
         {
 			
 			TGEMWorld.downedMag = true;
+			int amountToDrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LesserHealingPotion, amountToDrop);   
             if (Main.expertMode) //if it's expert mode the treasure bag will drop
             {
                 npc.DropBossBags();
@@ -89,7 +91,6 @@ namespace ForgottenMemories.NPCs.Magnoliac
 				}
 			}
 			TGEMWorld.TryForBossMask(npc.Center, npc.type);
-            potionType = ItemID.HealingPotion;   //boss drops (can be changed)
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/MagnoliacGore1"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/MagnoliacGore2"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Magnoliac/MagnoliacGore3"), 1f);

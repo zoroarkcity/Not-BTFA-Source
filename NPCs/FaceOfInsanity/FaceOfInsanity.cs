@@ -630,7 +630,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public override void NPCLoot()
 		{
-			TGEMWorld.TryForBossMask(npc.Center, npc.type);
+			int amountToDrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GreaterHealingPotion, amountToDrop);   
 			if (Main.expertMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ArteriusBag")));
@@ -666,6 +667,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					default:
 						break;
 				if (Main.rand.Next(7) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ArteryHook")));
+			    TGEMWorld.TryForBossMask(npc.Center, npc.type);
 				}
 			}
 			if (!TGEMWorld.downedArterius)

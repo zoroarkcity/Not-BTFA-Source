@@ -18,7 +18,7 @@ namespace ForgottenMemories.NPCs.Desert
         public override void SetDefaults()
         {
             npc.aiStyle = 3;  
-			npc.lifeMax = 80;	 
+			npc.lifeMax = 250;	 
             npc.defense = 12;  
 			npc.value = 100f;
 			aiType = 73;
@@ -28,9 +28,9 @@ namespace ForgottenMemories.NPCs.Desert
 			npc.damage = 25;
             npc.lavaImmune = true;
             npc.noTileCollide = false;
-            npc.HitSound = 	new Terraria.Audio.LegacySoundStyle(29, 48);
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.HitSound = SoundID.NPCHit2;
 			npc.dontTakeDamage = false;
-            npc.DeathSound = SoundID.NPCDeath43;
         }
 		public override void AI()
         {
