@@ -85,18 +85,6 @@ namespace ForgottenMemories.NPCs.Night
 				}
 			}
 		}
-		public override void HitEffect(int hitDirection, double damage)
-		{
-			/*if (npc.life <= 0)
-			{
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_2"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_2"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_3"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_4"), 1f);
-			}*/
-		}
 		public override void FindFrame(int frameHeight)
 		{
 			const int Frame_1 = 0;

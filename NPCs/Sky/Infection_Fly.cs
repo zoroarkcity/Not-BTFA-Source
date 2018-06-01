@@ -35,30 +35,6 @@ namespace ForgottenMemories.NPCs.Sky
         {
 			Player player = Main.player[npc.target];
 			npc.spriteDirection = npc.direction;
-        }
-		public override void HitEffect(int hitDirection, double damage)
-		{
-			/*if (npc.life <= 0)
-			{
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_2"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_2"), 1f); ADD GORES HERE
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_3"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Energy_Humanoid_Gore_4"), 1f);
-			}*/
-			if (npc.life <= 0)
-			{
-				for (int k = 0; k < 20; k++)
-				{
-					Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
-					Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
-				}
-
-				Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
-				Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
-				Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
-			}
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
@@ -70,11 +46,11 @@ namespace ForgottenMemories.NPCs.Sky
 		public override void NPCLoot()
 		{
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoaringEnergy"), Main.rand.Next(2, 7));
-			if(Main.rand.Next(12) == 0 && !Main.hardMode)
+			if(Main.rand.Next(16) == 0 && !Main.hardMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Valhalla"));
 			}
-			if(Main.rand.Next(33) == 0 && Main.hardMode)
+			if(Main.rand.Next(32) == 0 && Main.hardMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Valhalla"));
 			}
@@ -96,6 +72,15 @@ namespace ForgottenMemories.NPCs.Sky
 			{
 				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Infection_Fly"), 1f);
 				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Infection_Fly_2"), 1f);
+				for (int k = 0; k < 20; k++)
+				{
+					Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
+					Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
+				}
+
+				Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
+				Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
+				Dust.NewDust(npc.position, npc.width, npc.height, 75, 2.5f * hitDirection, -2.5f, 0, new Color(), 1f);
 			}
 		}
 		public override void OnHitPlayer(Player player, int damage, bool crit)
@@ -104,6 +89,8 @@ namespace ForgottenMemories.NPCs.Sky
 			npc.lifeMax = 0;
 			Main.PlaySound(new Terraria.Audio.LegacySoundStyle(4, 21));
 			player.AddBuff(BuffID.CursedInferno, 60*3);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Infection_Fly"), 1f);
+			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WispDudes/Infection_Fly_2"), 1f);
 		}
 		public override void FindFrame(int frameHeight)
 		{

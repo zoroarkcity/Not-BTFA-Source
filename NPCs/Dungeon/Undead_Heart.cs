@@ -40,13 +40,6 @@ namespace ForgottenMemories.NPCs.Dungeon
 				npc.velocity.X = num2 * num4 * 0.4f;
                 npc.velocity.Y = num3 * num4 * 0.4f;
         }
-		public override void HitEffect(int hitDirection, double damage)
-		{
-			/*if (npc.life <= 0)
-			{
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Stinging_Energy_Gore"), 1f);
-			}*/
-		}
 		public override void OnHitPlayer (Player target, int damage, bool crit)
 		{	
 			for(int i = 0; i < Main.npc.Length; i++)
