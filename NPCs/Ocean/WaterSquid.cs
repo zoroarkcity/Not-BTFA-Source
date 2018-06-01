@@ -16,13 +16,15 @@ namespace ForgottenMemories.NPCs.Ocean
 			npc.damage = 25;
 			npc.defense = 5;
 			npc.lifeMax = 250;
+			npc.velocity.X = 0.7f;
 			npc.HitSound = SoundID.NPCHit8;
 			npc.DeathSound = SoundID.NPCDeath11;
 			npc.value = 60f;
-			npc.knockBackResist = 5f;
+			npc.knockBackResist = 1f;
 			npc.aiStyle = 18;
 			aiType = NPCID.BlueJellyfish;
 			banner = npc.type;
+			npc.noGravity = true;
 			bannerItem = mod.ItemType("SquidBannerItem");
 		}
 		
@@ -30,6 +32,10 @@ namespace ForgottenMemories.NPCs.Ocean
 		{
 			DisplayName.SetDefault("Water Shard Squid");
 			Main.npcFrameCount[npc.type] = 4;
+		}
+		public override void OnHitPlayer(Player player, int damage, bool crit)
+		{
+			player.AddBuff(BuffID.Darkness, 60*3);
 		}
 		public override void FindFrame(int frameHeight)
 		{
@@ -49,6 +55,6 @@ namespace ForgottenMemories.NPCs.Ocean
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WaterSquid/WaterSquidGore3"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WaterSquid/WaterSquidGore4"), 1f);
 		    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("WaterShard"), Main.rand.Next(1, 6));
-		}
+		} 
 	}
 }

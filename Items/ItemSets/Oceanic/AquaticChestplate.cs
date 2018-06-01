@@ -39,7 +39,7 @@ namespace ForgottenMemories.Items.ItemSets.Oceanic
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "WaterShard", 10);
-			recipe.AddIngredient(ItemID.SharkFin, 1);
+			recipe.AddIngredient(ItemID.SharkFin, 4);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

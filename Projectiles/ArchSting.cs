@@ -15,7 +15,8 @@ namespace ForgottenMemories.Projectiles
 			projectile.friendly = true;
 			projectile.melee = true;
 			projectile.penetrate = 1;
-			projectile.timeLeft = 1000;
+			aiType = ProjectileID.Bullet;
+			projectile.timeLeft = 600;
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{

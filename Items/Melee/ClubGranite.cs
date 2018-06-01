@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.Melee
 		{
 
 
-			item.damage = 35; 
+			item.damage = 28; 
 			item.crit = 18;
 			item.melee = true;
 			item.knockBack = 11; 
