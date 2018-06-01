@@ -15,7 +15,7 @@ namespace ForgottenMemories.InGameWiki.Buffs
         {
             Main.buffNoTimeDisplay[Type] = true;
 			DisplayName.SetDefault("Educating");
-			Description.SetDefault("You can learn more on our discord server !");
+			Description.SetDefault("You can learn more on our discord server!");
         }
         public override void Update(Player player, ref int buffIndex)
         {
