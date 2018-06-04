@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Slimy Crystal");
-			Tooltip.SetDefault("'Formed from the remains of a powerful slimy beast' \nSpawns Gelatine ore in your world \nCheat Item, breaks in multiplayer");
+			Tooltip.SetDefault("'Formed from the remains of a powerful slimy beast' \nSpawns Gelatine ore in your world \nMay not work in multiplayer");
 		}
 
         public override bool UseItem(Player player)

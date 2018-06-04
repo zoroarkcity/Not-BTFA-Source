@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Cryo Crystal");
-		  Tooltip.SetDefault("'Cold enough to even freeze magma' \nSpawns Cryotine ore in the Underground Snow \nCheat Item, breaks in multiplayer");
+		  Tooltip.SetDefault("'Cold enough to even freeze magma' \nSpawns Cryotine ore in the Underground Snow \nMay not work in multiplayer");
 		}
 
         public override bool UseItem(Player player)
