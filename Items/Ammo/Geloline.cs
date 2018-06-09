@@ -21,6 +21,7 @@ namespace ForgottenMemories.Items.Ammo
 			item.value = 50;
 			item.rare = 6;
 			item.ammo = AmmoID.Gel;
+			item.noMelee = true;
 			item.maxStack = 999;
 			item.consumable = true;
             item.createTile = mod.TileType("GelolineTile"); 
