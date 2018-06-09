@@ -63,7 +63,15 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 
         public override void AI()
         {
-			npc.TargetClosest(true);
+			npc.netUpdate = true;
+			if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            {
+                npc.TargetClosest(true);
+            }
+	  	    if (Main.player[npc.target].dead)
+			{
+				npc.active = false;
+			}
 			npc.spriteDirection = npc.direction;
             Player player = Main.player[npc.target];
 			leafTimer++;
@@ -84,13 +92,6 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 				}
 				leafTimer = 0;
 			}
-			/*if (Main.netMode != 1 && homingLifeStealer >= 90 + Main.rand.Next(90) && secondStagePortals < 480)
-			{
-				Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
-				float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * 0.5f)), vector8.X - (player.position.X + (player.width * 0.5f)));
-				int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * 10f) * -1), (float)((Math.Sin(rotation) * 10f) * -1), mod.ProjectileType("Homing_Life_Stealer"), 20, 0f, 0);
-				homingLifeStealer = 0;
-			}*/
 			if (Main.netMode != 1 && leafTimer >= 120 && secondStagePortals < 480)
 			{
 				Vector2 vector2_1 = new Vector2(npc.position.X - 40 + (float) npc.width * 0.5f, npc.position.Y - 100 + (float) npc.height * 0.5f);
@@ -162,29 +163,14 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 				eruptionFromGroundTimer = 0;
 			}
 			
-			/*if (Main.netMode != 1 && teleportation >= 300 /*&& npc.life < npc.lifeMax/2.5f)
-			{
-				if (teleportation >= 540)
-				{
-					projectileTeleport = Projectile.NewProjectile(npc.position.X, npc.position.Y, 0f, 0f, mod.ProjectileType("Teleportation_Rift"), 0, 0f, 0);
-					teleportation = 0;
-				}
-			}*/
-			
 			if ((double) Vector2.Distance(player.Center, npc.Center) <= (double) 300f)
 			{
 				player.AddBuff(BuffID.Poisoned, 2);
-				player.ManageSpecialBiomeVisuals("Vortex", player.active, new Vector2(npc.position.X + 80, npc.position.Y + 100));
-				player.ManageSpecialBiomeVisuals("WaterDistortion", player.active, new Vector2(player.position.X, player.position.Y));
-				player.ManageSpecialBiomeVisuals("HeatDistortion", player.active, new Vector2(player.position.X, player.position.Y));
+				//player.ManageSpecialBiomeVisuals("Vortex", player.active, new Vector2(npc.position.X + 80, npc.position.Y + 100));
+				//player.ManageSpecialBiomeVisuals("WaterDistortion", player.active, new Vector2(player.position.X, player.position.Y));
+				//player.ManageSpecialBiomeVisuals("HeatDistortion", player.active, new Vector2(player.position.X, player.position.Y));
 				npc.damage = 120; //ADJUST THIS, DAMAGE IS SUPPOSED TO INCREASE WHEN NPC IS CLOSE TO PLAYER
 				npc.defense = 60; //ADJUST THIS, DAMAGE IS SUPPOSED TO INCREASE WHEN NPC IS CLOSE TO PLAYER
-			}
-			if ((double) Vector2.Distance(player.Center, npc.Center) <= (double) 100f)
-			{
-				player.wingTime = 0;
-				player.wingTimeMax = 0;
-				player.mount.Dismount(player);
 			}
 			if (!player.active || player.dead)
 			{
@@ -194,6 +180,13 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 				{
 					npc.timeLeft = 10;
 				}
+			}
+			
+			if ((double) Vector2.Distance(player.Center, npc.Center) <= (double) 100f)
+			{
+				player.wingTime = 0;
+				player.wingTimeMax = 0;
+				player.mount.Dismount(player);
 			}
 			if (npc.life >= npc.lifeMax/1.5f) //666 >
 				FirstStage();
@@ -382,6 +375,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 				npc.velocity.Y = num3 * num4 * (speedMultiplier / 2f + 0.25f);
 			}
 		}
+		
 		public void FirstStage()
 		{
 			speedMultiplier = 0.5f;
@@ -451,6 +445,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 			{
 				npc.frameCounter = 0;
 			}
+
 		}	
 		public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
