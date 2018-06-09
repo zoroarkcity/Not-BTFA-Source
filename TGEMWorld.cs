@@ -161,7 +161,7 @@ namespace ForgottenMemories
 		}
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
-			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
+			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 			tasks.Insert(genIndex + 1, new PassLegacy("BTFA Gems", delegate (GenerationProgress progress)
 			{	
 				int spinelGen = 0;
