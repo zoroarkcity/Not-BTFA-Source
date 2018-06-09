@@ -190,10 +190,10 @@ namespace ForgottenMemories
 						}	
 					}
                 }
-				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("GhastlyEnt")) && GentBool)
+				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Ghastly_Ent")) && GentBool)
 				{
 					GentBool = false;
-					NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("GhastlyEnt")));
+					NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Ghastly_Ent")));
 					Main.NewText("The wretched father of nature awakens!", 175, 75, 255);
                 }
 			}

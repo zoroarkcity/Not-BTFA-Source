@@ -34,7 +34,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 
         public override bool CanUseItem(Player player)
         {           
-            return !NPC.AnyNPCs(mod.NPCType("GhastlyEnt"));
+            return !NPC.AnyNPCs(mod.NPCType("Ghastly_Ent"));
         }
         public override bool UseItem(Player player)
         {
