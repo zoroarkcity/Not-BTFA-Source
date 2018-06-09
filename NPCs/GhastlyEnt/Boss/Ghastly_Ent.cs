@@ -30,8 +30,6 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
         {
             npc.aiStyle = -1;
             npc.lifeMax = 30000;
-
-
             npc.defense = 20;
             npc.knockBackResist = 0f;
             npc.width = 160;
@@ -48,7 +46,6 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
             npc.HitSound = SoundID.NPCHit7;
 			npc.DeathSound = SoundID.NPCDeath10;
 			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/ForestArmy");
-            music = 12;
 			npc.npcSlots = 5;
         }
 		
