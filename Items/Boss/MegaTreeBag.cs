@@ -24,7 +24,7 @@ namespace ForgottenMemories.Items.Boss
 
 			item.expert = true;
 			item.rare = 3;
-			bossBagNPC = mod.NPCType("GhastlyEnt");
+			bossBagNPC = mod.NPCType("Ghastly_Ent");
 		}
 
     public override void SetStaticDefaults()
