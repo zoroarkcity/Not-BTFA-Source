@@ -63,7 +63,7 @@ namespace ForgottenMemories
         {
             if (Main.invasionX == Main.spawnTileX && TGEMWorld.forestInvasionUp)
             {
-                music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ForestArmy");
+                music = MusicID.Boss3;
 			}
         }
 		

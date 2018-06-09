@@ -45,7 +45,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
             npc.noGravity = true;
             npc.HitSound = SoundID.NPCHit7;
 			npc.DeathSound = SoundID.NPCDeath10;
-			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/ForestArmy");
+            music = MusicID.Boss3;
 			npc.npcSlots = 5;
         }
 		
