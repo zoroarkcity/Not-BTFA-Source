@@ -573,7 +573,10 @@ namespace ForgottenMemories.NPCs.TitanRock
 			int frame = (int)npc.frameCounter; 
 			npc.frame.Y = frame * frameHeight; 
 		}
-		
+		public override void BossLoot(ref string name, ref int potionType)
+		{
+			potionType = ItemID.GreaterHealingPotion; //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater   
+		}		
 		public override void NPCLoot()
 		{
 			for (int i = 0; i < 200; i++)
@@ -591,8 +594,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore3"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore4"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore5"), 1f);
-			int titandrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GreaterHealingPotion, titandrop);   
 			if (Main.expertMode)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("TitanRockBag")));

@@ -55,13 +55,11 @@ namespace ForgottenMemories.NPCs.Magnoliac
 		{
 			npc.lifeMax = (int)(npc.lifeMax * 0.625f * bossLifeScale);
 			npc.damage = (int)(npc.damage * 0.3f);
-		}
+		}	
         public override void BossLoot(ref string name, ref int potionType)
         {
-			
+			potionType = ItemID.LesserHealingPotion; //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater   			
 			TGEMWorld.downedMag = true;
-			int amountToDrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LesserHealingPotion, amountToDrop);   
             if (Main.expertMode) //if it's expert mode the treasure bag will drop
             {
                 npc.DropBossBags();

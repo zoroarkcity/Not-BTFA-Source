@@ -627,7 +627,10 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			target.AddBuff(BuffID.Bleeding, 30 * Main.rand.Next(20, 27)); //10-13 sec
 			//target.AddBuff(BuffID.OnFire, 360);
 		}
-		
+		public override void BossLoot(ref string name, ref int potionType)
+		{
+			potionType = ItemID.GreaterHealingPotion; //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater   
+		}				
 		public override void NPCLoot()
 		{
 			int amountToDrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater

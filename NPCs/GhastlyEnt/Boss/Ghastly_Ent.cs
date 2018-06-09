@@ -463,6 +463,10 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 		{
 			BTFAUtility.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/GhastlyEnt/Boss/Ghastly_Ent_Glow"));
 		}	
+		public override void BossLoot(ref string name, ref int potionType)
+		{
+			potionType = ItemID.GreaterHealingPotion; //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater   
+		}		
 		public override void NPCLoot()
 		{
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore1"), 1f);

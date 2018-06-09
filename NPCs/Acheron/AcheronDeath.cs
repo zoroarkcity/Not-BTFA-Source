@@ -115,7 +115,10 @@ namespace ForgottenMemories.NPCs.Acheron
 					break;
 			}
 		}
-
+		public override void BossLoot(ref string name, ref int potionType)
+		{
+			potionType = ItemID.LesserHealingPotion; //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater   
+		}		
 		public override void NPCLoot()
 		{
 			TGEMWorld.downedAcheron = true;
