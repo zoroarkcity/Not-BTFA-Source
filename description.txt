@@ -8,7 +8,7 @@
 	. Soaring Pecker and Infection Fly
 	. Undead Heart
 	(If you still need wisps for some strange reason, they can be spawned in with cheat sheet)
-- Ore spawners are now dropped correctly, once on the first death of a boss and with a 1/10 chance afterwards
+- Ore spawners have been removed, ores will spawn after you kill their respective boss (on pre-existing worlds this may or may not work)
 - The three gems included with the mod, citrine, tourmaline and spinel are now found rarely in marble, granite and ash respectively, but can still by dropped by vanilla enemies
 - Cosmodium (a now unobtainable ore) has been fully removed from relevant recipes and replaced by appropriate materials
 - Rebalanced various items and updated their sprites
