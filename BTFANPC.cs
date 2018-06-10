@@ -321,33 +321,6 @@ namespace ForgottenMemories
 					}
                 }
             }
-
-			if (npc.type == NPCID.KingSlime)
-			{
-				if (!TGEMWorld.Gelatine || Main.rand.Next(10) == 0)
-				{
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SlimeCrystal"), 1);
-					TGEMWorld.Gelatine = true;
-				}
-			}
-			
-			if ((npc.type == 13 || npc.type == 14 || npc.type == 15) && npc.boss == true || npc.type == 266)
-			{
-				if (!TGEMWorld.Cryotine || Main.rand.Next(10) == 0)
-				{
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CryoCrystal"), 1);
-					TGEMWorld.Cryotine = true;
-				}
-			}
-			
-			if (npc.type == 262)
-			{
-				if (!TGEMWorld.Blight || Main.rand.Next(10) == 0)
-				{
-					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BlightCrystal"), 1); 
-					TGEMWorld.Blight = true;
-				}
-			} 
 		} 
 		
 		public override void EditSpawnPool(IDictionary< int, float > pool, NPCSpawnInfo spawnInfo)

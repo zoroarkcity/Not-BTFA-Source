@@ -632,13 +632,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 					break;
 				}
 			}
-
-		if (!TGEMWorld.Cosmirock || Main.rand.Next(10) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CosmiCrystal"), 1);
-				TGEMWorld.Cosmirock = true;
-			} 
-
 			TGEMWorld.downedTitanRock = true;			
 		}
 	}
