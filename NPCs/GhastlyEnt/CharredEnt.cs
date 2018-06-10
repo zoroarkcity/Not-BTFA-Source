@@ -23,6 +23,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 0.5f;
 			npc.aiStyle = 3;
 			aiType = 31;
+            music = MusicID.Boss3;
 			bannerItem = mod.ItemType("CharredEntBannerItem");
 		}
 		

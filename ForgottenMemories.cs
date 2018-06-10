@@ -58,15 +58,6 @@ namespace ForgottenMemories
 				layers.Insert(index, CustomProgress);
 			}
 		}
-		
-		public override void UpdateMusic(ref int music)
-        {
-            if (Main.invasionX == Main.spawnTileX && TGEMWorld.forestInvasionUp)
-            {
-                music = MusicID.Boss3;
-			}
-        }
-		
 		public override void AddRecipeGroups()
 		{
 			RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Iron Bar" + Lang.GetItemNameValue(ItemType("Iron Bar")), new int[]

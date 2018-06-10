@@ -25,6 +25,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 3;
 			aiType = 508;
+            music = MusicID.Boss3;
 			bannerItem = mod.ItemType("LivingMortarBannerItem");
 		}
 		

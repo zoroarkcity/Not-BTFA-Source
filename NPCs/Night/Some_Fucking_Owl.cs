@@ -27,7 +27,7 @@ namespace ForgottenMemories.NPCs.Night
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = false;
-            npc.HitSound = 	new Terraria.Audio.LegacySoundStyle(29, 48);
+			npc.HitSound = SoundID.NPCHit36;
             npc.DeathSound = SoundID.NPCDeath43;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 3;
