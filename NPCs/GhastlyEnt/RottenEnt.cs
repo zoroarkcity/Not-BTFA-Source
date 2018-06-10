@@ -70,7 +70,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 
 			spawnerTimer++; //////////////REDUCED THE SPAWN TIMER BUT DECREASED THE RANGE OF SPAWNING ///////////////////////////
 			float distanceBeetweenPlayerandNPC = 700f;
-			if (spawnerTimer >= 120 && spawnedWorms != 3 &&  player.active && (double) Vector2.Distance(npc.Center, player.Center) <= (double) distanceBeetweenPlayerandNPC)
+			if (spawnerTimer >= 120 && spawnedWorms != 2 &&  player.active && (double) Vector2.Distance(npc.Center, player.Center) <= (double) distanceBeetweenPlayerandNPC)
 			{
 				{
 					spawnerTimer = 0;

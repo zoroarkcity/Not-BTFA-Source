@@ -19,7 +19,7 @@ namespace ForgottenMemories.NPCs.Granite
 			npc.defense = 8;
 			npc.lifeMax = 40;
 			npc.HitSound = SoundID.NPCHit41;
-			npc.DeathSound = SoundID.NPCHit41;
+			npc.DeathSound = SoundID.NPCDeath41;
 			npc.value = 70f;
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 14;

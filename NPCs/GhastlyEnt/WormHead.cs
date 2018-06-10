@@ -19,18 +19,18 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		}
         public override void SetDefaults()
         {
-            npc.lifeMax = 1000;
-            npc.damage = 70;
-            npc.defense = 35;
+            npc.lifeMax = 300;
+            npc.damage = 50;
+            npc.defense = 10;
             npc.knockBackResist = 0f;
             npc.width = 20; //this is where you put the npc sprite width.     important
             npc.height = 16; //this is where you put the npc sprite height.   important
             npc.lavaImmune = true; 
             npc.noGravity = true;           
             npc.noTileCollide = true;     
-            npc.HitSound = SoundID.NPCHit2;
+            npc.HitSound = SoundID.NPCHit9;
             npc.behindTiles = true;
-            npc.DeathSound = SoundID.NPCDeath5;
+            npc.DeathSound = SoundID.NPCDeath13;
             Main.npcFrameCount[npc.type] = 1;
             npc.value = Item.buyPrice(0, 5, 0, 0);
             npc.npcSlots = 1f;
