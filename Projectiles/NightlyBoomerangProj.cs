@@ -1,18 +1,17 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-using System;
 
-namespace ForgottenMemories.Projectiles.Magnoliac
+namespace ForgottenMemories.Projectiles
 {
-	public class BeechorangProj : ModProjectile
+	public class NightlyBoomerangProj : ModProjectile
 	{
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Beech-orang");
+            DisplayName.SetDefault("Terrestrial Ricochet");
         }
 		public override void SetDefaults()
 		{
@@ -22,8 +21,7 @@ namespace ForgottenMemories.Projectiles.Magnoliac
 			projectile.friendly = true;
 			projectile.melee = true;
 			projectile.extraUpdates = 1;
-			projectile.timeLeft = 120;
-			projectile.penetrate = -1;
+			projectile.timeLeft = 120;	
 		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
@@ -43,7 +41,7 @@ namespace ForgottenMemories.Projectiles.Magnoliac
 			float value3 = 1f;
 			float num160 = 0f;
 			Main.spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position - (7 * projectile.velocity) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), lightColor, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
-			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/BeechorangProj"), projectile.position - (7 * projectile.velocity) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+			Main.spriteBatch.Draw(mod.GetTexture("GlowMasks/NightlyBoomerangProj"), projectile.position - (7 * projectile.velocity) + projectile.Size / 2f - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
 			return false;
 			
 			
