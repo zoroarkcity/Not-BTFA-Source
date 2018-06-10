@@ -17,14 +17,14 @@ namespace ForgottenMemories.Items.ItemSets.Essences.NightlyEssence
             item.melee = true;
             item.width = 22;
             item.height = 26;
-			item.useTime = 10;
+			item.useTime = 30;
 			item.useAnimation = 10;
             item.noUseGraphic = true;
             item.useStyle = 1;
-			item.knockBack = 1;
+			item.knockBack = 0.5f;
 			item.value = 30000;
 			item.rare = 1;
-			item.shootSpeed = 7f;
+			item.shootSpeed = 5f;
 			item.shoot = mod.ProjectileType("NightlyBoomerangProj");
 			item.UseSound = SoundID.Item1;
 		}

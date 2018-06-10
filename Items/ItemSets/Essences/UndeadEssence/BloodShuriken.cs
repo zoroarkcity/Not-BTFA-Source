@@ -36,7 +36,7 @@ public class BloodShuriken : ModItem
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Blood Shuriken");
-      Tooltip.SetDefault("Ingores gravity \nSteals small amounts of life on hit");
+      Tooltip.SetDefault("Ignores gravity \nSteals small amounts of life on hit");
     }
 
 
