@@ -48,7 +48,7 @@ namespace ForgottenMemories
             {
                 if (NPC.downedMechBoss2 && NPC.downedMechBoss3 && !TGEMWorld.Blight)
                 {                                                          
-					Main.NewText("A malevolent force seeps into the most pestillent stone...", 150, 31, 242);
+					Main.NewText("A malevolent mineral seeps into the most pestillent stone...", 221, 153, 255);
 				    TGEMWorld.Blight = true;
 					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 22E-05); k++)
 					{
@@ -66,7 +66,7 @@ namespace ForgottenMemories
             {
                 if (NPC.downedMechBoss1 && NPC.downedMechBoss3 && !TGEMWorld.Blight)
                 {                                                          
-					Main.NewText("A malevolent force seeps into the most pestillent stone...", 150, 31, 242);
+					Main.NewText("A malevolent mineral seeps into the most pestillent stone...", 221, 153, 255);
 				    TGEMWorld.Blight = true;
 					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 22E-05); k++)
 					{
@@ -84,7 +84,7 @@ namespace ForgottenMemories
             {
                 if (NPC.downedMechBoss1 && NPC.downedMechBoss3 && !TGEMWorld.Blight)
                 {                                                          
-					Main.NewText("A malevolent force seeps into the most pestillent stone...", 150, 31, 242);
+					Main.NewText("A malevolent mineral seeps into the most pestillent stone...", 221, 153, 255);
 				    TGEMWorld.Blight = true;
 					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 22E-05); k++)
 					{
@@ -102,7 +102,7 @@ namespace ForgottenMemories
             {
                 if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && !TGEMWorld.Blight)
                 {                                                          
-					Main.NewText("A malevolent force seeps into the most pestillent stone...", 150, 31, 242);
+					Main.NewText("A malevolent mineral seeps into the most pestillent stone...", 221, 153, 255);
 				    TGEMWorld.Blight = true;
 					for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 22E-05); k++)
 					{
