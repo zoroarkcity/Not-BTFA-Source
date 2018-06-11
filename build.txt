@@ -1,6 +1,6 @@
 author = A team of high quality people
 
-version = 0.5
+version = 0.4.1
 
 displayName = Beyond The Forgotten Ages
 
