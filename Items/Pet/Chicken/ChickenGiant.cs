@@ -14,6 +14,7 @@ namespace ForgottenMemories.Items.Pet.Chicken
 			projectile.tileCollide = true;
 			projectile.width = 50;
 			projectile.height = 54;
+			drawOriginOffsetY = -14; 
 		}
 
 		public override void SetDefaults()
