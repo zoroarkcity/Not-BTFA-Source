@@ -596,7 +596,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/TitanRock/TitanGore5"), 1f);
 			if (Main.expertMode)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("TitanRockBag")));
+                npc.DropBossBags();
 			}
 			else
 			{
