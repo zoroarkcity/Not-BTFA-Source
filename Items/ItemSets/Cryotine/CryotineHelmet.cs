@@ -46,7 +46,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Ice Crystals do 20% more damage and fire faster, homing projectiles \nIncreased max turrets";
+			player.setBonus = "Ice Crystal Sentries do 20% more damage and fire faster, homing projectiles \nIncreased maximum sentry summons";
 			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).cryotine1 = true;
 			player.maxTurrets += 1;
 		}
