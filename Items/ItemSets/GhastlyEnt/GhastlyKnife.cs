@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Timber Kunai");
-		  Tooltip.SetDefault("Splits into damaging woodchips on impact \nIs not consumed on use");
+		  Tooltip.SetDefault("Splits into damaging woodchips on impact");
 		}
 	}
 }

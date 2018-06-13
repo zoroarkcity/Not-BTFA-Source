@@ -1,4 +1,4 @@
-author = A team of high quality people
+author = Dev team in mod desc
 
 version = 0.4.1
 
