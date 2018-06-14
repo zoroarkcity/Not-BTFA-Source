@@ -54,8 +54,8 @@ namespace ForgottenMemories.Items.ItemSets.Essences.NightlyEssence
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null,"DarkEnergy", 8);
-			recipe.AddIngredient(ItemID.Silk, 8);
-			recipe.AddRecipeGroup("AnyIron", 5);
+			recipe.AddIngredient(ItemID.Silk, 3);
+			recipe.AddRecipeGroup("AnyCopper", 5);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

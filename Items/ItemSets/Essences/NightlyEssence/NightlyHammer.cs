@@ -38,9 +38,9 @@ public class NightlyHammer : ModItem
 	public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null,"DarkEnergy", 7);
-			recipe.AddIngredient(ItemID.Silk, 7);
-			recipe.AddRecipeGroup("AnyIron", 5);
+			recipe.AddIngredient(null,"DarkEnergy", 8);
+			recipe.AddIngredient(ItemID.Silk, 3);
+			recipe.AddRecipeGroup("AnyCopper", 4);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
