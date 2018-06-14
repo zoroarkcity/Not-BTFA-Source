@@ -18,12 +18,12 @@ namespace ForgottenMemories.NPCs.Dungeon
         public override void SetDefaults()
         {
             npc.aiStyle = 0;  
-			npc.lifeMax = 350;	 
+			npc.lifeMax = 450;	 
             npc.defense = 0;  
             npc.knockBackResist = 0.5f;
             npc.width = 34;
             npc.height = 48;
-			npc.damage = 35;
+			npc.damage = 10;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;

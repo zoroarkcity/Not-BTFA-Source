@@ -48,7 +48,7 @@ namespace ForgottenMemories.Projectiles
 			{
 				Player player = Main.player[projectile.owner];
 				player.HealEffect(1);
-				player.statLife += 1;
+				player.statLife += 2;
 			}
 		}
 	}

@@ -27,6 +27,10 @@ namespace ForgottenMemories.Projectiles.Magnoliac
 			projectile.timeLeft = 600;
             aiType = ProjectileID.Bullet;	
         }
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			target.AddBuff(BuffID.Poisoned, 360, false);
+		}
         public override Color? GetAlpha(Color lightColor)
         {
             return Color.White;

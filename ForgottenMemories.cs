@@ -81,12 +81,12 @@ namespace ForgottenMemories
 			});
 			RecipeGroup.RegisterGroup("AnyWood", wood);
 			
-			RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Copper Bar" + Lang.GetItemNameValue(ItemType("Copper Bar")), new int[]
+			RecipeGroup copper = new RecipeGroup(() => Lang.misc[37] + " Copper Bar" + Lang.GetItemNameValue(ItemType("Copper Bar")), new int[]
 			{
 				20,
 				703
 			});
-			RecipeGroup.RegisterGroup("AnyCopper", group);
+			RecipeGroup.RegisterGroup("AnyCopper", copper);
 		}
 		
 		public override void PostSetupContent()
