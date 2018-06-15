@@ -10,19 +10,16 @@ using Terraria.ModLoader;
 
 namespace ForgottenMemories.Buffs
 {
-	public class MucusGuard : ModBuff
+	public class NightGlob : ModBuff
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Sludge Skin");
-			Description.SetDefault("Lowered movement speed, increased max life and defense");
+			DisplayName.SetDefault("Globules");
+			Description.SetDefault("Ranged attacks may explode into 2 nightly globs");
 		}
-		
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.moveSpeed -= 0.15f;
-			player.statLifeMax2 += 15;
-			player.statDefense += 7;
+			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).nightlyglobs = true;
 		}
 	}
 }

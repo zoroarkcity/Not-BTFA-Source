@@ -6,7 +6,7 @@ Vendure correctly inflicts poison
 Undead heart nerfed and soaring enemies spawn buffed
 Issues and crashes with BTFA banners resolved
 Magnoliac's Acorns now create custom projectiles instead of plantera's seeds
-
+Added Globule Potion, ranged attacks sometimes split into nightly globules
 
 This mod adds in a total of:
 -310 Items (check before update)
