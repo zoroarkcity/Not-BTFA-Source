@@ -14,8 +14,8 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
             item.melee = true;
             item.width = 20;
             item.height = 12;
-            item.useTime = 23;
-            item.useAnimation = 37;
+			item.useTime = 17;
+			item.useAnimation = 25;
             item.useStyle = 1;
             item.knockBack = 5;
             item.value = 5000;

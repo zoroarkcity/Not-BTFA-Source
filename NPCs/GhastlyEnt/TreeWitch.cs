@@ -25,6 +25,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.aiStyle = 3;
 			aiType = NPCID.AngryBones;
             music = MusicID.Boss3;
+			banner = npc.type;
 			bannerItem = mod.ItemType("ShadewoodWitchBannerItem");
 		}
 		

@@ -1,9 +1,10 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Collections.Generic;
+using System;
 
 namespace ForgottenMemories.NPCs.Magnoliac.Projectiles
 {
@@ -79,7 +80,11 @@ namespace ForgottenMemories.NPCs.Magnoliac.Projectiles
             {
                 float SpeedX = (float) (-(double) projectile.velocity.X * (double) Main.rand.Next(30, 100) * 0.00999999977648258 + (double) Main.rand.Next(-40, 41) * 0.400000005960464);
                 float SpeedY = (float) (-(double) projectile.velocity.Y * (double) Main.rand.Next(30, 100) * 0.00999999977648258 + (double) Main.rand.Next(-40, 41) * 0.400000005960464);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, SpeedX, SpeedY, 276, 20/*damage*/, 3f, projectile.owner);
+				float sX = (float)Main.rand.Next(-60, 61) * 0.1f;
+				float sY = (float)Main.rand.Next(-60, 61) * 0.1f;
+				int z = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sX, sY, mod.ProjectileType("AcornSeed"), projectile.damage / 2, 5f, projectile.owner);
+			    int r = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sX, sY, mod.ProjectileType("AcornSeed"), projectile.damage / 2, 5f, projectile.owner);
+			    int e = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sX, sY, mod.ProjectileType("AcornSeed"), projectile.damage / 2, 5f, projectile.owner);
             }
     }
     }

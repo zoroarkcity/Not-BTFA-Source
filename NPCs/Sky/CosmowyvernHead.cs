@@ -21,6 +21,7 @@ namespace ForgottenMemories.NPCs.Sky
 			npc.noGravity = true;
 			npc.value = 100;
 			npc.knockBackResist = 0f;
+			banner = npc.type;
 			bannerItem = mod.ItemType("CosmoRockWyvernBannerItem");
 			
 			head = true;

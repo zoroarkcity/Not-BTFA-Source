@@ -23,6 +23,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.aiStyle = 14;
 			aiType = NPCID.GiantBat;
             music = MusicID.Boss3;
+			banner = npc.type;
 			bannerItem = mod.ItemType("PineFlyerBannerItem");
 		}
 		

@@ -40,10 +40,9 @@ namespace ForgottenMemories.Items.Acessory
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.BeeWax, 20);
-			recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
-			recipe.AddIngredient(ItemID.HoneyComb, 1);
 			recipe.AddIngredient(3333, 1);
+			recipe.AddIngredient(ItemID.HoneyComb, 1);
+			recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this, 1);
 			recipe.AddRecipe();
