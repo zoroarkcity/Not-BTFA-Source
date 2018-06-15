@@ -14,7 +14,7 @@ namespace ForgottenMemories.Items.Melee
 		{
 
 
-			item.damage = 63; 
+			item.damage = 66; 
 			item.crit = 6;
 			item.melee = true;
 			item.knockBack = 10; 
@@ -37,7 +37,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Flesh Basher");
-			Tooltip.SetDefault("'It chews on your foes' \nStops hit enemies from regenerating life for a short time");
+			Tooltip.SetDefault("'It chews on your foes' \nMakes enemies bleed out, dealing constant damage");
 		}
 		
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
