@@ -18,7 +18,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 		
 		public override void SetDefaults()
 		{
-			item.damage = 20;
+			item.damage = 45;
 			item.noMelee = true;
 			item.ranged = true;
 			item.width = 40;

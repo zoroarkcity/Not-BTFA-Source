@@ -13,12 +13,12 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Curor");
-			Tooltip.SetDefault("Drains life from enemies\nJANK AS FUCK. TERRY CANT CODE SPEARS SOMEONE SEND HELP PLS MEW");
+			Tooltip.SetDefault("Drains life from enemies");
 		}
 		
 		public override void SetDefaults()
 		{
-			item.damage = 40;
+			item.damage = 52;
 			item.knockBack = 6f;
 			item.useTime = 24;
 			item.useAnimation = 27;

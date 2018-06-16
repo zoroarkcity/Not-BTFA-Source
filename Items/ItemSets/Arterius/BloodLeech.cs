@@ -11,7 +11,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 44;
+			item.damage = 55;
 			item.thrown = true;
 			item.width = 44;
 			item.height = 20;
@@ -34,7 +34,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Blood Leech");
+			DisplayName.SetDefault("Leech Kunai");
 			Tooltip.SetDefault("Sticks to enemies, dealing damage over time\nCreates an explosion of blood when killing an enemy");
 		}
 
