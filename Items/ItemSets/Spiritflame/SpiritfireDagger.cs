@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.Spiritflame
 			item.knockBack = 1;
 			item.UseSound = SoundID.Item1;
 			item.value = 500;
-			item.rare = 4;
+			item.rare = 8;
 			item.consumable = true;
 			item.maxStack = 999;
 			item.autoReuse = true;
