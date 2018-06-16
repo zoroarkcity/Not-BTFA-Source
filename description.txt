@@ -7,6 +7,9 @@ Undead heart nerfed and soaring enemies spawn buffed
 Issues and crashes with BTFA banners resolved
 Magnoliac's Acorns now create custom projectiles instead of plantera's seeds
 Added Globule Potion, ranged attacks sometimes split into nightly globules
+Added Fatfrog pet, dropped by the ghastly ent
+Added Serrated Snowflake, earlygame upgrade to shurikens
+Nerfed Rustic Grapple
 
 This mod adds in a total of:
 -310 Items (check before update)

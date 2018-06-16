@@ -11,6 +11,7 @@ namespace ForgottenMemories.Items.Hook
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Rustic Grapple");
+			Tooltip.SetDefault("");
 		}
         public override void AddRecipes()
         {
@@ -25,7 +26,7 @@ namespace ForgottenMemories.Items.Hook
 		public override void SetDefaults()
 		{
 			item.CloneDefaults(ItemID.AmethystHook);
-			item.shootSpeed = 12f;
+			item.shootSpeed = 9f;
 			item.shoot = mod.ProjectileType("RusticProjectile");
 		}
 	}
@@ -45,7 +46,22 @@ namespace ForgottenMemories.Items.Hook
 		//Each F value is 0.06 blocks iirc
 			return 166.666f;
 		}
-
+		public override bool? CanUseGrapple(Player player)
+		{
+			int hooksOut = 0;
+			for (int l = 0; l < 1000; l++)
+			{
+				if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == projectile.type)
+				{
+					hooksOut++;
+				}
+			}
+			if (hooksOut > 0) // This hook can have 1 hooks out.
+			{
+				return false;
+			}
+			return true;
+		}
 		public override void NumGrappleHooks(Player player, ref int numHooks)
 		{
 			numHooks = 1;
