@@ -1,21 +1,9 @@
-0.4.2 Update Notes:
-Fixed chicken pet sinking into blocks
-Fixed titan rock dropping only 1 treasure bag even if there are multiple players present
-Nightly essence recipes more persistent and iron replaced with copper
-Vendure correctly inflicts poison
-Undead heart nerfed and soaring enemies spawn buffed
-Issues and crashes with BTFA banners resolved
-Magnoliac's Acorns now create custom projectiles instead of plantera's seeds
-Added Globule Potion, ranged and thrown attacks sometimes split into nightly globules
-Added Fatfrog pet, dropped by the ghastly ent
-Added Serrated Snowflake, earlygame upgrade to shurikens
-Nerfed Rustic Grapple
-Geloline moved from post ent to post mag, nerfed respectively
-Ghastly Oil, upgrade to Geloline after ghastly ent, bought from the pyro
+0.4.3 Update Notes:
+Removed Herobrine
 
 This mod adds in a total of:
--310 Items (check before update)
--14 Enemies (check before update)
+-Over 400 Items
+-Over 40 Enemies
 -2 Town NPCs
 -5 Bosses
 

@@ -42,6 +42,7 @@ namespace ForgottenMemories.Items.Melee
 			recipe.AddIngredient(ItemID.SoulofLight, 10);
 			recipe.AddIngredient(ItemID.SoulofMight, 10);
 			recipe.AddIngredient(ItemID.HallowedBar, 12);
+			recipe.AddIngredient(ItemID.Ectoplasm, 15);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

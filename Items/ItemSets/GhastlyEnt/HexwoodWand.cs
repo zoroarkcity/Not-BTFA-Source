@@ -11,7 +11,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetDefaults()
 		{
 
-			item.damage = 46;
+			item.damage = 36;
 			item.magic = true;
 			item.mana = 15;
 			item.width = 25;
