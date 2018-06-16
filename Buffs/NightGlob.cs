@@ -15,7 +15,7 @@ namespace ForgottenMemories.Buffs
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Globules");
-			Description.SetDefault("Ranged attacks may explode into 2 nightly globs");
+			Description.SetDefault("Ranged and thrown attacks may explode into 2 globules");
 		}
 		public override void Update(Player player, ref int buffIndex)
 		{

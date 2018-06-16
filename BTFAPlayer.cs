@@ -281,14 +281,20 @@ namespace ForgottenMemories
 				Main.item[newItem].velocity.X = Main.rand.NextFloat(2f, 6f) * projectile.direction;
 				if (Main.netMode == NetmodeID.MultiplayerClient) NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem);
 			}
-			if (projectile.ranged && Tools.OneIn(2) && !target.immortal && nightlyglobs)
+			if (projectile.ranged && Tools.OneIn(2) && !target.immortal && nightlyglobs && player.ownedProjectileCounts[mod.ProjectileType("NightlyGlob")] < 6)
 			{
 				float rX = (float)Main.rand.Next(-60, 61) * 0.1f;
 				float rY = (float)Main.rand.Next(-60, 61) * 0.1f;
 			    int zt = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, rX, rY, mod.ProjectileType("NightlyGlob"), projectile.damage / 2, 5f, projectile.owner);
 			    int et = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, rX, rY, mod.ProjectileType("NightlyGlob"), projectile.damage / 2, 5f, projectile.owner);
 			}
-
+			if (projectile.thrown && Tools.OneIn(2) && !target.immortal && nightlyglobs && player.ownedProjectileCounts[mod.ProjectileType("NightlyGlob")] < 6)
+			{
+				float rX = (float)Main.rand.Next(-60, 61) * 0.1f;
+				float rY = (float)Main.rand.Next(-60, 61) * 0.1f;
+			    int zt = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, rX, rY, mod.ProjectileType("NightlyGlob"), projectile.damage / 2, 5f, projectile.owner);
+			    int et = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, rX, rY, mod.ProjectileType("NightlyGlob"), projectile.damage / 2, 5f, projectile.owner);
+			}
             if (chlorophyllPod) 
 				ApplyChlorophyllBuff(player);
 			

@@ -9,7 +9,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Globule Potion");
-			Tooltip.SetDefault("Ranged attacks may explode into 2 nightly globules");
+			Tooltip.SetDefault("Ranged and thrown attacks may explode into 2 nightly globules");
 		}
 
 		public override void SetDefaults()

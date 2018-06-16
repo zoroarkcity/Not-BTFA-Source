@@ -16,13 +16,15 @@ namespace ForgottenMemories.Projectiles.Magnoliac
         }
 		public override void SetDefaults()
 		{
-			projectile.width = 18;
-			projectile.height = 18;
+			projectile.width = 11;
+			projectile.height = 19;
 			projectile.aiStyle = 3;
 			projectile.friendly = true;
 			projectile.melee = true;
 			projectile.extraUpdates = 1;
-			projectile.timeLeft = 120;
+            projectile.timeLeft = 600;   
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
 			projectile.penetrate = -1;
 		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
