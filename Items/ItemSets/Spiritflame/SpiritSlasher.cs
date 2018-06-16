@@ -27,7 +27,7 @@ namespace ForgottenMemories.Items.ItemSets.Spiritflame
 			item.useStyle = 1;
 			item.knockBack = 2.5f;
 			item.value = 80000;
-			item.rare = 4;
+			item.rare = 8;
 			item.UseSound = SoundID.Item71;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("SpiritSlasher");
