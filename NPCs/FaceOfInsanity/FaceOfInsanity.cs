@@ -33,8 +33,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.damage = 80;
             npc.defense = 4;
             npc.knockBackResist = 0f;
-            npc.width = 168;
-            npc.height = 220;
+            npc.width = 100;
+            npc.height = 160;
+			npc.scale = 1.3f;
             npc.value = Item.buyPrice(0, 8, 0, 0);
             npc.boss = true;
             npc.lavaImmune = true;
@@ -60,15 +61,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = 24000 + ((numPlayers) * 2400);
-			npc.damage = 120;
-			npc.defense = 24;
-
-			if (TGEMWorld.downedArterius)
-			{
-				npc.lifeMax = 30000 + ((numPlayers) * 3000);
-				npc.damage = 135;
-			}
+			npc.lifeMax = 27000 + ((numPlayers) * 2700);
+			npc.damage = 125;
+			npc.defense = 14;
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
