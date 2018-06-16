@@ -504,7 +504,11 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ForestEnergy")), Main.rand.Next(22, 35));
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("BlossomBranch")), Main.rand.Next(5, 10));
 			    TGEMWorld.TryForBossMask(npc.Center, npc.type);
-			    }
+				}
+			}
+			if (Main.rand.Next(20) == 0)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("Tadpole_Egg")));
 			}
 		}
     }

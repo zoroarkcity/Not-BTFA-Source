@@ -79,13 +79,14 @@ namespace ForgottenMemories
 		public bool ManaShard = false;
 		public bool DivineBlessing = false;
 		public int firestormCooldown = 0;
-
+		public bool Frog;
 		public bool spookedByArte = false;
 		public int blightDashCooldown = 0;
 		public bool hasBlightFlashed = true;
 		
 		public override void ResetEffects()
 		{
+	        Frog = false;
 			GroundPound = false;
 			AquaPowers = false;
 			Tartarus = false;
