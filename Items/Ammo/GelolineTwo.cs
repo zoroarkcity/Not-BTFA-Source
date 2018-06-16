@@ -7,24 +7,24 @@ using Terraria.DataStructures;
 
 namespace ForgottenMemories.Items.Ammo 
 {
-	public class Geloline : ModItem
+	public class GelolineTwo : ModItem
 	{	
 		public override void SetDefaults()
 		{
 
-			item.damage = 8;
+			item.damage = 18;
 			item.ranged = true;
 			item.width = 22;
 			item.height = 22;
-			item.knockBack = 0.2f;
+			item.knockBack = 0.5f;
 			item.UseSound = SoundID.Item1;
-			item.value = 50;
-			item.rare = 3;
+			item.value = 150;
+			item.rare = 6;
 			item.ammo = AmmoID.Gel;
 			item.noMelee = true;
 			item.maxStack = 999;
 			item.consumable = true;
-            item.createTile = mod.TileType("GelolineTile"); 
+            item.createTile = mod.TileType("GelolineTwoTile"); 
             item.placeStyle = 0;
             item.useAnimation = 10; 
             item.useTime = 10;  
@@ -33,8 +33,8 @@ namespace ForgottenMemories.Items.Ammo
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Geloline");
-      Tooltip.SetDefault("Serves as a more effective alternative to gel for flamethrowers \n'Probably not too nutritious'");
+      DisplayName.SetDefault("Ghastly Oil");
+      Tooltip.SetDefault("Serves as a more effective alternative to gel for flamethrowers \n'See, forest fires can be sustainable...'");
 	}
 	}
 }

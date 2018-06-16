@@ -250,7 +250,6 @@ namespace ForgottenMemories
 				}
 			}
 		}
-		
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
 			if (chlorophyllPod) 
@@ -269,7 +268,7 @@ namespace ForgottenMemories
 					Vector2 newVect1 = new Vector2 (12, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360)));
 					int proj = Projectile.NewProjectile(target.Center.X, target.Center.Y, newVect1.X, newVect1.Y, mod.ProjectileType("LightningChain"), damage, 2f, player.whoAmI);
 					Main.projectile[proj].ranged = false;
-                }
+                }			
 		}
 		
 		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockBack, bool Crit)
@@ -868,8 +867,20 @@ namespace ForgottenMemories
 		
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason 	damageSource)		
 		{
-			damageTaken = damage;
+			damageTaken = damage; 
 			return true;
 		}
+/*		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		{
+			if (damageSource.SourceOtherIndex == mod.NPCType("GraniteProtector") && (Main.rand.Next(1) == 0))
+			{
+				damageSource = PlayerDeathReason.ByCustomReason(" was overcharged"); 
+			}
+			if (damageSource.SourceOtherIndex == mod.ProjectileType("GraniteEnergy") && (Main.rand.Next(1) == 0))
+			{
+				damageSource = PlayerDeathReason.ByCustomReason(" was overcharged");
+			}
+			return true;
+		} */
 	}
 }

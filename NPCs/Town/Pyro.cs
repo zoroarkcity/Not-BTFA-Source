@@ -148,9 +148,14 @@ namespace ForgottenMemories.NPCs.Town
 				shop.item[nextSlot].SetDefaults(mod.ItemType("MagmaGlobStaff"));
 				nextSlot++;
 			}
-			if (TGEMWorld.downedGhastlyEnt)
+			if (TGEMWorld.downedMag)
 			{
 				shop.item[nextSlot].SetDefaults(mod.ItemType("Geloline"));
+				nextSlot++;
+			}
+			if (TGEMWorld.downedGhastlyEnt)
+			{
+				shop.item[nextSlot].SetDefaults(mod.ItemType("GelolineTwo"));
 				nextSlot++;
 			}
 		}

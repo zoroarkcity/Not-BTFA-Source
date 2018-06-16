@@ -26,7 +26,7 @@ namespace ForgottenMemories.Items.Consumable
 			item.consumable = true;
 			item.value = 1000;
 			item.rare = 1;
-			item.maxStack = 999;
+			item.maxStack = 30;
 		}
 		
 		public override void AddRecipes()

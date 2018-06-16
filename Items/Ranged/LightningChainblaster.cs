@@ -35,7 +35,7 @@ namespace ForgottenMemories.Items.Ranged
 			item.shoot = ProjectileID.Bullet;
 			item.shootSpeed = 15f;
 			item.noMelee = true;
-			item.useAmmo =  AmmoID.Bullet;
+			item.useAmmo = AmmoID.Bullet;
 		}
 
     public override void SetStaticDefaults()
