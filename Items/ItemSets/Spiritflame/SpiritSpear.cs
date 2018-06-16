@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.Spiritflame
 			item.noUseGraphic = true;
 			item.useStyle = 5;
 			item.value = 80000;
-			item.rare = 4;
+			item.rare = 8;
 			item.shoot = mod.ProjectileType("SpiritSpear"); 
 			item.shootSpeed = 7;
 			item.autoReuse = true;
