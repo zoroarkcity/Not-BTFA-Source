@@ -41,6 +41,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			npc.noGravity = true;
 			npc.HitSound = SoundID.NPCHit41;
 			npc.DeathSound = SoundID.NPCDeath44;
+			bossBag = mod.ItemType("TitanRockBag");
 			npc.scale = 1.25f;
 			npc.npcSlots = 5;
 
