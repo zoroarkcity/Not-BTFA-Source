@@ -43,8 +43,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null,"CryotineBar", 10);
-			recipe.AddIngredient(ItemID.Diamond, 3);
+			recipe.AddIngredient(null,"CryotineBar", 12);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
