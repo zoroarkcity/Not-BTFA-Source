@@ -10,7 +10,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
     {
         public override void SetDefaults()
         {
-			item.damage = 74;
+			item.damage = 52;
 			item.noMelee = true;
             item.melee = false;
 			item.thrown = true;

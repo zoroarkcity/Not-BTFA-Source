@@ -44,7 +44,7 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Blight Pistol");
+			DisplayName.SetDefault("Blight Blaster");
 			Tooltip.SetDefault("Fires a salvo of blighted energy");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BlightPistol");
 		}
