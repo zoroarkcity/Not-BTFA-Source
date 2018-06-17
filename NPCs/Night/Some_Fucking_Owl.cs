@@ -37,7 +37,7 @@ namespace ForgottenMemories.NPCs.Night
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime && !spawnInfo.invasion && !spawnInfo.sky && !Main.eclipse && !spawnInfo.player.ZoneDesert && !spawnInfo.player.ZoneJungle ? 0.05f : 0f;
+			return spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime && !spawnInfo.invasion && !spawnInfo.sky && !Main.eclipse && !spawnInfo.player.ZoneDesert && !spawnInfo.player.ZoneJungle ? 0.1f : 0f;
 		}
 		public override void AI()
         {
