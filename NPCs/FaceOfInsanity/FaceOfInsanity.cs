@@ -44,6 +44,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             npc.HitSound = SoundID.NPCHit8;
 			npc.DeathSound = SoundID.NPCDeath13;
             npc.npcSlots = 13f;
+			bossBag = mod.ItemType("ArteriusBag");
 			//NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			//NPCID.Sets.TrailingMode[npc.type] = 1;
             /*if (ForgottenMemories.instance.songsLoaded)
@@ -632,7 +633,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GreaterHealingPotion, amountToDrop);   
 			if (Main.expertMode)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("ArteriusBag")));
+                npc.DropBossBags();
 			}
 			else
 			{

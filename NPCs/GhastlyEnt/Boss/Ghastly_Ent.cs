@@ -47,6 +47,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 			npc.DeathSound = SoundID.NPCDeath10;
             music = MusicID.Boss3;
 			npc.npcSlots = 5;
+			bossBag = mod.ItemType("MegaTreeBag");
         }
 		
 		/*public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -469,13 +470,11 @@ namespace ForgottenMemories.NPCs.GhastlyEnt.Boss
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore2"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore3"), 1f);
 			Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GhastlyEnt/GhastlyEntGore4"), 1f);
-			int amountToDrop = Main.rand.Next(5,15); //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GreaterHealingPotion, amountToDrop);   
 			TGEMWorld.downedGhastlyEnt = true;
 
 			if (Main.expertMode)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("MegaTreeBag")));
+                npc.DropBossBags();
 			}
 			else
 			{

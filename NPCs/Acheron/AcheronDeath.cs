@@ -42,6 +42,7 @@ namespace ForgottenMemories.NPCs.Acheron
             npc.noTileCollide = true;
             npc.noGravity = true;
 			npc.DeathSound = SoundID.NPCDeath6;
+			bossBag = mod.ItemType("AcheronBag");
             /*if (ForgottenMemories.instance.songsLoaded)
                 music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/out");
             else
@@ -126,7 +127,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LesserHealingPotion, amountToDrop);   
 			if (Main.expertMode)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("AcheronBag")));
+                npc.DropBossBags();
 			}
 			else
 			{
