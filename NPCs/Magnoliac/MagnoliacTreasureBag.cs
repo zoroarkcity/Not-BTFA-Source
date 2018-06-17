@@ -34,7 +34,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
 		{
             player.QuickSpawnItem(mod.ItemType("ChlorophyllPod"), 1); 
 			
-			switch (Main.rand.Next(4))
+			switch (Main.rand.Next(6))
 			{
 				case 0: 
 					player.QuickSpawnItem(mod.ItemType("Beechorang"), 1);
@@ -51,6 +51,9 @@ namespace ForgottenMemories.NPCs.Magnoliac
 					break;
 				case 4:
 					player.QuickSpawnItem(mod.ItemType("GhastlyKnife"), 1);
+					break;
+				case 5:
+					player.QuickSpawnItem(mod.ItemType("FernlingCane"), 1);
 					break;
 				default:
 					break;

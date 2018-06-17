@@ -21,7 +21,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
         public override void SetDefaults()
         {
 			npc.aiStyle = 0;//custom ai
-            npc.lifeMax = 1; // change
+            npc.lifeMax = 55555; // change
             npc.damage = 40; // change
             npc.defense = 10; // change
             npc.knockBackResist = 0f;

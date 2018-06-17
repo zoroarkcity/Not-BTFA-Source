@@ -19,7 +19,7 @@ namespace ForgottenMemories.Items.Summon
         public override void SetDefaults()
         {
 
-            item.damage = 13;
+            item.damage = 7;
             item.summon = true;
             item.mana = 10;
             item.width = 42;

@@ -83,6 +83,7 @@ namespace ForgottenMemories
 		public bool spookedByArte = false;
 		public int blightDashCooldown = 0;
 		public bool hasBlightFlashed = true;
+		public bool Fernling = true;
 		
 		public override void ResetEffects()
 		{
@@ -136,7 +137,8 @@ namespace ForgottenMemories
 			Chicken = false;
 		    rockSick = false;
 		    nightlyglobs = false;
-
+		    Fernling = true;
+	
 			if (!hasBlightFlashed)
 			{
 				if (blightDashCooldown == 0)

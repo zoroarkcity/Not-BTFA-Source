@@ -25,7 +25,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("LeafnadoFriendly");
 			item.shootSpeed = 13f;
-			item.mana = 27;
+			item.mana = 15;
 
 			item.noMelee = true;
 		}
