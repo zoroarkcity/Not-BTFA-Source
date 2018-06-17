@@ -127,13 +127,5 @@ namespace ForgottenMemories.InGameWiki.Items
             }
             return true;			
         }
-		public override void AddRecipes()
-		{
-		    ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Wood, 1);
-			recipe.anyWood = true;
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-        }
 	}
 }

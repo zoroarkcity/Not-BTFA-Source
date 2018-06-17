@@ -58,7 +58,7 @@ namespace ForgottenMemories.NPCs.Desert
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.desertCave && NPC.downedBoss1 ? 0.05f : 0f;
+			return spawnInfo.desertCave && NPC.downedBoss1 ? 0.08f : 0f;
 		}
 		public override void HitEffect(int hitDirection, double damage)
 		{

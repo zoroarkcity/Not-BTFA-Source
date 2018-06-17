@@ -388,11 +388,6 @@ namespace ForgottenMemories
 				items.RemoveAt(2);
 				items.Insert(2, item);
 			}
-			
-			Item btfadex = new Item();
-			btfadex.SetDefaults(mod.ItemType<InGameWiki.Items.BTFADex>());
-			btfadex.stack = 1;
-			items.Add(btfadex);
 		}
 		
 		public override void PreUpdate() 
