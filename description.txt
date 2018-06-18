@@ -16,6 +16,7 @@ Swapped Cryotine recipes for summon and mage staffs
 Added the woodpecker cane, summon weapon that drops from magnoliac
 Timber Kunai sometimes creates a toxic seed on impact
 Fixed a bug in which Magnoliac and Ghastly Ent respawned constantly during hardmode
+Other misc fixes and polish, this version and onwards will have more in depth changelogs
 
 This mod adds in a total of:
 -Over 400 Items

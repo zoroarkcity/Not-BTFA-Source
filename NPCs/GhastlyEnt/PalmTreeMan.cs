@@ -23,7 +23,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.aiStyle = 3;
 			aiType = 508;
 			banner = npc.type;
-            music = MusicID.Boss3;
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Forests_Army");
 			banner = npc.type;
 			bannerItem = mod.ItemType("PalmEntBannerItem");
 		}

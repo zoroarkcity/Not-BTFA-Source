@@ -41,7 +41,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
             npc.netAlways = true;
 			npc.scale = 1f;
 			bossBag = mod.ItemType("MagnoliacTreasureBag");
-            music = MusicID.Boss3;
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Forests_Army");
         }
 		
 		public override void HitEffect(int hitDirection, double damage)

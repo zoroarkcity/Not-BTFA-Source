@@ -22,7 +22,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 14;
 			aiType = NPCID.GiantBat;
-            music = MusicID.Boss3;
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Forests_Army");
 			banner = npc.type;
 			bannerItem = mod.ItemType("PineFlyerBannerItem");
 		}

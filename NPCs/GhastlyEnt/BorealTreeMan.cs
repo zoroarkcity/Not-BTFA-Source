@@ -22,7 +22,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 0.5f;
 			npc.aiStyle = 3;
 			aiType = 508;
-            music = MusicID.Boss3;
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Forests_Army");
 			banner = npc.type;
 			bannerItem = mod.ItemType("BorealTreemanBannerItem");
 		}

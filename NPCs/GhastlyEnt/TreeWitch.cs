@@ -24,7 +24,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			npc.knockBackResist = 1f;
 			npc.aiStyle = 3;
 			aiType = NPCID.AngryBones;
-            music = MusicID.Boss3;
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Forests_Army");
 			banner = npc.type;
 			bannerItem = mod.ItemType("ShadewoodWitchBannerItem");
 		}
