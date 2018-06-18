@@ -18,14 +18,14 @@ namespace ForgottenMemories.Items.ItemSets.Spiritflame
 		public override void SetDefaults()
 		{
 
-			item.damage = 85;
+			item.damage = 92;
 
 			item.melee = true;
 			item.width = 52;
 			item.height = 52;
 			item.scale = 1.1f;
 			item.maxStack = 1;
-			item.useTime = 30;
+			item.useTime = 15;
 			item.useAnimation = 30;
 			item.knockBack = 5f;
 			item.UseSound = SoundID.Item1;
