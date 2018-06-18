@@ -73,6 +73,8 @@ namespace ForgottenMemories
             if (Main.invasionSize <= 0)
             {
                 text = "The woodland terrors retreat to their roots!";
+                TGEMWorld.GentBool = false;	
+                TGEMWorld.MagnoliacBool = false;	
             }
             if (Main.netMode == 0)
             {

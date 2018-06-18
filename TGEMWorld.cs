@@ -48,7 +48,8 @@ namespace ForgottenMemories
 		public static bool downedAcheron = false;
 		public static bool downedMag = false;
 		public static bool downedForestInvasion = false;
-		
+		public static bool MagnoliacBool = false;
+		public static bool GentBool = false;	
 		public static bool spawnedGems = false;
 		public static int TremorTime;
 
@@ -70,6 +71,8 @@ namespace ForgottenMemories
 			downedMag = false;
 			spawnedGems = false;
 			Cosmirock = false;
+			MagnoliacBool = false;
+			GentBool = false;
 		}
 		
 		public override TagCompound Save()
@@ -109,9 +112,7 @@ namespace ForgottenMemories
 			spawnedGems = ore.Contains("Gems");
 			downedMag = downed.Contains("Mag");
 			downedForestInvasion = downed.Contains("forestInvasion");
-
-			Cosmirock = ore.Contains("Cosmirock");
-			
+			Cosmirock = ore.Contains("Cosmirock");				
 			downedAcheron = downed.Contains("acheron");
 		}
 		
@@ -129,6 +130,8 @@ namespace ForgottenMemories
 			flags[9] = spawnedGems;
 			flags[8] = downedMag;
 			flags[10] = Cosmirock;
+			flags[11] = GentBool;
+			flags[12] = MagnoliacBool;
 			writer.Write(flags);
 		}
 		
@@ -146,6 +149,8 @@ namespace ForgottenMemories
 			downedAcheron = flags[7];
 			spawnedGems = flags[9];
 			Cosmirock = flags[10];
+			GentBool = flags[11];
+			MagnoliacBool = flags[12];
 		}
 		
 		public override void PostUpdate()
@@ -242,7 +247,7 @@ namespace ForgottenMemories
 				{
 					maskType = mod.ItemType("ArteryMask");
 				}
-				if (type == mod.NPCType("GhastlyEnt"))
+				if (type == mod.NPCType("Ghastly_Ent"))
 				{
 					maskType = mod.ItemType("GhastlyMask");
 				}
@@ -267,7 +272,7 @@ namespace ForgottenMemories
 				{
 					trophyType = mod.ItemType("ArteriusTrophy");
 				}
-				if (type == mod.NPCType("GhastlyEnt"))
+				if (type == mod.NPCType("Ghastly_Ent"))
 				{
 					trophyType = mod.ItemType("GhastlyEntTrophy");
 				}

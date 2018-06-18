@@ -38,7 +38,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
         }
         public override bool UseItem(Player player)
         {
-            NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 900), (mod.NPCType("GhastlyEnt")));
+            NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 900), (mod.NPCType("Ghastly_Ent")));
             Main.PlaySound(15, (int)player.position.X - (int)player.position.Y, 0);
 			Main.NewText("The wretched father of nature awakens!", 175, 75, 255);
 

@@ -170,33 +170,33 @@ namespace ForgottenMemories
 	    {
 			if (TGEMWorld.forestInvasionUp)
             {
-				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && !Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Magnoliac")) && MagnoliacBool)
+				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && !Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Magnoliac")) && !TGEMWorld.MagnoliacBool)
 				{
 					if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSwitchingPhase")))
 					{
 						if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSecondStage")))
 						{
 							NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Magnoliac")));
-							MagnoliacBool = false;
+							TGEMWorld.MagnoliacBool = true;
 							Main.NewText("A beast flaps its wings and descends from a faraway canopy!", 175, 75, 255);
 						}	
 					}
                 }
-				if ((Main.invasionSize <= 50 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Magnoliac")) && MagnoliacBool)
+				if ((Main.invasionSize <= 50 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Magnoliac")) && !TGEMWorld.MagnoliacBool)
 				{
 					if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSwitchingPhase")))
 					{
 						if (!NPC.AnyNPCs(mod.NPCType("MagnoliacSecondStage")))
 						{
 							NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Magnoliac")));
-							MagnoliacBool = false;
+							TGEMWorld.MagnoliacBool = true;
 							Main.NewText("A beast flaps its wings and descends from a faraway canopy!", 175, 75, 255);
 						}	
 					}
                 }
-				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Ghastly_Ent")) && GentBool)
+				if ((Main.invasionSize <= 20 && Main.invasionSize >0) && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("Ghastly_Ent")) && !TGEMWorld.GentBool)
 				{
-					GentBool = false;
+					TGEMWorld.GentBool = true;
 					NPC.NewNPC((int)(player.position.X), (int)(player.position.Y - 1200), (mod.NPCType("Ghastly_Ent")));
 					Main.NewText("The wretched father of nature awakens!", 175, 75, 255);
                 }
