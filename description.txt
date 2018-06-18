@@ -14,6 +14,8 @@ Geloline moved from post ent to post mag, nerfed respectively
 Ghastly Oil, upgrade to Geloline after ghastly ent, bought from the pyro
 Swapped Cryotine recipes for summon and mage staffs
 Added the woodpecker cane, summon weapon that drops from magnoliac
+Timber Kunai sometimes creates a toxic seed on impact
+Fixed a bug in which Magnoliac and Ghastly Ent respawned constantly during hardmode
 
 This mod adds in a total of:
 -Over 400 Items

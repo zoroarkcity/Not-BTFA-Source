@@ -25,7 +25,7 @@ namespace ForgottenMemories.Items.Magic
 
 			item.damage = 180;
 			item.magic = true;
-			item.mana = 12;
+			item.mana = 3;
 			item.width = 25;
 			item.height = 26;
 			item.useTime = 7;
@@ -43,22 +43,11 @@ namespace ForgottenMemories.Items.Magic
 			item.shoot = mod.ProjectileType("VoidboltStaff");
 			item.shootSpeed = 9f;
 		}
-		
-		public override void ModifyTooltips(List<TooltipLine> list)
-        {
-            foreach (TooltipLine line2 in list)
-            {
-                if (line2.mod == "Terraria" && line2.Name == "ItemName")
-                {
-                    line2.overrideColor = new Color(246, 0, 255);
-                }
-            }
-        }
 
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Voidbolt Staff");
-		  Tooltip.SetDefault("Fires a spread of chargable shadowbeams");
+		  Tooltip.SetDefault("Fires a spread of chargable shadowbeams \nHolding left click will charge the weapon, release to shoot \nCharging will increase the laser's power");
 		BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/VoidboltStaff");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	

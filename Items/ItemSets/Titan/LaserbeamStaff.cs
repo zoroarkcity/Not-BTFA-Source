@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 			item.damage = 50;
 			item.UseSound = SoundID.Item13;
 			item.shoot = mod.ProjectileType("LaserbeamStaff");
-			item.mana = 14;
+			item.mana = 4;
 			item.value = 50000;
             item.rare = 6;
 			item.noMelee = true;
@@ -41,7 +41,7 @@ namespace ForgottenMemories.Items.ItemSets.Titan
 		public override void SetStaticDefaults()
 		{	
 			DisplayName.SetDefault("Laserbeam Staff");
-			Tooltip.SetDefault("Holding the Left Click will charge the weapon");
+			Tooltip.SetDefault("Fires a chargable laserbeam \nHolding left click will charge the weapon, release to shoot \nCharging will increase the laser's power");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/LaserbeamStaff");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
