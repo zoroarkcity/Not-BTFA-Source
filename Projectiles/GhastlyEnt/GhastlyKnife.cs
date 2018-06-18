@@ -46,9 +46,16 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 					Main.projectile[z].ranged = false;
 					Main.projectile[z].thrown = true;
 				}
+		    if (Main.rand.Next(3) == 0)
+				{
+					float sT = (float)Main.rand.Next(-60, 61) * 0.1f;
+					float sD = (float)Main.rand.Next(-60, 61) * 0.1f;
+					int r = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sT, sD, mod.ProjectileType("AcornSeedF"), projectile.damage / 2, 5f, projectile.owner);
+					Main.projectile[r].ranged = false;
+					Main.projectile[r].thrown = true;
+				}
 			Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y);
-		}
-		
+		}		
 		public override void AI()
 		{
 			if (projectile.velocity.X >= 0)
@@ -68,11 +75,6 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 			{
 				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 61, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 			}
-		}
-		
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-		{
-			target.AddBuff(186, 500, false);
 		}
 	}
 }

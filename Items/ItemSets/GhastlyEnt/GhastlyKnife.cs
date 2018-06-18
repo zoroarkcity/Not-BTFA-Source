@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 
 		public override void SetDefaults()
 		{
-			item.damage = 32;
+			item.damage = 28;
 			item.thrown = true;
 			item.shoot = mod.ProjectileType("GhastlyKnife");
 			item.shootSpeed = 10f;
@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Timber Kunai");
-		  Tooltip.SetDefault("Splits into damaging woodchips on impact");
+		  Tooltip.SetDefault("Splits into damaging woodchips on impact \nSometimes sprouts into a toxic seed on impact");
 		}
 	}
 }
