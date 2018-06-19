@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Magic
             item.noMelee = true;
             item.knockBack = 7f;
             item.value = Item.sellPrice(0, 0, 50, 0);
-			item.rare = 2;
+			item.rare = 1;
             item.UseSound = SoundID.Item17;
             item.shoot = mod.ProjectileType("Bloodspider");
             item.shootSpeed = 10f;

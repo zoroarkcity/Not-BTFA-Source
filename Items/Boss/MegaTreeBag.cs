@@ -95,10 +95,6 @@ namespace ForgottenMemories.Items.Boss
 			{
 				player.QuickSpawnItem(mod.ItemType("GhastlyMask"), 1);
 			}			
-			if (Main.rand.Next(20) == 0)
-			{
-				player.QuickSpawnItem(mod.ItemType("Tadpole_Egg"), 1);
-			}	
 		}
 	}
 }

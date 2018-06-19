@@ -96,8 +96,8 @@ namespace ForgottenMemories
             {
                 // To include a description JK MEME TAG:
 				bossChecklist.Call("AddBossWithInfo", "Acheron", 5.999f, (Func<bool>)(() => TGEMWorld.downedAcheron), "Use a [i:" + ItemType("Unstable_Wisp") + "] in the Underworld");
-				bossChecklist.Call("AddBossWithInfo", "Magnoliac", 5.100000001f, (Func<bool>)(() => TGEMWorld.downedMag), "Summon the forest's army using [i:" + ItemType("AncientLog") + "] or use a [i:" + ItemType("MagnoliacSummoner") + "]");
-				bossChecklist.Call("AddEventWithInfo", "Forest's Army", 5.1f, (Func<bool>)(() => TGEMWorld.downedForestInvasion), "Summon the forest's army using [i:" + ItemType("AncientLog") + "]");
+				bossChecklist.Call("AddBossWithInfo", "Magnoliac", 5.12f, (Func<bool>)(() => TGEMWorld.downedMag), "Summon the forest's army using [i:" + ItemType("AncientLog") + "] or use a [i:" + ItemType("MagnoliacSummoner") + "]");
+				bossChecklist.Call("AddEventWithInfo", "Forest's Army", 5.11f, (Func<bool>)(() => TGEMWorld.downedForestInvasion), "Summon the forest's army using [i:" + ItemType("AncientLog") + "]");
                 bossChecklist.Call("AddBossWithInfo", "Ghastly Ent", 9.4f, (Func<bool>)(() => TGEMWorld.downedGhastlyEnt), "Summon the forest's army using [i:" + ItemType("AncientLog") + "] and defeat it during hardmode, or use a [i:" + ItemType("GhastlySummon") + "]");
 				bossChecklist.Call("AddBossWithInfo", "Arterius", 6.3f, (Func<bool>)(() => TGEMWorld.downedArterius), "Use a [i:" + ItemType("BloodClot") + "] at night");
 				bossChecklist.Call("AddBossWithInfo", "Titan Rock", 7.1f, (Func<bool>)(() => TGEMWorld.downedTitanRock), "Use a [i:" + ItemType("anomalydetector") + "]");

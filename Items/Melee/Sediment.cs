@@ -11,7 +11,7 @@ namespace ForgottenMemories.Items.Melee
 			ItemID.Sets.Yoyo[item.type] = true;
 			ItemID.Sets.GamepadExtraRange[item.type] = 15;
 			ItemID.Sets.GamepadSmartQuickReach[item.type] = true;
-			Tooltip.SetDefault("'An odd mixture of the world's mystical rocks'");
+			Tooltip.SetDefault("'Perfectly balanced, as all things should be...'");
 		}
 
 		public override void SetDefaults()
@@ -38,8 +38,8 @@ namespace ForgottenMemories.Items.Melee
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "Tourmaline", 8);
-			recipe.AddIngredient(null, "Citrine", 8);
+			recipe.AddIngredient(null, "Tourmaline", 12);
+			recipe.AddIngredient(null, "Citrine", 12);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

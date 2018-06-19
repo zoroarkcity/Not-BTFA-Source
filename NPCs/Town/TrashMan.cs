@@ -70,7 +70,7 @@ namespace ForgottenMemories.NPCs.Town
 
 		public override string GetChat()
 		{
-			switch (Main.rand.Next(4))
+			switch (Main.rand.Next(10))
 			{
 				case 0:
                     return "That's my character! I'm the trash man!";
@@ -78,6 +78,18 @@ namespace ForgottenMemories.NPCs.Town
 					return "I throw trash all over the ring!";
 				case 2: 
 					return "Someone told me I should be the ref. I'm not going to be the ref! I'm a villain, don't you see?";
+				case 3: 
+					return "You haven't bought all my wares? And they call me the trash man...";
+				case 4: 
+					return "What do you mean bed? I sleep in a trashcan!";
+				case 5: 
+					return "Got some trash? Don't recycle, give it to me!";
+				case 6: 
+					return "I'm 50% raccoon, don't ask.";
+				case 7: 
+					return "Hygiene? Never heard of it.";
+				case 8: 
+					return "Oh no, please don't clean that. It was just cleaned- roughly 10 years ago, let's say.";
 				default:
 					return "I eat garbage!";
 			}
