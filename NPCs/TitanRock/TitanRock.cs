@@ -44,7 +44,11 @@ namespace ForgottenMemories.NPCs.TitanRock
 			bossBag = mod.ItemType("TitanRockBag");
 			npc.scale = 1.25f;
 			npc.npcSlots = 5;
-			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Acheron");
+
+            if (ForgottenMemories.instance.songsLoaded)
+                music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/godofwar");
+            else
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TitanRock");
 
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Venom] = true;
@@ -156,10 +160,6 @@ namespace ForgottenMemories.NPCs.TitanRock
 			CleanseBuff(BuffID.CursedInferno);
 			CleanseBuff(BuffID.ShadowFlame);
 			CleanseBuff(BuffID.Ichor);
-			if (Main.expertMode)
-			{
-				npc.defense = 42;
-			}
 		}
 		
 		public override void AI()
@@ -213,10 +213,12 @@ namespace ForgottenMemories.NPCs.TitanRock
 					npc.rotation += npc.velocity.X / 15f;
 					shootTimer = -1;
 					takeLessDamage = true;
+                    npc.defense = 0;
 				}
 				else
 				{
 					takeLessDamage = false;
+                    npc.defense = Main.expertMode ? 42 : 28;
 					npc.rotation = npc.velocity.X / 15f;
 					float num586 = 0.03f;
 					float num587 = 4f;
@@ -437,10 +439,12 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 					gayvector = npc.Center - player.Center; //points from player to npc (i.e. behind boss)
 					gayvector.Normalize();
+
+                    takeLessDamage = true;
+                    npc.defense = 0;
 					
 					if (Main.expertMode)
 					{
-						takeLessDamage = true;
 						curlDirection *= -1;
 
 						for (int i = 0; i < 4; i++) //spawn shit with velocity behind boss
@@ -471,7 +475,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 
 						if (Main.expertMode)
 						{
-							swirlyIncrement /= 31;
+							swirlyIncrement /= 32;
 						}
 						else
 						{
@@ -521,6 +525,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 				if (timer >= 650)
 				{
 					takeLessDamage = false;
+                    npc.defense = Main.expertMode ? 28 : 14;
 					timer = 0;
 				}
 			}
