@@ -18,7 +18,8 @@ Timber Kunai sometimes creates a toxic seed on impact
 Fixed a bug in which Magnoliac and Ghastly Ent respawned constantly during hardmode
 Tinkered with gem spawns
 New track for the forest's army
-Given the trash man more dialogue
+Given the trash man and pyromaniac more dialogue
+Fire grenades now do damage to the player, the ones that the pyro npc uses as defense don't apply 
 Other misc fixes and polish, this version and onwards will have more in depth changelogs
 
 This mod adds in a total of:

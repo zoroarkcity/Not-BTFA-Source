@@ -98,16 +98,33 @@ namespace ForgottenMemories.NPCs.Town
 		public override string GetChat()
 		{
 			int demo = NPC.FindFirstNPC(NPCID.Demolitionist);
-			if (demo >= 0 && Main.rand.Next(4) == 0)
+			if (demo >= 0 && Main.rand.Next(5) == 0)
 			{
 				return "Wow, " +  Main.npc[demo].GivenName + " thinks blowing things up is fun. What a loser!";
 			}
-			switch (Main.rand.Next(3))
+			int pyro = NPC.FindFirstNPC(mod.NPCType("Pyro"));
+			if (pyro >= 0 && Main.rand.Next(6) == 0)
+			{
+				return "" +  Main.npc[pyro].GivenName + " is my name and serial arson is my game!";
+			}
+			if (Main.rand.Next(6) == 0 && TGEMWorld.downedForestInvasion)
+			{
+				return "Good thing you got rid of those ents. How about you get rid of every other tree in sight too?";
+			}
+			if (Main.rand.Next(5) == 0 && TGEMWorld.Cryotine)
+			{
+				return "Don't suppose you've seen any of that cold stuff under the tundra? What do they call it? Cryo? Ah, cryotine, that's it. Keep it away from me!";
+			}
+			switch (Main.rand.Next(5))
 			{
 				case 0:
-					return "I assume you want to burn down a forest, given you've come to me... If it is that case, please buy everything!";
+					return "I assume you want to burn down a forest, given you've come to me... If that's that case, please buy everything!";
 				case 1:
                     return "I promise won't burn down your house, but I can't guarantee that there will be no accidents...";
+				case 2:
+                    return "Tree seed? I say let it die!";
+				case 3:
+                    return "I have a burning passion to give your home a makeover of sorts...";
 				default:
 					return "Fire is great, isn't it?";
 			}
@@ -174,7 +191,7 @@ namespace ForgottenMemories.NPCs.Town
 
 		public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
 		{
-			projType = mod.ProjectileType("FireGrenadeProj");
+			projType = mod.ProjectileType("FireGrenadeProjF");
 			attackDelay = 1;
 		}
 

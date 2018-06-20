@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace ForgottenMemories.Projectiles
+namespace ForgottenMemories.Projectiles.Town
 {
-	public class FireGrenadeProj : ModProjectile
+	public class FireGrenadeProjF : ModProjectile
 	{
 		public override void SetDefaults()
 		{
@@ -16,7 +16,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.penetrate = 1;
 			projectile.timeLeft = 300;
 			projectile.thrown = true;
-			projectile.friendly = true;		
+			projectile.friendly = true;
 		}
 		public override void SetStaticDefaults()
 		{

@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace ForgottenMemories.Projectiles 
+namespace ForgottenMemories.Projectiles.Town
 {
-	public class FireGrenadeBoom : ModProjectile
+	public class FireGrenadeBoomF : ModProjectile
 	{
 		public override void SetDefaults()
 		{
@@ -17,7 +17,6 @@ namespace ForgottenMemories.Projectiles
 			projectile.thrown = true;
 			projectile.timeLeft = 6;
 			projectile.friendly = true;
-			projectile.hostile = true;
 			projectile.alpha = 255;
 			projectile.tileCollide = false;
 		}
@@ -75,10 +74,6 @@ namespace ForgottenMemories.Projectiles
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffID.OnFire, 180, false);
-		}
-		public override void OnHitPlayer(Player player, int damage, bool crit)
-		{
-            player.AddBuff(BuffID.OnFire, 180);
 		}
 	}
 }	
