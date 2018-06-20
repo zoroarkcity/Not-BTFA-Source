@@ -44,12 +44,7 @@ namespace ForgottenMemories.NPCs.TitanRock
 			bossBag = mod.ItemType("TitanRockBag");
 			npc.scale = 1.25f;
 			npc.npcSlots = 5;
-
-            if (ForgottenMemories.instance.songsLoaded)
-                music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/godofwar");
-            else
-                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TitanRock");
-
+			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Acheron");
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Venom] = true;
 			npc.buffImmune[BuffID.Confused] = true;

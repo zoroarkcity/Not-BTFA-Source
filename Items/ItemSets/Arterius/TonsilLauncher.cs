@@ -13,21 +13,20 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tonsil Launcher");
-			Tooltip.SetDefault("Transforms Rockets into Exploding Tonsils");
+			Tooltip.SetDefault("Fires an infinite amount of Exploding Tonsils");
 		}
 		
 		public override void SetDefaults()
 		{
 			item.damage = 65;
 			item.noMelee = true;
-			item.ranged = true;
+			item.thrown = true;
 			item.width = 30;
 			item.height = 28;
 			item.useTime = 37;
 			item.useAnimation = 37;
 			item.useStyle = 5;
 			item.shoot = 133;
-			item.useAmmo = AmmoID.Rocket;
 			item.UseSound = SoundID.NPCDeath13;
 			item.knockBack = 4.4f;
 			item.value = Item.sellPrice(0, 2, 8, 0);

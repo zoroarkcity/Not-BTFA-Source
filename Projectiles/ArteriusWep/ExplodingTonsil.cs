@@ -15,7 +15,8 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 			projectile.aiStyle = 1;
 			projectile.friendly = true;
 			Main.projFrames[projectile.type] = 4;
-			projectile.ranged = true;
+			projectile.thrown = true;
+			projectile.ranged = false;
 			projectile.penetrate = -1;
 		}
 		

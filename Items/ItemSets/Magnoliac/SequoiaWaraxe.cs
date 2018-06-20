@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Walnut Waraxe");
-            Tooltip.SetDefault("Creates an upwards facing vine upon critical striking an enemy");
+            Tooltip.SetDefault("Creates an upwards facing, poisoning vine upon critical striking an enemy");
         }
 		
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
@@ -37,6 +37,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
 		    if (crit)
             {
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, -10f, 7, item.damage, 3f, player.whoAmI);
+				target.AddBuff(BuffID.Poisoned,	360);
             }		
 		}
     }
