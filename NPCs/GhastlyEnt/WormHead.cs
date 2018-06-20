@@ -28,7 +28,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
             npc.lavaImmune = true; 
             npc.noGravity = true;           
             npc.noTileCollide = true;     
-            npc.HitSound = SoundID.NPCHit9;
+            npc.HitSound = SoundID.NPCHit18;
             npc.behindTiles = true;
             npc.DeathSound = SoundID.NPCDeath13;
             Main.npcFrameCount[npc.type] = 1;

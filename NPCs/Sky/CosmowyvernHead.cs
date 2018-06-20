@@ -46,13 +46,13 @@ namespace ForgottenMemories.NPCs.Sky
 			npc.lifeMax = 1200;
 		}
 
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+/*		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
 			return spawnInfo.player.ZoneSkyHeight && TGEMWorld.downedTitanRock ? 0.05f : 0f;
-		}
+		} */
 		
 		public override void NPCLoot()
 		{

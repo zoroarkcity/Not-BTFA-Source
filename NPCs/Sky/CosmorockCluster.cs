@@ -21,7 +21,7 @@ namespace ForgottenMemories.NPCs.Sky
 			npc.value = 100;
 			npc.knockBackResist = 0f;
 			banner = npc.type;
-			bannerItem = mod.ItemType("CosmorRckClusterBannerItem");
+			bannerItem = mod.ItemType("CosmoRockClusterBannerItem");
 		}
 		
 		public override void SetStaticDefaults()
@@ -95,7 +95,7 @@ namespace ForgottenMemories.NPCs.Sky
 				npc.Center = telep;
 				for (int m = 0; m < 1; m++)
 				{
-					Main.PlaySound(SoundID.Item6, (int)npc.position.X, (int)npc.position.Y);
+					Main.PlaySound(SoundID.Item105, (int)npc.position.X, (int)npc.position.Y);
 					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, mod.ProjectileType("CosmosBoom"), npc.damage / 4, 1, Main.myPlayer, 1, 0);
 					Main.projectile[p].friendly = false;
 					Main.projectile[p].hostile = true;

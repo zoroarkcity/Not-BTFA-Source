@@ -32,7 +32,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Acorn Cannon");
-            Tooltip.SetDefault("Uses acorns as ammo. \n Fires accelerating pinecones.");
+            Tooltip.SetDefault("Uses acorns as ammo. \nFires accelerating pinecones");
         }
     }
 }
