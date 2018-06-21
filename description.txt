@@ -1,5 +1,7 @@
 0.4.3 Update Notes:
-Fixed fire themed accessories doing damage
+Fixed accessories that explode into fire doing hostile damage
+Tweaked some drop chances
+A few resprites
 
 This mod adds in a total of:
 -Over 400 Items
