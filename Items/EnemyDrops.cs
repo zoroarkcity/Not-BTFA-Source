@@ -22,7 +22,7 @@ namespace ForgottenMemories.Items
 			
 			if (npc.type == 32 && Main.rand.Next(3) == 0)
 			{
-				int amountToDrop = Main.rand.Next(1,4);
+				int amountToDrop = Main.rand.Next(3,7);
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("WaterShard"), amountToDrop); 
 			}
 			
