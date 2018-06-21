@@ -37,7 +37,7 @@ namespace ForgottenMemories.Items.Melee
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Finale");
-      Tooltip.SetDefault("Creates a ring of rainbow explosions around you \nRight-Clicking rains down explosive rainbow bolts \nCheat Item");
+      Tooltip.SetDefault("Creates a ring of hue shifting prismatic explosions around you \nRight-Clicking summons a hoarde of explosive rainbow bolts from the sky \nCheat Item");
       BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/Finale");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
