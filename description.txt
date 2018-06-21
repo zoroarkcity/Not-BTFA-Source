@@ -1,4 +1,4 @@
-0.4.3 Update Notes:
+0.4.2 Update Notes:
 Fixed chicken pet sinking into blocks
 Fixed titan rock dropping only 1 treasure bag even if there are multiple players present
 Nightly essence recipes more persistent and iron replaced with copper
