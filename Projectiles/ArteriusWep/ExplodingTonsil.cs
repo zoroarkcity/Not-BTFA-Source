@@ -28,7 +28,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 		public override void Kill(int timeLeft)
 		{
 			//change this sound effect
-			Main.PlaySound(SoundID.Item14, projectile.position);
+			Main.PlaySound(4, (int)projectile.position.X, (int)projectile.position.Y, 21);
 
 			projectile.position.X += projectile.width / 2;
 			projectile.position.Y += projectile.height / 2;

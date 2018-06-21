@@ -65,6 +65,10 @@ namespace ForgottenMemories.NPCs.Town
 					return "Crispy";
 				case 4:
 					return "Verne";
+				case 5:
+					return "Daniel";
+				case 6:
+					return "Dan";
 				default:
 					return "Tymon";
 			}

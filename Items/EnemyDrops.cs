@@ -222,7 +222,7 @@ namespace ForgottenMemories.Items
 			}
 			if (npc.type == NPCID.DarkCaster)
 			{
-				if (Main.rand.Next(18) == 0)
+				if (Main.rand.Next(25) == 0)
 				{
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Atlantean"), Main.rand.Next(1, 1));
 				}
