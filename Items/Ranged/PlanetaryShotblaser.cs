@@ -53,7 +53,6 @@ namespace ForgottenMemories.Items.Ranged
 			recipe.AddIngredient(ItemID.LunarBar, 6);
 			recipe.AddIngredient(3459, 12);
 			recipe.AddIngredient(3457, 12);
-			recipe.AddIngredient(3467, 10);
 			recipe.AddTile(412);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
