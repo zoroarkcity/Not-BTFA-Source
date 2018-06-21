@@ -526,7 +526,7 @@ namespace ForgottenMemories
 							player.velocity.X = 10f;
 						}
 						Main.PlaySound(2, (int)player.Center.X, (int)player.Center.Y, 34);
-						int projectile = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("FireGrenadeBoom"), 15, 5f, player.whoAmI);
+						int projectile = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("FireGrenadeBoomF"), 15, 5f, player.whoAmI);
 						Main.projectile[projectile].thrown = false;
 						Main.projectile[projectile].timeLeft = 2;				
 						canJumpFirestorm = false;
