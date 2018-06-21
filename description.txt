@@ -1,26 +1,5 @@
 0.4.3 Update Notes:
-Fixed chicken pet sinking into blocks
-Fixed titan rock dropping only 1 treasure bag even if there are multiple players present
-Nightly essence recipes more persistent and iron replaced with copper
-Vendure correctly inflicts poison
-Undead heart nerfed and soaring enemies spawn buffed
-Issues and crashes with BTFA banners resolved
-Magnoliac's Acorns now create custom projectiles instead of plantera's seeds
-Added Globule Potion, ranged and thrown attacks sometimes split into nightly globules
-Added Fatfrog pet, dropped by rotten ents
-Added Serrated Snowflake, earlygame upgrade to shurikens
-Nerfed Rustic Grapple
-Geloline moved from post ent to post mag, nerfed respectively
-Ghastly Oil, upgrade to Geloline after ghastly ent, bought from the pyro
-Swapped Cryotine recipes for summon and mage staffs
-Added the woodpecker cane, summon weapon that drops from magnoliac
-Timber Kunai sometimes creates a toxic seed on impact
-Fixed a bug in which Magnoliac and Ghastly Ent respawned constantly during hardmode
-Tinkered with gem spawns
-New track for the forest's army
-Given the trash man and pyromaniac more dialogue
-Fire grenades now do damage to the player, the ones that the pyro npc uses as defense don't apply 
-Other misc fixes and polish, this version and onwards will have more in depth changelogs
+Fixed fire themed accessories doing damage
 
 This mod adds in a total of:
 -Over 400 Items
