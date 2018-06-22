@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pine Ent");
+			DisplayName.SetDefault("Boreal Ent");
 			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Zombie];
 			animationType = NPCID.Zombie;
 		}

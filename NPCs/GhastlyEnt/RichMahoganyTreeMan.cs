@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Mahogany Ent");
+			DisplayName.SetDefault("Rich Mahogany Ent");
 			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Zombie];
 			animationType = NPCID.Zombie;
 		}
