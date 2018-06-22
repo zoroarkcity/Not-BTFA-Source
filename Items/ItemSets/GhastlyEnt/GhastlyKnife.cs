@@ -19,21 +19,21 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.useTime = 17;
 			item.useAnimation = 17;
 			item.maxStack = 1;
-			item.useStyle = 1;
-			item.noUseGraphic = true;
+			item.useStyle = 5;
 			item.noMelee = true;
 			item.autoReuse = true;
+            item.noUseGraphic = true;
 			item.value = 38;
 			item.rare = 3;
 			item.shootSpeed = 15f;
 			item.autoReuse = true;
-			item.UseSound = SoundID.Item1;
+			item.UseSound = SoundID.Item19;
 		}
 
 		public override void SetStaticDefaults()
 		{
-		  DisplayName.SetDefault("Timber Kunai");
-		  Tooltip.SetDefault("Splits into damaging woodchips on impact \nSometimes sprouts into a toxic seed on impact");
+		  DisplayName.SetDefault("Leaf Plumed Knives");
+		  Tooltip.SetDefault("Ejects timber kunais that split into damaging woodchips on impact \nSometimes sprouts into a toxic seed on impact");
 		}
 	}
 }

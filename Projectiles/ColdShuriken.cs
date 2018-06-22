@@ -25,7 +25,7 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Blood Shuriken");
+			DisplayName.SetDefault("Serrated Snowflake");
 		}
 		
 		public override void Kill(int timeLeft)
@@ -75,6 +75,13 @@ namespace ForgottenMemories.Projectiles
 		{
 			projectile.rotation += MathHelper.Pi / 60;
 			cap--;
+		}
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			if (Main.rand.Next(3) == 0)
+			{
+			   target.AddBuff(BuffID.Frostburn, 180, false);
+			}
 		}
 	}
 }	

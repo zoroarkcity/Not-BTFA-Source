@@ -13,7 +13,7 @@ namespace ForgottenMemories.Mounts.AcheronMount
             item.useAnimation = 20;
             item.useStyle = 1;
             item.value = 300;
-            item.rare = 5;
+            item.rare = 4;
 			item.UseSound = SoundID.Item106;
             item.noMelee = true;
             item.mountType = mod.MountType("Obolos_Mount");

@@ -1,7 +1,12 @@
-0.4.3 Update Notes:
+0.4.2.1 Update Notes:
 Fixed accessories that explode into fire doing hostile damage
 Tweaked some drop chances
 A few resprites
+Timber Kunai renamed to Leaf Plumed Knives
+Serrated Snowflakes now inflict frostburn sometimes
+The trash man has more names
+Given grappling hooks correct rarity
+Probably other stuff I forgot
 
 This mod adds in a total of:
 -Over 400 Items

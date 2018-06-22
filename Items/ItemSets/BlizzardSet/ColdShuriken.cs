@@ -35,7 +35,7 @@ public class ColdShuriken : ModItem
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Serrated Snowflake");
-      Tooltip.SetDefault("");
+      Tooltip.SetDefault("Has a chance to inflict frostburn");
     }
 
 
