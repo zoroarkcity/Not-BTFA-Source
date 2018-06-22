@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tonsil Launcher");
+			DisplayName.SetDefault("The Scream");
 			Tooltip.SetDefault("Fires an infinite amount of Exploding Tonsils");
 		}
 		
