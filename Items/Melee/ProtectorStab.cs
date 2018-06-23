@@ -17,7 +17,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void SetDefaults()
 		{
 
-			item.damage = 24;
+			item.damage = 18;
 			item.melee = true;
 			item.width = 22;
 			item.height = 24;

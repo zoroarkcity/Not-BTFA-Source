@@ -15,13 +15,13 @@ namespace ForgottenMemories.Buffs
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Granite Skin");
-			Description.SetDefault("Increases defense by 16");
+			Description.SetDefault("Increased defense by 10");
 			//Main.buffNoTimeDisplay[Type] = true;
 		}
 		
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.statDefense += 16;
+			player.statDefense += 10;
 		}
 	}
 }
