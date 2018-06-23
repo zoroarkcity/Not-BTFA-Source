@@ -18,7 +18,7 @@ namespace ForgottenMemories.Projectiles.Summon
             projectile.friendly = true;
             projectile.minionSlots = 1;
             projectile.alpha = 0;
-            projectile.aiStyle = 66;
+            projectile.aiStyle = 54;
             projectile.timeLeft = 18000;
             Main.projFrames[projectile.type] = 4;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
@@ -35,20 +35,16 @@ namespace ForgottenMemories.Projectiles.Summon
 		}
 
         public override void AI()
-        {
-        	bool flag64 = projectile.type == mod.ProjectileType("Fernling");
+		{
 			Player player = Main.player[projectile.owner];
-			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
-			if (flag64)
+			BTFAPlayer modPlayer = (BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer");
+			if (player.dead)
 			{
-				if (player.dead)
-				{
-					modPlayer.Fernling = false;
-				}
-				if (modPlayer.Fernling)
-				{
-					projectile.timeLeft = 2;
-				}
+				modPlayer.Fernling = false;
+			}
+			if (modPlayer.Fernling)
+			{
+				projectile.timeLeft = 2;
 			}
 		}
         
