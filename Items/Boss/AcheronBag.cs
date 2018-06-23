@@ -38,11 +38,7 @@ namespace ForgottenMemories.Items.Boss
 			{
 				case 0: 
 					player.QuickSpawnItem(mod.ItemType("Thanatos"), 1);
-					break;
-				case 1: 
-					player.QuickSpawnItem(mod.ItemType("Styx"), 1);
-					break;
-				
+					break;				
 				case 2:
 					player.QuickSpawnItem(mod.ItemType("MacabreGrimoire"), 1);
 					break;
@@ -80,6 +76,11 @@ namespace ForgottenMemories.Items.Boss
 			{
 				player.QuickSpawnItem(mod.ItemType("Obolos"), 1);
 			}
+			
+			if (Main.rand.Next(4) == 0)	
+			{				
+				player.QuickSpawnItem(mod.ItemType("Styx"), 1);
+		    }
 		}
 	}
 }

@@ -25,8 +25,8 @@ namespace ForgottenMemories.Items.Hook
 
 		public override void SetDefaults()
 		{
-			item.rare = 0;
 			item.CloneDefaults(ItemID.AmethystHook);
+			item.rare = 0;
 			item.shootSpeed = 9f;
 			item.shoot = mod.ProjectileType("RusticProjectile");
 		}

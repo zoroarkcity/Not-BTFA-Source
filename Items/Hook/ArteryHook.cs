@@ -15,10 +15,10 @@ namespace ForgottenMemories.Items.Hook
 
 		public override void SetDefaults()
 		{
-			item.rare = 5;
 			item.CloneDefaults(ItemID.AmethystHook);
 			item.shootSpeed = 16f;
 			item.shoot = mod.ProjectileType("ArteryProjectile");
+			item.rare = 5;			
 		}
 	}
 	class ArteryProjectile : ModProjectile

@@ -20,7 +20,7 @@ namespace ForgottenMemories.Projectiles.Summon
             projectile.alpha = 0;
             projectile.aiStyle = 54;
             projectile.timeLeft = 18000;
-            Main.projFrames[projectile.type] = 4;
+            Main.projFrames[projectile.type] = 8;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             projectile.penetrate = -1;
             projectile.timeLeft *= 5;

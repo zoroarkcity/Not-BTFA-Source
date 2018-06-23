@@ -24,8 +24,8 @@ namespace ForgottenMemories.Items.Hook
 
 		public override void SetDefaults()
 		{
-			item.rare = 1;
 			item.CloneDefaults(ItemID.AmethystHook);
+			item.rare = 1;
 			item.shootSpeed = 16f;
 			item.shoot = mod.ProjectileType("TourmalineProjectile");
 		}
