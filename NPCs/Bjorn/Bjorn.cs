@@ -47,6 +47,7 @@ namespace ForgottenMemories.NPCs.Bjorn
 		public override void AI()
 		{
 			Player player = Main.player[npc.target];
+			npc.spriteDirection = npc.direction;
 			
 			Vector2 newMove = npc.Center - player.Center;
 			float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
@@ -60,8 +61,7 @@ namespace ForgottenMemories.NPCs.Bjorn
 					npc.timeLeft = 60;
 				}
             }
-		}
-		
+		}				
 		public override void FindFrame(int frameHeight)
 		{
 			if (npc.velocity.Y == 0.0)
@@ -77,7 +77,11 @@ namespace ForgottenMemories.NPCs.Bjorn
 				npc.frame.Y = frame * frameHeight;
 			}
 		}
-		
+	    public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+		{
+			scale = 1.5f; // larger health bar
+			return null;
+        }		
 		public override void NPCLoot()
 		{
 			TGEMWorld.downedGhastlyEnt = true;
