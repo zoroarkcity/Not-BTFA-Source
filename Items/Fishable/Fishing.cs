@@ -24,6 +24,10 @@ namespace ForgottenMemories.Items.Fishing
             {
                 caughtType = mod.ItemType("AmmoBag");
             }
+			if (liquidType == 0 && player.ZoneJungle && Main.rand.Next(100) == 0) 
+            {
+                caughtType = mod.ItemType("Tadpole_Egg");
+            }
         }
  
     }

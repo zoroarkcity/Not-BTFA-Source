@@ -9,7 +9,7 @@ namespace ForgottenMemories.Items.Consumable
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Marrowbloom");
-			Tooltip.SetDefault("'The deceased enjoy this death smelling fungus' \n Summons the skeleton merchant");
+			Tooltip.SetDefault("'The deceased enjoy this death smelling fungus' \nSummons the skeleton merchant in the cavern layer");
 		}
 
 		public override void SetDefaults()
@@ -27,12 +27,12 @@ namespace ForgottenMemories.Items.Consumable
 
 		public override bool CanUseItem(Player player)
 		{
-			return !NPC.AnyNPCs(NPCID.SkeletonMerchant);
+			return !NPC.AnyNPCs(NPCID.SkeletonMerchant) && player.ZoneRockLayerHeight;
 		}
 		
 		public override bool UseItem(Player player)
 		{
-			NPC.NewNPC((int)player.Center.X + Main.rand.Next(-1000, 1000), (int)player.Center.Y, NPCID.SkeletonMerchant);
+			NPC.NewNPC((int)player.Center.X + Main.rand.Next(-10, 10), (int)player.Center.Y, NPCID.SkeletonMerchant);
 			Main.NewText("A skeletal figure has been allured", 175, 75, 255);
 			Main.PlaySound(SoundID.Frog, player.position, 0);
 			return true;

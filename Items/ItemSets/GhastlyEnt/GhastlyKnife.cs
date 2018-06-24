@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 
 		public override void SetDefaults()
 		{
-			item.damage = 28;
+			item.damage = 25;
 			item.thrown = true;
 			item.shoot = mod.ProjectileType("GhastlyKnife");
 			item.shootSpeed = 10f;
