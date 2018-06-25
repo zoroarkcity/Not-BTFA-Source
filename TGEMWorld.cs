@@ -84,13 +84,11 @@ namespace ForgottenMemories
 			if (Blight) ore.Add("Blight");
 			if (downedGhastlyEnt) downed.Add("GhastlyEnt");
 			if (downedTitanRock) downed.Add("TitanRock");
-			if (downedArterius) downed.Add("acheron");
+			if (downedAcheron) downed.Add("Acheron");
 			if (downedArterius) downed.Add("Arterius");
-			if (downedForestInvasion) downed.Add("forestInvasion");
-			
+			if (downedForestInvasion) downed.Add("forestInvasion");			
 			if (spawnedGems) ore.Add("Gems");
 			if (downedMag) downed.Add("Mag");
-
 			if (Cosmirock) ore.Add ("Cosmirock");
 			
 			return new TagCompound {
@@ -113,7 +111,7 @@ namespace ForgottenMemories
 			downedMag = downed.Contains("Mag");
 			downedForestInvasion = downed.Contains("forestInvasion");
 			Cosmirock = ore.Contains("Cosmirock");				
-			downedAcheron = downed.Contains("acheron");
+			downedAcheron = downed.Contains("Acheron");
 		}
 		
 		public override void NetSend(BinaryWriter writer)
@@ -145,7 +143,7 @@ namespace ForgottenMemories
 			Blight = flags[4];
 			downedArterius = flags[5];
 			downedForestInvasion = flags[6];
-			downedForestInvasion = flags[8];
+			downedMag = flags[8];
 			downedAcheron = flags[7];
 			spawnedGems = flags[9];
 			Cosmirock = flags[10];
