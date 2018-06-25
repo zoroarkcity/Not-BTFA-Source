@@ -9,6 +9,7 @@ Given grappling hooks correct rarity
 Fixed marrowbloom acting funny
 Made fatfrog pet obtainable, very rarely fished in the jungle- to be moved again one more time to an upcoming boss
 Bars are now placeable
+Suspicious looking acorn, summons an acorn bomber mount which has short flight time and shoots explosive acorns underneath it, dropped by magnoliac
 Probably other stuff I forgot
 
 This mod adds in a total of:

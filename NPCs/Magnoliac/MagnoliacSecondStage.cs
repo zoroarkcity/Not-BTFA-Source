@@ -60,6 +60,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
         {
 			potionType = ItemID.LesserHealingPotion; //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater   			
 			TGEMWorld.downedMag = true;
+			if (Main.rand.Next(4) == 0 && !Main.expertMode) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, (mod.ItemType("MagItem")));
             if (Main.expertMode) //if it's expert mode the treasure bag will drop
             {
                 npc.DropBossBags();

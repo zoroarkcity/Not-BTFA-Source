@@ -62,7 +62,10 @@ namespace ForgottenMemories.NPCs.Magnoliac
 			{
 				player.QuickSpawnItem(mod.ItemType("birdman"), 1);
 			}
-				
+			if (Main.rand.Next(4) == 0)
+			{
+				player.QuickSpawnItem(mod.ItemType("MagItem"), 1);
+			}				
 		}
 	}
 }
