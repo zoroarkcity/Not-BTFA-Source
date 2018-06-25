@@ -40,9 +40,9 @@ namespace ForgottenMemories.Items.ItemSets.Acheron
 	            + "Summons a soul fountain from tartarus that steals life away from enemies\n"
 	            + "Left-click to summon the fountain on yourself\n"
 	            + "Right-click to adjust fountain speed\n"
-				+ "Deletes the fountain after 4th speed value\n"
-				+ "Faster the fountain bobs, faster it shoots\n"
-				+ "Armor penetration, range, spawning speed, damage and many other stats vary on speed of the fountain");
+				+ "Deletes the fountain after the 4th speed value\n"
+				+ "The faster the fountain bobs, the faster it shoots\n"
+				+ "Armor penetration, range, spawning speed, damage and many other stats vary depending on the speed of the fountain");
 		}
 		
 		public override bool AltFunctionUse(Player player)

@@ -34,22 +34,22 @@ namespace ForgottenMemories.Items.Boss
 
 		public void MakeAnItem(Player player)
 		{
-			switch (Main.rand.Next(5))
+			switch (Main.rand.Next(4))
 			{
 				case 0: 
 					player.QuickSpawnItem(mod.ItemType("Thanatos"), 1);
 					break;				
-				case 2:
+				case 1:
 					player.QuickSpawnItem(mod.ItemType("MacabreGrimoire"), 1);
 					break;
-				case 3:
+				case 2:
 					player.QuickSpawnItem(mod.ItemType("Cerberus"), 1);
 					break;
-				case 4:
+				case 3:
 					player.QuickSpawnItem(mod.ItemType("HadesHand"), 1);
 					player.QuickSpawnItem(mod.ItemType("LostSoul"), Main.rand.Next(150, 201));
 					break;
-				/*case 5:
+				/*case 4:
 					player.QuickSpawnItem(mod.ItemType("AcheronStaff"), 1);
 					break;*/
 				default:
