@@ -17,6 +17,7 @@ namespace ForgottenMemories.Items.AaMaterials
 			item.maxStack = 999;
 			item.value = 14000;
 			item.rare = 1;
+//everything beyond this comment is the placing
             item.createTile = mod.TileType("BarGelatine");
 			item.useAnimation = 15;
 			item.useTime = 10;

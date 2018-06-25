@@ -17,8 +17,12 @@ namespace ForgottenMemories.Items.AaMaterials
 			item.maxStack = 999;
 			item.value = 14000;
 			item.rare = 2;
-            //item.createTile = mod.TileType("BarCryotine");
-
+//everything beyond this comment is the placing
+            item.createTile = mod.TileType("BarCryo");
+			item.useAnimation = 15;
+			item.useTime = 10;
+			item.useStyle = 1;
+			item.consumable = true;
         }
 
     public override void SetStaticDefaults()

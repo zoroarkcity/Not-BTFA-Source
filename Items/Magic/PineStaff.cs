@@ -34,7 +34,7 @@ namespace ForgottenMemories.Items.Magic
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Pine Staff");
-      Tooltip.SetDefault("Fires pine needles");
+      Tooltip.SetDefault("Constantly ejects pine needles");
     }
 
 		

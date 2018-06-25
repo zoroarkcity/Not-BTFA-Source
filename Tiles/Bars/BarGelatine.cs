@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace ForgottenMemories.Tiles
+namespace ForgottenMemories.Tiles.Bars
 {
 	public class BarGelatine : ModTile
 	{

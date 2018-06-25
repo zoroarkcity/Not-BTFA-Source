@@ -7,7 +7,8 @@ Serrated Snowflakes now inflict frostburn sometimes
 The trash man has more names
 Given grappling hooks correct rarity
 Fixed marrowbloom acting funny
-Made fatfrog pet obtainable, very rarely fished in the jungle
+Made fatfrog pet obtainable, very rarely fished in the jungle- to be moved again one more time to an upcoming boss
+Bars are now placeable
 Probably other stuff I forgot
 
 This mod adds in a total of:
