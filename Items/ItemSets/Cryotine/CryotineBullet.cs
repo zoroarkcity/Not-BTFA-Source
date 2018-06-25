@@ -39,7 +39,7 @@ public class CryotineBullet : ModItem
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "CryotineBar", 1);
-            recipe.SetResult(this, 100);
+            recipe.SetResult(this, 99);
             recipe.AddRecipe();
         }
     }

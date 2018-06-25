@@ -39,7 +39,7 @@ public class ShadowDart : ModItem
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.ShadowScale, 1);
-            recipe.SetResult(this, 50);
+            recipe.SetResult(this, 99);
             recipe.AddRecipe();
         }
 }}

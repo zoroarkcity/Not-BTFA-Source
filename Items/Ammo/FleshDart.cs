@@ -39,7 +39,7 @@ public class FleshDart : ModItem
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.TissueSample, 1);
-            recipe.SetResult(this, 50);
+            recipe.SetResult(this, 99);
             recipe.AddRecipe();
         }
 }}

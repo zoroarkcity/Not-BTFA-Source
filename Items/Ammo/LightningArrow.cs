@@ -36,10 +36,10 @@ namespace ForgottenMemories.Items.Ammo
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(40, 500);
+			recipe.AddIngredient(40, 333);
 			recipe.AddIngredient(null, "DivineBolt", 1);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this, 500);
+			recipe.SetResult(this, 333);
 			recipe.AddRecipe();
 		}
 	}

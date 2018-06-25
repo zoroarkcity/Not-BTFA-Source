@@ -40,7 +40,7 @@ namespace ForgottenMemories.Items.Ammo
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "DarkSludge", 1);
-			recipe.SetResult(this, 200);
+			recipe.SetResult(this, 333);
 			recipe.AddRecipe();
 		}
 	}

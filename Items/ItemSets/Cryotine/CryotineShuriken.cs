@@ -43,7 +43,7 @@ public class CryotineShuriken : ModItem
         ModRecipe recipe = new ModRecipe(mod);
         recipe.AddIngredient(null, "CryotineBar", 1);
         recipe.AddTile(TileID.Anvils);
-        recipe.SetResult(this, 50);
+        recipe.SetResult(this, 99);
         recipe.AddRecipe();
     }
 }
