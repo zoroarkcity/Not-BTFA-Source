@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.useStyle = 5;
 			item.knockBack = 1;
 			item.value = 27000;
-			item.rare = 2;
+			item.rare = 7;
 			item.autoReuse = true;
 
 			item.shoot = 10; 

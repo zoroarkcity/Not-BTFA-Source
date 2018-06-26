@@ -20,7 +20,7 @@ namespace ForgottenMemories.Mounts.MagMount
 			if (player.HasBuff(mod.BuffType("MagBuff")) && (Main.rand.Next(50)==0))
 			{
 			   Main.PlaySound(SoundID.Item17, 0);
-		       Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 10f, mod.ProjectileType("MountAcorn"), 30, 0f, player.whoAmI, 0f, 0f);			   
+		       Projectile.NewProjectile(player.position.X, player.position.Y + 50f, 0f, 10f, mod.ProjectileType("MountAcorn"), 30, 0f, player.whoAmI, 0f, 0f);			   
 			}
 		}
 	}

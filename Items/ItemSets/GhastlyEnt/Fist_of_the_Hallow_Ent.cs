@@ -27,7 +27,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.width = 20;
 			item.height = 20;
 			item.useTime = 24;
-			item.rare = 6;
+			item.rare = 7;
 			item.useAnimation = 24;
 			item.useStyle = 1;
 			item.knockBack = 2.15f;

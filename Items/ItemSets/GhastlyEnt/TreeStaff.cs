@@ -31,7 +31,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.noMelee = true;
 			item.knockBack = 0;
 			item.value = 27000;
-			item.rare = 2;
+			item.rare = 7;
 			item.UseSound = SoundID.Item82;
 			item.shoot = mod.ProjectileType("TreeMinion");
 			item.shootSpeed = 20f;

@@ -20,7 +20,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.useStyle = 1;
 			item.knockBack = 7.5f;
 			item.value = 27000;
-			item.rare = 2;
+			item.rare = 7;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
