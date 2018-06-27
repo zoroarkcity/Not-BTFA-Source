@@ -48,7 +48,7 @@ namespace ForgottenMemories.NPCs.Desert
 				{
 					npc.netUpdate = true;
 					Vector2 Vel = new Vector2(0, 3).RotatedByRandom(MathHelper.ToRadians(360));
-					int p = Projectile.NewProjectile(npc.Center, Vel, mod.ProjectileType("DuneTornado"), npc.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+					int p = Projectile.NewProjectile(npc.Center, Vel, mod.ProjectileType("DuneTornado"), (int)(npc.damage/2), 0.0f, Main.myPlayer, 0.0f, 0.0f);
 					Main.projectile[p].netUpdate = true;
 					projectileTimer = 0;
 				}
