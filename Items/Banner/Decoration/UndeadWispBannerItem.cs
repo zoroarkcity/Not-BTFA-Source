@@ -33,7 +33,7 @@ namespace ForgottenMemories.Items.Banner.Decoration
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "SoaringEnergy", 5);
+			recipe.AddIngredient(null, "UndeadEnergy", 5);
 			recipe.AddIngredient(ItemID.Silk, 3);
             recipe.AddTile(86);
             recipe.SetResult(this, 1);
