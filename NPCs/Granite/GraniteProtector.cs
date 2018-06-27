@@ -65,7 +65,7 @@ namespace ForgottenMemories.NPCs.Granite
 			}
 		}
 
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+/*		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
@@ -73,7 +73,7 @@ namespace ForgottenMemories.NPCs.Granite
 			return (tile == 368) ? 0.1f : 0f;
 		}
 		
-		public override void NPCLoot()
+     	public override void NPCLoot()
 		{
 			int amountToDrop = Main.rand.Next(10,25);
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Granite, amountToDrop);	
@@ -82,7 +82,7 @@ namespace ForgottenMemories.NPCs.Granite
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ProtectorStab"));	
 			}
-		}
+		} */
 	
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{

@@ -1,20 +1,15 @@
-0.4.2.1 Update Notes:
-Fixed accessories that explode into fire doing hostile damage
-Tweaked some drop chances
-A few resprites
-Timber Kunai renamed to Leaf Plumed Knives and rebalanced a bit
-Serrated Snowflakes now inflict frostburn sometimes
-The trash man has more names
+0.5 Update Notes:
 
-Given grappling hooks correct rarity
+-Fixed the movement of the acorn bomber
+-Removed granite protector
+-Various small changes
 
-Fixed marrowbloom acting funny
-Made fatfrog pet obtainable, very rarely fished in the jungle- to be moved again one more time to an upcoming boss
 
-Bars are now placeable
-Suspicious looking acorn, summons an acorn bomber mount which has short flight time and shoots explosive acorns underneath it, dropped by magnoliac
 
-Probably other stuff I forgot
+
+
+
+---------------------------------------------------------------
 
 This mod adds in a total of:
 -Over 400 Items
@@ -26,4 +21,4 @@ Credits:
 - Coding - East, Zoroarkcity, Terry N. Muse, ColinAV, Five
 - Spriting - Salehin, Insert, Willsm, Gratgaisdead, Phil, DWshin
 - Ideas and balancing - Necr0canc3r, Jesusonwheels, Hamboy
-- Various contributions from various members of the community
+- Smaller contributions from various members of the community
