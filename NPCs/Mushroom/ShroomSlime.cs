@@ -37,7 +37,7 @@ namespace ForgottenMemories.NPCs.Mushroom
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return (tile == 70) && spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime ? 0.2f : 0f;
+			return (tile == 70) && spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime && !spawnInfo.invasion ? 0.2f : 0f;
 		}
 		
 					public override void NPCLoot()

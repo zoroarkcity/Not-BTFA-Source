@@ -37,7 +37,7 @@ namespace ForgottenMemories.NPCs.Night
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.spawnTileY < Main.rockLayer && Main.bloodMoon && Main.hardMode ? 0.144f : 0f;
+			return spawnInfo.spawnTileY < Main.rockLayer && Main.bloodMoon && !spawnInfo.invasion && Main.hardMode ? 0.144f : 0f;
 		}
 
 		public void ShootSpinalBolts()

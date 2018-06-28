@@ -46,7 +46,7 @@ namespace ForgottenMemories.NPCs.Ocean
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return spawnInfo.player.ZoneBeach && NPC.downedBoss3 ? 0.06f : 0f;
+			return spawnInfo.player.ZoneBeach && NPC.downedBoss3 && !spawnInfo.invasion ? 0.06f : 0f;
 		}
 		public override void NPCLoot()
 		{

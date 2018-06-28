@@ -56,7 +56,7 @@ namespace ForgottenMemories.NPCs.Dungeon
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.player.ZoneDungeon ? 0.075f : 0f;
+			return spawnInfo.player.ZoneDungeon && !spawnInfo.invasion ? 0.075f : 0f;
 		}
 		public override void FindFrame(int frameHeight)
 		{
