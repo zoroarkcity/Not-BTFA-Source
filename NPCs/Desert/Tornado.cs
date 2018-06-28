@@ -94,19 +94,19 @@ namespace ForgottenMemories.NPCs.Desert
 			
 			
 			npc.frameCounter++;
-			if (npc.frameCounter < 6)
+			if (npc.frameCounter < 4)
 			{
 				npc.frame.Y = Frame_1 * frameHeight;
 			}
-			else if (npc.frameCounter < 12)
+			else if (npc.frameCounter < 8)
 			{
 				npc.frame.Y = Frame_2 * frameHeight;
 			}
-			else if (npc.frameCounter < 18)
+			else if (npc.frameCounter < 12)
 			{
 				npc.frame.Y = Frame_3 * frameHeight;
 			}
-			else if (npc.frameCounter < 24)
+			else if (npc.frameCounter < 16)
 			{
 				npc.frame.Y = Frame_4 * frameHeight;
 			}
