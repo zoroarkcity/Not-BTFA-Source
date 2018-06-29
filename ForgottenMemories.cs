@@ -35,11 +35,12 @@ namespace ForgottenMemories
         {
 			InGameWikiHotkey = RegisterHotKey("In-Game Wiki Hotkey", "f");
 
-			/*if (!Main.dedServ)
+			if (!Main.dedServ)
 			{
-				Filters.Scene["ForgottenMemories:SpookedByArte"] = new Filter(new ScreenShaderData("FilterBloodMoon"), EffectPriority.Medium);
-				SkyManager.Instance["ForgottenMemories:SpookedByArte"] = new BloodSky();
-			}*/
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Acheron"), ItemType("AcheBox"), TileType("AcheBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Arterius"), ItemType("ArterBox"), TileType("ArterBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Forests_Army"), ItemType("ForestBox"), TileType("ForestBox"));
+			}
 
             instance = this;
 			
