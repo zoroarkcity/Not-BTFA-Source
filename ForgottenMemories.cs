@@ -47,7 +47,7 @@ namespace ForgottenMemories
 			if (yabhb != null)
 			{
 				Func<NPC, int, int, Color> customColour = CustomHealthBarColour;
-				Func<Texture2D> fill = () => GetTexture("UI/YABHB/HealthBarFill");
+				Func<Texture2D> fill = () => GetTexture("UI/YABHB/AcheFill");
 				Func<Texture2D> start = () => GetTexture("UI/YABHB/AcheBarStart");
 				Func<Texture2D> mid = () => GetTexture("UI/YABHB/AcheBarMiddle");
 				Func<Texture2D> end = () => GetTexture("UI/YABHB/AcheBarEnd");
