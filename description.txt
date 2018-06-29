@@ -3,10 +3,10 @@
 -Fixed the movement of the acorn bomber
 -Removed granite protector
 -Various small changes
-
-
-
-
+-Added the Revenant and the Storm Spirit, two new enemies that drop wisps
+-Added the Sap Sprout, a new enemy in the hardmode forest's army, which leaks tiny sap slimes when hurt
+-Acheron has a custom YABHB health bar, this will only appear if you have YABHB mod installed
+-Our music has respective music boxes, obtained in the same way as vanilla
 
 
 ---------------------------------------------------------------

@@ -29,7 +29,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sap Ent");
+			DisplayName.SetDefault("Sap Sprout");
 			Main.npcFrameCount[npc.type] = 7;
 			animationType = NPCID.Zombie;
 		}
