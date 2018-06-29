@@ -31,7 +31,7 @@ namespace ForgottenMemories.Items.Melee
 
 		public override void SetStaticDefaults()
 		{
-		  DisplayName.SetDefault("Blade of Might");
+		  DisplayName.SetDefault("Champion's Claymore");
 		  Tooltip.SetDefault("Fires an explosive sword beam");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BladeOfMight");
     }

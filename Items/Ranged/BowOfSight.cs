@@ -40,7 +40,7 @@ namespace ForgottenMemories.Items.Ranged
 
 		public override void SetStaticDefaults()
 		{
-		  DisplayName.SetDefault("Bow of Sight");
+		  DisplayName.SetDefault("Gemini");
 		  Tooltip.SetDefault("Fires high velocity energy bolts that hit enemies twice");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BowOfSight");
     }
