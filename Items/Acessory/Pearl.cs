@@ -18,7 +18,7 @@ public class Pearl : ModItem
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Pearl");
+      DisplayName.SetDefault("Blessed Pearl");
       Tooltip.SetDefault("Taking over 10 damage has a 1/2 chance to restore 10 health \nTaking damage when under half of your max health will restore even more health \n'The ocean protects you'");
     }
 

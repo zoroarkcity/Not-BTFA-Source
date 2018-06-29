@@ -19,7 +19,7 @@ namespace ForgottenMemories.Items.Acessory
 
     public override void SetStaticDefaults()
     {
-      DisplayName.SetDefault("Blessed Pearl");
+      DisplayName.SetDefault("Holy Pearl");
       Tooltip.SetDefault("Taking over 15 damage has a 1/2 chance to restore 15 health"
 	  + "\nTaking damage when under half of your max health will restore even more health"
 	  +	"\nIncreased length of invincibility"
