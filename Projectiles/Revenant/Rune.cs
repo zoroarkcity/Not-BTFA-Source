@@ -32,6 +32,7 @@ namespace ForgottenMemories.Projectiles.Revenant
 			projectile.hostile = true;
 			projectile.friendly = false;
             projectile.width = 18;
+			projectile.tileCollide = false;
             projectile.height = 18;
 			projectile.alpha = 255;
 			projectile.timeLeft = 300;
@@ -141,6 +142,9 @@ namespace ForgottenMemories.Projectiles.Revenant
 				v *= 6;
 				projectile.velocity = v;
 			}
+			
+			if (projectile.timeLeft < 200)
+				projectile.tileCollide = true;
 		}
 		
 		public override void Kill(int timeLeft)
