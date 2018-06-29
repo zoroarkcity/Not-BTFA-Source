@@ -27,7 +27,7 @@ namespace ForgottenMemories
 		public static int[] hmInvaders = {
             mod.NPCType<RedwoodRam>(),
 			mod.NPCType<RottenEnt>(),
-			mod.NPCType<BlossomBomber>()
+			mod.NPCType<BlossomBomber>(),
 			mod.NPCType<SapEnt>()
         };
 		
