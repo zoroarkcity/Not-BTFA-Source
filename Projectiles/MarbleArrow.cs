@@ -114,7 +114,7 @@ namespace ForgottenMemories.Projectiles
 				for (int index1 = 0; (double) index1 < (double) num; ++index1)
 				{
 					Vector2 v = (Vector2.UnitX * 0.0f + -Vector2.UnitY.RotatedBy((double) index1 * (6.28318548202515 / (double) num), new Vector2()) * new Vector2(1f, 4f)).RotatedBy((double) projectile.velocity.ToRotation(), new Vector2());
-					int index2 = Dust.NewDust(projectile.Center, 0, 0, 200, 0.0f, 0.0f, 0, new Color(), 1f);
+					int index2 = Dust.NewDust(projectile.Center, 0, 0, 55, 0.0f, 0.0f, 200, new Color(), 1f);
 					Main.dust[index2].scale = 1.5f;
 					Main.dust[index2].fadeIn = 1.3f;
 					Main.dust[index2].noGravity = true;
