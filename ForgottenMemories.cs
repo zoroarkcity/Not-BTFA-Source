@@ -41,6 +41,21 @@ namespace ForgottenMemories
 			}*/
 
             instance = this;
+			
+			Mod yabhb = ModLoader.GetMod("FKBossHealthBar");
+			if (yabhb != null)
+			{
+				yabhb.Call("RegisterCustomHealthBar",
+				  NPCType("Acheron"),
+				  false,
+				  "Acheron",
+				  GetTexture("UI/YABHB/HealthBarFill"),
+				  GetTexture("UI/YABHB/AcheBarStart"),
+				  GetTexture("UI/YABHB/AcheBarMiddle"),
+				  GetTexture("UI/YABHB/AcheBarEnd"),
+				  null, null, null, null, null, null, null, null, null, null, null, null
+				  );
+			}
         }
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
