@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.Banner
 		}
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Granite Protector Banner");
+            DisplayName.SetDefault("Shroom Slime Banner");
             Tooltip.SetDefault("");
         }
 	}
