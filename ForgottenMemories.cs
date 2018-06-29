@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria.UI;
 using System;
@@ -45,18 +46,28 @@ namespace ForgottenMemories
 			Mod yabhb = ModLoader.GetMod("FKBossHealthBar");
 			if (yabhb != null)
 			{
-				yabhb.Call("RegisterCustomHealthBar",
+				Func<NPC, int, int, Color> customColour = CustomHealthBarColour;
+				Func<Texture2D> start = () => GetTexture("UI/YABHB/AcheBarStart");
+				Func<Texture2D> mid = () => GetTexture("UI/YABHB/AcheBarMiddle");
+				Func<Texture2D> end = () => GetTexture("UI/YABHB/AcheBarEnd");
+				yabhb.Call("RegisterCustomMethodHealthBar",
 				  NPCType("Acheron"),
 				  false,
-				  "Acheron",
-				  GetTexture("UI/YABHB/HealthBarFill"),
-				  GetTexture("UI/YABHB/AcheBarStart"),
-				  GetTexture("UI/YABHB/AcheBarMiddle"),
-				  GetTexture("UI/YABHB/AcheBarEnd"),
-				  null, null, null, null, null, null, null, null, null, null, null, null
+				  null,
+				  null,
+				  start, mid, end,
+				  null, null, null, null, null, null, null, null, null, null, null, null,
+				  customColour
 				  );
 			}
         }
+		
+		private Color CustomHealthBarColour(NPC npc, int life, int lifeMax)
+		{
+			float percent = (float)life / lifeMax;
+			float R = 1f - percent;
+			return new Color(R, 0.75f, 1f);
+		}
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 		{
