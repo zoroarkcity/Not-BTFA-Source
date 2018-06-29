@@ -58,7 +58,7 @@ namespace ForgottenMemories.NPCs.Night
 			int x = spawnInfo.spawnTileX;
 			int y = spawnInfo.spawnTileY;
 			int tile = (int)Main.tile[x, y].type;
-			return spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime && !spawnInfo.invasion && !spawnInfo.sky && !Main.eclipse && !spawnInfo.player.ZoneDesert && !spawnInfo.player.ZoneJungle ? 0.1f : 0f;
+			return spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime && !spawnInfo.invasion && !spawnInfo.sky && !Main.eclipse && !spawnInfo.player.ZoneDesert && !spawnInfo.player.ZoneJungle ? 0.07f : 0f;
 		}
 		public override void HitEffect(int hitDirection, double damage)
 		{
@@ -73,6 +73,10 @@ namespace ForgottenMemories.NPCs.Night
 			//if (Main.rand.Next(5) == 0) 
 			//	Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, 658, (int)(npc.damage/6), 1f, npc.target, 0f, 0f);
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkEnergy"), Main.rand.Next(5, 9));
+			if(Main.rand.Next(20) == 0)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("NightlyBoomerang"));
+			}
 		}
 		public override void FindFrame(int frameHeight)
 		{
