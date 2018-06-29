@@ -28,6 +28,7 @@ namespace ForgottenMemories
             mod.NPCType<RedwoodRam>(),
 			mod.NPCType<RottenEnt>(),
 			mod.NPCType<BlossomBomber>()
+			mod.NPCType<SapEnt>()
         };
 		
 		public static void StartCustomInvasion()
