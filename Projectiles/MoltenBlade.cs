@@ -12,6 +12,7 @@ namespace ForgottenMemories.Projectiles
 {
 	public class MoltenBlade : ModProjectile
 	{
+		int a;
 		public override void SetDefaults()
 		{
 			projectile.width = 30;
@@ -33,6 +34,21 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void AI()
 		{
+			if (a == 0)
+			{
+				float num = 16f;
+				for (int index1 = 0; (double) index1 < (double) num; ++index1)
+				{
+					Vector2 v = (Vector2.UnitX * 0.0f + -Vector2.UnitY.RotatedBy((double) index1 * (6.28318548202515 / (double) num), new Vector2()) * new Vector2(1f, 4f)).RotatedBy((double) projectile.velocity.ToRotation(), new Vector2());
+					int index2 = Dust.NewDust(projectile.Center, 0, 0, 6, 0.0f, 0.0f, 0, new Color(), 1f);
+					Main.dust[index2].scale = 1.5f;
+					Main.dust[index2].fadeIn = 1.3f;
+					Main.dust[index2].noGravity = true;
+					Main.dust[index2].position = projectile.Center + v;
+					Main.dust[index2].velocity = projectile.velocity * 0.0f + v.SafeNormalize(Vector2.UnitY) * 1f;
+				}
+				a++;
+			}
 			if (projectile.timeLeft <= 990)
 			{
 				projectile.tileCollide = true;

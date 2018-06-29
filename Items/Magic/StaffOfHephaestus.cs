@@ -25,9 +25,9 @@ namespace ForgottenMemories.Items.Magic
 			item.width = 25;
 			item.height = 26;
 
-			item.useTime = 7;
-			item.UseSound = SoundID.Item20;
-			item.useAnimation = 14;
+			item.useTime = 6;
+			item.UseSound = SoundID.Item73;
+			item.useAnimation = 30;
 			item.reuseDelay = 20;
 			item.useStyle = 5;
 			item.noMelee = true;
@@ -72,15 +72,31 @@ namespace ForgottenMemories.Items.Magic
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			for (int i = 0; i <= 2; i++)
+			Vector2 vector2 = player.RotatedRelativePoint(player.MountedCenter, true);
+			float num82 = (float)Main.mouseX + Main.screenPosition.X - vector2.X;
+			float num83 = (float)Main.mouseY + Main.screenPosition.Y - vector2.Y;
+			float num76 = item.shootSpeed;
+			float f = Main.rand.NextFloat() * 6.28318548f;
+			float value8 = 20f;
+			float value9 = 60f;
+			Vector2 vector26 = vector2 + f.ToRotationVector2() * MathHelper.Lerp(value8, value9, Main.rand.NextFloat());
+			int num2;
+			for (int num209 = 0; num209 < 50; num209 = num2 + 1)
 			{
-				Vector2 Mouse = Main.MouseWorld;
-				float sX = position.X;
-				float sY = position.Y;
-				sX += (float)Main.rand.Next(-70, 71);
-				sY += (float)Main.rand.Next(-70, 71);
-				Projectile.NewProjectile(sX, sY, speedX, speedY, type, damage, knockBack, player.whoAmI);
+				vector26 = vector2 + f.ToRotationVector2() * MathHelper.Lerp(value8, value9, Main.rand.NextFloat());
+				if (Collision.CanHit(vector2, 0, 0, vector26 + (vector26 - vector2).SafeNormalize(Vector2.UnitX) * 8f, 0, 0))
+				{
+					break;
+				}
+				f = Main.rand.NextFloat() * 6.28318548f;
+				num2 = num209;
 			}
+			Vector2 mouseWorld = Main.MouseWorld;
+			Vector2 vector27 = mouseWorld - vector26;
+			Vector2 vector28 = new Vector2(num82, num83).SafeNormalize(Vector2.UnitY) * num76;
+			vector27 = vector27.SafeNormalize(vector28) * num76;
+			vector27 = Vector2.Lerp(vector27, vector28, 0.25f);
+			Projectile.NewProjectile(vector26, vector27 * 1.2f, type, damage, knockBack, player.whoAmI, 0f, 0f);
 			return false;
 		}
 		

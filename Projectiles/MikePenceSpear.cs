@@ -75,7 +75,7 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			if(projectile.ai[1] = 0)
+			if(projectile.ai[1] == 0)
 			{
 				int p = Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("LightningChain"), (int)(projectile.damage/2), 5f, projectile.owner);
 				Main.projectile[p].ranged = false;
