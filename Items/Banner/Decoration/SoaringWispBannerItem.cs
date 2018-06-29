@@ -27,7 +27,7 @@ namespace ForgottenMemories.Items.Banner.Decoration
 		}
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Nightly Wisp Banner");
+            DisplayName.SetDefault("Soaring Wisp Banner");
             Tooltip.SetDefault("Doesn't serve any purpose other than vanity");
         }
         public override void AddRecipes()
