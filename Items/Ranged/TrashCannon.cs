@@ -13,12 +13,12 @@ namespace ForgottenMemories.Items.Ranged
 		public override void SetDefaults()
 		{
 
-			item.damage = 56;
+			item.damage = 22;
 			item.ranged = true;
 			item.width = 40;
 			item.height = 14;
-			item.useTime = 13;
-			item.useAnimation = 13;
+			item.useTime = 22;
+			item.useAnimation = 22;
 			item.useStyle = 5;
 
 			item.knockBack = 6;
@@ -35,7 +35,7 @@ namespace ForgottenMemories.Items.Ranged
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Trash Cannon");
-      Tooltip.SetDefault("Has a chance to launch explosive garbage");
+      Tooltip.SetDefault("Launches explosive garbage");
     }
 
 		
