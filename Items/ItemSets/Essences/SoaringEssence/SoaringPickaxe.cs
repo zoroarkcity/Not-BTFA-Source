@@ -15,15 +15,15 @@ public class SoaringPickaxe : ModItem
         item.melee = true;
         item.width = 22;
         item.height = 24;
-        item.useTime = 11;
-        item.useAnimation = 15;
+        item.useTime = 19;
+        item.useAnimation = 19;
         item.useStyle = 1;
         item.knockBack = 1;
         item.value = 10000;
         item.rare = 1;
         item.UseSound = SoundID.Item1;
         item.autoReuse = true;
-		item.pick = 35;
+		item.pick = 70;
 		item.useTurn = true;
     }
 

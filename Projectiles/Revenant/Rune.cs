@@ -142,5 +142,16 @@ namespace ForgottenMemories.Projectiles.Revenant
 				projectile.velocity = v;
 			}
 		}
+		
+		public override void Kill(int timeLeft)
+		{
+			for (int i = 0; i < 8; i++)
+			{
+				Vector2 velocity = new Vector2(4, 0).RotatedBy((Main.rand.Next(45) + i * 45).ToRadians());
+				Dust newDust = Dust.NewDustDirect(projectile.Center, 0, 0, 173, velocity.X, velocity.Y);
+				newDust.noGravity = true;
+				newDust.scale = 2;
+			}
+		}
 	}
 }
