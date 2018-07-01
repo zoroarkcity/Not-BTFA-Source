@@ -27,6 +27,7 @@ namespace ForgottenMemories
 		public static int rubixCubeSwitcher;
 		public bool CosmicPowers;
 		public bool hauntedCandle;
+		public bool brassCandle;
 		public bool duneBonus;
 		public float rangedVelocity;
 		public float magicAttackSpeed;
@@ -106,6 +107,7 @@ namespace ForgottenMemories
 			BloodSlime = false;
 			BlightOrb = false;
             Servant = false;
+			brassCandle = false;
 			cryotine1 = false;
             WoodlouseMinion = false;
 			CreeperMinion = false;

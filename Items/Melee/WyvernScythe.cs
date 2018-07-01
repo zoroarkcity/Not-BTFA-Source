@@ -36,6 +36,7 @@ namespace ForgottenMemories.Items.Melee
 		
 		public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+			Main.PlaySound(2, (int)position.X, (int)position.Y, 20);
 			for (int i = 0; i < 8; i++)
 			{
 				Vector2 Velocity = (Vector2.UnitX * 4).RotatedBy((MathHelper.Pi / 4) * i);
