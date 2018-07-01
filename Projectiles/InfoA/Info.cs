@@ -14,6 +14,7 @@ namespace ForgottenMemories.Projectiles.InfoA
 		public bool Cosmodium = false;
 		public bool Shroom = false;
 		public bool Flamethrower = false;
+		public bool Bouncy = false;
 		public bool Titanium = false;
 		public bool Planetary = false;
 		public bool Split = false;
@@ -234,6 +235,21 @@ namespace ForgottenMemories.Projectiles.InfoA
 					Main.projectile[B].ranged = true;
 				}
 			}
+		}
+		
+		public override bool OnTileCollide (Projectile projectile, Vector2 velocity1)
+		{
+			if (Bouncy == true && ((double) projectile.velocity.Y != (double) velocity1.Y || (double) projectile.velocity.X != (double) velocity1.X))
+			{
+				if ((double) projectile.velocity.X != (double) velocity1.X)
+					projectile.velocity.X = -velocity1.X;
+				if ((double) projectile.velocity.Y != (double) velocity1.Y)
+					projectile.velocity.Y = -velocity1.Y;	
+				
+				return false;
+				
+            }
+			return true;
 		}
 		
 		public override void AI(Projectile projectile)

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ForgottenMemories.Projectiles.InfoA;
 using System.Collections.Generic;
 using System;
 
@@ -18,6 +19,7 @@ namespace ForgottenMemories.Projectiles
 			projectile.friendly = true;
 			projectile.penetrate = 1;
 			Main.projFrames[projectile.type] = 2;
+			projectile.tileCollide = true;
 			projectile.thrown = true;
 		}
 		
@@ -49,6 +51,19 @@ namespace ForgottenMemories.Projectiles
 		{
 			Projectile.NewProjectile(projectile.position.X + 20, projectile.position.Y + 20, 0f, 0f, mod.ProjectileType("wooboomfriendly"), projectile.damage, 0f, projectile.owner, 0f, 0f);
 			Main.PlaySound(SoundID.Item89, projectile.position);
+			
+			for (int i = 0; i < 3; ++i)
+			{
+				Vector2 newVect1 = new Vector2 (6, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360)));
+				int stalin = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, newVect1.X, newVect1.Y, 221, (int)(projectile.damage/3), 5f, projectile.owner);
+				Main.projectile[stalin].timeLeft = 200;
+				Main.projectile[stalin].tileCollide = true;
+				Main.projectile[stalin].thrown = true;
+				Main.projectile[stalin].netUpdate = true;
+				Main.projectile[stalin].penetrate = -1;
+				Main.projectile[stalin].GetGlobalProjectile<Info>(mod).Bouncy = true;
+				
+			}
 		}
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

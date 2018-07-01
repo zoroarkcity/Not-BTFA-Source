@@ -11,14 +11,14 @@ namespace ForgottenMemories.Items.Magic
         public override void SetDefaults()
         {
 
-            item.damage = 42;
+            item.damage = 34;
             item.magic = true;
             item.mana = 8;
             item.width = 16;
             item.height = 17;
 			item.noUseGraphic = true;
-            item.useTime = 16;
-            item.useAnimation = 16;
+            item.useTime = 22;
+            item.useAnimation = 22;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 4;
@@ -72,11 +72,23 @@ namespace ForgottenMemories.Items.Magic
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			if (Main.rand.Next(2) == 0)
+			int projectileAmount = 2;
+			for (int k = 0; k < projectileAmount; k++)
 			{
-				type = mod.ProjectileType("CurseBolt");
+				Vector2 velVect = new Vector2(speedX, speedY);
+				type = (k == 1) ? mod.ProjectileType("LaserBolt") : mod.ProjectileType("CurseBolt");
+				Vector2 velVect2 = velVect.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-15, 15)));
+				
+				if(k == 1)
+				{
+					Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
+				}
+				else
+				{
+					Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect.X, velVect.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
+				}
 			}
-			return true;
+			return false;
 		}
 		
 		public override void AddRecipes()
