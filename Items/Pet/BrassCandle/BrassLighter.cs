@@ -9,7 +9,7 @@ namespace ForgottenMemories.Items.Pet.BrassCandle
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Brass Lighter");
-			Tooltip.SetDefault("Summons a candelabra to provide light and burn enemies");
+			Tooltip.SetDefault("Summons a candlebra to provide light and burn enemies");
 		}
 
 		public override void SetDefaults()

@@ -10,7 +10,7 @@ namespace ForgottenMemories.Items.Pet.BrassCandle
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Brass Candle");
+			DisplayName.SetDefault("Brass Candelabra");
 			Main.projFrames[projectile.type] = 3;
 			Main.projPet[projectile.type] = true;
 			ProjectileID.Sets.LightPet[projectile.type] = true;
