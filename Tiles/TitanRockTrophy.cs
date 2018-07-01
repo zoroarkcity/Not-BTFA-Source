@@ -20,7 +20,10 @@ namespace ForgottenMemories.Tiles
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Titan Rock Trophy");
 			AddMapEntry(new Color(120, 85, 60), name);
-			drop = mod.ItemType("TitanRockTrophy");
 		}
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        {
+            Item.NewItem(i * 16, j * 16, 32, 16, mod.ItemType("TitanRockTrophy"));
+        }
 	}
 }
