@@ -18,12 +18,12 @@ namespace ForgottenMemories.Items.ItemSets.Spiritflame
 		public override void SetDefaults()
 		{
 
-			item.damage = 85;
+			item.damage = 185;
 			item.magic = true;
 			item.width = 22;
 			item.height = 24;
-			item.useTime = 10;
-			item.useAnimation = 10;
+			item.useTime = 30;
+			item.useAnimation = 30;
 			item.useStyle = 5;
 			item.knockBack = 3;
 			item.value = 138000;
@@ -67,14 +67,8 @@ namespace ForgottenMemories.Items.ItemSets.Spiritflame
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			int amountOfProjectiles = 2;
-			for (int i = 0; i < amountOfProjectiles; ++i)
-			{
-				Vector2 mouse = Main.MouseWorld;
-				mouse.X += Main.rand.Next(-60, 61);
-				mouse.Y += Main.rand.Next(-60, 61);
-				Projectile.NewProjectile(mouse.X, mouse.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
-			}
+			Vector2 mouse = Main.MouseWorld;
+			Projectile.NewProjectile(mouse.X, mouse.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
 			return false;
 		}
 
