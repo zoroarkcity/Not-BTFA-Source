@@ -30,7 +30,7 @@ namespace ForgottenMemories.Projectiles.Spiritflame
 		
 		public override void AI()
 		{
-			float num = 40f;
+			float num = 72f;
 			for (int index1 = 0; (double) index1 < (double) num; ++index1)
 			{
 				Vector2 v = (Vector2.UnitX * 0.0f + -Vector2.UnitY.RotatedBy((double) index1 * (6.28318548202515 / (double) num), new Vector2()) * new Vector2(1f, 4f));
@@ -39,7 +39,7 @@ namespace ForgottenMemories.Projectiles.Spiritflame
 				Main.dust[index2].fadeIn = 1.3f;
 				Main.dust[index2].noGravity = true;
 				Main.dust[index2].position = projectile.Center + v*18f;
-				Main.dust[index2].velocity = projectile.velocity * 0.0f + v.SafeNormalize(Vector2.UnitY) * 3f;
+				Main.dust[index2].velocity = projectile.velocity * 0.0f + v.SafeNormalize(Vector2.UnitY) * 1f;
 			}
 			
 			for (int index3 = 0; (double) index3 < (double) num; ++index3)
@@ -50,15 +50,15 @@ namespace ForgottenMemories.Projectiles.Spiritflame
 				Main.dust[index2].fadeIn = 1.3f;
 				Main.dust[index2].noGravity = true;
 				Main.dust[index2].position = projectile.Center + v*18f;
-				Main.dust[index2].velocity = projectile.velocity * 0.0f + v.SafeNormalize(Vector2.UnitX) * 3f;
+				Main.dust[index2].velocity = projectile.velocity * 0.0f + v.SafeNormalize(Vector2.UnitX) * 1f;
 			}
 			
 			int amountOfDust = 24;
 			for (int i = 0; i < amountOfDust; ++i)
 			{
 				int dust;
-				Vector2 newVect = new Vector2 (0.5f, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(45 * i)));
-				Vector2 vector2 = newVect * 144;
+				Vector2 newVect = new Vector2 (0.25f, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(45 * i)));
+				Vector2 vector2 = newVect * 288;
 				dust = Dust.NewDust(projectile.Center + vector2, 0, 0, 160, newVect.X, newVect.Y);
 			}
 		}
