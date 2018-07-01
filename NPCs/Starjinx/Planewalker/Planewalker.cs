@@ -197,13 +197,6 @@ namespace ForgottenMemories.NPCs.Starjinx.Planewalker
 				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Planewalker_Gore"), 1f);
 			}
 		}
-		public override void NPCLoot ()
-		{		
-			if (Main.rand.Next(2) == 0)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Aurora_Bowl"), Main.rand.Next(1, 5));
-			}
-		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 		{
 			var effects = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
