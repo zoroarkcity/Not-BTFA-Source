@@ -37,7 +37,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Tools
 		{
 			if (player.altFunctionUse == 2)
 			{
-				 item.damage = 8;
+			item.damage = 8;
             item.melee = true;
             item.width = 36;
             item.height = 36;
@@ -56,7 +56,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Tools
 			}
 			else
 			{
-				item.damage = 8;
+			item.damage = 8;
             item.melee = true;
             item.width = 20;
             item.height = 12;
@@ -84,8 +84,8 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Tools
 		}
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Starjinx Pickaxe");
-			Tooltip.SetDefault("Can mine Meteorite\nRight Click functions as a hammer");
+			DisplayName.SetDefault("Starjinx Obliterator");
+			Tooltip.SetDefault("Can mine Meteorite \nRight Click functions as a hammer");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Starjinx_Set/Tools/Starjinx_Pickaxe_Glow");
 		}
 		

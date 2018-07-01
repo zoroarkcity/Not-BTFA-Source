@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Aurora Bowl");
-			Tooltip.SetDefault("'Whole beauty of sky and underground combined into one'");
+			Tooltip.SetDefault("'Pure starlight, contained only within a humble bowl'");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Starjinx_Set/Aurora_Bowl_Glow");
 		}
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	

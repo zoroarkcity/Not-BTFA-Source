@@ -18,7 +18,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Starshine
 		public override void SetDefaults()
 		{
 
-			item.damage = 12;
+			item.damage = 9;
 			item.noMelee = true;
 			item.noUseGraphic = false;
 			item.magic = true;
@@ -41,7 +41,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Starshine
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Starshine");
-			Tooltip.SetDefault("Nearby enemies will explode with starshards");
+			Tooltip.SetDefault("All nearby enemies will explode into starshards");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Starjinx_Set/Starshine/Starshine_Glow");
 		}
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
@@ -50,7 +50,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Starshine
 			texture = Main.itemTexture[item.type];
 			spriteBatch.Draw
 			(
-				mod.GetTexture("Items/Sets/Starjinx_Set/Starshine/Starshine_Glow"),
+				mod.GetTexture("Items/ItemSets/Starjinx_Set/Starshine/Starshine_Glow"),
 				new Vector2
 				(
 					item.position.X - Main.screenPosition.X + item.width * 0.5f,

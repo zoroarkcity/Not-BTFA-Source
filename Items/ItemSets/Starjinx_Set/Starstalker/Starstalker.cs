@@ -35,7 +35,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Starstalker
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Starstalker");
-			Tooltip.SetDefault("Arrows turn into detonating starstalker arrows");
+			Tooltip.SetDefault("Turns arrows into detonating starstalker arrows");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Starjinx_Set/Starstalker/Starstalker_Glow");
 		}
 		

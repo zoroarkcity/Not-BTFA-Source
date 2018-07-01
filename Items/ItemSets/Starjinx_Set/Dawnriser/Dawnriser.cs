@@ -30,7 +30,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Dawnriser
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Dawnriser");
-			Tooltip.SetDefault("Right Click increases the weapon's hitbox and has more damage and knockback but decreases swing speed");
+			Tooltip.SetDefault("Right Click swings a slower, albeit longer version of the sword \nThe extended sword has a higher base damage and knockback");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Starjinx_Set/Dawnriser/Dawnriser_Glow");
 		}
 		public override bool AltFunctionUse(Player player)
@@ -41,7 +41,7 @@ namespace ForgottenMemories.Items.ItemSets.Starjinx_Set.Dawnriser
 		{
 			if (player.altFunctionUse == 2)
 			{
-				item.damage = 24;
+			item.damage = 24;
             item.melee = true;
             item.width = 60;
             item.height = 60;
