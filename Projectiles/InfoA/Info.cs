@@ -83,9 +83,40 @@ namespace ForgottenMemories.Projectiles.InfoA
 				}
 			}
 			
-			if (SnowSplit == true || FrostCrystal == true)
+			if (SnowSplit == true)
 			{
 				target.AddBuff(BuffID.Frostburn, 180);
+			}
+			
+			if (FrostCrystal == true)
+			{
+				Vector2 targetPos = projectile.Center;
+				float targetDist = 350f;
+				bool targetAcquired = false;
+				for (int i = 0; i < 200; i++)
+				{
+					if (Main.npc[i].CanBeChasedBy(projectile) && Collision.CanHit(projectile.Center, 1, 1, Main.npc[i].Center, 1, 1))
+					{
+						float dist = projectile.Distance(Main.npc[i].Center);
+						if (dist < targetDist)
+						{
+							targetDist = dist;
+							targetPos = Main.npc[i].Center;
+							targetAcquired = true;
+						}
+					}
+				}
+
+				if (targetAcquired)
+				{
+					float homingSpeedFactor = 7f;
+					Vector2 homingVect = targetPos - projectile.Center;
+					float dist = projectile.Distance(targetPos);
+					dist = homingSpeedFactor / dist;
+					homingVect *= dist;
+					projectile.tileCollide = false;
+					projectile.velocity = (projectile.velocity * 20 + homingVect) / 21f;
+				}
 			}
 			
 			if (Main.rand.Next(4) != 0 && Paradox == true)

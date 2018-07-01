@@ -3,50 +3,34 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-using System;
 
-namespace ForgottenMemories.Items.ItemSets.Titan
- {
-	public class BeamSlicer : ModItem
+namespace ForgottenMemories.Items.ItemSets.Starjinx_Set
+{
+	public class Aurora_Bowl : ModItem
 	{
 		public override void SetDefaults()
 		{
-			item.damage = 42;
-			item.thrown = true;
-			item.noMelee = true;
-			item.noUseGraphic = true;
 
-			item.width = 22;
-			item.height = 22;
-			item.useTime = 24;
-			item.useAnimation = 24;
-			item.useStyle = 1;
-			item.shootSpeed = 12f;
-			item.shoot = mod.ProjectileType("BeamSlicer");
-			item.knockBack = 1;
-			item.UseSound = SoundID.Item1;
-			item.value = 900;
-			item.rare = 6;
-			item.consumable = true;
+			item.width = 14;
+			item.height = 18;
 			item.maxStack = 999;
-			item.autoReuse = true;
+			item.value = 500;
+			item.rare = 2;
 		}
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Beam Slicer");
-			Tooltip.SetDefault("Stops midair, firing lasers at nearby enemies");
-			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/BeamSlicer");
+			DisplayName.SetDefault("Aurora Bowl");
+			Tooltip.SetDefault("'Whole beauty of sky and underground combined into one'");
+			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/Items/ItemSets/Starjinx_Set/Aurora_Bowl_Glow");
 		}
-	
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
 		{
 			Texture2D texture;
 			texture = Main.itemTexture[item.type];
 			spriteBatch.Draw
 			(
-				mod.GetTexture("GlowMasks/BeamSlicer"),
+				mod.GetTexture("Items/ItemSets/Starjinx_Set/Aurora_Bowl_Glow"),
 				new Vector2
 				(
 					item.position.X - Main.screenPosition.X + item.width * 0.5f,
