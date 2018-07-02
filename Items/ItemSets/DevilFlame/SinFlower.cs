@@ -34,7 +34,7 @@ namespace ForgottenMemories.Items.ItemSets.DevilFlame
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Staff of Sins");
-		  Tooltip.SetDefault("Fires a chargable bolt of fire");
+		  Tooltip.SetDefault("Fires a chargeable flame geyser \nHolding left click will charge the weapon, release to shoot \nCharging will increase the geyser's power");
 		}
 	
 	

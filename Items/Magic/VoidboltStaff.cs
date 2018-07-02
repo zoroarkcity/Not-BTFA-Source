@@ -47,7 +47,7 @@ namespace ForgottenMemories.Items.Magic
 		public override void SetStaticDefaults()
 		{
 		  DisplayName.SetDefault("Voidbolt Staff");
-		  Tooltip.SetDefault("Fires a spread of chargable shadowbeams \nHolding left click will charge the weapon, release to shoot \nCharging will increase the laser's power");
+		  Tooltip.SetDefault("Fires a chargeable shadowbeam \nHolding left click will charge the weapon, release to shoot \nCharging will increase the beam's power");
 		BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/VoidboltStaff");
     }
 	public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float  scale, int whoAmI) 	
