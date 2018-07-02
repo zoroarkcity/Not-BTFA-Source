@@ -31,7 +31,7 @@ namespace ForgottenMemories.Projectiles.Cosmorock
         {
 			projectile.alpha = 255;
 			dustTimer++;
-			if (projectile.ai[1] != (2 | 3 | 4))
+			if (projectile.ai[1] < 2)
 			{
 				if (projectile.scale < 4f)
 				{
@@ -141,7 +141,6 @@ namespace ForgottenMemories.Projectiles.Cosmorock
 			
 			if(projectile.ai[1] == 3)
 			{
-				target.immune[projectile.owner] = 15;
 				int amountOfProjectiles = Main.rand.Next(1, 3);
 				for (int i = 0; i < amountOfProjectiles; ++i)
 				{
