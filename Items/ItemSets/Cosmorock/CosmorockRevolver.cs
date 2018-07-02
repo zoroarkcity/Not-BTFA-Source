@@ -17,7 +17,6 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 {
 	public class CosmorockRevolver : ModItem
 	{
-		int counter = 3;
 		public override void SetDefaults()
 		{
 			item.damage = 30;
@@ -25,16 +24,15 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 			item.width = 23;
 			item.height = 13;
 
-			item.useTime = 3;
-			item.useAnimation = 12;
-			item.reuseDelay = 24;
+			item.useTime = 30;
+			item.useAnimation = 30;
 			item.useStyle = 5;
 			item.autoReuse = true;
 			item.noMelee = true;
 			item.knockBack = 4;
 			item.value = Item.sellPrice(0, 4, 80, 0);
 			item.rare = 6;
-			item.UseSound = SoundID.Item11;
+			item.UseSound = SoundID.Item9;
 			item.shoot = 10;
 			item.shootSpeed = 8f;
 			item.useAmmo = AmmoID.Bullet;
@@ -43,7 +41,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cosmorock Revolver");
-			Tooltip.SetDefault("Fires a meteor and a salvo of three bullets");
+			Tooltip.SetDefault("Converts bullets into bouncing pulses of energy \nThe effects of the energy pulse change depending on the bullets used");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/CosmorockRevolver");
 		}
 	
@@ -71,22 +69,12 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			counter++;
-			
-			if (counter > 3)
-			{
-				int proj = Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX, speedY, mod.ProjectileType("CosmirockMeteor"), damage, knockBack, player.whoAmI);
-				Main.projectile[proj].ranged = true;
-				Main.projectile[proj].timeLeft *= 2;
-				counter = 0;
-			}
-			else
-			{
-				float sX = speedX + (Main.rand.Next(-60, 61) * 0.02f);
-				float sY = speedY + (Main.rand.Next(-60, 61) * 0.02f);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, sX, sY, type, damage, knockBack, player.whoAmI);
-			}
-			
+			int ai = (type == 242) ? 1 : 
+			(type == 286) ? 2 : 
+			(type == 89) ? 3 : 
+			(type == 207) ? 4 : 0;
+			int p = Projectile.NewProjectile(player.Center.X + speedX, player.Center.Y + speedY, speedX/2, speedY/2, mod.ProjectileType("CosmorockPulse"), damage, knockBack, player.whoAmI, damage, ai);
+			Main.projectile[p].netUpdate = true;
 			return false;
 		}
 		
