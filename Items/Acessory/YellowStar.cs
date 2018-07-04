@@ -20,15 +20,15 @@ namespace ForgottenMemories.Items.Acessory
 
 		public override void SetStaticDefaults()
 		{
-		  DisplayName.SetDefault("Yellow Star");
+		  DisplayName.SetDefault("Nocturnal Star");
 		  Tooltip.SetDefault("Increases maximum mana by 20");
 		}
 		
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.FallenStar, 6);
 			recipe.AddIngredient(null, "DarkEnergy", 10);
+			recipe.AddIngredient(ItemID.FallenStar, 5);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this, 1);
 			recipe.AddRecipe();

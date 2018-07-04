@@ -45,14 +45,5 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			player.setBonus = "Magic critical strikes fire leaves at the enemy hit";
 			((BTFAPlayer)player.GetModPlayer(mod, "BTFAPlayer")).ghastlywood = true;
 		}
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ForestEnergy", 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
 	}
 }

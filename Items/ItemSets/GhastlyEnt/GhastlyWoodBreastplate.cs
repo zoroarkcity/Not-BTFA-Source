@@ -33,14 +33,5 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			player.magicCrit += 5;
 			player.statManaMax2 += 40;
 		}
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ForestEnergy", 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 	}
 }

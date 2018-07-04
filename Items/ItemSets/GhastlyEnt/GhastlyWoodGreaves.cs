@@ -33,15 +33,5 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			player.magicDamage += 0.07f;
 			player.statManaMax2 += 20;
 		}
-
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ForestEnergy", 6);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 	}
 }
