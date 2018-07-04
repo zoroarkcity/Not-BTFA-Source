@@ -12,8 +12,8 @@ namespace ForgottenMemories.Projectiles
 	{
 		public override void SetDefaults()
 		{
-			projectile.width = 25;
-			projectile.height = 25;
+			projectile.width = 12;
+			projectile.height = 12;
 			projectile.aiStyle = 1;
 			projectile.friendly = true;
 			projectile.ranged = true;
@@ -89,12 +89,13 @@ namespace ForgottenMemories.Projectiles
 				projectile.Damage();
 			}
 			
-			for (int i = 0; i < 2; i++)
+			if(Main.rand.Next(2) == 0)
 			{
 				Vector2 vector2 = new Vector2(4, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360)));
 				int kek = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, vector2.X, vector2.Y, ProjectileID.MolotovFire, projectile.damage, 5f, projectile.owner);
 				Main.projectile[kek].thrown = false;
 				Main.projectile[kek].magic = true;
+				Main.projectile[kek].netUpdate = true;
 			}
 		}
 		

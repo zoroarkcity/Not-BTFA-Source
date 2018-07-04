@@ -19,7 +19,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
     {
         public override void SetDefaults()
         {
-            item.damage = 23;
+            item.damage = 50;
             item.noMelee = true;
             item.ranged = true;
             item.width = 14;
@@ -41,7 +41,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Galactica");
-			Tooltip.SetDefault("Fires a bouncing comet shard in addition to 2 arrows");
+			Tooltip.SetDefault("Conjures astral arrows in addition to firing arrows normally");
 			BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/Galactica");
 		}
 		
@@ -69,23 +69,14 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			for (int k = 0; k < 3; k++)
+			for (int k = 0; k < Main.rand.Next(1, 4); k++)
 			{
-				int spread = -5 + (5 * k);
-				Vector2 velVect = new Vector2(speedX, speedY);
-				Vector2 velVect2 = velVect.RotatedBy(MathHelper.ToRadians(spread));
-				
-				if (spread == 0)
-				{
-					Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, mod.ProjectileType("CometShard"), (int)(damage * 0.75), knockBack, Main.myPlayer, 0, 0);
-				}
-				
-				else
-				{
-					Projectile.NewProjectile(player.Center.X, player.Center.Y, velVect2.X, velVect2.Y, type, damage, knockBack, Main.myPlayer, 0, 0);
-				}
+				float rotation = new Vector2(speedX, speedY).ToRotation();
+				Vector2 offset = (Vector2.UnitY * Main.rand.Next(-5, 6) * 4).RotatedBy(rotation);
+				Projectile arrow = Main.projectile[Projectile.NewProjectile(position + offset, new Vector2(speedX, speedY)/2, mod.ProjectileType("AstralArrow"), (int)(damage/3), knockBack, player.whoAmI, 0f, 0f)];
+				arrow.netUpdate = true;
 			}
-            return false;
+            return true;
         }
 		
 		public override void AddRecipes()
