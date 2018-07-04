@@ -176,10 +176,8 @@ namespace ForgottenMemories.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			//if (Main.rand.Next(2) == 0)
-			//{
-				target.AddBuff(BuffID.Frostburn, 360, false);
-			//}
+			target.AddBuff(BuffID.Frostburn, (60 * Main.rand.Next(1, 4)), false);
+			target.AddBuff(mod.BuffType("Frozen"), 60, false);
 		}
     }
 }

@@ -19,8 +19,8 @@ namespace ForgottenMemories.Buffs
 		{
 			if (npc.boss == false)
 			{
-				npc.velocity.X *= 0f;
-				npc.velocity.Y *= 0f;
+				npc.velocity.X *= 0.6f;
+				npc.velocity.Y *= 0.6f;
 			}
 			
 

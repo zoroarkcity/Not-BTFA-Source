@@ -36,7 +36,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Cryotine Naginata");
-      Tooltip.SetDefault("Inflicts frostburn");
+      Tooltip.SetDefault("Inflicts frostburn on hit \nHit enemies freeze, greatly reducing movement speed");
     }
 
 		

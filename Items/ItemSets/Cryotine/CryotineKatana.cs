@@ -30,7 +30,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Cryotine Katana");
-      Tooltip.SetDefault("Inflicts frostburn on hit");
+      Tooltip.SetDefault("Inflicts frostburn on hit \nHit enemies freeze, greatly reducing movement speed");
     }
 
 		
@@ -53,7 +53,8 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 		
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-            target.AddBuff(BuffID.Frostburn, 180, false);
+            target.AddBuff(BuffID.Frostburn, (60 * Main.rand.Next(1, 4)), false);
+			target.AddBuff(mod.BuffType("Frozen"), 60, false);
         }
 	}
 }
