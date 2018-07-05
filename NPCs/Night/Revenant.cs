@@ -72,7 +72,7 @@ namespace ForgottenMemories.NPCs.Night
 		{
 			//if (Main.rand.Next(5) == 0) 
 			//	Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, 658, (int)(npc.damage/6), 1f, npc.target, 0f, 0f);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkEnergy"), Main.rand.Next(5, 9));
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkEnergy"), Main.rand.Next(3, 6));
 			if(Main.rand.Next(20) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("NightlyBoomerang"));
