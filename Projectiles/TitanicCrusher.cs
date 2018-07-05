@@ -10,6 +10,7 @@ namespace ForgottenMemories.Projectiles
 	public class TitanicCrusher : ModProjectile
 	{
 		float rotate;
+		int timer = 0;
 		public override void SetDefaults()
 		{
 			projectile.width = 26;
@@ -24,19 +25,6 @@ namespace ForgottenMemories.Projectiles
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Titanic Crusher");
-		}
-		
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-		{
-			target.immune[projectile.owner] = 8;
-			target.AddBuff(mod.BuffType("TitanCrush"), 420, false);
-			for (int i = 0; i < 3; ++i)
-			{
-				Vector2 newVect1 = new Vector2 (6, 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(360)));
-				int stalin = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, newVect1.X, newVect1.Y, mod.ProjectileType("BallFriendly"), projectile.damage, 5f, projectile.owner);
-				Main.projectile[stalin].timeLeft = 200;
-				Main.projectile[stalin].tileCollide = true;
-			}
 		}
 		
 		public override void AI()
@@ -55,6 +43,32 @@ namespace ForgottenMemories.Projectiles
 			}
 			else
 			{
+				Vector2 move = Vector2.Zero;
+				float distance = 190f;
+				bool target = false;
+				for (int k = 0; k < 200; k++)
+				{
+					if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5 && Main.npc[k].type != 488)
+					{
+						Vector2 newMove = Main.npc[k].Center - projectile.Center;
+						float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
+						if (distanceTo < distance)
+						{
+							newMove.Normalize();
+							move = newMove;
+							distance = distanceTo;
+							target = true;
+						}
+					}
+				}
+				timer++;
+				if (target && timer >= 7)
+				{
+					int proj = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, move.X * 12f, move.Y * 12f, mod.ProjectileType("TitanBat"), (int)(projectile.damage/3), 5f, projectile.owner);
+					timer = 0;
+				}
+			
+			
 				Main.player[projectile.owner].itemAnimation = 10;
 				Main.player[projectile.owner].itemTime = 10;
 				if ((double) projectile.position.X + (double) (projectile.width / 2) > (double) Main.player[projectile.owner].position.X + (double) (Main.player[projectile.owner].width / 2))
