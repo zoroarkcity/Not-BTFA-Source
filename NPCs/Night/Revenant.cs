@@ -77,6 +77,10 @@ namespace ForgottenMemories.NPCs.Night
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("NightlyBoomerang"));
 			}
+			if(Main.rand.Next(2) == 0)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Silk, Main.rand.Next(1, 3));
+			}
 		}
 		public override void FindFrame(int frameHeight)
 		{
