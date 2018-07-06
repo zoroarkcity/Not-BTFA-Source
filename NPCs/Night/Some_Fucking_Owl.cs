@@ -52,6 +52,7 @@ namespace ForgottenMemories.NPCs.Night
 				}
 				return false;
             }
+			return true;
 		}
 		public override void AI()
         {
