@@ -39,6 +39,20 @@ namespace ForgottenMemories.NPCs.Night
 			int tile = (int)Main.tile[x, y].type;
 			return spawnInfo.spawnTileY < Main.rockLayer && !Main.dayTime && !spawnInfo.invasion && !spawnInfo.sky && !Main.eclipse && !spawnInfo.player.ZoneDesert && !spawnInfo.player.ZoneJungle ? 0.07f : 0f;
 		}
+		public override bool PreAI()
+		{
+			if (Main.dayTime) //despawn
+            {
+                npc.TargetClosest(false);
+                npc.velocity.Y = -6;
+				npc.noTileCollide = true;
+				if (npc.timeLeft > 30)
+				{
+					npc.timeLeft = 30;
+				}
+				return false;
+            }
+		}
 		public override void AI()
         {
 			Player player = Main.player[npc.target];

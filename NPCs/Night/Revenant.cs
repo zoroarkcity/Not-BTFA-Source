@@ -32,6 +32,21 @@ namespace ForgottenMemories.NPCs.Night
             npc.HitSound = SoundID.NPCHit54;
 			npc.dontTakeDamage = false;
         }
+		
+		public override bool PreAI()
+		{
+			if (Main.dayTime) //despawn
+            {
+                npc.TargetClosest(false);
+                npc.alpha += 10;
+				npc.noTileCollide = true;
+				if (npc.timeLeft > 25)
+				{
+					npc.timeLeft = 25;
+				}
+				return false;
+            }
+		}
 		public override void AI()
         {
 			Player player = Main.player[npc.target];

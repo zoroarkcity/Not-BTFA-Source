@@ -131,25 +131,52 @@ namespace ForgottenMemories.Projectiles.Acheron
 			projectile.ai[0]++;
 			Lighting.AddLight(projectile.position, 0f, 0f, 1f);
 			
-			if ((int)projectile.ai[0] % 60 == 0 && Main.npc[(int)projectile.ai[1]].active && projectile.Distance(Main.npc[(int)projectile.ai[1]].Center) < 300)
+			int closest = FindClosestNPC(projectile.Center, 0, 0);
+			if (AnyNPCs() == true && projectile.ai[0] >= 60)
 			{
-				int p = Projectile.NewProjectile(Main.npc[(int)projectile.ai[1]].Center, Vector2.Zero, mod.ProjectileType("Tartarus"), projectile.damage + (int)(Main.npc[(int)projectile.ai[1]].defense / 2), 0, projectile.owner, 0, 0);
-				if (Main.expertMode)
-					Main.projectile[p].damage += Main.npc[(int)projectile.ai[1]].defense / 4;
+				projectile.ai[0] = 0;
+				Projectile.NewProjectile(Main.npc[closest].Center.X, Main.npc[closest].Center.Y, 0, 0, mod.ProjectileType("Tartarus"), 50, 0, projectile.owner);
 			}
-			
-			else for(int index2 = 0; index2 < 200; index2++)
+		}
+		
+		public bool AnyNPCs()
+		{
+			bool doge = false;
+			for (int index = 0; index < 200; ++index)
 			{
-				if (Main.npc[index2].CanBeChasedBy((object) projectile, false) && Main.npc[index2].friendly == false && !Main.npc[index2].immortal && !Main.npc[index2].dontTakeDamage && Main.npc[index2].active)
+				if (Main.npc[index].active && !Main.npc[index].dontTakeDamage && !Main.npc[index].immortal && !Main.npc[index].friendly && Collision.CanHit(projectile.Center, 1, 1, Main.npc[index].Center, 1, 1))
 				{
-					dist2 = projectile.Distance(Main.npc[index2].Center);
-					if (dist2 < ((int)dist | 300))
+					doge = true;
+				}
+			}
+			return doge;
+		}
+		
+		public int FindClosestNPC(Vector2 Position, int Width, int Height)
+		{
+			int num1 = 0;
+			for (int index = 0; index < 200; ++index)
+			{
+				if (Main.npc[index].active)
+				{
+					num1 = index;
+					break;
+				}
+			}
+			float num2 = -1f;
+			for (int index = 0; index < 200; ++index)
+			{
+				if (Main.npc[index].active && !Main.npc[index].friendly && !Main.npc[index].dontTakeDamage && !Main.npc[index].immortal && Collision.CanHit(projectile.Center, 1, 1, Main.npc[index].Center, 1, 1))
+				{
+					float num3 = Math.Abs((float) (Main.npc[index].position.X + (double) (Main.npc[index].width / 2) - (Position.X + (double) (Width / 2)))) + Math.Abs((float) (Main.npc[index].position.Y + (double) (Main.npc[index].height / 2) - (Position.Y + (double) (Height / 2))));
+					if ((double) num2 == -1.0 || (double) num3 < (double) num2)
 					{
-						dist = dist2;
-						projectile.ai[1] = index2;
+						num2 = num3;
+						num1 = index;
 					}
 				}
 			}
+			return num1;
 		}
 	}
 }
