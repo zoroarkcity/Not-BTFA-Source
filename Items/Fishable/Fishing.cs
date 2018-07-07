@@ -16,15 +16,19 @@ namespace ForgottenMemories.Items.Fishing
        
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            if (liquidType == 0 && Main.rand.Next(50) == 0) 
+            if (liquidType == 0 && Main.rand.Next(100) == 0) 
             {
                 caughtType = mod.ItemType("ForgottenCrate");
             }
-			if (liquidType == 0 && Main.rand.Next(50) == 0) 
+			if (liquidType == 0 && Main.rand.Next(100) == 0) 
             {
                 caughtType = mod.ItemType("AmmoBag");
             }
-			if (liquidType == 0 && player.ZoneJungle && Main.rand.Next(100) == 0) 
+			if (liquidType == 0 && player.ZoneDesert && Main.rand.Next(100) == 0) 
+            {
+                caughtType = mod.ItemType("AncientUrn");
+            }
+			if (liquidType == 0 && player.ZoneJungle && Main.rand.Next(150) == 0) 
             {
                 caughtType = mod.ItemType("Tadpole_Egg");
             }

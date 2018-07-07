@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.Acessory
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Chlorophyll Pod");
-      Tooltip.SetDefault("Grants stacking buffs that increases your life regen and movement speed when you hit an enemy");
+      Tooltip.SetDefault("Grants stacking buffs upon hitting an enemy \nThe buffs will increase life regen, movement speed and melee critical strike chance");
     }
 
 

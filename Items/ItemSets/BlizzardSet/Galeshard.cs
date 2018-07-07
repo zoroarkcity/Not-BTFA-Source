@@ -1,5 +1,4 @@
 using System;
-
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,9 +10,7 @@ namespace ForgottenMemories.Items.ItemSets.BlizzardSet
 	{
 		public override void SetDefaults()
 		{
-
-
-			item.rare = 1;
+			item.rare = 0;
             item.width = item.height = 38;
             item.maxStack = 999;
             ItemID.Sets.ItemNoGravity[item.type] = true;
@@ -30,7 +27,10 @@ namespace ForgottenMemories.Items.ItemSets.BlizzardSet
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-
+			if (!Main.raining)
+			{
+			item.rare = 0;
+			}
         }
     }
 }
