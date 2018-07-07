@@ -47,7 +47,7 @@ namespace ForgottenMemories.Items.ItemSets.BlizzardSet
 			}
 		}
 		
-		public override void UpdateInInventory(Player player)
+		public override void UpdateInventory(Player player)
 		{
 			timeLeft = 600;
 		}
