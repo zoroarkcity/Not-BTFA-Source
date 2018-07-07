@@ -83,6 +83,10 @@ namespace ForgottenMemories.NPCs.Desert
 			//if (Main.rand.Next(5) == 0) 
 			//	Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, 658, (int)(npc.damage/6), 1f, npc.target, 0f, 0f);
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BossEnergy"), Main.rand.Next(5, 9));
+			if (Main.rand.Next(20) == 0)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientUrn"));	
+			}
 		}
 		public override void FindFrame(int frameHeight)
 		{
