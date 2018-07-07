@@ -24,6 +24,11 @@ namespace ForgottenMemories.Items.Consumable
 		{
 			grabRange = 100;
 		}
+		
+		public override bool ItemSpace(Player player)
+		{
+			return false;
+		}
 
 		public override bool OnPickup(Player player)
 		{
