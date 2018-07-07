@@ -38,6 +38,7 @@ namespace ForgottenMemories.Tiles
  
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
+            Main.PlaySound(13, i * 16, j * 16);	     
             Item.NewItem(i * 16, j * 16, 32, 16, mod.ItemType("AncientUrn"));
         }
     }

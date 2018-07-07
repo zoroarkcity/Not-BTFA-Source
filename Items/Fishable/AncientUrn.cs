@@ -1,11 +1,15 @@
-using System;
-using System.IO;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Collections.Generic;
+using System;
+
  
 namespace ForgottenMemories.Items.Fishable
 {
@@ -29,7 +33,7 @@ namespace ForgottenMemories.Items.Fishable
             item.useAnimation = 10; 
             item.useTime = 10;  
             item.useStyle = 1;
- 
+ 			bossBagNPC = mod.NPCType("UnusedNPC");
  
         }
         public override bool CanRightClick() 
@@ -39,6 +43,7 @@ namespace ForgottenMemories.Items.Fishable
  
 		public override void OpenBossBag(Player player)
 		{
+            Main.PlaySound(15, 2);	     
 			switch (Main.rand.Next(3))
 			{
 				case 0: 
