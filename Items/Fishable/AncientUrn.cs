@@ -37,19 +37,19 @@ namespace ForgottenMemories.Items.Fishable
             return true;
         }
  
-		public void MakeAnItem(Player player)
+		public override void OpenBossBag(Player player)
 		{
 			switch (Main.rand.Next(3))
 			{
 				case 0: 
-					player.QuickSpawnItem(ItemID.FlyingCarpet), 1);
+					player.QuickSpawnItem(ItemID.FlyingCarpet, 1);
 					break;				
 				case 1:
-					player.QuickSpawnItem(ItemID.PharoahsMask), 1);
-					player.QuickSpawnItem(ItemID.PharoahsRobe), 1);
+					player.QuickSpawnItem(ItemID.PharaohsMask, 1);
+					player.QuickSpawnItem(ItemID.PharaohsRobe, 1);
 					break;
 				case 2:
-					player.QuickSpawnItem(ItemID.SandstorminaBottle), 1);
+					player.QuickSpawnItem(ItemID.SandstorminaBottle, 1);
 					break;
 				default:
 					break;
