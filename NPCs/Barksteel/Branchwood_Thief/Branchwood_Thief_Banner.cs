@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace WhirlingWorlds.NPCs.Barksteel.Branchwood_Thief
+namespace ForgottenMemories.NPCs.Barksteel.Branchwood_Thief
 {
 	public class Branchwood_Thief_Banner : ModItem
 	{
