@@ -48,8 +48,8 @@ namespace ForgottenMemories.Tiles
 			
 			
 			int offset = (Main.tile[i, j].frameY <= 18) ? 
-			(short)(18 * (i % 16)) :
-			(short)(18 * (j % 16));
+			(short)(18 * (i % 18)) :
+			(short)(18 * (j % 18));
 			
 			if (Main.canDrawColorTile(i, j))
 			{

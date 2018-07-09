@@ -108,6 +108,14 @@ namespace ForgottenMemories.Projectiles
 			{
 				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 60);
 			}
+			
+			for (int i = 0; i < 5; i++)
+			{
+				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 1);
+				Main.dust[dust].scale = 1.5f;
+				Main.dust[dust].noGravity = true;
+			}
+			Main.PlaySound(0, projectile.position);
 		}
 	}
 }
