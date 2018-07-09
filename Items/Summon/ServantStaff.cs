@@ -30,8 +30,6 @@ namespace ForgottenMemories.Items.Summon
 
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 2f;
-            item.buffType = mod.BuffType("ServantOfCthulhu");
-            item.buffTime = 3600;
             item.value = 27000;
             item.rare = 2;
             item.UseSound = SoundID.Item82;
@@ -40,6 +38,14 @@ namespace ForgottenMemories.Items.Summon
             item.shootSpeed = 10f;
 			ProjectileID.Sets.MinionTargettingFeature[item.shoot] = true;
         }
+		
+		public override void UseStyle(Player player)
+		{
+			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+			{
+				player.AddBuff(mod.BuffType("ServantOfCthulhu"), 600);
+			}
+		}
 
     public override void SetStaticDefaults()
     {

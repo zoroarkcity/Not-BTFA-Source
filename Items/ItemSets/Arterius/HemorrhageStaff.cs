@@ -29,8 +29,6 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 2f;
-            item.buffType = mod.BuffType("BloodSlime");
-            item.buffTime = 3600;
             item.value = 140000;
             item.rare = 4;
             item.UseSound = SoundID.Item82;
@@ -39,6 +37,14 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
             item.shootSpeed = 10f;
 			ProjectileID.Sets.MinionTargettingFeature[item.shoot] = true;
         }
+		
+		public override void UseStyle(Player player)
+		{
+			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+			{
+				player.AddBuff(mod.BuffType("BloodSlime"), 600);
+			}
+		}
 
 		public override void SetStaticDefaults()
 		{

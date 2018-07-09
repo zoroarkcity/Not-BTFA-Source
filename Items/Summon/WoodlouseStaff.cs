@@ -30,8 +30,6 @@ namespace ForgottenMemories.Items.Summon
 
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 4f;
-            item.buffType = mod.BuffType("Woodlice");
-            item.buffTime = 3600;
             item.value = 27000;
             item.rare = 3;
             item.UseSound = SoundID.Item82;
@@ -40,6 +38,14 @@ namespace ForgottenMemories.Items.Summon
 			ProjectileID.Sets.MinionTargettingFeature[item.shoot] = true;
             item.shootSpeed = 10f;
         }
+		
+		public override void UseStyle(Player player)
+		{
+			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+			{
+				player.AddBuff(mod.BuffType("Woodlice"), 600);
+			}
+		}
 
     public override void SetStaticDefaults()
     {

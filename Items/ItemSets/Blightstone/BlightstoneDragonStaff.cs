@@ -22,14 +22,20 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.useStyle = 1;
 			item.noMelee = true;
             item.knockBack = 2f;
-            item.buffType = mod.BuffType("BlightstoneDragon");
-            item.buffTime = 3600;
 			item.value = Item.sellPrice(0, 8, 0, 0);
 			item.rare = 7;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("BlightstoneDragon");
 			item.shootSpeed = 10f;
 			ProjectileID.Sets.MinionTargettingFeature[item.shoot] = true;
+		}
+		
+		public override void UseStyle(Player player)
+		{
+			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+			{
+				player.AddBuff(mod.BuffType("BlightstoneDragon"), 600);
+			}
 		}
 
 		public override void SetStaticDefaults()

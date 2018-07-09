@@ -30,8 +30,6 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
 
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 3f;
-            item.buffType = mod.BuffType("FernlingMinion");
-            item.buffTime = 3600;
             item.value = 27000;
             item.rare = 2;
             item.UseSound = SoundID.Item82;
@@ -40,6 +38,14 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
 			ProjectileID.Sets.MinionTargettingFeature[item.shoot] = true;
             item.shootSpeed = 10f;
         }
+		
+		public override void UseStyle(Player player)
+		{
+			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+			{
+				player.AddBuff(mod.BuffType("FernlingMinion"), 600);
+			}
+		}
 
     public override void SetStaticDefaults()
     {
