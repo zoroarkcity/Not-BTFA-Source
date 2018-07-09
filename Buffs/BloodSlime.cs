@@ -7,8 +7,8 @@ namespace ForgottenMemories.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Living Blood");
-			Description.SetDefault("Living Blood fights for you");
+			DisplayName.SetDefault("Accursed Bloodling");
+			Description.SetDefault("The bloodling will fight for you");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
