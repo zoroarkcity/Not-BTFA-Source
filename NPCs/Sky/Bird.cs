@@ -37,6 +37,14 @@ namespace ForgottenMemories.NPCs.Sky
 			Player player = Main.player[npc.target];
 			npc.spriteDirection = npc.direction;
 			
+			npc.ai[1]++;
+			
+			if (npc.ai[1] > 60 && Main.rand.Next(500) == 0)
+			{
+				Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 78, 1f, 0.0f);
+				npc.ai[1] = 0;
+			}
+			
 			attemptDive();
         }
 		public void attemptDive()

@@ -11,6 +11,7 @@ namespace ForgottenMemories.NPCs.Night
     public class Revenant : ModNPC
     {
 		int projectileTimer;
+		int idleNoiseTimer;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Revenant");
@@ -52,6 +53,20 @@ namespace ForgottenMemories.NPCs.Night
         {
 			Player player = Main.player[npc.target];
 			npc.spriteDirection = -npc.direction;
+			idleNoiseTimer++;
+			if (idleNoiseTimer > 60 && Main.rand.Next(500) == 0)
+			{
+				switch(Main.rand.Next(2)
+				{
+					case 0: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 53, 1f, 0.0f);
+						break;
+					case 1: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 54, 1f, 0.0f);
+						break;
+				}
+				idleNoiseTimer = 0;
+				npc.netUpdate = true;
+			}
+			
 			if (npc.active && player.active && npc.life < npc.lifeMax)
 			{
 				npc.aiStyle = 22;

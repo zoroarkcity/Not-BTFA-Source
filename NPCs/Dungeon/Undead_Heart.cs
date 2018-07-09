@@ -39,6 +39,20 @@ namespace ForgottenMemories.NPCs.Dungeon
                 float num4 = 8f / (float) Math.Sqrt((double) num2 * (double) num2 + (double) num3 * (double) num3);
 				npc.velocity.X = num2 * num4 * 0.4f;
                 npc.velocity.Y = num3 * num4 * 0.4f;
+				
+			npc.ai[1]++;
+			
+			if (npc.ai[1] > 60 && Main.rand.Next(500) == 0)
+			{
+				switch(Main.rand.Next(2)
+				{
+					case 0: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 21, 1f, 0.0f);
+						break;
+					case 1: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 23, 1f, 0.0f);
+						break;
+				}
+				npc.ai[1] = 0;
+			}
         }
 		public override void OnHitPlayer (Player target, int damage, bool crit)
 		{	

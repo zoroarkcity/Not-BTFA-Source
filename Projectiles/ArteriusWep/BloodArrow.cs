@@ -43,6 +43,16 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 		public override void Kill(int timeLeft)
 		{
 			Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y); //create a sound
+			
+			for (int i = 0; i < 5; i++)
+			{
+				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 117);
+				int dust2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 117);
+				Main.dust[dust].scale = 1.5f;
+				Main.dust[dust].noGravity = true;
+				Main.dust[dust].velocity = projectile.velocity.RotatedByRandom(MathHelper.PiOver4);
+				
+			}
 		}
 	}
 }	

@@ -14,7 +14,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 			projectile.height = 15;
 			projectile.aiStyle = 1;
 			projectile.friendly = true;
-			Main.projFrames[projectile.type] = 4;
+			Main.projFrames[projectile.type] = 3;
 			projectile.thrown = true;
 			projectile.ranged = false;
 			projectile.penetrate = -1;
@@ -23,6 +23,16 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Exploding Tonsil");
+		}
+		
+		public override void AI()
+		{
+			for (int i = 0; i < 2; i++)
+			{
+				int dust = Dust.NewDust(projectile.Center, 0, 0, 117, 0f, 0f); 
+				Main.dust[dust].scale = 1f;
+				Main.dust[dust].noGravity = true;
+			}
 		}
 
 		public override void Kill(int timeLeft)

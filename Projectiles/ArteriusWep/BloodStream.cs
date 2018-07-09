@@ -67,7 +67,7 @@ namespace ForgottenMemories.Projectiles.ArteriusWep
 					int num3;
 					for (int num299 = 0; num299 < 1; num299 = num3 + 1)
 					{
-						int num300 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, num298, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
+						int num300 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, num298, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 50, default(Color), 1f);
 						Dust dust3;
 						if (Main.rand.Next(3) != 0 || (num298 == 75 && Main.rand.Next(3) == 0))
 						{

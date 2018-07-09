@@ -39,6 +39,7 @@ namespace ForgottenMemories.Items.ItemSets.BlizzardSet
 				if (timeLeft < 0)
 				{
 					item.TurnToAir();
+					Main.PlaySound(2, (int)item.position.X, (int)item.position.Y, 50);
 					for (int i = 0; i < 15; i++)
 					{
 						Dust.NewDust(item.position, item.width, item.height, mod.DustType("BlizzardDust"), 0, 0);

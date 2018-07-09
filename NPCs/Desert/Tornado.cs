@@ -62,6 +62,19 @@ namespace ForgottenMemories.NPCs.Desert
 			{
 				npc.aiStyle = 22;  
 			}
+			npc.ai[1]++;
+			
+			if (npc.ai[1] > 60 && Main.rand.Next(500) == 0)
+			{
+				switch(Main.rand.Next(2)
+				{
+					case 0: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 53, 1f, 0.0f);
+						break;
+					case 1: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 54, 1f, 0.0f);
+						break;
+				}
+				npc.ai[1] = 0;
+			}
         }
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{

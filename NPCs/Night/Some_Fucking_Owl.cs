@@ -27,8 +27,8 @@ namespace ForgottenMemories.NPCs.Night
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = false;
-			npc.HitSound = SoundID.NPCHit36;
-            npc.DeathSound = SoundID.NPCDeath43;
+			npc.HitSound = SoundID.NPCHit46;
+            npc.DeathSound = SoundID.NPCDeath48;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			NPCID.Sets.TrailingMode[npc.type] = 3;
         }
@@ -58,6 +58,14 @@ namespace ForgottenMemories.NPCs.Night
         {
 			Player player = Main.player[npc.target];
 			npc.spriteDirection = npc.direction;
+			
+			npc.ai[1]++;
+			
+			if (npc.ai[1] > 60 && Main.rand.Next(500) == 0)
+			{
+				Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 78, 1f, 0.0f);
+				npc.ai[1] = 0;
+			}
 			
             if (player == Main.player[npc.target])
             {

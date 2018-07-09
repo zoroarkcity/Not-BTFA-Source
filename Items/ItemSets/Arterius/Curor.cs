@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.ItemSets.Arterius
 			item.useTime = 24;
 			item.useAnimation = 27;
 			item.autoReuse = true;
-
+			item.melee = true;
 			item.width = 54;
 			item.height = 52;
 			item.useStyle = 5;
