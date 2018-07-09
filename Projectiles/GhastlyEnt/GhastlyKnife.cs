@@ -23,7 +23,7 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ghastly Knife");
+			DisplayName.SetDefault("Timber Kunai");
 		}
 		
 		public override void Kill(int timeLeft)
@@ -36,13 +36,13 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 				Main.dust[dust].scale = 1.5f;
 				Main.dust[dust].noGravity = true;
 			}
-			int amountOfProjectiles = Main.rand.Next(2, 5);
+			int amountOfProjectiles = Main.rand.Next(1, 4);
 			
 			for (int i = 0; i < amountOfProjectiles; ++i)
 				{
 					float sX = (float)Main.rand.Next(-60, 61) * 0.1f;
 					float sY = (float)Main.rand.Next(-60, 61) * 0.1f;
-					int z = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sX, sY, mod.ProjectileType("Woodchip"), projectile.damage / 2, 5f, projectile.owner);
+					int z = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, sX, sY, mod.ProjectileType("Woodchip"), projectile.damage / 3, 5f, projectile.owner);
 					Main.projectile[z].ranged = false;
 					Main.projectile[z].thrown = true;
 				}

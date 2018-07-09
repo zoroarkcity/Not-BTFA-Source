@@ -41,6 +41,7 @@ namespace ForgottenMemories.NPCs.Magnoliac
             npc.DeathSound = SoundID.NPCDeath31;// to be changed
             npc.netAlways = true;
 			npc.scale = 1f;
+			npc.buffImmune[20] = true;
 			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Forests_Army");
         }
 		

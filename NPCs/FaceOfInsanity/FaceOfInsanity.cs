@@ -45,6 +45,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.DeathSound = SoundID.NPCDeath13;
             npc.npcSlots = 13f;
 			bossBag = mod.ItemType("ArteriusBag");
+			npc.buffImmune[69] = true;
+			npc.buffImmune[20] = true;
 			//NPCID.Sets.TrailCacheLength[npc.type] = 10;
 			//NPCID.Sets.TrailingMode[npc.type] = 1;
             /*if (ForgottenMemories.instance.songsLoaded)

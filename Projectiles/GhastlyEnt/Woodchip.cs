@@ -11,7 +11,7 @@ public class Woodchip : ModProjectile
 	{
 		projectile.width = 5;
 		projectile.height = 5;
-		projectile.penetrate = 1;
+		projectile.penetrate = 2;
 		projectile.ranged = true;
 		projectile.friendly = true;
 		projectile.aiStyle = 1;

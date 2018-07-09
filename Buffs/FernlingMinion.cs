@@ -16,7 +16,7 @@ namespace ForgottenMemories.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			BTFAPlayer modPlayer = player.GetModPlayer<BTFAPlayer>(mod);
-			if (player.ownedProjectileCounts[mod.ProjectileType("Fernling")] > 0)
+			if (player.ownedProjectileCounts[mod.ProjectileType("FernlingMinion")] > 0)
 			{
 				modPlayer.Fernling = true;
 			}

@@ -16,8 +16,8 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			item.thrown = true;
 			item.shoot = mod.ProjectileType("GhastlyKnife");
 			item.shootSpeed = 10f;
-			item.useTime = 17;
-			item.useAnimation = 17;
+			item.useTime = 21;
+			item.useAnimation = 21;
 			item.maxStack = 1;
 			item.useStyle = 5;
 			item.noMelee = true;

@@ -19,7 +19,7 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
         public override void SetDefaults()
         {
 
-            item.damage = 16;
+            item.damage = 12;
             item.summon = true;
             item.mana = 10;
             item.width = 42;
@@ -44,13 +44,21 @@ namespace ForgottenMemories.Items.ItemSets.Magnoliac
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Woodpecker Cane");
-      Tooltip.SetDefault("Summons Fernlings to peck at enemies");
+      Tooltip.SetDefault("Summons a group of Fernlings to peck at enemies");
     }
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			Vector2 mouse = Main.MouseWorld;
-			Projectile.NewProjectile(mouse.X, mouse.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
+			for(int i = 0; i < 2; i++)
+			{
+				Vector2 mouse = Main.MouseWorld;
+				if (i > 0)
+				{
+					mouse.X += Main.rand.Next(-20, 21);
+					mouse.Y += Main.rand.Next(-20, 21);
+				}
+				Projectile.NewProjectile(mouse.X, mouse.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
+			}
 			return false;
 		}
     }

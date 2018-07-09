@@ -19,7 +19,7 @@ namespace ForgottenMemories.Projectiles.GhastlyEnt
 			projectile.damage = 12;
 			projectile.friendly = true;
 			projectile.timeLeft = 6000;
-			projectile.penetrate = 1;
+			projectile.penetrate = 2;
 			projectile.ignoreWater = true;
 			aiType = ProjectileID.BeachBall;
 			projectile.tileCollide = true;

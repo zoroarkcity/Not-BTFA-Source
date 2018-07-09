@@ -59,7 +59,7 @@ namespace ForgottenMemories.Projectiles
 				int dust2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 173);
 				Main.dust[dust].scale = 1.5f;
 				Main.dust[dust].noGravity = true;
-				Main.dust[dust].velocity = projectile.velocity.RotatedByRandom(MathHelper.Pi / 8) / 2;
+				Main.dust[dust].velocity = projectile.velocity.RotatedByRandom(MathHelper.Pi / 8);
 				
 			}
 		}

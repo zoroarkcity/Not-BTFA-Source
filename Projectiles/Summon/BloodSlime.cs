@@ -76,7 +76,7 @@ namespace ForgottenMemories.Projectiles.Summon
 			bool target = false;
 			projectile.tileCollide = true;
 			NPC minionAttackTargetNpc = projectile.OwnerMinionAttackTargetNPC;
-			if (minionAttackTargetNpc != null && minionAttackTargetNpc.CanBeChasedBy((object) this, false))
+			if (minionAttackTargetNpc != null && minionAttackTargetNpc.CanBeChasedBy((object) this, false) && Vector2.Distance(minionAttackTargetNpc.Center, projectile.Center) < 400f && Collision.CanHit(projectile.position, projectile.width, projectile.height, minionAttackTargetNpc.position, minionAttackTargetNpc.width, minionAttackTargetNpc.height))
 			{
 				targetPos = minionAttackTargetNpc.Center;
 				target = true;
