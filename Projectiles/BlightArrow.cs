@@ -48,5 +48,20 @@ namespace ForgottenMemories.Projectiles
 				Main.projectile[p].timeLeft += 5;
 			}
 		}
+		
+		public override void Kill(int timeLeft)
+		{
+			Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y); //create a sound
+			
+			for (int i = 0; i < 5; i++)
+			{
+				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 173);
+				int dust2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 173);
+				Main.dust[dust].scale = 1.5f;
+				Main.dust[dust].noGravity = true;
+				Main.dust[dust].velocity = projectile.velocity.RotatedByRandom(MathHelper.Pi / 8) / 2;
+				
+			}
+		}
 	}
 }	

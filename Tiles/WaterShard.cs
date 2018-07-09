@@ -21,13 +21,12 @@ namespace ForgottenMemories.Tiles
 			Main.tileLavaDeath[Type] = false;
 			Main.tileObsidianKill[mod.TileType("WaterShard")] = true;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
-			TileObjectData.newTile.AnchorWall = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.Style1x1);
-			TileObjectData.newAlternate.AnchorLeft = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.Tree | AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
+			TileObjectData.newAlternate.AnchorLeft = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, TileObjectData.newTile.Height, 0);
 			TileObjectData.addAlternate(3);
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.Style1x1);
-			TileObjectData.newAlternate.AnchorRight = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.Tree | AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
+			TileObjectData.newAlternate.AnchorRight = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, TileObjectData.newTile.Height, 0);
 			TileObjectData.addAlternate(2);
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.Style1x1);
 			TileObjectData.newAlternate.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
@@ -40,6 +39,33 @@ namespace ForgottenMemories.Tiles
 			dustType = 253;
 			disableSmartCursor = true;
 			drop = mod.ItemType("WaterShard");
+		}
+		
+		public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+		{
+			Tile tile = Main.tile[i, j];
+			Texture2D texture;
+			
+			
+			int offset = (Main.tile[i, j].frameY <= 18) ? 
+			(short)(18 * (i % 16)) :
+			(short)(18 * (j % 16));
+			
+			if (Main.canDrawColorTile(i, j))
+			{
+				texture = Main.tileAltTexture[Type, (int)tile.color()];
+			}
+			else
+			{
+				texture = Main.tileTexture[Type];
+			}
+			Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+			if (Main.drawToScreen)
+			{
+				zero = Vector2.Zero;
+			}
+			Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(offset, tile.frameY, 16, 16), Lighting.GetColor(i, j), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+			return false;
 		}
 
 	/*public class WaterShardSpawn : ModWorld

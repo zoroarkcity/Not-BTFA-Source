@@ -68,7 +68,7 @@ namespace ForgottenMemories.Items.Melee
 			if (crit == true)
 			{
 				player.AddBuff(mod.BuffType("Graniteskin"), 8 * 60);
-				for (int i = 0; i <= Main.player.Length; i++)
+				for (int i = 0; i <= byte.MaxValue; i++)
 				{
 					Player playerI = Main.player[i];
 					if (playerI.team == player.team && playerI.team != 0)
