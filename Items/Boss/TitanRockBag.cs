@@ -61,7 +61,7 @@ namespace ForgottenMemories.Items.Boss
 		public override void OpenBossBag(Player player)
 		{
 			player.TryGettingDevArmor();
-			int amountToDrop = Main.rand.Next(12,16);
+			int amountToDrop = Main.rand.Next(16,24);
 			player.QuickSpawnItem(mod.ItemType("SpaceRockFragment"), amountToDrop);
 			
 			if (Main.rand.Next(7) == 0)
