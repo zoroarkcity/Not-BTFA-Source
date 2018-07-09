@@ -173,6 +173,12 @@ namespace ForgottenMemories.NPCs.Acheron
 				npc.ai[3]++;
 			}
 			
+			if (Main.expertMode && npc.life <= npc.lifeMax / 8) //uses stardust shader at low life in expert
+			{
+				player.ManageSpecialBiomeVisuals("Stardust", player.active, new Vector2(npc.Center.X, npc.Center.Y));
+				player.ManageSpecialBiomeVisuals("HeatDistortion", player.active, new Vector2(player.position.X, player.position.Y));
+			}
+			
 			if (!transitioned && phase2)
 			{
 				for (int index1 = 0; index1 < 5; ++index1)
