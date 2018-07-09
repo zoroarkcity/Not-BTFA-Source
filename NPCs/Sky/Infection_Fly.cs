@@ -40,13 +40,13 @@ namespace ForgottenMemories.NPCs.Sky
 			idleNoiseTimer++;
 			if (idleNoiseTimer > 60 && Main.rand.Next(500) == 0)
 			{
-				switch(Main.rand.Next(3)
+				switch(Main.rand.Next(3))
 				{
 					case 0: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 50, 1f, 0.0f);
 						break;
 					case 1: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 51, 1f, 0.0f);
 						break;
-					case 1: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 52, 1f, 0.0f);
+					case 2: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 52, 1f, 0.0f);
 						break;
 				}
 				idleNoiseTimer = 0;

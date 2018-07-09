@@ -44,7 +44,7 @@ namespace ForgottenMemories.NPCs.Dungeon
 			
 			if (npc.ai[1] > 60 && Main.rand.Next(500) == 0)
 			{
-				switch(Main.rand.Next(2)
+				switch(Main.rand.Next(2))
 				{
 					case 0: Main.PlaySound(29, (int) npc.position.X, (int) npc.position.Y, 21, 1f, 0.0f);
 						break;
