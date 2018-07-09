@@ -24,7 +24,7 @@ namespace ForgottenMemories.NPCs.GhastlyEnt
 			aiType = 508;
 			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Forests_Army");
 			banner = npc.type;
-			bannerItem = mod.ItemType("TreemanBannerItem");
+			bannerItem = mod.ItemType("TreeManBannerItem");
 		}
 		
 		public override void SetStaticDefaults()

@@ -26,9 +26,9 @@ namespace ForgottenMemories.Items.ItemSets.Blightstone
 			item.width = 32;
 			item.height = 20;
 
-			item.useTime = 3;
-			item.useAnimation = 9;
-			item.reuseDelay = 12;
+			item.useTime = 4;
+			item.useAnimation = 8;
+			item.reuseDelay = 20;
 			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 1;

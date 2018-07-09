@@ -11,12 +11,12 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetDefaults()
 		{
 
-			item.damage = 85;
+			item.damage = 60;
 			item.ranged = true;
 			item.width = 22;
 			item.height = 24;
-			item.useTime = 12;
-			item.useAnimation = 12;
+			item.useTime = 18;
+			item.useAnimation = 18;
 			item.UseSound = SoundID.Item36;
 			item.useStyle = 5;
 			item.knockBack = 1;

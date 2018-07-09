@@ -73,7 +73,7 @@ namespace ForgottenMemories.Items.ItemSets.Cosmorock
 			{
 				float rotation = new Vector2(speedX, speedY).ToRotation();
 				Vector2 offset = (Vector2.UnitY * Main.rand.Next(-5, 6) * 4).RotatedBy(rotation);
-				Projectile arrow = Main.projectile[Projectile.NewProjectile(position + offset, new Vector2(speedX, speedY)/2, mod.ProjectileType("AstralArrow"), (int)(damage/3), knockBack, player.whoAmI, 0f, 0f)];
+				Projectile arrow = Main.projectile[Projectile.NewProjectile(position + offset, new Vector2(speedX, speedY)/2, mod.ProjectileType("AstralArrow"), (int)(damage * 0.66), knockBack, player.whoAmI, 0f, 0f)];
 				arrow.netUpdate = true;
 			}
             return true;
