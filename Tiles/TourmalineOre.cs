@@ -20,6 +20,8 @@ namespace ForgottenMemories.Tiles
 			Main.tileSpelunker[Type] = true;
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
+			Main.tileMerge[Type][368] = true;
+            Main.tileMerge[368][Type] = true;
 			Main.tileLighted[Type] = true;
 			dustType = 240;
 			drop = mod.ItemType("Tourmaline");

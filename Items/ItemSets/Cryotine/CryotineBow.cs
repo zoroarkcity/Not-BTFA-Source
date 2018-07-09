@@ -10,12 +10,12 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 		public override void SetDefaults()
 		{
 
-			item.damage = 24;
+			item.damage = 28;
 			item.ranged = true;
 			item.width = 88;
 			item.height = 88;
-			item.useTime = 25;
-			item.useAnimation = 25;
+			item.useTime = 22;
+			item.useAnimation = 22;
 
 			item.useStyle = 5;
 			item.knockBack = 3;
@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 			item.noMelee = true;
 			item.rare = 2;
 			item.shoot = 3;
-			item.shootSpeed = 10f;
+			item.shootSpeed = 8f;
             item.useAmmo = 40;
 			item.UseSound = SoundID.Item5;
 			item.autoReuse = true;
@@ -37,7 +37,7 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
     public override void SetStaticDefaults()
     {
       DisplayName.SetDefault("Cryotine Bow");
-      Tooltip.SetDefault("Has a chance to fire a spread of frostburn arrows");
+      Tooltip.SetDefault("Lights wooden arrows ablaze with icy fire");
     }
 
 		
@@ -52,18 +52,8 @@ namespace ForgottenMemories.Items.ItemSets.Cryotine
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			if (Main.rand.Next(4) == 0)
-			{
-				for (int i = 0; i < 3; ++i)
-				{
-					float sX = speedX;
-					float sY = speedY;
-					sX += (float)Main.rand.Next(-60, 61) * 0.05f;
-					sY += (float)Main.rand.Next(-60, 61) * 0.05f;
-					int p = Projectile.NewProjectile(position.X, position.Y, sX, sY, ProjectileID.FrostburnArrow, damage, knockBack, player.whoAmI);
-					Main.projectile[p].noDropItem = true;
-				}
-			}
+			if (type == ProjectileID.WoodenArrowFriendly)
+				type = ProjectileID.FrostburnArrow;
 			
 			return true;
 		}

@@ -20,8 +20,8 @@ namespace ForgottenMemories.Tiles
 			Main.tileSpelunker[Type] = true;
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
-			Main.tileMerge[Type][1] = true;
-            Main.tileMerge[1][Type] = true;
+			Main.tileMerge[Type][57] = true;
+            Main.tileMerge[57][Type] = true;
 			Main.tileLighted[Type] = true;
 			dustType = 203;
 			drop = mod.ItemType("Spinel");

@@ -21,6 +21,8 @@ namespace ForgottenMemories.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = true;
+			Main.tileMerge[Type][367] = true;
+            Main.tileMerge[367][Type] = true;
 			dustType = 236;
 			drop = mod.ItemType("Citrine");
 			ModTranslation name = CreateMapEntryName();
