@@ -17,7 +17,7 @@ namespace ForgottenMemories.Items.Melee
 		public override void SetDefaults()
 		{
 
-			item.damage = 18;
+			item.damage = 15;
 			item.melee = true;
 			item.width = 22;
 			item.height = 24;
@@ -26,7 +26,7 @@ namespace ForgottenMemories.Items.Melee
 			item.crit = 16;
 			item.useStyle = 3;
 			item.knockBack = 3;
-			item.value = 60000;
+			item.value = Item.sellPrice(0, 0, 25, 0);
 			item.rare = 1;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
@@ -36,7 +36,7 @@ namespace ForgottenMemories.Items.Melee
 
 		public override void SetStaticDefaults()
 		{
-		  DisplayName.SetDefault("Protector's Stab");
+		  DisplayName.SetDefault("Unstable Gladius");
 		  Tooltip.SetDefault("Critical hits boost the defense of you and nearby allies");
 		  BTFAGlowmask.AddGlowMask(item.type, "ForgottenMemories/GlowMasks/ProtectorStab");
     }

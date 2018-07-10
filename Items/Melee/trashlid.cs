@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.Melee
             item.noUseGraphic = true;
             item.useStyle = 1;
             item.knockBack = 4;
-            item.value = 10000;
+			item.value = Item.sellPrice(0, 2, 50, 0);
             item.rare = -1;
             item.shootSpeed = 13f;
 			item.maxStack = 1;

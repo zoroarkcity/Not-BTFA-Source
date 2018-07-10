@@ -29,8 +29,8 @@ namespace ForgottenMemories.Items.Melee
 			item.useStyle = 1;
 			item.UseSound = SoundID.Item1;
 
-			item.value = 1000;
-			item.rare = 2;
+			item.value = Item.sellPrice(0, 0, 50, 0);
+			item.rare = 1;
 
 		}
 
