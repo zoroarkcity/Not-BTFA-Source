@@ -65,7 +65,7 @@ namespace ForgottenMemories.Items.Boss
 			player.TryGettingDevArmor();
             player.QuickSpawnItem(mod.ItemType("AmberCrystal"), 1); 
 			player.QuickSpawnItem(mod.ItemType("ForestEnergy"), Main.rand.Next(32, 35));
-			player.QuickSpawnItem(mod.ItemType("BlossomBranch"), Main.rand.Next(5, 10));
+			player.QuickSpawnItem(mod.ItemType("CherryBranch"), Main.rand.Next(10, 15));
 			
 			switch (Main.rand.Next(6))
 			{
