@@ -17,7 +17,7 @@ namespace ForgottenMemories.Buffs
 		}
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			if (npc.boss == false)
+			if (npc.boss == false || npc.type != (247 | 248 | 264 | 265 | 13 | 14 | 15))
 			{
 				npc.velocity.X *= 0.8f;
 				npc.velocity.Y *= 0.8f;
