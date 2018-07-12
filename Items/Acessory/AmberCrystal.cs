@@ -23,7 +23,7 @@ namespace ForgottenMemories.Items.Acessory
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Amber Crystal");
-			Tooltip.SetDefault("Summon attacks have a chance to create balls of sap\nA powerful crystal made from the powerful sap of the ghastly ent");
+			Tooltip.SetDefault("Summon attacks have a chance to create balls of sap");
 		}
 
 

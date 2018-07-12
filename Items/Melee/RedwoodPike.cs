@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.Melee
 			item.noMelee = true;
 			item.noUseGraphic = true;
 			item.useStyle = 5;
-			item.value = 50000;
+			item.value = Item.sellPrice(0, 7, 50, 0);
 			item.rare = 3;
 			item.shoot = mod.ProjectileType("RedwoodPike"); 
 			item.shootSpeed = 7;

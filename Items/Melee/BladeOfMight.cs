@@ -21,7 +21,7 @@ namespace ForgottenMemories.Items.Melee
 			item.useAnimation = 12;
 			item.useStyle = 1;
 			item.knockBack = 6;
-			item.value = 500000;
+			item.value = Item.sellPrice(0, 12, 50, 0);
 			item.rare = 5;
 			item.shoot = mod.ProjectileType("MightBeam");
 			item.UseSound = SoundID.Item1;

@@ -24,7 +24,7 @@ public class MartianYoyo : ModItem
 			item.shootSpeed = 16f;
 			item.knockBack = 3.75f;
 			item.damage = 100;
-			item.value = 500000;
+			item.value = Item.sellPrice(0, 10, 0, 0);
 			item.rare = 8;
 			item.shoot = mod.ProjectileType("MartianYoyoP");
 		}

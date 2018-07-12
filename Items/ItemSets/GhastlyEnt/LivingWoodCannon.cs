@@ -21,7 +21,7 @@ public class LivingWoodCannon : ModItem
         item.useStyle = 5;
         item.knockBack = 3;
         item.value = 27000;
-        item.rare = 2;
+        item.rare = 3;
         item.autoReuse = true;
 
         item.shoot = mod.ProjectileType("wooballF"); 

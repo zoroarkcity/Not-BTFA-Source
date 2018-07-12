@@ -25,7 +25,7 @@ namespace ForgottenMemories.Items.Melee
 			item.useAnimation = 20;
 			item.useStyle = 1;
 			item.knockBack = 6;
-			item.value = 200000000;
+			item.value = Item.sellPrice(10, 0, 0, 0);
 			item.rare = 11;
 			item.expert = true;
 			item.UseSound = SoundID.Item1;

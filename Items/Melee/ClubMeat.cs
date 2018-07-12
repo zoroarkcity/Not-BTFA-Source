@@ -29,7 +29,7 @@ namespace ForgottenMemories.Items.Melee
 			item.useStyle = 1;
 			item.UseSound = SoundID.Item1;
 
-			item.value = 50000;
+			item.value = Item.sellPrice(0, 4, 50, 0);
 			item.rare = 4;
 
 		}
