@@ -117,8 +117,8 @@ namespace ForgottenMemories.NPCs.Acheron
 				Vector2 value4 = (npc.oldPos[num161]);
 				float num165 = npc.rotation;
 				SpriteEffects effects = spriteEffects;
-				Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(15f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
-				Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(-15f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
+				Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(15f, npc.gfxOffY).RotatedBy(npc.rotation), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
+				Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(-15f, npc.gfxOffY).RotatedBy(npc.rotation), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
 				goto IL_6881;
 			}
 			if (phase2)
@@ -278,6 +278,7 @@ namespace ForgottenMemories.NPCs.Acheron
 		
 		public void Move(Player player)
 		{
+			npc.rotation = npc.velocity.X * 0.05f;
 			npc.TargetClosest(true);
 			Vector2 vector2;
 			vector2 = new Vector2(npc.Center.X, npc.Center.Y);
@@ -292,6 +293,7 @@ namespace ForgottenMemories.NPCs.Acheron
 
 		public void Teleport(Player player)
 		{
+			npc.rotation = 0;
 			Vector2 vel = new Vector2(player.Center.X, player.Center.Y - 350) - npc.Center;
 			vel.Normalize();
 			vel *= 25;

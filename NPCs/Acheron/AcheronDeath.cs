@@ -73,7 +73,7 @@ namespace ForgottenMemories.NPCs.Acheron
 			
 			for (int i = 0; i < 8; i++)
 			{
-				Vector2 velocity = new Vector2(Main.rand.Next(4, 8), 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(45) + i * 45));
+				Vector2 velocity = new Vector2(Main.rand.Next(4, 8) * (1 + (float)npc.alpha/255f), 0).RotatedBy(MathHelper.ToRadians(Main.rand.Next(45) + i * 45));
 				Dust newDust = Dust.NewDustDirect(npc.Center, 0, 0, 20, velocity.X, velocity.Y);
 				newDust.noGravity = true;
 				newDust.fadeIn = 0.2f;

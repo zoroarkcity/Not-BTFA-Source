@@ -251,7 +251,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.spriteDirection = 1;
 			npc.TargetClosest(true);
             Player player = Main.player[npc.target];
-
+			npc.rotation = npc.velocity.X * 0.05f;
 			ProcessBlinding();
 			
 			if ((npc.life < npc.lifeMax * 2 / 3 && Main.expertMode) || npc.life < npc.lifeMax / 2)

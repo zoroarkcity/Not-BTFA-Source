@@ -11,12 +11,12 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 		public override void SetDefaults()
 		{
 
-			item.damage = 82;
+			item.damage = 70;
 			item.melee = true;
 			item.width = 22;
 			item.height = 24;
-			item.useTime = 30;
-			item.useAnimation = 15;
+			item.useTime = 25;
+			item.useAnimation = 25;
 			item.useStyle = 1;
 			item.knockBack = 7.5f;
 			item.value = 27000;
@@ -37,7 +37,7 @@ namespace ForgottenMemories.Items.ItemSets.GhastlyEnt
 			Vector2 Velocity = target.Center - Center;
 			Velocity.Normalize();
 			Velocity *= 12;
-			Projectile.NewProjectile(Center, Velocity, mod.ProjectileType("DruidBlade"), damage, 0f, player.whoAmI);
+			Projectile.NewProjectile(Center, Velocity, mod.ProjectileType("DruidBlade"), (int)(damage * 0.75), 0f, player.whoAmI);
         }
 	}
 }
