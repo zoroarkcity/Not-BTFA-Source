@@ -51,7 +51,7 @@ namespace ForgottenMemories.Projectiles
 					j = i;
 				}
 			}
-			projectile.damage = (int)projectile.damage/5;
+			projectile.damage = (int)projectile.damage/3;
 			projectile.tileCollide = false;
 		}
 
