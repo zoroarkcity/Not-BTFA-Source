@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,10 +12,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
     public class FaceOfInsanity : ModNPC
     {
 		int aiTimer = 0; //only used in first phase atm
-		int BloodTimer = 0;
-		int BloodRainTimer = 0;
-		int DashTimer = 0;
-        int outOfRangeTimer = 0;
+		//int BloodTimer = 0;
+		//int BloodRainTimer = 0;
+		//int DashTimer = 0;
 		int blindTimer = 59;
 		bool phase2 = false;
 		float maxSpook = 1f;
@@ -45,15 +45,15 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.DeathSound = SoundID.NPCDeath13;
             npc.npcSlots = 13f;
 			bossBag = mod.ItemType("ArteriusBag");
-			npc.buffImmune[69] = true;
-			npc.buffImmune[20] = true;
-			//NPCID.Sets.TrailCacheLength[npc.type] = 10;
-			//NPCID.Sets.TrailingMode[npc.type] = 1;
+            npc.buffImmune[69] = true;
+            npc.buffImmune[20] = true;
+            //NPCID.Sets.TrailCacheLength[npc.type] = 10;
+            //NPCID.Sets.TrailingMode[npc.type] = 1;
             /*if (ForgottenMemories.instance.songsLoaded)
                 music = ModLoader.GetMod("BTFASongs").GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/darknessthatchillsmenshearts");
             else
                 music = MusicID.Boss4;*/
-			music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Arterius");
+            music = mod.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Arterius");
         }
 		
 		public override void SetStaticDefaults()
@@ -68,8 +68,18 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.damage = 125;
 			npc.defense = 14;
 		}
-		
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+
+        /*public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(phase2);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            phase2 = reader.ReadBoolean();
+        }*/
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
 			SpriteEffects spriteEffects = SpriteEffects.None;
 			Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
@@ -135,6 +145,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
         public void ShootEyeBeams(Player player, bool leadShots)
         {
+            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+
             Vector2 eye1 = new Vector2(npc.Center.X - 36, npc.Center.Y - 4);
             Vector2 eye2 = new Vector2(npc.Center.X + 36, npc.Center.Y - 4);
             Vector2 Vel1 = player.Center - eye1;
@@ -143,45 +155,38 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             Vel2.Normalize();
             Vel1 *= 8;
             Vel2 *= 8;
+
             if (leadShots)
             {
                 Vel1 += player.velocity / 2;
                 Vel2 += player.velocity / 2;
             }
-            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
-            int p1 = Projectile.NewProjectile(eye1, Vel1, mod.ProjectileType("BrimstoneSmall"), npc.damage / 4, 0, npc.target, 0, 0); //20
-            Main.projectile[p1].netUpdate = true;
 
-            int p2 = Projectile.NewProjectile(eye2, Vel2, mod.ProjectileType("BrimstoneSmall"), npc.damage / 4, 0, npc.target, 0, 0); //20
-            Main.projectile[p2].netUpdate = true;
-
-            if (Main.expertMode)
-			{
-				Main.projectile[p1].damage = npc.damage * 2 / 13; //76.02
-				Main.projectile[p2].damage = npc.damage * 2 / 13;
-			}
+            int damage = Main.expertMode ? npc.damage * 2 / 13 : npc.damage / 4; //76.02, 20
+            Projectile.NewProjectile(eye1, Vel1, mod.ProjectileType("BrimstoneSmall"), damage, 0, npc.target, 0, 0);
+            Projectile.NewProjectile(eye2, Vel2, mod.ProjectileType("BrimstoneSmall"), damage, 0, npc.target, 0, 0);
         }
 
         public void ShootBigBeam()
         {
+            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 73);
+
             Player player = Main.player[npc.target];
             Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
             Vector2 Vel = player.Center - cross;
  			Vel.Normalize();
  			Vel *= 20;
  			Vel += player.velocity / 3;
-			int p = Projectile.NewProjectile(cross, Vel, mod.ProjectileType("BrimstoneBig"), npc.damage / 2, 0, npc.target, 0, 0); //40
-			Main.projectile[p].netUpdate = true;
-			Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 73);
 
-            if (Main.expertMode)
-            {
-                Main.projectile[p].damage = (int) (npc.damage / 4.11764706); //same as arte contact damage
-            }
+            int damage = Main.expertMode ? (int)(npc.damage / 4.11764706 / 10) : npc.damage / 2; //????, 40
+            Projectile.NewProjectile(cross, Vel, mod.ProjectileType("BrimstoneBig"), damage, 0, npc.target, 0, 0);
         }
 
         public void ShootSpinalBolts()
         {
+            Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
+            if (Main.netMode == 1) return;
+
             Player player = Main.player[npc.target];
             Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
             Vector2 distance = player.Center - cross;
@@ -205,9 +210,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             {
                 Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-5, 6) / 2f, (float)Main.rand.Next(-5, 6) / 2f);
                 int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), damage, 0, Main.myPlayer, 1f, 0);
+                Main.projectile[p].netUpdate = true;
             }
-
-            Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
         }
 
 		public void CheckOutOfRange()
@@ -219,7 +223,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             {
                 npc.Center = Main.player[npc.target].Center + new Vector2(0, 550); //teleport below player
                 SpookyDash();
-                outOfRangeTimer = 60;
+                npc.ai[3] = 60f;
+                npc.netUpdate = true;
             }
         }
 
@@ -251,17 +256,20 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 			npc.spriteDirection = 1;
 			npc.TargetClosest(true);
             Player player = Main.player[npc.target];
-			npc.rotation = npc.velocity.X * 0.05f;
-			ProcessBlinding();
-			
-			if ((npc.life < npc.lifeMax * 2 / 3 && Main.expertMode) || npc.life < npc.lifeMax / 2)
-			{
-				npc.ai[0] = 1;
-			}
+
+            //npc.rotation = npc.velocity.X * 0.05f;
+            ProcessBlinding();
 			
 			if (!phase2 && npc.ai[0] == 0)
 			{
-				aiTimer++;
+                if ((npc.life < npc.lifeMax * 2 / 3 && Main.expertMode) || npc.life < npc.lifeMax / 2)
+                {
+                    npc.ai[0] = 1;
+                    npc.ai[3] = 0;
+                    npc.netUpdate = true;
+                }
+
+                aiTimer++;
 
                 if (npc.Center.X > player.Center.X + 10 && moveX > -8f)
                     moveX -= 0.2f;
@@ -287,10 +295,10 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                 
                 bool abovePlayer = ((npc.Center.Y < Main.player[npc.target].Center.Y - 250));
 
-                if (outOfRangeTimer > 0)
+                if (npc.ai[3] > 0f)
                 {
                     npc.velocity *= 0.97f;
-                    outOfRangeTimer--;
+                    npc.ai[3]--;
                 }
                 else
                 {
@@ -310,7 +318,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				//left these % in because the desync is a feature
                 if (abovePlayer)
                 {
-                    if (aiTimer % 130 == 0 && Main.expertMode)
+                    if (aiTimer % 130 == 0 && Main.expertMode && Main.netMode != 1)
                     {
                         Vector2 cross = new Vector2(npc.Center.X, npc.Center.Y - 30);
                         Vector2 velocity = Vector2.Subtract(player.Center, cross);
@@ -318,7 +326,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         velocity *= 8;
                         velocity += player.velocity / 2;
 						int damage = npc.damage / 6; //82.35 ONLY IN EXPERT
-                        int p = Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), damage, 0, Main.myPlayer, 0, 0);
+                        Projectile.NewProjectile(cross, velocity, mod.ProjectileType("SpinalBoltEvil"), damage, 0, Main.myPlayer, 0, 0);
                     }
                     if (aiTimer % 110 == 0)
                         ShootBlood(mod.NPCType("ExplosiveZitEnemy"), false);
@@ -328,8 +336,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				
 				if (TGEMWorld.downedArterius && aiTimer % 360 <= 0)
 				{
-					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
-				}
+					int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("PinkEye"));
+                    if (Main.netMode == 2) NetMessage.SendData(23, -1, -1, null, n, 0f, 0f, 0f, 0, 0, 0);
+                }
 				
 			}
 			
@@ -338,8 +347,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 				if (npc.alpha < 255)
 				{
 					//if (npc.alpha == 0 && TGEMWorld.downedArterius) Main.NewText("A deathly chill crawls down your spine...", new Color(214, 0, 0, 0));
-
-					npc.alpha += 5;
+                    npc.alpha += 5;
 				}
 				else
 				{
@@ -389,7 +397,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
                         if (Main.expertMode)
                             Velocity *= 1.25f;
                         npc.velocity = Velocity;
-					}
+
+                        npc.dontTakeDamage = false;
+                    }
 					
 					//stop, begin fade for spooky dash
                     if (npc.ai[1] == 360)
@@ -423,6 +433,8 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							{
 								ShootBigBeam();
 							}
+
+                            npc.netUpdate = true;
 						}
 						else //messy. this section above and below feels very messy
 						{
@@ -442,6 +454,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 					if (npc.ai[2] > 0)
 					{
 						npc.ai[3]++; //timer
+                        npc.dontTakeDamage = false;
 						
 						if (npc.ai[3] < fadeLimit) //stop and fade
 						{
@@ -455,19 +468,17 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 							if (Main.expertMode)
 							{
 								npc.Center = Main.player[npc.target].Center + new Vector2(0, -500); //teleport above player
-								if (TGEMWorld.downedArterius)
-								{
-									ShootBlood(mod.NPCType("ExplosiveZitEnemy"), false);
-								}
+                                if (TGEMWorld.downedArterius)
+								    ShootBlood(mod.NPCType("ExplosiveZitEnemy"), false);
 							}
 							else
 							{
 								npc.Center = Main.player[npc.target].Center + new Vector2(0, 550); //teleport below player
 							}
 
-							npc.dontTakeDamage = false;
 							Main.bloodMoon = true;
                             SpookyDash();
+                            npc.netUpdate = true;
 						}
 						else
 						{
@@ -521,7 +532,7 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
             {
                 npc.TargetClosest(false);
                 npc.velocity.Y = -20;
-				npc.ai[0] = 0;
+				//npc.ai[0] = 0;
 				if (npc.timeLeft > 10)
 				{
 					npc.timeLeft = 10;
@@ -572,6 +583,9 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 		{
 			if (!rain)
 			{
+                Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
+                if (Main.netMode == 1) return;
+
                 Player player = Main.player[npc.target];
                 Vector2 mouth = new Vector2(npc.Center.X, npc.Center.Y + 70);
                 Vector2 distance = player.Center - mouth;
@@ -586,38 +600,30 @@ namespace ForgottenMemories.NPCs.FaceOfInsanity
 
                 Vector2 Vel = new Vector2(distance.X / time, distance.Y / time - 0.5f * gravity * time);
 
-                for (int index = 0; index < Main.rand.Next(4, 7); index++)
+                int maxVomit = Main.expertMode ? Main.rand.Next(5, 11) : Main.rand.Next(4, 7);
+                for (int index = 0; index < maxVomit; index++)
                 {
                     Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-4, 5) / 2f, (float)Main.rand.Next(-4, 5) / 2f);
-                    NPC.NewNPC((int)mouth.X, (int)mouth.Y, type, 0, 0f, velocity.X, velocity.Y, 0f, npc.target);
+                    int n = NPC.NewNPC((int)mouth.X, (int)mouth.Y, type, 0, 0f, velocity.X, velocity.Y, 0f, npc.target);
+                    if (Main.netMode == 2) NetMessage.SendData(23, -1, -1, null, n, 0f, 0f, 0f, 0, 0, 0);
                 }
-
-                if (Main.expertMode)
-				{
-                    for (int index = 0; index < Main.rand.Next(1, 4); index++)
-                    {
-                        Vector2 velocity = Vel + new Vector2((float)Main.rand.Next(-4, 5) / 2f, (float)Main.rand.Next(-4, 5) / 2f);
-                        NPC.NewNPC((int)mouth.X, (int)mouth.Y, type, 0, 0f, velocity.X, velocity.Y, 0f, npc.target);
-                    }
-				}
-
-				Main.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 9);
 			}
 			else
 			{
-				for (int index = 0; index < Main.rand.Next(3, 6); index++)
+                if (Main.netMode == 1) return;
+
+                for (int index = 0; index < Main.rand.Next(3, 6); index++)
 				{
 					Vector2 offset = new Vector2(Main.rand.Next(-200, 201), -200);
 					Vector2 direction = Main.player[npc.target].Center - (npc.Center + offset);
 					direction.Normalize();
 					direction *= 7;
-					int p = Projectile.NewProjectile(npc.Center + offset, direction, type, npc.damage / 6, 1, Main.myPlayer, 0, 0); //13.33
+                    int damage = Main.expertMode ? npc.damage / 7 : npc.damage / 6; //70.59, 13.33
+					int p = Projectile.NewProjectile(npc.Center + offset, direction, type, damage, 1, Main.myPlayer, 0, 0);
 					Main.projectile[p].netUpdate = true;
-					if (Main.expertMode)
-                        Main.projectile[p].damage = npc.damage / 7; //70.59
 				}
 			}
-			npc.netUpdate = true;
+			//npc.netUpdate = true;
 		}
 
 		public override void OnHitPlayer (Player target, int damage, bool crit)
