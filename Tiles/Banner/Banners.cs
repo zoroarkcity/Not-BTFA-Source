@@ -41,7 +41,7 @@ namespace ForgottenMemories.Tiles.Banner
 				case 2:
 					item = "Planewalker_Banner";
 					break;
-/*				case 3:
+				case 3:
 					item = "Arachnergy_Banner";
 					break;
 				case 4:
@@ -58,7 +58,7 @@ namespace ForgottenMemories.Tiles.Banner
 					break;
 				case 8:
 					item = "Branchwood_Thief_Banner";
-					break; */
+					break; 
 				default:
 					return;
 			}
@@ -83,7 +83,7 @@ namespace ForgottenMemories.Tiles.Banner
 					case 2:
 						type = "Planewalker";
 						break;
-	/*				case 3:
+					case 3:
 						type = "Arachnergy";
 						break;
 					case 4:
@@ -100,7 +100,7 @@ namespace ForgottenMemories.Tiles.Banner
 						break;
 					case 8:
 						type = "Branchwood_Thief";
-						break; */
+						break; 
 					default:
 						return;
 				}

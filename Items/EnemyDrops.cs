@@ -115,12 +115,12 @@ namespace ForgottenMemories.Items
 			
 			if (npc.type == 482 && Main.rand.Next(25) == 0)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ProtectorStab"), Main.rand.Next(1, 3)); 
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ProtectorStab"), 1); 
 			}
 	
 			if (npc.type == 483 && Main.rand.Next(25) == 0)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ProtectorStab"), Main.rand.Next(1, 3)); 
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ProtectorStab"), 1); 
 			}
 			
 			/*if (npc.type == NPCID.KingSlime)
