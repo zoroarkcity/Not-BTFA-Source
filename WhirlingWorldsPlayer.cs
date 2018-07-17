@@ -21,11 +21,18 @@ namespace ForgottenMemories
 		public bool Quagmire = false;	
 		public bool energazerHelm = false;	
 		public bool energazerVisor = false;	
-		public int hasTileSonarSensor = 0;	
+		public int liberMortisCount = 1;		
+		public int navitasOrbisCounter = 1;	
 		public int SerratedDaggerProjectileCount = 0;	
 		public int StaticShivProjectileCount = 0;	
 		public int EncrestedWandProjectileCount = 1;	
-		
+	
+		public override void OnEnterWorld (Player player)
+		{
+			SerratedDaggerProjectileCount = 0;
+			EncrestedWandProjectileCount = 1;
+			liberMortisCount = 1;
+		}	
 		public override float UseTimeMultiplier (Item item)
         {
 			if (energazerHelm && Main.LocalPlayer.FindBuffIndex(mod.BuffType("Phantom_Reap_Buff")) > -1 && player.HeldItem.type == mod.ItemType("Phantom_Reap"))
