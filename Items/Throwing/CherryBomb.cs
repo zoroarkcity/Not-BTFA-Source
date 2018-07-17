@@ -12,7 +12,7 @@ namespace ForgottenMemories.Items.Throwing
 		public override void SetDefaults()
 		{
 
-			item.damage = 130;
+			item.damage = 72;
 			item.thrown = true;
 			item.noMelee = true;
 			item.noUseGraphic = true;

@@ -75,7 +75,7 @@ namespace ForgottenMemories.Items.Throwing
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.CrystalShard, 1);
 			recipe.AddTile(16);
-			recipe.SetResult(this, 50);
+			recipe.SetResult(this, 33);
 			recipe.AddRecipe();
 		}
 	}

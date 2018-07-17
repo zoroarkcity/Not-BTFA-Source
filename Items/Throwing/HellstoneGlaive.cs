@@ -85,7 +85,7 @@ namespace ForgottenMemories.Items.Throwing
 		
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Hellstone Glaive");
+			DisplayName.SetDefault("Infernal Shuriken");
 			Tooltip.SetDefault("");
 		}
 
