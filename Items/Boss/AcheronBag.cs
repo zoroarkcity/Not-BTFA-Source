@@ -17,7 +17,7 @@ namespace ForgottenMemories.Items.Boss
 
 			item.expert = true;
 			item.rare = 4;
-			bossBagNPC = mod.NPCType("Acheron");
+			bossBagNPC = mod.NPCType("AcheronDeath");
 		}
 
     public override void SetStaticDefaults()

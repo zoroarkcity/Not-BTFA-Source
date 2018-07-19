@@ -5,7 +5,7 @@
 -Various small changes
 -Added the Revenant and the Storm Spirit, two new enemies that drop wisps
 -Added the Sap Sprout, a new enemy in the hardmode forest's army, which leaks tiny sap slimes when hurt
--Acheron has a custom YABHB health bar, this will only appear if you have YABHB mod installed
+-Acheron has a custom YABHB health bar (this will only appear if you have Yet Another Health Bar mod installed)
 -Our music has respective music boxes, obtained in the same way as vanilla
 -Brass Candelabra, a light pet crafted from Brass Alloy, which releases burning embers 
 -Reworked a number of summon items and removed the '1 minute duration' tooltip
@@ -13,6 +13,7 @@
 -Reworked misc weapons and items
 -Blizzard shards despawn after blizzards
 -Fixed gem blocks not merging correctly with their respective tiles
+-Titan rock and Arterius should now work as intended in multiplayer
 
 ---------------------------------------------------------------
 
