@@ -17,13 +17,13 @@ namespace ForgottenMemories.NPCs.Bjorn
 	[AutoloadBossHead]
     public class Bjorn : ModNPC
     {
-        int dashes = 0;
-		int pygmyDashes = 4;
-		bool hasDashed = false;
-		bool phase2 = false;
-		bool phase3 = false;
-		
-		public override void SetDefaults()
+        bool hasDashed = false;
+        Int16 dashes = 0;
+        Int16 pygmyDashes = 0;
+        bool phase2 = false;
+        bool phase3 = false;
+
+        public override void SetDefaults()
         {
 			npc.aiStyle = 26;
 			aiType = 508;
@@ -42,7 +42,25 @@ namespace ForgottenMemories.NPCs.Bjorn
 			npc.npcSlots = 5;
 		}
 
-		public override void SetStaticDefaults()
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(phase2);
+            writer.Write(phase3);
+            writer.Write(hasDashed);
+            writer.Write(dashes);
+            writer.Write(pygmyDashes);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            phase2 = reader.ReadBoolean();
+            phase3 = reader.ReadBoolean();
+            hasDashed = reader.ReadBoolean();
+            dashes = reader.ReadInt16();
+            pygmyDashes = reader.ReadInt16();
+        }
+
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bjorn");
 			Main.npcFrameCount[npc.type] = 4;
@@ -51,7 +69,26 @@ namespace ForgottenMemories.NPCs.Bjorn
 		public override void BossLoot(ref string name, ref int potionType)
 		{
 			potionType = ItemID.LesserHealingPotion; //Applies to Bosses regardless of world difficulty- pre hm is always lesser, hm is always greater   
-		}		
+		}
+
+        public void SpawnPygmies()
+        {
+            if (Main.netMode != 1)
+            {
+                int cap = Main.expertMode ? 5 : 3;
+                for (int i = 0; i < cap; i++)
+                {
+                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BjornPygmy"));
+                    if (n < 200)
+                    {
+                        Main.npc[n].velocity.X = (float)Main.rand.Next(-15, 16) * 0.4f;
+                        Main.npc[n].velocity.Y = (float)Main.rand.Next(-30, 1) * 0.4f;
+                        if (Main.netMode == 2)
+                            NetMessage.SendData(23, -1, -1, null, n, 0f, 0f, 0f, 0, 0, 0);
+                    }
+                }
+            }
+        }
 
 		public override void AI()
 		{
@@ -69,60 +106,123 @@ namespace ForgottenMemories.NPCs.Bjorn
 				}
             }
 
-			if (npc.velocity.X == 6f || npc.velocity.X == -6f)
-			{
-				if (!hasDashed)
-				{
-					hasDashed = true;
-					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.SlimeSpiked); //placeholder for frog, presumably slime AI
+            if (hasDashed)
+            {
+                if (phase3)
+                {
+                    if (Main.rand.Next(8) == 0) //spawn spores during charges in phase 3
+                    {
+                        if (Main.netMode != 1)
+                        {
+                            float SpeedX = Main.rand.Next(-25, 26) * 0.15f;
+                            float SpeedY = Main.rand.Next(-25, 26) * 0.15f;
+                            int damage = npc.damage / 5;
+                            Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), SpeedX, SpeedY, mod.ProjectileType("BjornSpore"), damage, 0f, Main.myPlayer);
+                        }
+                    }
+                }
+                else //run check when not in phase 3
+                {
+                    if (npc.life < npc.lifeMax / 3)
+                    {
+                        if (!phase2)
+                            SpawnPygmies();
 
-					dashes++;
-					if (dashes == 3)
-					{
-						dashes = 0;
-						NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Pinky);
-					}
+                        phase2 = true;
+                        phase3 = true;
 
-					if (phase2)
-					{
-						pygmyDashes++;
-						if (pygmyDashes == 5)
-						{
-							pygmyDashes = 0;
-							NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("Undead_Heart"));
-						}
-					}
-					else phase2 = npc.life < npc.lifeMax * 2 / 3;
-				}
+                        Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
 
-				if (phase3)
-				{
-					if (Main.rand.Next(10) == 0)
-					{
-						float SpeedX = Main.rand.Next(-20, 21) * 0.8f;
-						float SpeedY = Main.rand.Next(-20, 21) * 0.8f;
-						int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), SpeedX, SpeedY, 567 + Main.rand.Next(2), npc.damage / 5, 0f, Main.myPlayer);
-						Main.projectile[p].friendly = false;
-						Main.projectile[p].hostile = true;
-						Main.projectile[p].netUpdate = true;
-					}
-				}
-				else phase3 = npc.life < npc.lifeMax / 3;
-			}
+                        //add dust here
 
-			if (npc.velocity.X > -1 && npc.velocity.X < 1)
+                        npc.netUpdate = true;
+                    }
+                }
+            }
+            else if (npc.velocity.X == 6f || npc.velocity.X == -6f) //while dashing at full speed (this runs ONCE per dash when bjorn hits full speed)
+            {
+                hasDashed = true;
+
+                dashes++;
+                if (dashes == 3) //dash counter
+                {
+                    dashes = 0;
+                    if (Main.netMode != 1)
+                    {
+                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BjornLilypad"));
+                        if (Main.netMode == 2 && n < 200)
+                            NetMessage.SendData(23, -1, -1, null, n, 0f, 0f, 0f, 0, 0, 0);
+
+                        if (phase3)
+                        {
+                            int n1 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BjornLilypadPoison"));
+                            if (n1 < 200)
+                            {
+                                Main.npc[n1].velocity.X = (float)Main.rand.Next(-20, -6) * 1.2f;
+                                Main.npc[n1].velocity.Y = (float)Main.rand.Next(-5, 0) * 1.2f;
+                                Main.npc[n1].ai[0] = npc.damage / 5;
+                                if (Main.netMode == 2)
+                                    NetMessage.SendData(23, -1, -1, null, n1, 0f, 0f, 0f, 0, 0, 0);
+                            }
+
+                            int n2 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BjornLilypadPoison"));
+                            if (n2 < 200)
+                            {
+                                Main.npc[n2].velocity.X = (float)Main.rand.Next(5, 21) * 1.2f;
+                                Main.npc[n2].velocity.Y = (float)Main.rand.Next(-5, 0) * 1.2f;
+                                Main.npc[n2].ai[0] = npc.damage / 5;
+                                if (Main.netMode == 2)
+                                    NetMessage.SendData(23, -1, -1, null, n2, 0f, 0f, 0f, 0, 0, 0);
+                            }
+                        }
+                    }
+                }
+
+                if (phase2)
+                {
+                    pygmyDashes++;
+                    if (pygmyDashes == 5)
+                    {
+                        pygmyDashes = 0;
+                        SpawnPygmies();
+                    }
+                }
+                else //only run when in phase1
+                {
+                    if (npc.life < npc.lifeMax * 2 / 3) //entering phase 2
+                    {
+                        phase2 = true;
+                        SpawnPygmies();
+                        Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+
+                        //insert dust here
+                    }
+                }
+
+                npc.netUpdate = true;
+            }
+
+			if (npc.velocity.X > -1f && npc.velocity.X < 1f) //when coming to a stop after charge
 			{
 				if (hasDashed)
 				{
 					hasDashed = false;
 
-					for (int index = 0; index < 9; ++index) //replace with lichen, add some dust + a sound
-					{
-						float SpeedX = Main.rand.Next(-20, 21) * 0.8f;
-						float SpeedY = Main.rand.Next(-20, 5) * 0.8f;
-						Projectile.NewProjectile(npc.Center.X + SpeedX, npc.Center.Y + SpeedY, SpeedX, SpeedY, mod.ProjectileType("SpinalBoltEvil"), npc.damage / 5, 0f, Main.myPlayer, 1f, 0f);
-					}
-				}
+                    if (Main.netMode != 1)
+                    {
+                        for (int index = 0; index < 15; ++index) //add some dust + a sound
+                        {
+                            float SpeedX = Main.rand.Next(-20, 21) * 0.25f;
+                            float SpeedY = Main.rand.Next(-20, 6) * 0.25f;
+                            int damage = npc.damage / 5;
+                            Projectile.NewProjectile(npc.Center.X + SpeedX, npc.Center.Y + SpeedY, SpeedX, SpeedY, mod.ProjectileType("BjornSpore"), damage, 0f, Main.myPlayer);
+                        }
+                    }
+
+                    npc.netUpdate = true;
+                }
+
+                //activate expert mode leapdive every X charges
 			}
 		}
 
