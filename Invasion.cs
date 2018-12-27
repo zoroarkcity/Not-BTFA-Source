@@ -13,7 +13,7 @@ namespace ForgottenMemories
     {
 		public static Mod mod = ModLoader.GetMod("ForgottenMemories");
 		
-		public static int[] invaders = {
+		public static int[] invaders = {	
             mod.NPCType<TreeMan>(),
 			mod.NPCType<BorealTreeMan>(),
 			mod.NPCType<PalmTreeMan>(),
@@ -22,6 +22,10 @@ namespace ForgottenMemories
 			mod.NPCType<CharredEnt>(),
 			mod.NPCType<LivingMortar>(),
 			mod.NPCType<TreeWitch>()
+        };
+		
+		public static int[] wInvaders = {
+			mod.NPCType<BambooTreeMan>()
         };
 		
 		public static int[] hmInvaders = {

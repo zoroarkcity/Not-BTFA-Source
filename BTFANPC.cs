@@ -341,6 +341,15 @@ namespace ForgottenMemories
 						pool.Add(i, 1f);
 					}
 				}
+				
+				Mod Wildlife = ModLoader.GetMod("Wildlife");
+                if (Wildlife != null)
+				{
+					foreach(int i in CustomInvasion.wInvaders)
+					{
+						pool.Add(i, 1f);
+					}
+				}
             }
         }
 	}
